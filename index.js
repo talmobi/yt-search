@@ -1,9 +1,6 @@
 var cheerio = require('cheerio');
 var request = require('request');
 
-var cheerio = require('cheerio');
-var request = require('request');
-
 var yt_search_query_uri =  "https://www.youtube.com/results?search_query=";
 
 // settings
@@ -40,7 +37,7 @@ function search (query, done) {
   var q = query.split(/\s+/);
   var url = yt_search_query_uri + q.join('+');
 
-  var songs = []; // found songs
+  var videos = []; // found songs
   var max_loops = _opts.max_requests; // max amount of recursive calls
   var loops = 0;
 
@@ -51,32 +48,32 @@ function search (query, done) {
     console.log("next called ["+loops+"]");
     loops++;
 
-    findSongs(url, page, function (err, videos) {
+    findVideos(url, page, function (err, _videos) {
       if (err) {
         return done(err);
       } else {
 
         // filter videos
-        for (var i = 0; i < videos.length; i++) {
-          var video = videos[i];
+        for (var i = 0; i < _videos.length; i++) {
+          var video = _videos[i];
           if (shouldSkip( video )) {
             console.log("skipping video: " + video.title);
-            videos.splice(i--, 1);
+            _videos.splice(i--, 1);
           }
         }
 
-        console.log("found " + videos.length + " songs on loop: " + loops + "/" + max_loops);
-        songs = songs.concat(videos);
+        console.log("found " + _videos.length + " songs on loop: " + loops + "/" + max_loops);
+        videos = videos.concat(_videos);
 
-        if (songs.length < _opts.minvideos && videos.length > 0 && loops < max_loops) {
+        if (videos.length < _opts.min_results && videos.length > 0 && loops < max_loops) {
           console.log("minimum number of songs not found -> doing another request");
           // call the function recursively until max recursive calls are reached
           // or we've a minimum required amount of songs
           next(page + 1);
         } else {
           // finish the search and return the found songs
-          console.log("number of total songs found: " + songs.length);
-          return done(null, songs);
+          console.log("number of total songs found: " + videos.length);
+          return done(null, videos);
         }
       }
     });
@@ -84,7 +81,7 @@ function search (query, done) {
   next(page);
 }
 
-function findSongs(url, page, done) {
+function findVideos(url, page, done) {
   console.log("finding songs from: " + url);
 
   page = page || 1
