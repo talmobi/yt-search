@@ -10,10 +10,9 @@ yt_search_query_uri += '&search_query='
 
 const ONE_SECOND = 1000
 const ONE_MINUTE = ONE_SECOND * 60
+const TIME_TO_LIVE = ONE_MINUTE * 5
 
-const cache = require( 'short-storage' ).createStorage( {
-  ttl: ONE_MINUTE * 5
-} )
+const cache = {}
 
 // settings
 var _opts = {
@@ -48,7 +47,18 @@ function search ( query, done )
 
   // check cache
   var cacheKey = queryToCacheKey( query )
-  var _cached_videos = cache.get( cacheKey )
+  var cacheVal = cache[ cacheKey ]
+
+  var _cached_videos
+
+  if ( cacheVal ) {
+    var delta = Date.now() - cacheVal.time
+    if ( delta < TIME_TO_LIVE ) {
+      _cached_videos = cacheVal.data
+    } else {
+      delete cache[ cacheKey ]
+    }
+  }
 
   next()
 
@@ -100,8 +110,14 @@ function search ( query, done )
 
           console.log( 'async query completed [' + page_limit + '], found: ' + videos.length + ' songs' )
 
-          // save to cache
-          cache.set( cacheKey, videos )
+          // uncommenting cache, probably should not care at this level
+          /*
+            // save to cache
+            cache[ cacheKey ] = {
+              time: Date.now(),
+              data: videos
+            }
+          */
 
           done( null, videos )
         }
