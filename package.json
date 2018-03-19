@@ -3,16 +3,34 @@
   "version": "0.0.0",
   "description": "search youtube",
   "main": "index.js",
+  "files": [
+    "di"
+  ],
   "scripts": {
-    "test": "mocha test"
+    "build": "npm run build:src && npm run uglify",
+    "build:src": "browserify --no-bundle-external --node -t [ babelify --presets [ env ] ] src/index.js -o dist/yt-search.js 2>&1 | wooster",
+    "uglify": "uglifyjs dist/yt-search.js -cmo dist/yt-search.min.js",
+    "prepublish": "npm run build && npm test",
+    "test:production": "production=1 node test/test.js | faucet",
+    "test:dev": "node test/test.js | faucet",
+    "test": "npm run test:dev && npm run test:production"
   },
   "author": "talmobi",
   "license": "MIT",
   "dependencies": {
-    "cheerio": "^0.19.0",
-    "request": "^2.69.0"
+    "async.parallel": "~0.5.2",
+    "cheerio": "~0.19.0",
+    "dasu": "0.0.23",
+    "short-storage": "0.0.7"
   },
   "devDependencies": {
-    "mocha": "^2.4.5"
+    "babel-core": "~6.26.0",
+    "babel-preset-env": "~1.6.1",
+    "babelify": "~8.0.0",
+    "browserify": "~16.1.1",
+    "faucet": "0.0.1",
+    "mocha": "^2.4.5",
+    "spacestandard": "~0.2.0",
+    "tape": "~4.9.0"
   }
 }
