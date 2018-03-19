@@ -3,6 +3,9 @@
   "version": "0.0.0",
   "description": "search youtube",
   "main": "index.js",
+  "bin": {
+    "yt-search": "./bin/cli.js"
+  },
   "files": [
     "dist/yt-search.min.js"
   ],
