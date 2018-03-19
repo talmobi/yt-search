@@ -293,8 +293,6 @@ function test ( query )
   } )
 }
 
-test( 'superman theme' )
-
 // exports
 module.exports = function ( query, filters, done ) {
   search( query, filters, done )
