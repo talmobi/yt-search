@@ -1,3 +1,10 @@
-node_modules/
-*.swo
-*.swp
+node_modules
+
+" vim files
+*.sw?
+
+" mac files
+*.DS_Store
+
+" dist directory
+dist
