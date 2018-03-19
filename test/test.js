@@ -1,16 +1,26 @@
-var yts = require('../index.js');
-var assert = require('assert');
+let yts = require( '../src/index.js' )
 
-describe('search', function () {
-  this.timeout(6000);
+if ( !!process.env.production ) {
+  yts = require( '../dist/yt-search.min.js' )
+}
 
-  it('should return without error', function (done) {
-    yts('metallica', function (err, videos) {
-      if (err || !videos || videos.length <= 0) {
-        throw new Error("Search request failed.");
-      }
-      done();
-    });
-  });
+const test = require( 'tape' )
 
-});
+test( 'basic search', function ( t ) {
+  t.plan( 4 )
+
+  yts( 'philip glass', function ( err, list ) {
+    t.error( err, 'no errors OK!' )
+
+    const koyaani = list.filter( function ( song ) {
+      const i = song.title.toLowerCase().indexOf( 'koyaanisqatsi' )
+      return ( i >= 0 && i < 5 )
+    } )[ 0 ]
+
+    console.log( koyaani )
+
+    t.ok( koyaani, 'found koyaani OK!' )
+    t.ok( koyaani.duration.seconds > 100, 'koyaani duration OK!' )
+    t.ok( koyaani.views > 100, 'koyaani views OK!' )
+  } )
+} )
