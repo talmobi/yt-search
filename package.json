@@ -7,6 +7,7 @@
     "yt-search": "./bin/cli.js"
   },
   "files": [
+    "bin/cli.js",
     "dist/yt-search.min.js"
   ],
   "scripts": {
