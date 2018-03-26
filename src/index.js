@@ -105,7 +105,11 @@ function findVideos ( uri, page, callback )
 
 function videoFilter ( result )
 {
-  return result.url.indexOf( 'watch' ) >= 0
+  return (
+    result.url.indexOf( 'watch' ) >= 0 &&
+    result.url.indexOf( '&list' ) === -1 &&
+    result.url.indexOf( '&user' ) === -1
+  )
 }
 
 function playlistFilter ( result )
