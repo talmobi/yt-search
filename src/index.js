@@ -138,7 +138,7 @@ function parseResponse ( responseText, callback )
     var span = $( 'span', title )
     var duration = parseDuration( span.text() )
 
-    var href = a.attr( 'href' )
+    var href = a.attr( 'href' ) || ''
 
     var videoId = href.split( '=' )[ 1 ]
 
