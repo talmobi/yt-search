@@ -21,7 +21,7 @@ ytSearch( 'superman theme', function ( err, r ) {
 
   const videos = r.videos
   const playlists = r.playlists
-  count accounts = r.accounts
+  const accounts = r.accounts
 
   const firstResult = videos[ 0 ]
 
