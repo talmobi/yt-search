@@ -30,20 +30,22 @@ ytSearch( 'superman theme', function ( err, r ) {
 ```
 
 ### Output
-> {
->   title: 'Superman Theme',
->   url: '/watch?v=e9vrfEoc8_g',
->   videoId: 'e9vrfEoc8_g',
->   seconds: 253,
->   timestamp: '4:13',
->   duration: {
->     toString: [Function: toString],
->     seconds: 253,
->     timestamp: '4:13'
->   },
->   ago: '8 years ago',
->   views: 29127516
-> }
+```json
+{
+  title: 'Superman Theme',
+  url: '/watch?v=e9vrfEoc8_g',
+  videoId: 'e9vrfEoc8_g',
+  seconds: 253,
+  timestamp: '4:13',
+  duration: {
+    toString: [Function: toString],
+    seconds: 253,
+    timestamp: '4:13'
+  },
+  ago: '8 years ago',
+  views: 29127516
+}
+```
 
 # About
 Simple api to search youtube results.
