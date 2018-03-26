@@ -1,5 +1,7 @@
 #  yt-search - simple youtube search API and CLI
 
+![](https://thumbs.gfycat.com/ContentShockingCuttlefish-size_restricted.gif)
+
 ## Simple to use
 
 ### cli usage
