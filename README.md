@@ -4,7 +4,7 @@
 
 ## Simple to use
 
-### cli usage
+### CLI usage
 ```bash
 npm install -g yt-search
 
@@ -12,7 +12,7 @@ npm install -g yt-search
 yt-search superman theme
 ```
 
-### api usage
+### API usage
 ```js
 const ytSearch = require( 'yt-search' )
 
