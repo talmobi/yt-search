@@ -30,7 +30,7 @@ ytSearch( 'superman theme', function ( err, r ) {
 ```
 
 ### Output
-```json
+```js
 {
   title: 'Superman Theme',
   url: '/watch?v=e9vrfEoc8_g',
@@ -78,7 +78,6 @@ ytSearch( opts, function ( err, r ) {
 } )
 ```
 
-# Installation
 # Installation
 ```bash
 npm install yt-search # local API usage
