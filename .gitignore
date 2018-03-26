@@ -1,10 +1,13 @@
 node_modules
 
-" vim files
+# vim files
 *.sw?
 
-" mac files
+# mac files
 *.DS_Store
 
-" dist directory
+# dist directory
 dist
+
+# sample files
+readme-test.js
