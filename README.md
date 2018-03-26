@@ -1,0 +1,86 @@
+#  yt-search - simple youtube search API and CLI
+
+## Simple to use
+
+### cli usage
+```bash
+npm install -g yt-search
+
+# enter interactive search and selection
+yt-search superman theme
+```
+
+### api usage
+```js
+const ytSearch = require( 'yt-search' )
+
+ytSearch( 'superman theme', function ( err, r ) {
+  if ( err ) throw err
+
+  const videos = r.videos
+  const playlists = r.playlists
+  count accounts = r.accounts
+
+  const firstResult = videos[ 0 ]
+
+  console.log( firstResult )
+} )
+```
+
+### Output
+> {
+>   title: 'Superman Theme',
+>   url: '/watch?v=e9vrfEoc8_g',
+>   videoId: 'e9vrfEoc8_g',
+>   seconds: 253,
+>   timestamp: '4:13',
+>   duration: {
+>     toString: [Function: toString],
+>     seconds: 253,
+>     timestamp: '4:13'
+>   },
+>   ago: '8 years ago',
+>   views: 29127516
+> }
+
+# About
+Simple api to search youtube results.
+
+# Why
+Not sure..
+
+# How
+Using HTTP requests and parsing the results with `cheerio`.
+
+# API
+```bash
+
+const opts = {
+  query: 'superman theme',
+  pageStart: 1, // first youtube page result
+  pageEnd: 3 // up until page 3
+}
+
+ytSearch( opts, function ( err, r ) {
+  if ( typeof opts === 'string' ) {
+    opts = {
+      query: opts,
+      pageStart: 1,
+      pageEnd: 3
+    }
+  }
+
+  // etc
+} )
+```
+
+# Installation
+# Installation
+```bash
+npm install yt-search # local API usage
+```
+
+```bash
+npm install -g yt-search # global CLI usage
+```
+
