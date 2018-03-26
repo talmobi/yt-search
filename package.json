@@ -1,6 +1,6 @@
 {
   "name": "yt-search",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "search youtube",
   "main": "dist/yt-search.min.js",
   "bin": {
@@ -22,7 +22,7 @@
   "author": "talmobi <talmo.christian@gmail.com>",
   "license": "MIT",
   "private": false,
-    "repository": {
+  "repository": {
     "type": "git",
     "url": "https://github.com/talmobi/yt-search"
   },
