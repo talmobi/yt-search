@@ -54,7 +54,9 @@ Simple api to search youtube results.
 Not sure..
 
 # How
-Using HTTP requests and parsing the results with `cheerio`.
+Using HTTP requests and parsing the results with [cheerio](https://github.com/cheeriojs/cheerio).
+
+CLI interactive mode with [node-fzf](https://github.com/talmobi/node-fzf)
 
 # API
 ```bash
