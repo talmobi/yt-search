@@ -1,97 +1,62 @@
-const cheerio = require( 'cheerio' )
-const req = require( 'dasu' ).req
-const parallel = require( 'async.parallel' )
+const _cheerio = require( 'cheerio' )
+const _dasu = require( 'dasu' )
+const _parallel = require( 'async.parallel' )
 
-const url = require( 'url' )
+const _url = require( 'url' )
 
-// https://www.youtube.com/?hl=en&gl=US
-var yt_search_query_uri = 'https://www.youtube.com/results?hl=en&gl=US&category=music'
-yt_search_query_uri += '&search_query='
+const YT_SEARCH_QUERY_URI = (
+  'https://www.youtube.com/results?' +
+  'hl=en&gl=US&category=music' +
+  '&search_query='
+)
 
 const ONE_SECOND = 1000
 const ONE_MINUTE = ONE_SECOND * 60
 const TIME_TO_LIVE = ONE_MINUTE * 5
 
-const cache = {}
-
-// settings
-var _opts = {
-  min_results: 80,
-  min_requests: 3,
-  max_requests: 8,
-  ignore_playlists: true,
-  ignore_accounts: true,
-  only_videos: true
+const DEFAULT_OPTS = {
+  pageStart: 1,
+  pageEnd: 3
 }
 
 /**
- * Provide custom search options.
- */
-function opts ( opts ) {
-  for ( key in opts ) {
-    _opts[ key ] = opts[ key ]
-  }
+ * Exports
+ **/
+module.exports = function ( query, callback ) {
+  search( query, callback )
 }
-
-// simplify and generalize the key for caching the search query
-function queryToCacheKey ( query ) {
-  return query.replace( /\W/g )
-}
+module.exports.search = search
 
 /**
  * Main
  */
-function search ( query, done )
+function search ( query, callback )
 {
-  console.log( 'query: ' + query )
+  let opts = Object.assign( {}, DEFAULT_OPTS )
 
-  // check cache
-  var cacheKey = queryToCacheKey( query )
-  var cacheVal = cache[ cacheKey ]
-
-  var _cached_videos
-
-  if ( cacheVal ) {
-    var delta = Date.now() - cacheVal.time
-    if ( delta < TIME_TO_LIVE ) {
-      _cached_videos = cacheVal.data
-    } else {
-      delete cache[ cacheKey ]
-    }
+  if ( typeof query === 'string' ) {
+    opts = Object.assign( opts, { query: query } )
+  } else {
+    opts = Object.assign( opts, query )
   }
+
+  query = opts.query || opts.search
 
   next()
 
   function next () {
-    if ( _cached_videos ) {
-      console.log( 'responding from cache' )
-      return done( null, _cached_videos )
-    }
+    const q = query.split( /\s+/ )
+    const uri = YT_SEARCH_QUERY_URI + q.join( '+' )
 
-    var response = null
-
-    var q = query.split( /\s+/ )
-    var uri = yt_search_query_uri + q.join( '+' )
-
-    var found_videos_bucket = {}
-
-    // page number (youtube seach query parameter)
-    var page = 1
-    var page_limit = 7
-
-    var error = null
-
-    var tasks = []
-    for ( let i = 1; i < page_limit; i++ ) {
+    const tasks = []
+    for ( let i = opts.pageStart; i < opts.pageEnd; i++ ) {
+      const pageNumber = i
       tasks.push(
         function task ( taskDone ) {
-          var pageNumber = i
           findVideos( uri, pageNumber, function ( err, videos ) {
             if ( err ) {
               taskDone( err )
             } else {
-              // can filter videos here (shouldSkip function)
-              // found_videos_bucket[ 'page-' + pageNumber ] = videos
               taskDone( null, videos )
             }
           } )
@@ -99,93 +64,65 @@ function search ( query, done )
       )
     }
 
-    parallel(
+    _parallel(
       tasks,
       function ( err, results ) {
         if ( err ) {
-          done( err )
+          callback( err )
         } else {
           // merge results
-          let videos = [].concat.apply( [], results )
+          results = [].concat.apply( [], results )
 
-          console.log( 'async query completed [' + page_limit + '], found: ' + videos.length + ' songs' )
+          const videos = results.filter( videoFilter )
+          const playlists = results.filter( playlistFilter )
+          const accounts = results.filter( accountFilter )
 
-          // uncommenting cache, probably should not care at this level
-          /*
-            // save to cache
-            cache[ cacheKey ] = {
-              time: Date.now(),
-              data: videos
-            }
-          */
-
-          done( null, videos )
+          callback( null, {
+            videos: videos,
+            playlists: playlists,
+            accounts: accounts
+          } )
         }
       }
     )
   }
 }
 
-function findVideos ( uri, page, done )
+function findVideos ( uri, page, callback )
 {
   uri += '&page=' + page
-  console.log("finding songs from: " + uri);
 
-  const params = url.parse( uri )
+  const params = _url.parse( uri )
 
-  req( params, function ( err, res, body ) {
+  _dasu.req( params, function ( err, res, body ) {
     if ( err ) {
-      done( err )
+      callback( err )
     } else {
-      parseResponse( body, done )
+      parseResponse( body, callback )
     }
   } )
 }
 
-function shouldSkip ( video )
+function videoFilter ( result )
 {
-  var ignore_playlists = _opts.ignore_playlists && video.url.indexOf( 'list' ) >= 0
-  var ignore_accounts = _opts.ignore_accounts && video.url.indexOf( 'user' ) >= 0
-  var only_videos = !( _opts.only_videos && video.url.indexOf( 'watch' ) >= 0 )
+  return result.url.indexOf( 'watch' ) >= 0
+}
 
-  var duration = video.duration.seconds || video.duration
-  var title = video.title.toUpperCase()
+function playlistFilter ( result )
+{
+  return result.url.indexOf( 'list' ) >= 0
+}
 
-  // filters for duration here
-
-  // var excludes = false;
-  // if (filters.exclude.length > 0) {
-  //  excludes = !!filters.exclude.find(function (val, ind, arr) {
-  //    var str = val.toUpperCase();
-  //    return title.indexOf(str) >= 0;
-  //  });
-  // }
-
-  /* this is an && find, meaning that they ALL have to match simultaneously
-   * (not very useful actually)
-   var includes = filters.include.every(function (val, ind, arr) {
-   var str = val.toUpperCase();
-   return title.indexOf(str) >= 0;
-   });
-   */
-
-  // this is an || find, meaning only one of them has to match, which makes much more sense
-  // var includes = false;
-  // if (filters.include.length > 0) {
-  //  includes = !filters.include.find(function (val, ind, arr) {
-  //    var str = val.toUpperCase();
-  //    return title.indexOf(str) >= 0;
-  //  });
-  // }
-
-  return ( only_videos || ignore_playlists || ignore_accounts )
+function accountFilter ( result )
+{
+  return result.url.indexOf( 'user' ) >= 0
 }
 
 // parse the plain text response body with jsom to pin point song information
-function parseResponse ( responseText, done )
+function parseResponse ( responseText, callback )
 {
   // var _time = Date.now();
-  const $ = cheerio.load( responseText )
+  const $ = _cheerio.load( responseText )
   // var _delta = Date.now() - _time;
   // console.log("parsing response with cheerio, took: " + _delta + " ms");
   // var titles = $('.yt-lockup-title');
@@ -203,6 +140,8 @@ function parseResponse ( responseText, done )
 
     var href = a.attr( 'href' )
 
+    var videoId = href.split( '=' )[ 1 ]
+
     var metaInfo = $( '.yt-lockup-meta-info', content )
     var metaInfoList = $( 'li', metaInfo )
     // console.log(metaInfoList)
@@ -215,60 +154,22 @@ function parseResponse ( responseText, done )
     var song = {
       title: a.text(),
       url: href,
+      videoId: videoId,
+      seconds: Number( duration.seconds ),
+      timestamp: duration.timestamp,
       duration: duration,
       ago: agoText,
-      views: viewsCount
+      views: Number( viewsCount )
     }
 
-    console.log( '"' + song.title + '" views: ' + song.views )
+    // console.log( '"' + song.title + '" views: ' + song.views )
 
     songs.push( song )
   };
 
   // console.log(songs[0]);
 
-  done( null, songs )
-
-  /* using cheerio instead of jsdom (about 8x faster)
-     jsdom.env(responseText, function (err, window) {
-     var document = window.document;
-
-     if (err) {
-     return done(err);
-     }
-
-     var list = [];
-
-     var titles = document.getElementsByClassName('yt-lockup-title');
-     for (var i = 0; i < titles.length; i++) {
-     var title = titles[i];
-
-     var a = title.getElementsByTagName('a')[0];
-     var span = title.getElementsByTagName('span')[0];
-
-     var duration = parseDuration( span.innerHTML );
-
-     var song = {
-     title: a.innerHTML,
-     duration: duration,
-     url: a.href
-     };
-
-  // filter songs
-  if (a.href.indexOf('list') >= 0 || // skip playlists
-  shouldSkipSong( song )
-  ) {
-  //console.log("skipped song: " + song.title);
-  continue;
-  }
-
-  list.push(song);
-  }
-
-  console.log("parsing done");
-  done(null, list);
-  });
-  */
+  callback( null, songs )
 }
 
 function parseDuration ( timestampText )
@@ -296,22 +197,29 @@ function parseDuration ( timestampText )
   }
 }
 
+// run tests is script is run directly
+if ( require.main === module ) {
+  test( 'superman theme' )
+}
+
 function test ( query )
 {
   console.log( 'doing list search' )
-  search( query, function ( error, list ) {
+  search( query, function ( error, r ) {
     if ( error ) throw error
-    for ( var i = 0; i < list.length; i++ ) {
-      var song = list[ i ]
-      console.log( song.title + ' : ' + song.duration )
-      console.log( '---------------' )
+
+    const videos = r.videos
+    const playlists = r.playlists
+    const accounts = r.accounts
+
+    console.log( 'videos: ' + videos.length )
+    console.log( 'playlists: ' + playlists.length )
+    console.log( 'accounts: ' + accounts.length )
+
+    for ( let i = 0; i < 3; i++ ) {
+      const song = videos[ i ]
+      const time = ` (${ song.timestamp })`
+      console.log( song.title + time )
     }
   } )
 }
-
-// exports
-module.exports = function ( query, filters, done ) {
-  search( query, filters, done )
-}
-module.exports.opts = opts
-module.exports.search = search
