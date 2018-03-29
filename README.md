@@ -1,10 +1,14 @@
-#  yt-search - simple youtube search API and CLI
+[![npm](https://img.shields.io/npm/v/yt-search.svg?maxAge=3600&style=flat-square)](https://www.npmjs.com/package/yt-search)
+[![npm](https://img.shields.io/npm/l/yt-search.svg?maxAge=3600&style=flat-square)](https://github.com/talmobi/yt-search/blob/master/LICENSE)
+
+#  yt-search
+simple youtube search API and CLI
 
 ![](https://thumbs.gfycat.com/ContentShockingCuttlefish-size_restricted.gif)
 
-## Simple to use
+## Easy to use
 
-### CLI usage
+#### CLI usage
 ```bash
 npm install -g yt-search
 
@@ -12,7 +16,7 @@ npm install -g yt-search
 yt-search superman theme
 ```
 
-### API usage
+#### API usage
 ```js
 const ytSearch = require( 'yt-search' )
 
@@ -29,7 +33,7 @@ ytSearch( 'superman theme', function ( err, r ) {
 } )
 ```
 
-### Output
+#### Output
 ```js
 {
   title: 'Superman Theme',
@@ -47,18 +51,18 @@ ytSearch( 'superman theme', function ( err, r ) {
 }
 ```
 
-# About
-Simple api to search youtube results.
+## About
+Simple function to get youtube search results.
 
-# Why
+## Why
 Not sure..
 
-# How
+## How
 Using HTTP requests and parsing the results with [cheerio](https://github.com/cheeriojs/cheerio).
 
 CLI interactive mode with [node-fzf](https://github.com/talmobi/node-fzf)
 
-# API
+## Usage
 ```bash
 
 const opts = {
@@ -80,12 +84,16 @@ ytSearch( opts, function ( err, r ) {
 } )
 ```
 
-# Installation
+## Installation
 ```bash
-npm install yt-search # local API usage
+npm install yt-search # local module usage
 ```
 
 ```bash
 npm install -g yt-search # global CLI usage
 ```
 
+## Test
+```
+npm test
+```
