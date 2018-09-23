@@ -33,7 +33,7 @@
   },
   "dependencies": {
     "async.parallel": "~0.5.2",
-    "cheerio": "~0.19.0",
+    "cheerio": "~0.22.0",
     "dasu": "0.0.23",
     "minimist": "~1.2.0",
     "node-fzf": "0.0.5"
@@ -44,8 +44,9 @@
     "babelify": "~8.0.0",
     "browserify": "~16.1.1",
     "faucet": "0.0.1",
-    "mocha": "^2.4.5",
+    "mocha": "~5.2.0",
     "spacestandard": "~0.2.0",
-    "tape": "~4.9.0"
+    "tape": "~4.9.0",
+    "uglify-js": "~3.4.9"
   }
 }
