@@ -34,6 +34,12 @@ function search ( query, callback )
 {
   let opts = Object.assign( {}, DEFAULT_OPTS )
 
+  if ( !query ) {
+    return callback(
+      new Error( 'No query given.' )
+    )
+  }
+
   if ( typeof query === 'string' ) {
     opts = Object.assign( opts, { query: query } )
   } else {

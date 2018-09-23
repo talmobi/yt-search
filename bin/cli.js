@@ -13,6 +13,11 @@ var argv = require( 'minimist' )( process.argv.slice( 2 ) )
 
 var query = argv._.join( ' ' )
 
+if ( !query ) {
+  console.log( 'No search qeury given. Exiting.' )
+  return process.exit( 1 )
+}
+
 ytSearch(
   query,
   function ( err, r ) {
