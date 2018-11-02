@@ -41,12 +41,14 @@ ytSearch(
       list.push( text )
     }
 
-    nfzf( list, function ( val, ind ) {
-      console.log( val )
+    nfzf( list, function ( r ) {
+      if ( !r.selected ) return console.log( 'nothing selected' )
+
+      console.log( r.selected.value )
 
       var url = (
         'https://www.youtube.com' +
-        videos[ ind ].url
+        videos[ r.selected.index ].url
       )
       console.log( url )
     } )

@@ -36,7 +36,7 @@
     "cheerio": "~0.22.0",
     "dasu": "0.0.23",
     "minimist": "~1.2.0",
-    "node-fzf": "0.0.5"
+    "node-fzf": "~0.1.2"
   },
   "devDependencies": {
     "babel-core": "~6.26.0",
