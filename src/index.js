@@ -160,6 +160,12 @@ function parseResponse ( responseText, callback )
     // console.log(agoText)
     // console.log(viewsText)
     var viewsCount = Number( viewsText.split( ' ' )[ 0 ].split( ',' ).join( '' ).trim() )
+    var user = $( 'a[href^="/user/"]', content )
+    var userId = (user.attr( 'href' )||'').replace('/user/', '')
+    var userName = user.text()
+    var channel = $( 'a[href^="/channel/"]', content )
+    var channelId = (channel.attr( 'href' )||'').replace('/channel/', '')
+    var channelName = channel.text()
 
     var song = {
       title: a.text(),
@@ -169,7 +175,11 @@ function parseResponse ( responseText, callback )
       timestamp: duration.timestamp,
       duration: duration,
       ago: agoText,
-      views: Number( viewsCount )
+      views: Number( viewsCount ),
+      userId: userId,
+      userName: userName,
+      channelId: channelId,
+      channelName: channelName
     }
 
     // console.log( '"' + song.title + '" views: ' + song.views )

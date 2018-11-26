@@ -48,7 +48,11 @@ ytSearch( 'superman theme', function ( err, r ) {
     timestamp: '4:13'
   },
   ago: '8 years ago',
-  views: 29127516
+  views: 29127516,
+  userId: 'Redmario2569',
+  userName: 'Super Man',
+  channelId: '',
+  channelName: ''
 }
 ```
 
