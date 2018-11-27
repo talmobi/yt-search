@@ -49,10 +49,20 @@ ytSearch( 'superman theme', function ( err, r ) {
   },
   ago: '8 years ago',
   views: 29127516,
-  userId: 'Redmario2569',
-  userName: 'Super Man',
-  channelId: '',
-  channelName: ''
+
+  author: {
+    name: 'Movieclips Classic Trailers',
+    id: 'oldhollywoodtrailers',
+    url: '/user/oldhollywoodtrailers',
+
+    userId: 'oldhollywoodtrailers',
+    userName: 'Movieclips Classic Trailers',
+    userUrl: '/user/oldhollywoodtrailers',
+
+    channelId: '',
+    channelName: ''
+    channelUrl: ''
+  }
 }
 ```
 
