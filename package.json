@@ -1,6 +1,6 @@
 {
   "name": "yt-search",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "search youtube",
   "main": "dist/yt-search.min.js",
   "bin": {

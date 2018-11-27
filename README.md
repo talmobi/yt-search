@@ -48,7 +48,21 @@ ytSearch( 'superman theme', function ( err, r ) {
     timestamp: '4:13'
   },
   ago: '8 years ago',
-  views: 29127516
+  views: 29127516,
+
+  author: {
+    name: 'Movieclips Classic Trailers',
+    id: 'oldhollywoodtrailers',
+    url: '/user/oldhollywoodtrailers',
+
+    userId: 'oldhollywoodtrailers',
+    userName: 'Movieclips Classic Trailers',
+    userUrl: '/user/oldhollywoodtrailers',
+
+    channelId: '',
+    channelName: ''
+    channelUrl: ''
+  }
 }
 ```
 

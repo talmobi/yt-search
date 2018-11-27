@@ -160,6 +160,12 @@ function parseResponse ( responseText, callback )
     // console.log(agoText)
     // console.log(viewsText)
     var viewsCount = Number( viewsText.split( ' ' )[ 0 ].split( ',' ).join( '' ).trim() )
+    var user = $( 'a[href^="/user/"]', content )
+    var userId = (user.attr( 'href' )||'').replace('/user/', '')
+    var userName = user.text()
+    var channel = $( 'a[href^="/channel/"]', content )
+    var channelId = (channel.attr( 'href' )||'').replace('/channel/', '')
+    var channelName = channel.text()
 
     var song = {
       title: a.text(),
@@ -169,7 +175,24 @@ function parseResponse ( responseText, callback )
       timestamp: duration.timestamp,
       duration: duration,
       ago: agoText,
-      views: Number( viewsCount )
+      views: Number( viewsCount ),
+
+      author: {
+        // simplified details due to YouTube's funky combination
+        // of user/channel id's/name (caused by Google Plus Integration)
+        name: userName || channelName,
+        id: userId || channelId,
+        url:  user.attr( 'href' ) || channel.attr( 'href' ),
+
+        // more specific details
+        userId: userId,
+        userName: userName,
+        userUrl: user.attr( 'href' ) || '',
+
+        channelId: channelId,
+        channelName: channelName,
+        channelUrl: channel.attr( 'href' ) || ''
+      }
     }
 
     // console.log( '"' + song.title + '" views: ' + song.views )
