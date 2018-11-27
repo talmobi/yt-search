@@ -15,14 +15,17 @@ test( 'basic search', function ( t ) {
     const list = r.videos
 
     const koyaani = list.filter( function ( song ) {
-      const i = song.title.toLowerCase().indexOf( 'koyaanisqatsi' )
-
       const keep = (
-        ( i >= 0 && i < 5 ) &&
+        song.title.toLowerCase().indexOf( 'koyaani' ) >= 0 &&
+        song.title.toLowerCase().indexOf( 'glass' ) >= 0 &&
+        ( song.author.name === 'DJDumato' ) &&
         song.seconds > 100 &&
         song.duration.seconds > 100 &&
-        song.views > 100
+        song.views > ( 100 * 1000 )
       )
+
+      // console.log( song )
+
       return keep
     } )[ 0 ]
 

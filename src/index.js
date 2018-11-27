@@ -176,10 +176,23 @@ function parseResponse ( responseText, callback )
       duration: duration,
       ago: agoText,
       views: Number( viewsCount ),
-      userId: userId,
-      userName: userName,
-      channelId: channelId,
-      channelName: channelName
+
+      author: {
+        // simplified details due to YouTube's funky combination
+        // of user/channel id's/name (caused by Google Plus Integration)
+        name: userName || channelName,
+        id: userId || channelId,
+        url:  user.attr( 'href' ) || channel.attr( 'href' ),
+
+        // more specific details
+        userId: userId,
+        userName: userName,
+        userUrl: user.attr( 'href' ) || '',
+
+        channelId: channelId,
+        channelName: channelName,
+        channelUrl: channel.attr( 'href' ) || ''
+      }
     }
 
     // console.log( '"' + song.title + '" views: ' + song.views )
