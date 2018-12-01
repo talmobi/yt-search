@@ -4,6 +4,9 @@ const _parallel = require( 'async.parallel' )
 
 const _url = require( 'url' )
 
+// used to escape query strings
+const _querystring = require( 'querystring' )
+
 const YT_SEARCH_QUERY_URI = (
   'https://www.youtube.com/results?' +
   'hl=en&gl=US&category=music' +
@@ -51,7 +54,7 @@ function search ( query, callback )
   next()
 
   function next () {
-    const q = query.split( /\s+/ )
+    const q = _querystring.escape( query ).split( /\s+/ )
     const uri = YT_SEARCH_QUERY_URI + q.join( '+' )
 
     const tasks = []
