@@ -16,7 +16,7 @@
     "uglify": "uglifyjs dist/yt-search.js -cmo dist/yt-search.min.js",
     "prepare": "npm run build && npm test",
     "prepublishOnly": "npm run build && npm test",
-    "test:production": "production=1 node test/test.js | faucet",
+    "test:production": "cross-env production=1 node test/test.js | faucet",
     "test:dev": "node test/test.js | faucet",
     "test": "npm run test:dev && npm run test:production"
   },
@@ -34,6 +34,7 @@
   "dependencies": {
     "async.parallel": "~0.5.2",
     "cheerio": "~0.22.0",
+    "cross-env": "~6.0.3",
     "dasu": "0.0.23",
     "minimist": "~1.2.0",
     "node-fzf": "~0.1.2"
