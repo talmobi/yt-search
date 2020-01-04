@@ -7,7 +7,7 @@ const _url = require( 'url' )
 // used to escape query strings
 const _querystring = require( 'querystring' )
 
-const YT_SEARCH_QUERY_URI = (
+const DEFAULT_YT_SEARCH_QUERY_URI = (
   'https://www.youtube.com/results?' +
   'hl=en&gl=US&category=music' +
   '&search_query='
@@ -18,8 +18,9 @@ const ONE_MINUTE = ONE_SECOND * 60
 const TIME_TO_LIVE = ONE_MINUTE * 5
 
 const DEFAULT_OPTS = {
-  pageStart: 1,
-  pageEnd: 3
+  YT_SEARCH_QUERY_URI: DEFAULT_YT_SEARCH_QUERY_URI,
+  pageStart: 1, // from this page of youtube search results
+  pageEnd: 3 // to this page of youtube search results
 }
 
 /**
@@ -55,7 +56,7 @@ function search ( query, callback )
 
   function next () {
     const q = _querystring.escape( query ).split( /\s+/ )
-    const uri = YT_SEARCH_QUERY_URI + q.join( '+' )
+    const uri = opts.YT_SEARCH_QUERY_URI + q.join( '+' )
 
     const tasks = []
     for ( let i = opts.pageStart; i < opts.pageEnd; i++ ) {
