@@ -156,7 +156,11 @@ function parseResponse ( responseText, callback )
 
     // make sure the url is correct ( skip ad urls etc )
     // ref: https://github.com/talmobi/yt-search/issues/3
-    if ( href.indexOf( 'watch?v=' ) < 0 ) continue
+    if (
+      ( href.indexOf( '/watch?' ) !== 0 ) &&
+      ( href.indexOf( '/user/' ) !== 0 ) &&
+      ( href.indexOf( '/channel/' ) !== 0 )
+    ) continue
 
     var videoId = href.split( '=' )[ 1 ]
 
