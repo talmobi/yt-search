@@ -34,3 +34,25 @@ test( 'basic search', function ( t ) {
     t.ok( koyaani, 'found koyaani OK!' )
   } )
 } )
+
+test.only( 'videos, playlists and users/channels', function ( t ) {
+  t.plan( 5 )
+
+  yts( 'pewdiepie', function ( err, r ) {
+    t.error( err, 'no errors OK!' )
+
+    const videos = r.videos
+    const accounts = r.accounts
+
+    t.ok( videos.length > 0, 'videos found' )
+    t.ok( accounts.length > 0, 'accounts found' )
+  } )
+
+  yts( 'pewdiepie list', function ( err, r ) {
+    t.error( err, 'no errors OK!' )
+
+    const playlists = r.playlists
+
+    t.ok( playlists.length > 0, 'playlists found' )
+  } )
+} )
