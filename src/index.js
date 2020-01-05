@@ -154,6 +154,10 @@ function parseResponse ( responseText, callback )
 
     var href = a.attr( 'href' ) || ''
 
+    // make sure the url is correct ( skip ad urls etc )
+    // ref: https://github.com/talmobi/yt-search/issues/3
+    if ( href.indexOf( 'watch?v=' ) < 0 ) continue
+
     var videoId = href.split( '=' )[ 1 ]
 
     var metaInfo = $( '.yt-lockup-meta-info', content )
