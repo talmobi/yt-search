@@ -11,6 +11,13 @@ var ytSearch = require(
 
 var argv = require( 'minimist' )( process.argv.slice( 2 ) )
 
+var pjson = require( path.join( __dirname, '../package.json' ) )
+
+if ( argv.v || argv.V || argv.version ) {
+  console.log( pjson.name + ': ' + pjson.version )
+  process.exit()
+}
+
 var query = argv._.join( ' ' )
 
 if ( !query ) {
