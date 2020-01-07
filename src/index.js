@@ -276,6 +276,132 @@ function parseResponse ( responseText, callback )
   callback( null, songs )
 }
 
+function parsePlayVideoBody ( responseText, callback )
+{
+  const $ = _cheerio.load( responseText )
+
+  var content = $( '#content' )
+  var song = {}
+
+  const videoId = $('meta[itemprop=videoId]', content ).attr( 'content' )
+
+  const user = $( 'link[href*="/user/"]', content )
+  // console.log( user )
+  const user_href = user.attr( 'href' )
+  // console.log( userUrl )
+  const userId = user_href.split( '/' ).pop()
+  const userName = user_href.split( '/' ).pop()
+  const userUrl = 'https://youtube.com/user/' + userId
+
+  const channel = $( 'link[href*="/channel/"]', content )
+  const channelId = $( 'meta[itemprop=channelId]', content ).attr( 'content' )
+  const channelUrl = 'https://youtube.com/channel/' + channelId
+
+  const thumbnailUrl = 'https://i.ytimg.com/vi/' + videoId + '/default.jpg'
+  const thumbnailUrlHQ = 'https://i.ytimg.com/vi/' + videoId + '/hqdefault.jpg'
+
+  // json with json in it
+  const person = $( 'script[type="application/ld+json"]' ).text()
+  const personJSON = JSON.parse( person )
+  const channelName = personJSON.itemListElement[ 0 ].item.name
+
+  const duration = parsePlayVideoDuration( $( 'meta[itemprop=duration]', content ).attr( 'content' ) )
+
+  var song = {
+    title: $('meta[itemprop=name]', content ).attr( 'content' ),
+    url: $('link[itemprop=url]', content ).attr( 'href' ),
+    videoId: videoId,
+
+    seconds: Number( duration.seconds ),
+    timestamp: duration.timestamp,
+    duration: duration,
+
+    views: Number( $('meta[itemprop=interactionCount]', content ).attr( 'content' ) ),
+
+    genre: $('meta[itemprop=genre]', content ).attr( 'content' ),
+    uploadDate: $('meta[itemprop=uploadDate]', content ).attr( 'content' ),
+
+    thumbnail: thumbnailUrl,
+    image: thumbnailUrlHQ,
+
+    author: {
+      // simplified details due to YouTube's funky combination
+      // of user/channel id's/name (caused by Google Plus Integration)
+      name: channelName || userName,
+      id: userId || channelId,
+      url:  userUrl || channelUrl,
+
+      // more specific details
+      userId: userId,
+      userName: userName,
+      userUrl: userUrl,
+
+      channelId: channelId,
+      channelName: channelName,
+      channelUrl: channelUrl
+    }
+  }
+
+  /*
+  var song = {
+    title: a.text(),
+    url: href,
+    videoId: videoId,
+    seconds: Number( duration.seconds ),
+    timestamp: duration.timestamp,
+    duration: duration,
+    ago: agoText,
+    views: Number( viewsCount ),
+
+    author: {
+      // simplified details due to YouTube's funky combination
+      // of user/channel id's/name (caused by Google Plus Integration)
+      name: userName || channelName,
+      id: userId || channelId,
+      url:  user.attr( 'href' ) || channel.attr( 'href' ),
+
+      // more specific details
+      userId: userId,
+      userName: userName,
+      userUrl: user.attr( 'href' ) || '',
+
+      channelId: channelId,
+      channelName: channelName,
+      channelUrl: channel.attr( 'href' ) || ''
+    }
+  }
+  */
+
+  // var a = $( 'a', title )
+  // var span = $( 'span', title )
+  // var duration = parseDuration( span.text() )
+  // // console.log( duration.toString() )
+
+  // var href = a.attr( 'href' ) || ''
+
+
+  // var videoId = href.split( '=' )[ 1 ]
+
+  // var metaInfo = $( '.yt-lockup-meta-info', content )
+  // var metaInfoList = $( 'li', metaInfo )
+  // // console.log(metaInfoList)
+  // var agoText = $( metaInfoList[ 0 ] ).text()
+  // var viewsText = $( metaInfoList[ 1 ] ).text()
+  // // console.log(agoText)
+  // // console.log(viewsText)
+  // var viewsCount = Number( viewsText.split( ' ' )[ 0 ].split( ',' ).join( '' ).trim() )
+  // var user = $( 'a[href^="/user/"]', content )
+  // var userId = (user.attr( 'href' )||'').replace('/user/', '')
+  // var userName = user.text()
+  // var channel = $( 'a[href^="/channel/"]', content )
+  // var channelId = (channel.attr( 'href' )||'').replace('/channel/', '')
+  // var channelName = channel.text()
+
+  // console.log( '"' + song.title + '" views: ' + song.views )
+
+  callback( null, song )
+}
+
 function parseDuration ( timestampText )
 {
   var a = timestampText.split( /\s+/ )
