@@ -32,11 +32,11 @@
     "email": "talmo.christian@gmail.com"
   },
   "dependencies": {
-    "async.parallel": "~0.5.2",
+    "async.parallellimit": "~0.5.2",
     "cheerio": "~0.22.0",
     "dasu": "0.0.23",
     "minimist": "~1.2.0",
-    "node-fzf": "~0.2.1"
+    "node-fzf": "~0.3.0"
   },
   "devDependencies": {
     "babel-core": "~6.26.0",
