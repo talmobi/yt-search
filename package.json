@@ -35,6 +35,7 @@
     "async.parallellimit": "~0.5.2",
     "cheerio": "~0.22.0",
     "dasu": "0.0.23",
+    "human-time": "0.0.2",
     "minimist": "~1.2.0",
     "node-fzf": "~0.3.0"
   },
