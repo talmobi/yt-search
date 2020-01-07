@@ -8,9 +8,10 @@ const _url = require( 'url' )
 const _querystring = require( 'querystring' )
 
 const DEFAULT_YT_SEARCH_QUERY_URI = (
-  'https://www.youtube.com/results?' +
-  'hl=en&gl=US&category=music' +
-  '&search_query='
+  'https://www.youtube.com/results?'
+  // 'hl=en&gl=US&category=music' +
+  // '&search_query='
+  // 'search_query='
 )
 
 const ONE_SECOND = 1000
@@ -18,7 +19,10 @@ const ONE_MINUTE = ONE_SECOND * 60
 const TIME_TO_LIVE = ONE_MINUTE * 5
 
 const DEFAULT_OPTS = {
-  YT_SEARCH_QUERY_URI: DEFAULT_YT_SEARCH_QUERY_URI,
+  YT_SEARCH_QUERY_URI: '',
+  hl: 'en', // en
+  gl: 'US', // US
+  category: '', // music
   pageStart: 1, // from this page of youtube search results
   pageEnd: 3 // to this page of youtube search results
 }
@@ -38,6 +42,15 @@ function search ( query, callback )
 {
   let opts = Object.assign( {}, DEFAULT_OPTS )
 
+  if ( !opts.YT_SEARCH_QUERY_URI ) {
+    let uri = DEFAULT_YT_SEARCH_QUERY_URI
+    const language = ( opts.hl || opts.language || opts.lang )
+    if ( language ) uri += '&hl=' + language.slice( 0, 2 )
+    if ( opts.gl ) uri += '&gl=' + opts.gl
+    if ( opts.category ) uri += '&category=' + opts.category
+    opts.YT_SEARCH_QUERY_URI = uri
+  }
+
   if ( !query ) {
     return callback(
       new Error( 'No query given.' )
@@ -56,7 +69,7 @@ function search ( query, callback )
 
   function next () {
     const q = _querystring.escape( query ).split( /\s+/ )
-    const uri = opts.YT_SEARCH_QUERY_URI + q.join( '+' )
+    const uri = opts.YT_SEARCH_QUERY_URI + '&search_query=' + q.join( '+' )
 
     const tasks = []
     for ( let i = opts.pageStart; i < opts.pageEnd; i++ ) {
