@@ -118,6 +118,33 @@ function search ( query, callback )
   }
 }
 
+/* Get metadata of a single video
+ */
+function videoMetaData ( opts, callback )
+{
+  let videoId
+
+  if ( typeof opts === 'string' ) {
+    videoId = opts
+  }
+
+  if ( typeof opts === 'object' ) {
+    videoId = opts.videoId
+  }
+
+  const uri = 'https://www.youtube.com/watch?hl=en&v=' + videoId
+
+  const params = _url.parse( uri )
+
+  _dasu.req( params, function ( err, res, body ) {
+    if ( err ) {
+      callback( err )
+    } else {
+      parsePlayVideoBody( body, callback )
+    }
+  } )
+}
+
 function findVideos ( uri, page, callback )
 {
   uri += '&page=' + page
