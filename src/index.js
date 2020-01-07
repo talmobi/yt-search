@@ -7,6 +7,8 @@ const _url = require( 'url' )
 // used to escape query strings
 const _querystring = require( 'querystring' )
 
+const _humanTime = require( 'human-time' )
+
 const DEFAULT_YT_SEARCH_QUERY_URI = (
   'https://www.youtube.com/results?'
   // 'hl=en&gl=US&category=music' +
@@ -354,6 +356,8 @@ function parseVideoBody ( responseText, callback )
 
   const duration = parseHumanDuration( $( 'meta[itemprop=duration]', ctx ).attr( 'content' ) )
 
+  const uploadDate = $('meta[itemprop=uploadDate]', ctx ).attr( 'content' )
+
   var song = {
     title: $('meta[itemprop=name]', ctx ).attr( 'content' ),
     url: $('link[itemprop=url]', ctx ).attr( 'href' ),
@@ -366,7 +370,9 @@ function parseVideoBody ( responseText, callback )
     views: Number( $('meta[itemprop=interactionCount]', ctx ).attr( 'content' ) ),
 
     genre: $('meta[itemprop=genre]', ctx ).attr( 'content' ).toLowerCase(),
-    uploadDate: $('meta[itemprop=uploadDate]', ctx ).attr( 'content' ),
+
+    uploadDate: uploadDate,
+    ago: _humanTime( new Date( uploadDate ) ), // ex: 10 years ago
 
     thumbnail: thumbnailUrl,
     image: thumbnailUrlHQ,
