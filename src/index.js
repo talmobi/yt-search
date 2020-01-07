@@ -94,12 +94,18 @@ function search ( query, callback )
         if ( err ) {
           callback( err )
         } else {
-          // merge results
-          results = [].concat.apply( [], results )
+          // results array is kept in the same order as the
+          // tasks were executed (not when tasks finished) by
+          // the async.parallellimit library
+          // combine results into a single array
+          let list = []
+          for ( let i = 0; i < results.length; i++ ) {
+            list = list.concat( results[ 0 ] )
+          }
 
-          const videos = results.filter( videoFilter )
-          const playlists = results.filter( playlistFilter )
-          const accounts = results.filter( accountFilter )
+          const videos = list.filter( videoFilter )
+          const playlists = list.filter( playlistFilter )
+          const accounts = list.filter( accountFilter )
 
           callback( null, {
             videos: videos,
