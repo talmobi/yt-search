@@ -365,7 +365,7 @@ function parseVideoBody ( responseText, callback )
 
     views: Number( $('meta[itemprop=interactionCount]', ctx ).attr( 'content' ) ),
 
-    genre: $('meta[itemprop=genre]', ctx ).attr( 'content' ),
+    genre: $('meta[itemprop=genre]', ctx ).attr( 'content' ).toLowerCase(),
     uploadDate: $('meta[itemprop=uploadDate]', ctx ).attr( 'content' ),
 
     thumbnail: thumbnailUrl,
