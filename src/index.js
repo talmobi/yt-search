@@ -485,7 +485,12 @@ function parsePlayVideoDuration ( timestampText )
 
 // run tests is script is run directly
 if ( require.main === module ) {
-  test( 'superman theme' )
+  // https://www.youtube.com/watch?v=e9vrfEoc8_g
+  videoMetaData( 'e9vrfEoc8_g', function ( error, song ) {
+    if ( error ) throw error
+
+    console.log( song )
+  } )
 }
 
 function test ( query )
