@@ -124,3 +124,29 @@ test( 'search by video id', function ( t ) {
     t.ok( topVideo.videoId, opts.search, 'top result video id matched!' )
   } )
 } )
+
+test( 'test single video metadata capture', function ( t ) {
+  t.plan( 12 )
+
+  yts( { videoId: 'e9vrfEoc8_g' }, function ( err, video ) {
+    t.error( err, 'no errors OK!' )
+
+    const MILLION = 1000 * 1000
+
+    t.equal( video.title, 'Superman Theme', 'title' )
+    t.equal( video.videoId, 'e9vrfEoc8_g', 'videoId' )
+    t.equal( video.timestamp, '4:13', 'timestamp' )
+    t.equal( video.seconds, 253, 'seconds (duration)' )
+
+    t.ok( video.views > ( 35 * MILLION ), 'views over 35 Million' )
+
+    t.equal( video.genre, 'music', 'genre is music' )
+    t.equal( video.uploadDate, '2009-07-27', 'uploadDate' )
+
+    t.equal( video.author.id, 'Redmario2569', 'author id' )
+    t.equal( video.author.url, 'https://youtube.com/user/Redmario2569', 'author url' )
+
+    t.equal( video.thumbnail, 'https://i.ytimg.com/vi/e9vrfEoc8_g/default.jpg', 'author id' )
+    t.equal( video.image, 'https://i.ytimg.com/vi/e9vrfEoc8_g/hqdefault.jpg', 'author url' )
+  } )
+} )
