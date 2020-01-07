@@ -108,7 +108,7 @@ function search ( query, callback )
           const accounts = list.filter( accountFilter )
 
           callback( null, {
-            videos: videos,
+            videos: videos.filter( videoFilterDuplicates ),
             playlists: playlists,
             accounts: accounts
           } )
@@ -140,6 +140,17 @@ function videoFilter ( result )
     result.url.indexOf( '&list' ) === -1 &&
     result.url.indexOf( '&user' ) === -1
   )
+}
+
+function videoFilterDuplicates ( video, index, videos )
+{
+  const videoId = video.videoId
+
+  const firstIndex = videos.findIndex( function ( el ) {
+    return ( videoId === el.videoId )
+  } )
+
+  return ( firstIndex === index )
 }
 
 function playlistFilter ( result )
