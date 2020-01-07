@@ -63,6 +63,10 @@ function search ( query, callback )
     opts.YT_SEARCH_QUERY_URI = uri
   }
 
+  if ( opts.videoId ) {
+    return getVideoMetaData( opts.videoId, callback )
+  }
+
   query = opts.query || opts.search
 
   next()
