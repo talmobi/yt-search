@@ -185,6 +185,8 @@ function parseResponse ( responseText, callback )
     var content = contents[ i ]
     var title = $( '.yt-lockup-title', content )
 
+    var description = $( '.yt-lockup-description', content ).text()
+
     var a = $( 'a', title )
     var span = $( 'span', title )
     var duration = parseDuration( span.text() )
@@ -219,6 +221,7 @@ function parseResponse ( responseText, callback )
 
     var song = {
       title: a.text(),
+      description: description,
       url: href,
       videoId: videoId,
       seconds: Number( duration.seconds ),
@@ -360,6 +363,8 @@ function parseVideoBody ( responseText, callback )
 
   var song = {
     title: $('meta[itemprop=name]', ctx ).attr( 'content' ),
+    description: $('meta[itemprop=description]', ctx ).attr( 'content' ),
+
     url: $('link[itemprop=url]', ctx ).attr( 'href' ),
     videoId: videoId,
 
