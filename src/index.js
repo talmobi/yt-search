@@ -42,15 +42,6 @@ function search ( query, callback )
 {
   let opts = Object.assign( {}, DEFAULT_OPTS )
 
-  if ( !opts.YT_SEARCH_QUERY_URI ) {
-    let uri = DEFAULT_YT_SEARCH_QUERY_URI
-    const language = ( opts.hl || opts.language || opts.lang )
-    if ( language ) uri += '&hl=' + language.slice( 0, 2 )
-    if ( opts.gl ) uri += '&gl=' + opts.gl
-    if ( opts.category ) uri += '&category=' + opts.category
-    opts.YT_SEARCH_QUERY_URI = uri
-  }
-
   if ( !query ) {
     return callback(
       new Error( 'No query given.' )
@@ -61,6 +52,15 @@ function search ( query, callback )
     opts = Object.assign( opts, { query: query } )
   } else {
     opts = Object.assign( opts, query )
+  }
+
+  if ( !opts.YT_SEARCH_QUERY_URI ) {
+    let uri = DEFAULT_YT_SEARCH_QUERY_URI
+    const language = ( opts.hl || opts.language || opts.lang )
+    if ( language ) uri += '&hl=' + language.slice( 0, 2 )
+    if ( opts.gl ) uri += '&gl=' + opts.gl
+    if ( opts.category ) uri += '&category=' + opts.category
+    opts.YT_SEARCH_QUERY_URI = uri
   }
 
   query = opts.query || opts.search
