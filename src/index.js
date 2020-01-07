@@ -182,6 +182,7 @@ function parseResponse ( responseText, callback )
     var a = $( 'a', title )
     var span = $( 'span', title )
     var duration = parseDuration( span.text() )
+    // console.log( duration.toString() )
 
     var href = a.attr( 'href' ) || ''
 
