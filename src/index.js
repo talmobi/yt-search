@@ -1,6 +1,6 @@
 const _cheerio = require( 'cheerio' )
 const _dasu = require( 'dasu' )
-const _parallel = require( 'async.parallel' )
+const _parallel = require( 'async.parallellimit' )
 
 const _url = require( 'url' )
 
@@ -76,6 +76,7 @@ function search ( query, callback )
 
     _parallel(
       tasks,
+      3, // max 3 requests at a time
       function ( err, results ) {
         if ( err ) {
           callback( err )
