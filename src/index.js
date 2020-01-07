@@ -251,10 +251,28 @@ function parseResponse ( responseText, callback )
 
 function parseDuration ( timestampText )
 {
-  var a = timestampText.split( ' ' )
-  var timestamp = a[ a.length - 1 ].replace( /[^:\d]/g, '' )
+  var a = timestampText.split( /\s+/ )
+  var lastword = a[ a.length - 1 ]
 
-  var t = timestamp.split( ':' )
+  // ex: Duration: 2:27, Kesto: 1.07.54
+  // replace all non :, non digits and non .
+  var timestamp = lastword.replace( /[^:.\d]/g, '' )
+
+  if ( !timestamp ) return {
+    toString: function () { return a[ 0 ] },
+    seconds: 0,
+    timestamp: 0
+  }
+
+  // remove trailing junk that are not digits
+  while ( timestamp[ timestamp.length - 1 ].match( /\D/ ) ) {
+    timestamp = timestamp.slice( 0, -1 )
+  }
+
+  // replaces all dots with nice ':'
+  timestamp = timestamp.replace( /\./g, ':' )
+
+  var t = timestamp.split( /[:.]/ )
 
   var seconds = 0
   var exp = 0
