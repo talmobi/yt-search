@@ -445,6 +445,44 @@ function parseDuration ( timestampText )
   }
 }
 
+function parsePlayVideoDuration ( timestampText )
+{
+  // ex: PT4M13S
+  const pt = timestampText.slice( 0, 2 )
+  let timestamp = timestampText.slice( 2 ).toUpperCase()
+
+  if ( pt !== 'PT' ) return {
+    toString: function () { return a[ 0 ] },
+    seconds: 0,
+    timestamp: 0
+  }
+
+  let h = timestamp.match( /\d?\dH/ )
+  let m = timestamp.match( /\d?\dM/ )
+  let s = timestamp.match( /\d?\dS/ )
+
+  h = h && h[ 0 ].slice( 0, -1 ) || 0
+  m = m && m[ 0 ].slice( 0, -1 ) || 0
+  s = s && s[ 0 ].slice( 0, -1 ) || 0
+
+  h = parseInt( h )
+  m = parseInt( m )
+  s = parseInt( s )
+
+  timestamp = ''
+  if ( h ) timestamp += ( h + ':' )
+  if ( m ) timestamp += ( m + ':' )
+  timestamp += s
+
+  const seconds = ( h * 60 * 60 + m * 60 + s )
+
+  return {
+    toString: function () { return seconds + ' seconds (' + timestamp + ')' },
+    seconds: seconds,
+    timestamp: timestamp
+  }
+}
+
 // run tests is script is run directly
 if ( require.main === module ) {
   test( 'superman theme' )
