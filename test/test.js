@@ -7,7 +7,7 @@ if ( !!process.env.production ) {
 const test = require( 'tape' )
 
 test( 'basic search', function ( t ) {
-  t.plan( 4 )
+  t.plan( 5 )
 
   yts( 'philip glass koyaanisqatsi', function ( err, r ) {
     t.error( err, 'no errors OK!' )
@@ -34,6 +34,9 @@ test( 'basic search', function ( t ) {
     t.ok( koyaani, 'found koyaani OK!' )
     t.equal( koyaani.videoId, '_4Vt0UGwmgQ', 'koyani video id equal!' )
     t.equal( koyaani.timestamp, '3:29', 'koyani video timestamp equal!' )
+    t.ok( koyaani.description.indexOf(
+      'Koyaanisqatsi: Life out of balance ∞ um documentário lan°ado em 1983 dirigido'
+    ), 'koyani video timestamp equal!' )
   } )
 } )
 
@@ -126,7 +129,7 @@ test( 'search by video id', function ( t ) {
 } )
 
 test( 'test single video metadata capture', function ( t ) {
-  t.plan( 12 )
+  t.plan( 13 )
 
   yts( { videoId: 'e9vrfEoc8_g' }, function ( err, video ) {
     t.error( err, 'no errors OK!' )
@@ -137,6 +140,8 @@ test( 'test single video metadata capture', function ( t ) {
     t.equal( video.videoId, 'e9vrfEoc8_g', 'videoId' )
     t.equal( video.timestamp, '4:13', 'timestamp' )
     t.equal( video.seconds, 253, 'seconds (duration)' )
+
+    t.equal( video.description, 'The theme song from Superman: The Movie', 'description' )
 
     t.ok( video.views > ( 35 * MILLION ), 'views over 35 Million' )
 
