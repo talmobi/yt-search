@@ -219,16 +219,31 @@ function parseResponse ( responseText, callback )
     var channelId = (channel.attr( 'href' )||'').replace('/channel/', '')
     var channelName = channel.text()
 
+    const thumbnailUrl = 'https://i.ytimg.com/vi/' + videoId + '/default.jpg'
+    const thumbnailUrlHQ = 'https://i.ytimg.com/vi/' + videoId + '/hqdefault.jpg'
+
     var song = {
       title: a.text(),
       description: description,
+
       url: href,
       videoId: videoId,
+
       seconds: Number( duration.seconds ),
       timestamp: duration.timestamp,
       duration: duration,
-      ago: agoText,
+
       views: Number( viewsCount ),
+
+      // genre: undefined,
+      // TODO genre not possible to get in bulk search results
+
+      thumbnail: 'https://i.ytimg.com/vi/' + videoId + '/default.jpg',
+      image: 'https://i.ytimg.com/vi/' + videoId + '/hqdefault.jpg',
+
+      // TODO uploadDate not possible to get in bulk search results
+      // uploadDate: undefined,
+      ago: agoText,
 
       author: {
         // simplified details due to YouTube's funky combination
