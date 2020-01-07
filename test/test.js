@@ -7,7 +7,7 @@ if ( !!process.env.production ) {
 const test = require( 'tape' )
 
 test( 'basic search', function ( t ) {
-  t.plan( 2 )
+  t.plan( 4 )
 
   yts( 'philip glass koyaanisqatsi', function ( err, r ) {
     t.error( err, 'no errors OK!' )
@@ -32,6 +32,8 @@ test( 'basic search', function ( t ) {
     console.log( koyaani )
 
     t.ok( koyaani, 'found koyaani OK!' )
+    t.equal( koyaani.videoId, '_4Vt0UGwmgQ', 'koyani video id equal!' )
+    t.equal( koyaani.timestamp, '3:29', 'koyani video timestamp equal!' )
   } )
 } )
 
