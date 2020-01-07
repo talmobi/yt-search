@@ -35,7 +35,7 @@ test( 'basic search', function ( t ) {
   } )
 } )
 
-test.only( 'videos, playlists and users/channels', function ( t ) {
+test( 'videos, playlists and users/channels', function ( t ) {
   t.plan( 5 )
 
   yts( 'pewdiepie', function ( err, r ) {
