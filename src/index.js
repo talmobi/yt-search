@@ -480,6 +480,67 @@ function _parseListResult ( $, section ) {
     }
   }
 }
+
+/**
+ * Parse result section of html containing a channel result.
+ *
+ * @param {object} section - cheerio object
+ */
+function _parseChannelResult ( $, section ) {
+  const img = $( 'img', section )
+  const img_src = img.attr( 'src' )
+  let thumbnailUrl = 'https:' + img_src
+
+  const content = $( '.yt-lockup-content', section )
+
+  const h3 = $( '.yt-lockup-title', content )
+  const h3_a = $( 'a', h3 )
+  const title = h3_a.text()
+
+  const href = h3_a.attr( 'href' )
+
+  let channelId = ''
+  let channelUrl = ''
+  let channelUrlText = ''
+  let userId = ''
+  let userUrl = ''
+  let userUrlText = ''
+  if ( href.indexOf( 'channel/' ) >= 0 ) {
+    channelId = href.split( '/' ).pop()
+    channelUrl = 'https://youtube.com/channel/' + channelId
+    channelUrlText = h3_a.text()
+  }
+  if ( href.indexOf( 'user/' ) >= 0 ) {
+    userId = href.split( '/' ).pop()
+    userUrl = 'https://youtube.com/user/' + userId
+    userUrlText = h3_a.text()
+  }
+
+  const videoCountLabel = $( '.yt-lockup-meta-info', content ).text()
+  const videoCount = Number( videoCountLabel.replace( /\D+/g, '' ) )
+
+  const description = $( '.yt-lockup-description', content ).text()
+
+  // return result
+  return {
+    type: 'channel',
+
+    title: userUrlText || channelUrlText,
+    description: description,
+
+    url: userUrl || channelUrl,
+
+    // label is affected by language query string ( ex. ?hl=en )
+    videoCountLabel: videoCountLabel,
+    videoCount: videoCount,
+
+    thumbnail: thumbnailUrl,
+
+    name: userUrlText || channelUrlText,
+    id: userId || channelId,
+    url:  userUrl || channelUrl,
+
+  }
 }
 
 function parseDuration ( timestampText )
