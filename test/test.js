@@ -128,7 +128,7 @@ test( 'search by video id', function ( t ) {
   } )
 } )
 
-test( 'test single video metadata capture', function ( t ) {
+test( 'video metadata by id', function ( t ) {
   t.plan( 13 )
 
   yts( { videoId: 'e9vrfEoc8_g' }, function ( err, video ) {
@@ -156,7 +156,7 @@ test( 'test single video metadata capture', function ( t ) {
   } )
 } )
 
-test.only( 'playlist results', function ( t ) {
+test.only( 'search results: playlist', function ( t ) {
   t.plan( 5 )
 
   yts( 'superman theme list', function ( err, r ) {
@@ -185,7 +185,7 @@ test.only( 'playlist results', function ( t ) {
   } )
 } )
 
-test( 'test channel results', function ( t ) {
+test( 'search results: channel', function ( t ) {
   t.plan( 5 )
 
   yts( 'PewDiePie', function ( err, r ) {
