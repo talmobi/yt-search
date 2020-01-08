@@ -813,7 +813,7 @@ function parseVideoBody ( responseText, callback )
   const user_href = user.attr( 'href' )
 
   const userId = user_href.split( '/' ).pop()
-  const userName = user_href.split( '/' ).pop()
+  const userName = $( '.yt-user-info a' ).text().trim()
   const userUrl = 'https://youtube.com/user/' + userId
 
   const channel = $( 'link[href*="/channel/"]', ctx )
