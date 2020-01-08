@@ -69,6 +69,10 @@ function search ( query, callback )
     return getVideoMetaData( opts.videoId, callback )
   }
 
+  if ( opts.listId ) {
+    return getPlaylistMetaData( opts.listId, callback )
+  }
+
   query = opts.query || opts.search
 
   next()
