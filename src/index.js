@@ -709,6 +709,8 @@ function parsePlaylistBody ( responseText, callback )
     title: title,
     listId: listId,
 
+    url: 'https://www.youtube.com/playlist?hl=en&list=' + listId,
+
     videoCount: videoCount,
     views: Number( viewCount ),
     lastUpdate: lastUpdate,
