@@ -156,7 +156,7 @@ test( 'video metadata by id', function ( t ) {
   } )
 } )
 
-test.only( 'search results: playlist', function ( t ) {
+test( 'search results: playlist', function ( t ) {
   t.plan( 5 )
 
   yts( 'superman theme list', function ( err, r ) {
