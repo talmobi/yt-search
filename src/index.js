@@ -406,7 +406,7 @@ function _parseListResult ( $, section ) {
   const byline_a_href = byline_a.attr( 'href' )
 
   if ( byline_a_href ) {
-    console.log( byline_a_href )
+    // console.log( byline_a_href )
 
     if ( byline_a_href.indexOf( 'channel/' ) >= 0 ) {
       channelId = byline_a_href.split( '/' ).pop()
@@ -428,7 +428,7 @@ function _parseListResult ( $, section ) {
   // channelName and userName are identical, just parsed
   // from different <a> elements
   const name = channelUrlText || userUrlText
-  console.log( name )
+  // console.log( name )
 
   const sidebar = $( '.sidebar', section )
   const videoCountLabel = sidebar.text().trim()
