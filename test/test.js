@@ -151,8 +151,36 @@ test( 'video metadata by id', function ( t ) {
     t.equal( video.author.id, 'Redmario2569', 'author id' )
     t.equal( video.author.url, 'https://youtube.com/user/Redmario2569', 'author url' )
 
-    t.equal( video.thumbnail, 'https://i.ytimg.com/vi/e9vrfEoc8_g/default.jpg', 'author id' )
-    t.equal( video.image, 'https://i.ytimg.com/vi/e9vrfEoc8_g/hqdefault.jpg', 'author url' )
+    t.equal( video.thumbnail, 'https://i.ytimg.com/vi/e9vrfEoc8_g/default.jpg', 'thumbnail' )
+    t.equal( video.image, 'https://i.ytimg.com/vi/e9vrfEoc8_g/hqdefault.jpg', 'image' )
+  } )
+} )
+
+test( 'video metadata by id _JzeIf1zT14', function ( t ) {
+  t.plan( 13 )
+
+  yts( { videoId: '_JzeIf1zT14' }, function ( err, video ) {
+    t.error( err, 'no errors OK!' )
+
+    const MILLION = 1000 * 1000
+
+    t.equal( video.title, 'Josh A & Jake Hill - Rest in Pieces (Lyrics)', 'title' )
+    t.equal( video.videoId, '_JzeIf1zT14', 'videoId' )
+    t.equal( video.timestamp, '2:27', 'timestamp' )
+    t.equal( video.seconds, 147, 'seconds (duration)' )
+
+    t.ok( video.description.indexOf( 'Produced by: Josh A SPOTIFY' ) >= 0, 'description' )
+
+    t.ok( video.views > ( 1 * MILLION ), 'views over 1 Million' )
+
+    t.equal( video.genre, 'music', 'genre is music' )
+    t.equal( video.uploadDate, '2018-10-12', 'uploadDate' )
+
+    t.equal( video.author.id, 'UCF7YjO3SzVUGJYcXipRY0zQ', 'author id' )
+    t.equal( video.author.url, 'https://youtube.com/channel/UCF7YjO3SzVUGJYcXipRY0zQ', 'author url' )
+
+    t.equal( video.thumbnail, 'https://i.ytimg.com/vi/_JzeIf1zT14/default.jpg', 'thumnail' )
+    t.equal( video.image, 'https://i.ytimg.com/vi/_JzeIf1zT14/hqdefault.jpg', 'image' )
   } )
 } )
 
