@@ -310,13 +310,13 @@ function _parseVideoResult ( $, section ) {
   let userId = ''
   let userUrlText = ''
 
-  user = $( 'a[href^="/user/"]', content )
+  const user = $( 'a[href^="/user/"]', content )
   if ( user ) {
     userId = ( user.attr( 'href' ) || '' ).replace( '/user/', '' ).trim()
     userUrlText = user.text().trim() // is same as channel name?
   }
 
-  channel = $( 'a[href^="/channel/"]', content )
+  const channel = $( 'a[href^="/channel/"]', content )
   if ( channel ) {
     channelId = ( channel.attr( 'href' ) || '' ).replace( '/channel/', '' ).trim()
     channelUrlText = channel.text().trim()
@@ -822,6 +822,7 @@ function parseVideoBody ( responseText, callback )
   let channelId = ''
   let channelUrl = ''
   let channelUrlText = ''
+
   let userId = ''
   let userUrl = ''
   let userUrlText = ''
@@ -836,9 +837,9 @@ function parseVideoBody ( responseText, callback )
     }
   }
 
-  userName = $( '.yt-user-info a' ).text().trim()
+  const userName = $( '.yt-user-info a' ).text().trim()
 
-  channel = $( 'link[href*="/channel/"]', ctx )
+  const channel = $( 'link[href*="/channel/"]', ctx )
   channelId = $( 'meta[itemprop=channelId]', ctx ).attr( 'content' )
   channelUrl = 'https://youtube.com/channel/' + channelId
 
