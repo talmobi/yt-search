@@ -155,3 +155,20 @@ test( 'test single video metadata capture', function ( t ) {
     t.equal( video.image, 'https://i.ytimg.com/vi/e9vrfEoc8_g/hqdefault.jpg', 'author url' )
   } )
 } )
+
+test.only( 'test channel metadata results', function ( t ) {
+  t.plan( 5 )
+
+  yts( 'PewDiePie', function ( err, r ) {
+    t.error( err, 'no errors OK!' )
+
+    const channels = r.channels
+    const topChannel = channels[ 0 ]
+
+    t.equal( topChannel.name, 'PewDiePie', 'channel name' )
+    t.equal( topChannel.url, 'https://youtube.com/user/PewDiePie', 'channel url' )
+
+    t.ok( topChannel.videoCount > 4000, 'video count' )
+    t.equal( topChannel.thumbnail, 'https://yt3.ggpht.com/a/AGF-l79FVckie4j9WT-4cEW6iu3gPd4GivQf_XNSWg=s176-c-k-c0x00ffffff-no-rj-mo', 'thumbnail url' )
+  } )
+} )
