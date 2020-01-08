@@ -790,6 +790,13 @@ function _parsePlaylistLastUpdateTime ( lastUpdateLabel ) {
   return ''
 }
 
+function _toInternalDateString ( date ) {
+  return (
+    date.getUTCFullYear() + '-' +
+    date.getUTCMonth() + '-' +
+    date.getUTCDate()
+  )
+}
 
 function parseVideoBody ( responseText, callback )
 {
