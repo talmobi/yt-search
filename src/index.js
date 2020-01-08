@@ -617,6 +617,114 @@ function getVideoMetaData ( opts, callback )
   } )
 }
 
+/* Get metadata from a playlist page
+ */
+function getPlaylistMetaData ( opts, callback )
+{
+  let listId
+
+  if ( typeof opts === 'string' ) {
+    listId = opts
+  }
+
+  if ( typeof opts === 'object' ) {
+    listId = opts.listId || opts.playlistId
+  }
+
+  const uri = 'https://www.youtube.com/playlist?hl=en&list=' + listId
+
+  const params = _url.parse( uri )
+
+  _dasu.req( params, function ( err, res, body ) {
+    if ( err ) {
+      callback( err )
+    } else {
+      parsePlaylistBody( body, callback )
+    }
+  } )
+}
+
+/* Parse response html from playlist url
+ */
+function parsePlaylistBody ( responseText, callback )
+{
+  const $ = _cheerio.load( responseText )
+
+  const hti = $( '.pl-header-thumb img' )
+  const thumbnailUrl = hti.attr( 'src' ).split( '?', 2 )[ 0 ]
+
+  const headerContent = $( '.pl-header-content' )
+  const title = $( '.pl-header-title', headerContent ).text().trim()
+
+  const listId = $( '#pl-header' ).attr( 'data-full-list-id' )
+
+  const headerDetails = $( '.pl-header-details', headerContent )
+  const detailLi = $( 'li', headerDetails )
+
+  const author = _parseAuthorAnchorTag( $( 'a', detailLi[ 0 ] ) )
+
+  const videoCountLabel = $( detailLi[ 1 ] ).text().trim()
+  const videoCount = Number( videoCountLabel.replace( /\D+/g, '' ) )
+
+  const viewCountLabel = $( detailLi[ 2 ] ).text().trim()
+  const viewCount = Number( viewCountLabel.replace( /\D+/g, '' ) )
+
+  const lastUpdateLabel = $( detailLi[ 3 ] ).text().trim()
+  const lastUpdate = _parsePlaylistLastUpdateTime( lastUpdateLabel )
+
+  const items = $( '#pl-load-more-destination .pl-video' )
+
+  const list = []
+  for ( let i = 0; i < items.length; i++ ) {
+    const item = items[ i ]
+    const title = $( item ).attr( 'data-title' )
+
+    const videoId = $( item ).attr( 'data-video-id' )
+    const videoUrl = `https://youtube.com/watch?v=${ videoId }&list=${ listId }`
+
+    const thumbnailUrl = 'https://i.ytimg.com/vi/' + videoId + '/default.jpg'
+    const thumbnailUrlHQ = 'https://i.ytimg.com/vi/' + videoId + '/hqdefault.jpg'
+
+    const anchorTag = $( '.pl-video-owner a', item )
+    const author = _parseAuthorAnchorTag( anchorTag )
+
+    list.push( {
+      title: title,
+
+      videoId: videoId,
+      listId: listId,
+
+      url: videoUrl,
+
+      thumbnailUrl: thumbnailUrl,
+      thumbnailUrlHQ: thumbnailUrlHQ,
+
+      owner: author.name,
+
+      author: author
+    } )
+  }
+
+  const playlist = {
+    title: title,
+    listId: listId,
+
+    videoCount: videoCount,
+    views: Number( viewCount ),
+    lastUpdate: lastUpdate,
+
+    thumbnail: thumbnailUrl,
+
+    // playlist items/videos
+    items: list,
+
+    author: author
+  }
+
+  callback( null, playlist )
+}
+
+
 function parseVideoBody ( responseText, callback )
 {
   const $ = _cheerio.load( responseText )
