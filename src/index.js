@@ -729,11 +729,7 @@ function parseHumanDuration ( timestampText )
 // run tests is script is run directly
 if ( require.main === module ) {
   // https://www.youtube.com/watch?v=e9vrfEoc8_g
-  getVideoMetaData( 'e9vrfEoc8_g', function ( error, song ) {
-    if ( error ) throw error
-
-    console.log( song )
-  } )
+  test( 'superman theme list' )
 }
 
 function test ( query )
@@ -755,5 +751,9 @@ function test ( query )
       const time = ` (${ song.timestamp })`
       console.log( song.title + time )
     }
+
+    playlists.forEach( function ( p ) {
+      // console.log( p )
+    } )
   } )
 }
