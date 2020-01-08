@@ -808,17 +808,26 @@ function parseVideoBody ( responseText, callback )
 
   const videoId = $('meta[itemprop=videoId]', ctx ).attr( 'content' )
 
-  const user = $( 'link[href*="/user/"]', ctx )
+  let channelId = ''
+  let channelUrl = ''
+  let channelUrlText = ''
+  let userId = ''
+  let userUrl = ''
+  let userUrlText = ''
 
+  const user = $( 'link[href*="/user/"]', ctx )
   const user_href = user.attr( 'href' )
 
-  const userId = user_href.split( '/' ).pop()
-  const userName = $( '.yt-user-info a' ).text().trim()
-  const userUrl = 'https://youtube.com/user/' + userId
+  if ( user_href ) {
+    userId = user_href.split( '/' ).pop()
+    userUrl = 'https://youtube.com/user/' + userId
+  }
 
-  const channel = $( 'link[href*="/channel/"]', ctx )
-  const channelId = $( 'meta[itemprop=channelId]', ctx ).attr( 'content' )
-  const channelUrl = 'https://youtube.com/channel/' + channelId
+  userName = $( '.yt-user-info a' ).text().trim()
+
+  channel = $( 'link[href*="/channel/"]', ctx )
+  channelId = $( 'meta[itemprop=channelId]', ctx ).attr( 'content' )
+  channelUrl = 'https://youtube.com/channel/' + channelId
 
   const thumbnailUrl = 'https://i.ytimg.com/vi/' + videoId + '/default.jpg'
   const thumbnailUrlHQ = 'https://i.ytimg.com/vi/' + videoId + '/hqdefault.jpg'
