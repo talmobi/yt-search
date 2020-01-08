@@ -157,13 +157,15 @@ test( 'video metadata by id', function ( t ) {
 } )
 
 test( 'playlist metadata by id', function ( t ) {
-  t.plan( 10 )
+  t.plan( 11 )
 
   yts( { listId: 'PL7k0JFoxwvTbKL8kjGI_CaV31QxCGf1vJ' }, function ( err, playlist ) {
     t.error( err, 'no errors OK!' )
 
     t.equal( playlist.title, 'Superman Themes', 'title' )
     t.equal( playlist.listId, 'PL7k0JFoxwvTbKL8kjGI_CaV31QxCGf1vJ', 'listId' )
+
+    t.equal( playlist.url, 'https://www.youtube.com/playlist?hl=en&list=PL7k0JFoxwvTbKL8kjGI_CaV31QxCGf1vJ', 'playlist url' )
 
     t.equal( playlist.videoCount, 10 , 'views over 300 (as of 2020-01-08)' )
     t.ok( playlist.views > 300, 'views over 300 (as of 2020-01-08)' )
