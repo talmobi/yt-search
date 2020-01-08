@@ -156,6 +156,28 @@ test( 'video metadata by id', function ( t ) {
   } )
 } )
 
+test.only( 'playlist metadata by id', function ( t ) {
+  t.plan( 10 )
+
+  yts( { listId: 'PL7k0JFoxwvTbKL8kjGI_CaV31QxCGf1vJ' }, function ( err, playlist ) {
+    t.error( err, 'no errors OK!' )
+
+    t.equal( playlist.title, 'Superman Themes', 'title' )
+    t.equal( playlist.listId, 'PL7k0JFoxwvTbKL8kjGI_CaV31QxCGf1vJ', 'listId' )
+
+    t.equal( playlist.videoCount, 10 , 'views over 300 (as of 2020-01-08)' )
+    t.ok( playlist.views > 300, 'views over 300 (as of 2020-01-08)' )
+
+    t.equal( playlist.lastUpdate, '2018-5-24' , 'last updated' )
+
+    t.equal( playlist.author.name, 'Cave Spider10', 'author name' )
+    t.equal( playlist.author.channelId, 'UCdwR7fIE2xyXlNRc7fb9tJg', 'author channelId' )
+    t.equal( playlist.author.channelUrl, 'https://youtube.com/channel/UCdwR7fIE2xyXlNRc7fb9tJg', 'author channelUrl' )
+
+    t.equal( playlist.thumbnail, 'https://i.ytimg.com/vi/IQtKjU_pOuw/hqdefault.jpg', 'playlist thumbnail' )
+  } )
+} )
+
 test( 'search results: playlist', function ( t ) {
   t.plan( 5 )
 
