@@ -138,7 +138,7 @@ function findVideos ( uri, page, callback )
     if ( err ) {
       callback( err )
     } else {
-      parseResponse( body, callback )
+      parseSearchBody( body, callback )
     }
   } )
 }
@@ -173,8 +173,8 @@ function accountFilter ( result )
   return result.url.indexOf( 'user' ) >= 0
 }
 
-// parse the plain text response body with jsom to pin point song information
-function parseResponse ( responseText, callback )
+// parse the plain text response body with cheerio to pin point video information
+function parseSearchBody ( responseText, callback )
 {
   // var _time = Date.now();
   const $ = _cheerio.load( responseText )
