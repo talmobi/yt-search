@@ -601,6 +601,23 @@ function parseDuration ( timestampText )
   }
 }
 
+function msToTimestamp ( ms )
+{
+  let t = ''
+
+  const h = ms / ( 1000 * 60 * 60 )
+  const m = ms / ( 1000 * 60 ) % 60
+  const s = ms / ( 1000 * 60 * 60 ) % 60
+
+  if ( h ) t += h + ':'
+  if ( m ) t += m + ':'
+
+  if ( String( s ).length < 2 ) t += '0'
+  t += s
+
+  return t
+}
+
 /* Get metadata of a single video
  */
 function getVideoMetaData ( opts, callback )
@@ -827,7 +844,10 @@ function parseVideoBody ( responseText, callback )
   let userUrl = ''
   let userUrlText = ''
 
-  const user = $( 'link[href*="/user/"]', ctx )
+  let userName = ''
+  let channelName = ''
+
+  const user = $( 'link[href*="/user/"]', ctx ) || $( 'a[href*="/user/"]' )
 
   if ( user ) {
     const user_href = user.attr( 'href' ) || ''
@@ -837,21 +857,48 @@ function parseVideoBody ( responseText, callback )
     }
   }
 
-  const userName = $( '.yt-user-info a' ).text().trim()
+  userName = $( '.yt-user-info a' ).text().trim()
 
-  const channel = $( 'link[href*="/channel/"]', ctx )
+  const channel = $( 'link[href*="/channel/"]', ctx ) || $( 'a[href*="/channel/"' )
   channelId = $( 'meta[itemprop=channelId]', ctx ).attr( 'content' )
   channelUrl = 'https://youtube.com/channel/' + channelId
+
+  if ( channel ) {
+    const channel_href = channel.attr( 'href' ) || ''
+    if ( channel_href ) {
+      channelId = channel_href.split( '/' ).pop()
+      channelUrl = 'https://youtube.com/channel/' + channelId
+    }
+  }
 
   const thumbnailUrl = 'https://i.ytimg.com/vi/' + videoId + '/default.jpg'
   const thumbnailUrlHQ = 'https://i.ytimg.com/vi/' + videoId + '/hqdefault.jpg'
 
-  // json with json in it
+  // use schema json if found
   const person = $( 'script[type="application/ld+json"]' ).text()
-  const personJSON = JSON.parse( person )
-  const channelName = personJSON.itemListElement[ 0 ].item.name
+  try {
+    const personJSON = JSON.parse( person )
+    channelName = personJSON.itemListElement[ 0 ].item.name
+  } catch ( err ) {
+    // ignore
+  }
 
-  const duration = parseHumanDuration( $( 'meta[itemprop=duration]', ctx ).attr( 'content' ) )
+  let duration = ''
+  const humanDuration = $( 'meta[itemprop=duration]', ctx ).attr( 'content' )
+
+  if ( humanDuration ) {
+    duration = parseHumanDuration( humanDuration )
+  }
+
+  if ( !duration ) {
+    const m = responseText.match( /approxDurationMs.*?(\d+)/ )
+    if ( m && m[ 1 ] ) {
+      const ms = m[ 1 ]
+      const timestamp = msToTimestamp( ms )
+      duration = parseDuration( timestamp )
+    }
+  }
+
 
   const uploadDate = $('meta[itemprop=uploadDate]', ctx ).attr( 'content' )
 
