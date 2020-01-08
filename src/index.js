@@ -271,10 +271,100 @@ function parseSearchBody ( responseText, callback )
   return callback( null, results )
 }
 
+/**
+ * Parse result section of html containing a video result.
+ *
+ * @param {object} section - cheerio object
+ */
+function _parseVideoResult ( $, section ) {
+  const content = $( '.yt-lockup-content', section )
+  const title = $( '.yt-lockup-title', content )
 
-  // console.log(songs[0]);
+  const a = $( 'a', title )
+  const span = $( 'span', title )
+  const duration = parseDuration( span.text() )
 
-  callback( null, songs )
+  const href = a.attr( 'href' ) || ''
+
+  const qs = _querystring.parse( href.split( '?', 2 )[ 1 ] )
+
+  const videoId = qs.v
+  const listId = qs.list
+
+  const description = $( '.yt-lockup-description', content ).text()
+
+  const metaInfo = $( '.yt-lockup-meta-info', content )
+  const metaInfoList = $( 'li', metaInfo )
+
+  const agoText = $( metaInfoList[ 0 ] ).text()
+  const viewsText = $( metaInfoList[ 1 ] ).text()
+  const viewsCount = Number( viewsText.split( ' ' )[ 0 ].split( ',' ).join( '' ).trim() )
+
+  const user = $( 'a[href^="/user/"]', content )
+  const userId = (user.attr( 'href' )||'').replace('/user/', '')
+  const userUrlText = user.text() // is same as channel name?
+
+  const channel = $( 'a[href^="/channel/"]', content )
+  const channelId = (channel.attr( 'href' )||'').replace('/channel/', '')
+  const channelUrlText = channel.text()
+
+  let channelUrl = ''
+  let userUrl = ''
+  if ( channelId ) {
+    channelUrl = 'https://youtube.com/channel/' + channelId
+  }
+  if ( userId ) {
+    userUrl = 'https://youtube.com/user/' + userId
+  }
+
+  const thumbnailUrl = 'https://i.ytimg.com/vi/' + videoId + '/default.jpg'
+  const thumbnailUrlHQ = 'https://i.ytimg.com/vi/' + videoId + '/hqdefault.jpg'
+
+  const result = {
+    type: 'video',
+
+    title: a.text(),
+    description: description,
+
+    url: 'https://youtube.com/watch?v=' + videoId,
+    videoId: videoId,
+
+    seconds: Number( duration.seconds ),
+    timestamp: duration.timestamp,
+    duration: duration,
+
+    views: Number( viewsCount ),
+
+    // genre: undefined,
+    // TODO genre not possible to get in bulk search results
+
+    thumbnail: thumbnailUrl,
+    image: thumbnailUrlHQ,
+
+    // TODO uploadDate not possible to get in bulk search results
+    // uploadDate: undefined,
+    ago: agoText,
+
+    author: {
+      // simplified details due to YouTube's funky combination
+      // of user/channel id's/name (caused by Google Plus Integration)
+      name: userUrlText || channelUrlText,
+      id: userId || channelId,
+      url:  user.attr( 'href' ) || channel.attr( 'href' ),
+
+      // more specific details
+      userId: userId,
+      userName: userUrlText, // same as channelName
+      userUrl: user.attr( 'href' ) || '',
+
+      channelId: channelId,
+      channelUrl: channel.attr( 'href' ) || '',
+      channelName: channelUrlText
+    }
+  }
+
+  return result
+}
 }
 
 function parseDuration ( timestampText )
