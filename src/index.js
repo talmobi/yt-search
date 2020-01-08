@@ -172,27 +172,28 @@ function accountFilter ( result )
 // parse the plain text response body with cheerio to pin point video information
 function parseSearchBody ( responseText, callback )
 {
-  // var _time = Date.now();
   const $ = _cheerio.load( responseText )
-  // var _delta = Date.now() - _time;
-  // console.log("parsing response with cheerio, took: " + _delta + " ms");
-  // var titles = $('.yt-lockup-title');
-  var contents = $( '.yt-lockup-content' )
-  // console.log("titles length: " + titles.length);
-  var songs = []
 
-  for ( var i = 0; i < contents.length; i++ ) {
-    var content = contents[ i ]
-    var title = $( '.yt-lockup-title', content )
+  const sections = $( '.yt-lockup' )
 
-    var description = $( '.yt-lockup-description', content ).text()
+  const errors = []
+  const results = []
 
-    var a = $( 'a', title )
-    var span = $( 'span', title )
-    var duration = parseDuration( span.text() )
-    // console.log( duration.toString() )
+  for ( let i = 0; i < sections.length; i++ ) {
+    const section = sections[ i ]
+    const content = $( '.yt-lockup-content', section )
+    const title = $( '.yt-lockup-title', content )
 
-    var href = a.attr( 'href' ) || ''
+    const a = $( 'a', title )
+    const span = $( 'span', title )
+    const duration = parseDuration( span.text() )
+
+    const href = a.attr( 'href' ) || ''
+
+    const qs = _querystring.parse( href.split( '?', 2 )[ 1 ] )
+
+    // TODO
+    console.log( qs )
 
     // make sure the url is correct ( skip ad urls etc )
     // ref: https://github.com/talmobi/yt-search/issues/3
@@ -202,71 +203,74 @@ function parseSearchBody ( responseText, callback )
       ( href.indexOf( '/channel/' ) !== 0 )
     ) continue
 
-    var videoId = href.split( '=' )[ 1 ]
+    const videoId = qs.v
+    const listId = qs.list
 
-    var metaInfo = $( '.yt-lockup-meta-info', content )
-    var metaInfoList = $( 'li', metaInfo )
-    // console.log(metaInfoList)
-    var agoText = $( metaInfoList[ 0 ] ).text()
-    var viewsText = $( metaInfoList[ 1 ] ).text()
-    // console.log(agoText)
-    // console.log(viewsText)
-    var viewsCount = Number( viewsText.split( ' ' )[ 0 ].split( ',' ).join( '' ).trim() )
-    var user = $( 'a[href^="/user/"]', content )
-    var userId = (user.attr( 'href' )||'').replace('/user/', '')
-    var userName = user.text()
-    var channel = $( 'a[href^="/channel/"]', content )
-    var channelId = (channel.attr( 'href' )||'').replace('/channel/', '')
-    var channelName = channel.text()
+    let type = 'unknown' // possibly ads
 
-    const thumbnailUrl = 'https://i.ytimg.com/vi/' + videoId + '/default.jpg'
-    const thumbnailUrlHQ = 'https://i.ytimg.com/vi/' + videoId + '/hqdefault.jpg'
+    /* Standard watch?v={videoId} url's without &list=
+     * query string variables
+     */
+    if ( videoId ) type = 'video'
 
-    var song = {
-      title: a.text(),
-      description: description,
+    /* Playlist results can look like watch?v={videoId} url's
+     * which mean they will just play that at the start when you
+     * open the link. We will consider these resulsts as
+     * primarily playlist results. ( Even though they're kind of
+     * a combination of video + list result )
+     */
+    if ( listId ) type = 'list'
 
-      url: href,
-      videoId: videoId,
+    /* Channel results will link to the user/channel page
+     * directly. There are two types of url's that both link to
+     * the same page.
+     * 1. user url: ex. /user/pewdiepie
+     * 2. channel url: ex. /channel/UC-lHJZR3Gqxm24_Vd_AJ5Yw
+     *
+     * Why does YouTube have these two forms? Something to do
+     * with google integration etc. channel urls is the newer
+     * update format as well as separating users from channels I
+     * guess ( 1 user can have multiple channels? )
+     */
+    if (
+      ( href.indexOf( '/channel/' ) >= 0 ) ||
+      ( href.indexOf( '/user/' ) >= 0 )
+    ) type = 'channel'
 
-      seconds: Number( duration.seconds ),
-      timestamp: duration.timestamp,
-      duration: duration,
+    // TODO parse lists differently based on type
+    let result
 
-      views: Number( viewsCount ),
-
-      // genre: undefined,
-      // TODO genre not possible to get in bulk search results
-
-      thumbnail: 'https://i.ytimg.com/vi/' + videoId + '/default.jpg',
-      image: 'https://i.ytimg.com/vi/' + videoId + '/hqdefault.jpg',
-
-      // TODO uploadDate not possible to get in bulk search results
-      // uploadDate: undefined,
-      ago: agoText,
-
-      author: {
-        // simplified details due to YouTube's funky combination
-        // of user/channel id's/name (caused by Google Plus Integration)
-        name: userName || channelName,
-        id: userId || channelId,
-        url:  user.attr( 'href' ) || channel.attr( 'href' ),
-
-        // more specific details
-        userId: userId,
-        userName: userName,
-        userUrl: user.attr( 'href' ) || '',
-
-        channelId: channelId,
-        channelName: channelName,
-        channelUrl: channel.attr( 'href' ) || ''
+    try {
+      switch ( type ) {
+        case 'video': // video result
+          // ex: https://youtube.com/watch?v=e9vrfEoc8_g
+          result = _parseVideoResult( $, section )
+          break
+        case 'list': // playlist result
+          // ex: https://youtube.com/playlist?list=PL7k0JFoxwvTbKL8kjGI_CaV31QxCGf1vJ
+          result = _parseListResult( $, section )
+          break
+        case 'channel': // channel result
+          // ex: https://youtube.com/user/pewdiepie
+          result = _parseChannelResult( $, section )
+          break
       }
+    } catch ( err ) {
+      errors.push( err )
     }
 
-    // console.log( '"' + song.title + '" views: ' + song.views )
+    if ( !result ) continue // skip undefined results
 
-    songs.push( song )
-  };
+    result.type = type
+    results.push( result )
+  }
+
+  if ( errors.length ) {
+    return callback( errors, results )
+  }
+  return callback( null, results )
+}
+
 
   // console.log(songs[0]);
 
