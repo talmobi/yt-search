@@ -54,7 +54,6 @@ ytSearch(
       console.log( r.selected.value )
 
       var url = (
-        'https://www.youtube.com' +
         videos[ r.selected.index ].url
       )
       console.log( url )
