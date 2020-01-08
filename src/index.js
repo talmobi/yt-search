@@ -769,6 +769,27 @@ function _parseAuthorAnchorTag ( a ) {
   }
 }
 
+function _parsePlaylistLastUpdateTime ( lastUpdateLabel ) {
+  // ex "Last Updated on Jun 25, 2018"
+  // ex: "Viimeksi päivitetty 25.6.2018"
+
+  const words = lastUpdateLabel.trim().split( /[\s.-]+/ )
+
+  for ( let i = 0; i < words.length; i++ ) {
+    const slice = words.slice( i )
+    const t = slice.join( ' ' )
+    const r = slice.reverse().join( ' ' )
+
+    const a = new Date( t )
+    const b = new Date( r )
+
+    if ( a.toString() !== 'Invalid Date' )  return _toInternalDateString( a )
+    if ( b.toString() !== 'Invalid Date' )  return _toInternalDateString( b )
+  }
+
+  return ''
+}
+
 
 function parseVideoBody ( responseText, callback )
 {
