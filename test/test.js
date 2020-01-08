@@ -156,7 +156,7 @@ test( 'video metadata by id', function ( t ) {
   } )
 } )
 
-test.only( 'playlist metadata by id', function ( t ) {
+test( 'playlist metadata by id', function ( t ) {
   t.plan( 10 )
 
   yts( { listId: 'PL7k0JFoxwvTbKL8kjGI_CaV31QxCGf1vJ' }, function ( err, playlist ) {
