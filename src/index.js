@@ -304,13 +304,23 @@ function _parseVideoResult ( $, section ) {
   const viewsText = $( metaInfoList[ 1 ] ).text()
   const viewsCount = Number( viewsText.split( ' ' )[ 0 ].split( ',' ).join( '' ).trim() )
 
-  const user = $( 'a[href^="/user/"]', content )
-  const userId = (user.attr( 'href' )||'').replace('/user/', '')
-  const userUrlText = user.text().trim() // is same as channel name?
+  let channelId = ''
+  let channelUrlText = ''
 
-  const channel = $( 'a[href^="/channel/"]', content )
-  const channelId = (channel.attr( 'href' )||'').replace('/channel/', '')
-  const channelUrlText = channel.text().trim()
+  let userId = ''
+  let userUrlText = ''
+
+  user = $( 'a[href^="/user/"]', content )
+  if ( user ) {
+    userId = ( user.attr( 'href' ) || '' ).replace( '/user/', '' ).trim()
+    userUrlText = user.text().trim() // is same as channel name?
+  }
+
+  channel = $( 'a[href^="/channel/"]', content )
+  if ( channel ) {
+    channelId = ( channel.attr( 'href' ) || '' ).replace( '/channel/', '' ).trim()
+    channelUrlText = channel.text().trim()
+  }
 
   let channelUrl = ''
   let userUrl = ''
@@ -403,7 +413,7 @@ function _parseListResult ( $, section ) {
 
   const byline = $( '.yt-lockup-byline', content )
   const byline_a = $( 'a', byline )
-  const byline_a_href = byline_a.attr( 'href' )
+  const byline_a_href = byline_a.attr( 'href' ) || ''
 
   if ( byline_a_href ) {
     // console.log( byline_a_href )
@@ -413,6 +423,7 @@ function _parseListResult ( $, section ) {
       channelUrl = 'https://youtube.com/channel/' + channelId
       channelUrlText = byline_a.text().trim()
     }
+
     if ( byline_a_href.indexOf( 'user/' ) >= 0 ) {
       userId = byline_a_href.split( '/' ).pop()
       userUrl = 'https://youtube.com/user/' + userId
@@ -501,7 +512,7 @@ function _parseChannelResult ( $, section ) {
   const h3_a = $( 'a', h3 )
   const title = h3_a.text().trim()
 
-  const href = h3_a.attr( 'href' )
+  const href = h3_a.attr( 'href' ) || ''
 
   let channelId = ''
   let channelUrl = ''
@@ -816,11 +827,13 @@ function parseVideoBody ( responseText, callback )
   let userUrlText = ''
 
   const user = $( 'link[href*="/user/"]', ctx )
-  const user_href = user.attr( 'href' )
 
-  if ( user_href ) {
-    userId = user_href.split( '/' ).pop()
-    userUrl = 'https://youtube.com/user/' + userId
+  if ( user ) {
+    const user_href = user.attr( 'href' ) || ''
+    if ( user_href ) {
+      userId = user_href.split( '/' ).pop()
+      userUrl = 'https://youtube.com/user/' + userId
+    }
   }
 
   userName = $( '.yt-user-info a' ).text().trim()
