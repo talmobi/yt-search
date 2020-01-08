@@ -197,7 +197,7 @@ function parseSearchBody ( responseText, callback )
     const qs = _querystring.parse( href.split( '?', 2 )[ 1 ] )
 
     // TODO
-    console.log( qs )
+    // console.log( qs )
 
     // make sure the url is correct ( skip ad urls etc )
     // ref: https://github.com/talmobi/yt-search/issues/3
