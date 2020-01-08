@@ -724,6 +724,51 @@ function parsePlaylistBody ( responseText, callback )
   callback( null, playlist )
 }
 
+/**
+ * @params {object} - cheerio <a>...</a> tag
+ */
+function _parseAuthorAnchorTag ( a ) {
+  let channelId = ''
+  let channelUrl = ''
+  let channelUrlText = ''
+
+  let userId = ''
+  let userUrl = ''
+  let userUrlText = ''
+
+  const href = a.attr( 'href' )
+
+  if ( !href ) {
+    return {}
+  }
+
+  if ( href.indexOf( 'channel/' ) >= 0 ) {
+    channelId = href.split( '/' ).pop()
+    channelUrl = 'https://youtube.com/channel/' + channelId
+    channelUrlText = a.text().trim()
+  }
+
+  if ( href.indexOf( 'user/' ) >= 0 ) {
+    userId = href.split( '/' ).pop()
+    userUrl = 'https://youtube.com/user/' + userId
+    userUrlText = a.text().trim()
+  }
+
+  return {
+    name: userUrlText || channelUrlText,
+    id: userId || channelId,
+    url: userUrl || channelUrl,
+
+    channelId,
+    channelUrl,
+    channelUrlText,
+
+    userId,
+    userUrl,
+    userUrlText,
+  }
+}
+
 
 function parseVideoBody ( responseText, callback )
 {
