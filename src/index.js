@@ -115,8 +115,12 @@ function search ( query, callback )
 
           callback( null, {
             videos: videos.filter( videoFilterDuplicates ),
+
             playlists: playlists,
-            accounts: accounts
+            lists: playlists,
+
+            accounts: accounts,
+            channels: accounts
           } )
         }
       }
