@@ -156,7 +156,36 @@ test( 'test single video metadata capture', function ( t ) {
   } )
 } )
 
-test.only( 'test channel metadata results', function ( t ) {
+test.only( 'playlist results', function ( t ) {
+  t.plan( 5 )
+
+  yts( 'superman theme list', function ( err, r ) {
+    t.error( err, 'no errors OK!' )
+
+    const lists = r.playlists
+
+    // Superman Theme Songs Playlist
+    const sts = lists.filter( function ( playlist ) {
+      const keep = (
+        playlist.title.toLowerCase() === 'superman theme songs' &&
+        playlist.author.name === 'AJ Lelievre' &&
+
+        // is exactly 21 as of now but test with some leeway
+        playlist.videoCount >= 12
+      )
+
+      return keep
+    } )[ 0 ]
+
+
+    t.equal( sts.url, 'https://youtube.com/playlist?list=PLYhKAl2FoGzC0IQkgfVtM991w3E8ro1yG', 'playlist url' )
+    t.equal( sts.listId, 'PLYhKAl2FoGzC0IQkgfVtM991w3E8ro1yG', 'playlist id' )
+    t.equal( sts.thumbnail, 'https://i.ytimg.com/vi/yCCq_6ankAI/default.jpg', 'playlist thumbnail' )
+    t.equal( sts.type, 'list', 'playlist type' )
+  } )
+} )
+
+test( 'test channel results', function ( t ) {
   t.plan( 5 )
 
   yts( 'PewDiePie', function ( err, r ) {
