@@ -145,11 +145,7 @@ function findVideos ( uri, page, callback )
 
 function videoFilter ( result )
 {
-  return (
-    result.url.indexOf( 'watch' ) >= 0 &&
-    result.url.indexOf( '&list' ) === -1 &&
-    result.url.indexOf( '&user' ) === -1
-  )
+  return result.type === 'video'
 }
 
 function videoFilterDuplicates ( video, index, videos )
@@ -165,12 +161,12 @@ function videoFilterDuplicates ( video, index, videos )
 
 function playlistFilter ( result )
 {
-  return result.url.indexOf( 'list' ) >= 0
+  return result.type === 'list'
 }
 
 function accountFilter ( result )
 {
-  return result.url.indexOf( 'user' ) >= 0
+  return result.type === 'channel'
 }
 
 // parse the plain text response body with cheerio to pin point video information
