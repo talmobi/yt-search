@@ -72,10 +72,10 @@ test( 'test order and relevance', function ( t ) {
   yts( opts, function ( err, r ) {
     t.error( err, 'no errors OK!' )
 
-    const top3Videos = r.videos.slice( 0, 3 )
+    const topVideos = r.videos.slice( 0, 5 )
 
     let hasTitle = false
-    top3Videos.forEach( function ( v ) {
+    topVideos.forEach( function ( v ) {
       if ( v.title.match( /josh.*jake.*hill.*rest.*piece.*lyric/i ) ) {
         hasTitle = true
       }
