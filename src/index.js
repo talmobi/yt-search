@@ -142,6 +142,10 @@ function findVideos ( uri, page, callback )
     if ( err ) {
       callback( err )
     } else {
+      if ( res.status !== 200 ) {
+        return callback( 'http status: ' + res.status )
+      }
+
       parseSearchBody( body, callback )
     }
   } )
@@ -640,6 +644,10 @@ function getVideoMetaData ( opts, callback )
     if ( err ) {
       callback( err )
     } else {
+      if ( res.status !== 200 ) {
+        return callback( 'http status: ' + res.status )
+      }
+
       parseVideoBody( body, callback )
     }
   } )
@@ -667,6 +675,10 @@ function getPlaylistMetaData ( opts, callback )
     if ( err ) {
       callback( err )
     } else {
+      if ( res.status !== 200 ) {
+        return callback( 'http status: ' + res.status )
+      }
+
       parsePlaylistBody( body, callback )
     }
   } )
