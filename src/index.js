@@ -848,6 +848,10 @@ function parseVideoBody ( responseText, callback )
 
   const videoId = $('meta[itemprop=videoId]', ctx ).attr( 'content' )
 
+  if ( !videoId ) {
+    return callback( 'video unavailable' )
+  }
+
   let channelId = ''
   let channelUrl = ''
   let channelUrlText = ''
