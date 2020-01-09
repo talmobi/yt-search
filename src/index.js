@@ -146,7 +146,11 @@ function findVideos ( uri, page, callback )
         return callback( 'http status: ' + res.status )
       }
 
-      parseSearchBody( body, callback )
+      try {
+        parseSearchBody( body, callback )
+      } catch ( err ) {
+        callback( err )
+      }
     }
   } )
 }
@@ -648,7 +652,11 @@ function getVideoMetaData ( opts, callback )
         return callback( 'http status: ' + res.status )
       }
 
-      parseVideoBody( body, callback )
+      try {
+        parseVideoBody( body, callback )
+      } catch ( err ) {
+        callback( err )
+      }
     }
   } )
 }
@@ -679,7 +687,11 @@ function getPlaylistMetaData ( opts, callback )
         return callback( 'http status: ' + res.status )
       }
 
-      parsePlaylistBody( body, callback )
+      try {
+        parsePlaylistBody( body, callback )
+      } catch ( err ) {
+        callback( err )
+      }
     }
   } )
 }
