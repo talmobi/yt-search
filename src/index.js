@@ -280,6 +280,7 @@ function parseSearchBody ( responseText, callback )
   if ( errors.length ) {
     return callback( errors, results )
   }
+
   return callback( null, results )
 }
 
