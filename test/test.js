@@ -156,6 +156,14 @@ test( 'video metadata by id', function ( t ) {
   } )
 } )
 
+test( 'video metadata by faulty/non-existing id', function ( t ) {
+  t.plan( 1 )
+
+  yts( { videoId: 'X9vrfEoc8_g' }, function ( err, video ) {
+    t.equal( err, 'video unavailable', 'video unavailable' )
+  } )
+} )
+
 test( 'video metadata by id _JzeIf1zT14', function ( t ) {
   t.plan( 13 )
 
@@ -205,6 +213,14 @@ test( 'playlist metadata by id', function ( t ) {
     t.equal( playlist.author.channelUrl, 'https://youtube.com/channel/UCdwR7fIE2xyXlNRc7fb9tJg', 'author channelUrl' )
 
     t.equal( playlist.thumbnail, 'https://i.ytimg.com/vi/IQtKjU_pOuw/hqdefault.jpg', 'playlist thumbnail' )
+  } )
+} )
+
+test( 'playlist metadata by faulty/non-existing id', function ( t ) {
+  t.plan( 1 )
+
+  yts( { listId: 'XLhf_RSaUvUVvuJHpeiTvnk5n99rlRM' }, function ( err, playlist ) {
+    t.equal( err, 'http status: 303', 'http error 303' )
   } )
 } )
 
