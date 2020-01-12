@@ -65,12 +65,34 @@ function search ( query, callback )
     opts.YT_SEARCH_QUERY_URI = uri
   }
 
+  let _resolve, _reject
+  const promise = new Promise( function ( resolve, reject ) {
+    _resolve = resolve
+    _reject = reject
+  } )
+
+  // wrap an internal callback to support promises
+  const _callback = callback
+  callback = function ( err, data ) {
+    if ( _callback ) {
+      _callback( err, data )
+    } else {
+      if ( err ) return _reject( err )
+      _resolve( data )
+    }
+  }
+
+
   if ( opts.videoId ) {
-    return getVideoMetaData( opts.videoId, callback )
+    getVideoMetaData( opts.videoId, callback )
+    if ( !_callback ) return promise
+    return
   }
 
   if ( opts.listId ) {
-    return getPlaylistMetaData( opts.listId, callback )
+    getPlaylistMetaData( opts.listId, callback )
+    if ( !_callback ) return promise
+    return
   }
 
   query = opts.query || opts.search
@@ -130,6 +152,8 @@ function search ( query, callback )
       }
     )
   }
+
+  if ( !_callback ) return promise
 }
 
 function findVideos ( uri, page, callback )
