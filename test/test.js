@@ -269,3 +269,18 @@ test( 'search results: channel', function ( t ) {
     t.equal( topChannel.thumbnail, 'https://yt3.ggpht.com/a/AGF-l79FVckie4j9WT-4cEW6iu3gPd4GivQf_XNSWg=s176-c-k-c0x00ffffff-no-rj-mo', 'thumbnail url' )
   } )
 } )
+
+test( 'test promise support ( search by video id )', async function ( t ) {
+  t.plan( 2 )
+
+  const opts = {
+    search: "_JzeIf1zT14"
+  }
+
+  const r = await yts( opts )
+
+  const topVideo = r.videos[ 0 ]
+
+  t.ok( topVideo.title.match( /josh.*jake.*hill.*rest.*piece.*lyric/i ), 'top result title matched!' )
+  t.ok( topVideo.videoId, opts.search, 'top result video id matched!' )
+} )
