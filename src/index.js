@@ -103,6 +103,12 @@ function search ( query, callback )
     const q = _querystring.escape( query ).split( /\s+/ )
     const uri = opts.YT_SEARCH_QUERY_URI + '&search_query=' + q.join( '+' )
 
+    // support starting from 0 index meant as first page
+    if ( opts.pageStart === 0 ) {
+      opts.pageStart++
+      opts.pageEnd++
+    }
+
     const tasks = []
     for ( let i = opts.pageStart; i <= opts.pageEnd; i++ ) {
       const pageNumber = i
