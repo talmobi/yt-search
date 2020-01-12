@@ -1,7 +1,39 @@
-let yts = require( '../src/index.js' )
+let yts = require( '../dist/yt-search.min.js' )
 
-if ( !!process.env.production ) {
-  yts = require( '../dist/yt-search.min.js' )
+if ( !!process.env.test_yt_search ) {
+  yts = require( '../src/index.js' )
+}
+
+// delay executions to avoid getting throttled by youtube
+const _yts = yts
+yts = async function ( o, c ) {
+  let promise, _res, _rej
+
+  if ( !c ) {
+    promise = new Promise( function ( res, rej ) {
+      _res = res
+      _rej = rej
+    } )
+  }
+
+  try {
+    const r = await _yts( o )
+    setTimeout( function () {
+      if ( c ) {
+        c( undefined, r )
+      } else {
+        _res( r )
+      }
+    }, 1000 )
+  } catch ( err ) {
+    if ( c ) {
+      c( err )
+    } else {
+      _rej( err )
+    }
+  }
+
+  return promise
 }
 
 const test = require( 'tape' )
