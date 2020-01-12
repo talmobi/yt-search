@@ -26,7 +26,7 @@ const DEFAULT_OPTS = {
   gl: 'US', // US
   category: '', // music
   pageStart: 1, // from this page of youtube search results
-  pageEnd: 3 // to this page of youtube search results
+  pageEnd: 1 // to this page of youtube search results
 }
 
 /**
@@ -104,7 +104,7 @@ function search ( query, callback )
     const uri = opts.YT_SEARCH_QUERY_URI + '&search_query=' + q.join( '+' )
 
     const tasks = []
-    for ( let i = opts.pageStart; i < opts.pageEnd; i++ ) {
+    for ( let i = opts.pageStart; i <= opts.pageEnd; i++ ) {
       const pageNumber = i
       tasks.push(
         function task ( taskDone ) {
