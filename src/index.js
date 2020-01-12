@@ -33,7 +33,7 @@ const DEFAULT_OPTS = {
  * Exports
  **/
 module.exports = function ( query, callback ) {
-  search( query, callback )
+  return search( query, callback )
 }
 module.exports.search = search
 
@@ -42,6 +42,20 @@ module.exports.search = search
  */
 function search ( query, callback )
 {
+  let _resolve, _reject
+  const promise = new Promise( function ( resolve, reject ) {
+    _resolve = resolve
+    _reject = reject
+  } )
+
+  // wrap the callback internally to support promises
+  const _callback = callback
+  callback = function _internal_callback ( err, data ) {
+    if ( _callback ) return _callback( err, data )
+    if ( err ) return _reject( err )
+    _resolve( data )
+  }
+
   let opts = Object.assign( {}, DEFAULT_OPTS )
 
   if ( !query ) {
@@ -64,24 +78,6 @@ function search ( query, callback )
     if ( opts.category ) uri += '&category=' + opts.category
     opts.YT_SEARCH_QUERY_URI = uri
   }
-
-  let _resolve, _reject
-  const promise = new Promise( function ( resolve, reject ) {
-    _resolve = resolve
-    _reject = reject
-  } )
-
-  // wrap an internal callback to support promises
-  const _callback = callback
-  callback = function ( err, data ) {
-    if ( _callback ) {
-      _callback( err, data )
-    } else {
-      if ( err ) return _reject( err )
-      _resolve( data )
-    }
-  }
-
 
   if ( opts.videoId ) {
     getVideoMetaData( opts.videoId, callback )
