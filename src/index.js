@@ -123,7 +123,7 @@ function search ( query, callback )
 
     _parallel(
       tasks,
-      3, // max 3 requests at a time
+      1, // max requests at a time
       function ( err, results ) {
         if ( err ) {
           callback( err )
