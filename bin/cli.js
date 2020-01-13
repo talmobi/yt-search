@@ -49,14 +49,18 @@ ytSearch(
     }
 
     nfzf( list, function ( r ) {
-      if ( !r.selected ) return console.log( 'nothing selected' )
+      if ( !r.selected ) {
+        process.exit( 1 )
+      }
 
-      console.log( r.selected.value )
+      // console.log( r.selected.value )
 
       var url = (
         videos[ r.selected.index ].url
       )
       console.log( url )
+
+      process.exit()
     } )
   }
 )
