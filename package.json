@@ -33,7 +33,7 @@
   "dependencies": {
     "async.parallellimit": "~0.5.2",
     "cheerio": "~0.22.0",
-    "dasu": "0.0.23",
+    "dasu": "~0.2.3",
     "human-time": "0.0.2",
     "minimist": "~1.2.0",
     "node-fzf": "~0.5.1"
