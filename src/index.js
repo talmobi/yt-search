@@ -4,6 +4,13 @@ const _parallel = require( 'async.parallellimit' )
 
 const _url = require( 'url' )
 
+const _boolstring = require( 'boolstring' )
+
+function debug () {
+  if ( !_boolstring( process.env.debug || '' ) ) return
+  console.log.apply( this, arguments )
+}
+
 // used to escape query strings
 const _querystring = require( 'querystring' )
 
