@@ -2,7 +2,11 @@ const _cheerio = require( 'cheerio' )
 const _dasu = require( 'dasu' )
 const _parallel = require( 'async.parallellimit' )
 
+const UserAgent = require( 'user-agents' )
+
 const _url = require( 'url' )
+
+const _jp = require( 'jsonpath' )
 
 const _boolstring = require( 'boolstring' )
 
@@ -212,6 +216,174 @@ function playlistFilter ( result )
 function accountFilter ( result )
 {
   return result.type === 'channel'
+}
+
+// parse initial-data
+function parseMobileSearchBody ( responseText, callback )
+{
+  const $ = _cheerio.load( responseText )
+
+  const errors = []
+  const results = []
+
+  let initialData = $( 'div#initial-data' ).html()
+
+  initialData = (
+    initialData
+    .split( '<!--' ).join( '' )
+    .split( '-->' ).join( '' )
+    .trim()
+  )
+
+  const json = JSON.parse( initialData )
+
+  const items = _jp.query( json, '$..itemSectionRenderer..contents.*' )
+
+  debug( 'items.length: ' + items.length )
+
+  for ( let i = 0; i < items.length; i++ ) {
+    const item = items[ i ]
+
+    let result = undefined
+    let type = 'unknown'
+
+    // console.log( item )
+
+    const listId = ( _jp.value( item, '$..playlistId' ) )
+    const videoId = ( _jp.value( item, '$..videoId' ) )
+
+    if ( videoId ) {
+      type = 'video'
+    }
+
+    if ( listId ) {
+      type = 'list'
+    }
+
+    console.log( 'listId: ' + listId )
+    console.log( 'videoId: ' + videoId )
+
+    try {
+      switch ( type ) {
+        case 'video':
+          {
+            const thumbnail = _jp.value( item, '$..thumbnail..url' )
+            const title = _jp.value( item, '$..title..text' )
+
+            const author_name = (
+              _jp.value( item, '$..shortBylineText..text' ) ||
+              _jp.value( item, '$..longBylineText..text' )
+            )
+
+            const author_url = (
+              _jp.value( item, '$..shortBylineText..url' ) ||
+              _jp.value( item, '$..longBylineText..url' )
+            )
+
+            // publish/upload date
+            const agoText = (
+              _jp.value( item, '$..publishedTimeText..text' )
+            )
+
+            const viewCountText = (
+              _jp.value( item, '$..viewCountText..text' )
+            )
+
+            const lengthText = (
+              _jp.value( item, '$..lengthText..text' )
+            )
+            const duration = parseDuration( lengthText )
+
+            // url ( playlist )
+            // const url = _jp.value( item, '$..navigationEndpoint..url' )
+            const url = TEMPLATES.YT + '/watch?v=' + videoId
+
+            result = {
+              type: 'video',
+
+              videoId: videoId,
+              url: url,
+
+              title: title.trim(),
+              thumbnail: thumbnail,
+
+              seconds: Number( duration.seconds ),
+              timestamp: duration.timestamp,
+              duration: duration,
+
+              ago: agoText,
+
+              author: {
+                name: author_name,
+                url: TEMPLATES.YT + author_url,
+              }
+            }
+          }
+          break
+
+        case 'list':
+          {
+            const thumbnail = _jp.value( item, '$..thumbnail..url' )
+            const title = _jp.value( item, '$..title..text' )
+
+            const author_name = (
+              _jp.value( item, '$..shortBylineText..text' ) ||
+              _jp.value( item, '$..longBylineText..text' )
+            )
+
+            const author_url = (
+              _jp.value( item, '$..shortBylineText..url' ) ||
+              _jp.value( item, '$..longBylineText..url' )
+            )
+
+            const video_count = (
+              _jp.value( item, '$..videoCountShortText..text' ) ||
+              _jp.value( item, '$..videoCountText..text' ) ||
+              _jp.value( item, '$..thumbnailText..text' )
+            )
+
+            // url ( playlist )
+            // const url = _jp.value( item, '$..navigationEndpoint..url' )
+            const url = TEMPLATES.YT + '/playlist?list=' + listId
+
+            result = {
+              type: 'list',
+
+              listId: listId,
+              url: url,
+
+              title: title.trim(),
+              thumbnail: thumbnail,
+
+              videoCount: video_count,
+
+              author: {
+                name: author_name,
+                url: TEMPLATES.YT + author_url,
+              }
+            }
+          }
+          break
+
+        default:
+      }
+
+      if ( result ) {
+        results.push( result )
+      }
+    } catch ( err ) {
+      console.log( err )
+      errors.push( err )
+    }
+  }
+
+  debug( initialData )
+
+  if ( errors.length ) {
+    return callback( errors.pop(), results )
+  }
+
+  return callback( null, results )
 }
 
 // parse the plain text response body with cheerio to pin point video information
