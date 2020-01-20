@@ -20,6 +20,12 @@ const _querystring = require( 'querystring' )
 
 const _humanTime = require( 'human-time' )
 
+const TEMPLATES = {
+  YT: 'https://youtube.com',
+  SEARCH_MOBILE: 'https://m.youtube.com/results',
+  SEARCH_DESKTOP: 'https://youtube.com/results'
+}
+
 const DEFAULT_YT_SEARCH_QUERY_URI = (
   'https://www.youtube.com/results?'
   // 'hl=en&gl=US&category=music' +
@@ -53,6 +59,165 @@ module.exports.search = search
  */
 function search ( query, callback )
 {
+  // support promises when no callback given
+  if ( !callback ) {
+    return new Promise( function ( resolve, reject ) {
+      search( query, function ( err, data ) {
+        if ( err ) return reject( err )
+        resolve( data )
+      } )
+    } )
+  }
+
+  let _options
+  if ( typeof query === 'string' ) {
+    _options = {
+      query: query
+    }
+  } else {
+    _options = query
+  }
+
+  // ignore query, only get metadata from specific video id
+  if ( _options.videoId ) {
+    return getVideoMetaData( _options.videoId, callback )
+  }
+
+  // ignore query, only get metadata from specific playlist id
+  if ( _options.listId ) {
+    return getPlaylistMetaData( _options.listId, callback )
+  }
+
+  if ( !_options.query ) {
+    return callback( Error( 'yt-search: no query given' ) )
+  }
+
+  work()
+
+  function work () {
+    findMobileVideos( _options, callback )
+  }
+}
+
+/* The document returned by YouTube is may be
+ * different depending on the user-agent header.
+ * Seems like the mobile uri versions and modern user-agents
+ * get served html documents with continuation tokens (ctoken)
+ * that are used to get more page results when you scroll down
+ * on the page.
+ * We will be using these ctokens as our strategy to get more
+ * video results in this function.
+ * findDesktopVideos will be using an older strategy to get
+ * more video results.
+ */
+function findMobileVideos ( _options, callback )
+{
+  // querystring variables
+  const q = _querystring.escape( _options.query ).split( /\s+/ )
+  const hl = _options.hl || 'en'
+  const gl = _options.gl || 'US'
+  const category = _options.category || '' // music
+
+  const pageStart = 1
+  const pageEnd = _options.pageEnd || 1
+
+  let queryString = '?'
+  queryString += 'search_query=' + q.join( '+' )
+
+  queryString += '&'
+  queryString += '&hl=' + hl
+
+  queryString += '&'
+  queryString += '&gl=' + gl
+
+  if ( category ) { // ex. "music"
+    queryString += '&'
+    queryString += '&category=' + category
+  }
+
+  const uri = TEMPLATES.SEARCH_MOBILE + queryString
+
+  const params = _url.parse( uri )
+
+  // We need to provide a legitimate mobile user-agent,
+  // otherwise we will be 302/303 redirected.
+  const userAgent = new UserAgent( {
+    deviceCategory: 'mobile'
+  } )
+
+  params.headers = {
+    'user-agent': userAgent,
+    'accept': 'text/html'
+  }
+
+  _dasu.req( params, function ( err, res, body ) {
+    if ( err ) {
+      callback( err )
+    } else {
+      if ( res.status !== 200 ) {
+        return callback( 'http status: ' + res.status )
+      }
+
+      // TODO
+      const fs = require( 'fs' )
+      const path = require( 'path' )
+      fs.writeFileSync( 'dasu.response', res.responseText, 'utf8' )
+
+      try {
+        parseMobileSearchBody( body, function ( err, results ) {
+          if ( err ) return callback( err )
+
+          const list = results
+
+          const videos = list.filter( videoFilter )
+          const playlists = list.filter( playlistFilter )
+          const accounts = list.filter( accountFilter )
+
+          callback( null, {
+            videos: videos.filter( videoFilterDuplicates ),
+
+            playlists: playlists,
+            lists: playlists,
+
+            accounts: accounts,
+            channels: accounts
+          } )
+        } )
+      } catch ( err ) {
+        callback( err )
+      }
+    }
+  } )
+}
+
+function findDesktopVideos ()
+{
+  // TODO
+}
+
+function search_desktop ( query, callback )
+{
+  // get random user agent to set as header.
+  // the document returned by YouTube is going to be
+  // different if we provide a modern user agent. Seems like
+  // most mobile versions also get served these versions.
+  // Mainly the continuation token ( ctoken ) will be provided
+  // which will allow us to get the next page ( actually
+  // scrolling results, as any page shows the same top results )
+  // results.
+  const userAgent = new UserAgent( {
+    deviceCategory: 'mobile'
+  } )
+
+  // const userAgent = (
+  //   'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.4 Safari/605.1.15'
+  // )
+
+  debug( 'user-agent: ' + userAgent )
+
+  // attach it to the dasu lirbary because it's convenient
+  _dasu._userAgent = userAgent
+
   let _resolve, _reject
   const promise = new Promise( function ( resolve, reject ) {
     _resolve = resolve
