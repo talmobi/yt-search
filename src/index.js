@@ -459,7 +459,11 @@ function accountFilter ( result )
   return result.type === 'channel'
 }
 
-// parse initial-data
+/* For "modern" user-agents the html document returned from
+ * YouTube contains initial json data that is used to populate
+ * the page with JavaScript. This function will aim to find and
+ * parse such data.
+ */
 function parseInitialData ( responseText, callback )
 {
   const re = /{.*}/
@@ -729,6 +733,8 @@ function parseInitialData ( responseText, callback )
   return callback( null, results )
 }
 
+/* Helper fn to choose a good thumbnail.
+ */
 function _normalizeThumbnail ( thumbnails )
 {
   let t
@@ -746,7 +752,9 @@ function _normalizeThumbnail ( thumbnails )
   return t.split( 'http://' ).join( 'https://' )
 }
 
-// parse the plain text response body with cheerio to pin point video information
+/* Old/missing user-agents are usually given a static
+ * and legacy compatible page we can parse for information.
+ */
 function parseSearchBody ( responseText, callback )
 {
   const $ = _cheerio.load( responseText )
@@ -849,6 +857,13 @@ function parseSearchBody ( responseText, callback )
   return callback( null, results )
 }
 
+/* Helper fn to parse sub count labels
+ * and turn them into Numbers.
+ *
+ * It's an estimate but can be useful for sorting etc.
+ *
+ * ex. "102M subscribers" -> 102000000
+ */
 function _parseSubCountLabel ( subCountLabel )
 {
   const label = (
@@ -1149,6 +1164,9 @@ function _parseChannelResult ( $, section ) {
   }
 }
 
+/* Helper fn to parse duration labels
+ * ex: Duration: 2:27, Kesto: 1.07.54
+ */
 function parseDuration ( timestampText )
 {
   var a = timestampText.split( /\s+/ )
@@ -1192,6 +1210,9 @@ function parseDuration ( timestampText )
   }
 }
 
+/* Helper fn to transform ms to timestamp
+ * ex: 253000 -> "4:13"
+ */
 function msToTimestamp ( ms )
 {
   let t = ''
@@ -1735,6 +1756,9 @@ function parseVideoBody ( responseText, callback )
   callback( null, video )
 }
 
+/* Parses a type of human-like timestamps found on YouTube.
+ * ex: "PT4M13S" -> "4:13"
+ */
 function parseHumanDuration ( timestampText )
 {
   debug( 'parseHumanDuration' )
