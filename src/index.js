@@ -101,7 +101,7 @@ function search ( query, callback )
   work()
 
   function work () {
-    findDesktopVideos( _options, callback )
+    getDesktopVideos( _options, callback )
   }
 }
 
@@ -113,7 +113,7 @@ function search ( query, callback )
  * on the page.
  * We will be using these ctokens as our strategy to get more
  * video results in this function.
- * findDesktopVideos will be using an older strategy to get
+ * getDesktopVideos will be using an older strategy to get
  * more video results.
  *
  * DEPRECATED!
@@ -124,7 +124,7 @@ function search ( query, callback )
  * GET desktop documents with more information to parse by
  * settings desktop-like user-agents and using desktop url's.
  */
-function findMobileVideos ( _options, callback )
+function getMobileVideos ( _options, callback )
 {
   // querystring variables
   const q = _querystring.escape( _options.query ).split( /\s+/ )
@@ -199,7 +199,14 @@ function findMobileVideos ( _options, callback )
   } )
 }
 
-function findDesktopVideos ( _options, callback )
+/* The page results received on Desktop urls vary by user-agent.
+ * Some are given older static versions while some get newer
+ * versions with embedded initial json data.
+ *
+ * We will target modern pages (using modern user-agent headers)
+ * with embedded json data and parse them in this function.
+ */
+function getDesktopVideos ( _options, callback )
 {
   // querystring variables
   const q = _querystring.escape( _options.query ).split( /\s+/ )
