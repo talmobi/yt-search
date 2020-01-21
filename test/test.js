@@ -235,7 +235,7 @@ test( 'playlist metadata by id', function ( t ) {
 
     t.equal( playlist.url, 'https://youtube.com/playlist?list=PL7k0JFoxwvTbKL8kjGI_CaV31QxCGf1vJ', 'playlist url' )
 
-    t.ok( playlist.videos >= 10 , 'videos equal or over 10 (as of 2020-01-08)' )
+    t.ok( playlist.videos.length >= 10 , 'videos equal or over 10 (as of 2020-01-08)' )
     t.ok( playlist.views > 300, 'views over 300 (as of 2020-01-08)' )
 
     t.equal( playlist.date, '2018-5-24' , 'date' )
