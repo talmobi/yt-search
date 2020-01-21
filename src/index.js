@@ -303,8 +303,8 @@ function parseInitialData ( responseText, callback )
   const re = /{.*}/
   const $ = _cheerio.load( responseText )
 
-  let initialData = $( 'div#initial-data' ).html()
-  initialData = re.exec( initialData )
+  let initialData = $( 'div#initial-data' ).html() || ''
+  initialData = re.exec( initialData ) || ''
 
   if ( !initialData ) {
     const scripts = $( 'script' )
