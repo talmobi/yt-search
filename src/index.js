@@ -78,6 +78,11 @@ function search ( query, callback )
     _options = query
   }
 
+
+  // support common alternatives
+  _options.query = _options.query || _options.search
+  _options.search = _options.query
+
   // ignore query, only get metadata from specific video id
   if ( _options.videoId ) {
     return getVideoMetaData( _options.videoId, callback )
