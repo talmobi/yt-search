@@ -11,6 +11,7 @@
     "dist/yt-search.min.js"
   ],
   "scripts": {
+    "debug": "debug=1 node src/index.js --silent",
     "build": "npm run build:src && npm run uglify",
     "build:src": "browserify --node --no-bundle-external --standalone ytSearch -t [ babelify --presets [ env ] ] src/index.js -o dist/yt-search.js 2>&1 | wooster",
     "uglify": "uglifyjs dist/yt-search.js -cmo dist/yt-search.min.js",
