@@ -101,7 +101,8 @@ function search ( query, callback )
   work()
 
   function work () {
-    findMobileVideos( _options, callback )
+    // findMobileVideos( _options, callback )
+    findDesktopVideos( _options, callback )
   }
 }
 
@@ -170,7 +171,7 @@ function findMobileVideos ( _options, callback )
       fs.writeFileSync( 'dasu.response', res.responseText, 'utf8' )
 
       try {
-        parseMobileSearchBody( body, function ( err, results ) {
+        parseInitialData( body, function ( err, results ) {
           if ( err ) return callback( err )
 
           const list = results
