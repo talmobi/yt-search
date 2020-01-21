@@ -548,9 +548,6 @@ function parseInitialData ( responseText, callback )
       type = 'list'
     }
 
-    console.log( 'listId: ' + listId )
-    console.log( 'videoId: ' + videoId )
-
     try {
       switch ( type ) {
         case 'video':
@@ -734,13 +731,13 @@ function parseInitialData ( responseText, callback )
           break
 
         default:
+          // ignore other stuff
       }
 
       if ( result ) {
         results.push( result )
       }
     } catch ( err ) {
-      console.log( err )
       errors.push( err )
     }
   }
