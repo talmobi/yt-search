@@ -865,6 +865,23 @@ function parseSearchBody ( responseText, callback )
   return callback( null, results )
 }
 
+function _parseSubCountLabel ( subCountLabel )
+{
+  const label = (
+    subCountLabel.split( /\s+/ )
+    .filter( function ( w ) { return w.match( /\d/ ) } )
+  )[ 0 ].toLowerCase()
+
+  const num = Number( label.replace( /\D/g, '' ) )
+
+  const THOUSAND = 1000
+  const MILLION = THOUSAND * THOUSAND
+
+  if ( label.indexOf( 'm' ) >= 0 ) return MILLION * num
+  if ( label.indexOf( 'k' ) >= 0 ) return THOUSAND * num
+  return num
+}
+
 /**
  * Parse result section of html containing a video result.
  *
