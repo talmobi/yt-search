@@ -1386,6 +1386,10 @@ function _parseVideoInitialData ( responseText, callback )
     return callback( 'could not find inital player data in the html document' )
   }
 
+  // debug( initialData[ 0 ] )
+  // debug( '\n------------------\n' )
+  // debug( initialPlayerData[ 0 ] )
+
   const idata = JSON.parse( initialData[ 0 ] )
   const ipdata = JSON.parse( initialPlayerData[ 0 ] )
 
