@@ -1179,6 +1179,7 @@ function getPlaylistMetaData ( opts, callback )
 }
 
 /* Parse response html from playlist url
+ * DEPRECATED
  */
 function parsePlaylistBody ( responseText, callback )
 {
@@ -1264,6 +1265,7 @@ function parsePlaylistBody ( responseText, callback )
 
 /**
  * @params {object} - cheerio <a>...</a> tag
+ * DEPRECATED
  */
 function _parseAuthorAnchorTag ( a ) {
   debug( 'fn: _parseAuthorAnchorTag' )
@@ -1681,6 +1683,7 @@ function _parsePlaylistInitialData ( responseText, callback )
   callback( null, playlist )
 }
 
+// DEPRECATED
 function parseVideoBody ( responseText, callback )
 {
   debug( 'parseVideoBody' )
