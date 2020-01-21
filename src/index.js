@@ -1169,7 +1169,8 @@ function getPlaylistMetaData ( opts, callback )
       }
 
       try {
-        parsePlaylistBody( body, callback )
+        // parsePlaylistBody( body, callback )
+        _parsePlaylistInitialData( body, callback )
       } catch ( err ) {
         callback( err )
       }
@@ -1496,6 +1497,188 @@ function _parseVideoInitialData ( responseText, callback )
   }
 
   callback( null, video )
+}
+
+function _parsePlaylistInitialData ( responseText, callback )
+{
+  debug( '_parsePlaylistInitialData' )
+
+  const re = /{.*}/
+  const $ = _cheerio.load( responseText )
+
+  let initialData = ''
+
+  if ( !initialData ) {
+    const scripts = $( 'script' )
+
+    for ( let i = 0; i < scripts.length; i++ ) {
+      const script = $( scripts[ i ] ).html()
+
+      const lines = script.split( '\n' )
+      lines.forEach( function ( line ) {
+        let i
+        while ( ( i = line.indexOf( 'ytInitialData' ) ) >= 0 ) {
+          line = line.slice( i + 'ytInitialData'.length )
+          const match = re.exec( line )
+          if ( match && match.length > initialData.length ) {
+            initialData = match
+          }
+        }
+      } )
+    }
+  }
+
+  if ( !initialData ) {
+    return callback( 'could not find inital data in the html document' )
+  }
+
+  const idata = JSON.parse( initialData[ 0 ] )
+
+  const listId = _jp.value( idata, '$..playlistId' )
+
+  if ( !listId ) {
+    return callback( 'playlist unavailable' )
+  }
+
+  const title = (
+    _jp.value( idata, '$..microformat..title' ) ||
+    _jp.value( idata, '$..sidebar..title..text' ) ||
+    _jp.value( idata, '$..sidebar..title..simpleText' )
+  )
+
+  const url = TEMPLATES.YT + '/playlist?list=' + listId
+
+  const thumbnailUrl = (
+    _jp.value( idata, '$..thumbnail..url' )
+  )
+  const thumbnail = _normalizeThumbnail( thumbnailUrl )
+
+  const description = (
+    _jp.value( idata, '$..microformat..description' ) || ''
+  )
+
+  const author_name = (
+    _jp.value( idata, '$..videoOwner..title..text' ) ||
+    _jp.value( idata, '$..videoOwner..title..simpleText' ) ||
+    _jp.value( idata, '$..owner..title..text' ) ||
+    _jp.value( idata, '$..owner..title..simpleText' )
+  )
+
+  const author_url = (
+    _jp.value( idata, '$..videoOwner..title..url' ) ||
+    _jp.value( idata, '$..owner..title..url' )
+  )
+
+  let videos = (
+    _jp.value( idata, '$..sidebar..stats[0]..text' ) ||
+    _jp.value( idata, '$..sidebar..stats[0]..simpleText' )
+  )
+
+  let views = (
+    _jp.value( idata, '$..sidebar..stats[1]..text' ) ||
+    _jp.value( idata, '$..sidebar..stats[1]..simpleText' )
+  )
+
+  let lastUpdateLabel = (
+    _jp.value( idata, '$..sidebar..stats[2]..text' ) ||
+    _jp.value( idata, '$..sidebar..stats[2]..simpleText' )
+  )
+
+  if ( videos ) {
+    videos = Number( videos.replace( /\D+/g, '' ) )
+  }
+
+  if ( views ) {
+    views = _parseSubCountLabel( views )
+  }
+
+  console.log( lastUpdateLabel )
+
+  let lastUpdate
+  if ( lastUpdateLabel ) {
+    lastUpdate = _parsePlaylistLastUpdateTime( lastUpdateLabel )
+  }
+
+  const items = _jp.query( idata, '$..playlistVideoRenderer' )
+
+  const list = []
+
+  for ( let i = 0; i < items.length; i++ ) {
+    try {
+      const item = items[ i ]
+
+      const videoId = (
+        _jp.value( item, '$..videoId' )
+      )
+
+      const thumbnail = (
+        _normalizeThumbnail( _jp.value( item, '$..thumbnail..url' ) )
+      )
+
+      const title = (
+        _jp.value( item, '$..title..text' ) ||
+        _jp.value( item, '$..title..simpleText' )
+      )
+
+      const timestamp = (
+        _jp.value( item, '$..lengthText..text' ) ||
+        _jp.value( item, '$..lengthText..simpleText' )
+      )
+
+      const duration = parseDuration( timestamp || '0:00' )
+
+      const author_name = (
+        _jp.value( item, '$..shortBylineText..text' ) ||
+        _jp.value( item, '$..longBylineText..text' )
+      )
+
+      const author_url = (
+        _jp.value( item, '$..shortBylineText..url' ) ||
+        _jp.value( item, '$..longBylineText..url' )
+      )
+
+      list.push( {
+        title: title,
+
+        videoId: videoId,
+        listId: listId,
+
+        duration: duration,
+        timestamp: duration.timestamp,
+        seconds: duration.seconds,
+
+        thumbnail: thumbnail,
+        url: TEMPLATES.YT + '/watch?v=' + videoId,
+
+        author: {
+          name: author_name,
+          url: TEMPLATES.YT + author_url
+        }
+      } )
+    } catch ( err ) {
+      // possibly deleted videos, ignore
+    }
+  }
+
+  const playlist = {
+    title: title,
+
+    listId: listId,
+
+    url: TEMPLATES.YT + '/playlist?list=' + listId,
+    thumbnail: thumbnail,
+
+    videos: list,
+    views: views,
+    date: lastUpdate,
+
+    author: {
+      name: author_name,
+      url: TEMPLATES.YT + author_url
+    }
+  }
+
+  callback( null, playlist )
 }
 
 function parseVideoBody ( responseText, callback )
