@@ -24,7 +24,7 @@ const _humanTime = require( 'human-time' )
 const TEMPLATES = {
   YT: 'https://youtube.com',
   SEARCH_MOBILE: 'https://m.youtube.com/results',
-  SEARCH_DESKTOP: 'https://youtube.com/results'
+  SEARCH_DESKTOP: 'https://www.youtube.com/results'
 }
 
 const DEFAULT_YT_SEARCH_QUERY_URI = (
