@@ -388,7 +388,8 @@ function parseInitialData ( responseText, callback )
 
             // publish/upload date
             const agoText = (
-              _jp.value( item, '$..publishedTimeText..text' )
+              _jp.value( item, '$..publishedTimeText..text' ) ||
+              _jp.value( item, '$..publishedTimeText..simpleText' )
             )
 
             const viewCountText = (
