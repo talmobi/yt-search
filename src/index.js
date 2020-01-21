@@ -659,6 +659,63 @@ function parseInitialData ( responseText, callback )
           }
           break
 
+        case 'channel':
+          {
+            const thumbnail = _jp.value( item, '$..thumbnail..url' )
+            const title = (
+              _jp.value( item, '$..title..text' ) ||
+              _jp.value( item, '$..title..simpleText' ) ||
+              _jp.value( item, '$..displayName..text' )
+            )
+
+            const author_name = (
+              _jp.value( item, '$..displayName..text' ) ||
+              _jp.value( item, '$..displayName..simpleText' )
+            )
+
+            const video_count_label = (
+              _jp.value( item, '$..videoCountText..text' ) ||
+              _jp.value( item, '$..videoCountText..simpleText' )
+            )
+
+            let sub_count_label = (
+              _jp.value( item, '$..subscriberCountText..text' ) ||
+              _jp.value( item, '$..subscriberCountText..simpleText' )
+            )
+
+            // first space separated word that has digits
+            if ( typeof sub_count_label === 'string' ) {
+              sub_count_label = (
+                sub_count_label.split( /\s+/ )
+                .filter( function ( w ) { return w.match( /\d/ ) } )
+              )[ 0 ]
+            }
+
+            // url ( playlist )
+            // const url = _jp.value( item, '$..navigationEndpoint..url' )
+            const url = (
+              _jp.value( item, '$..navigationEndpoint..url' ) ||
+              '/user/' + title
+            )
+
+            result = {
+              type: 'channel',
+
+              name: author_name,
+              url: TEMPLATES.YT + url,
+
+              title: title.trim(),
+              thumbnail: _normalizeThumbnail( thumbnail ),
+
+              videoCount: Number( video_count_label.replace( /\D+/g, '' ) ),
+              videoCountLabel: video_count_label,
+
+              subCountLabel: sub_count_label,
+              subCount: _parseSubCountLabel( sub_count_label )
+            }
+          }
+          break
+
         default:
       }
 
