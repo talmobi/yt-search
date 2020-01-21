@@ -511,11 +511,20 @@ function parseInitialData ( responseText, callback )
 
     // console.log( item )
 
-    const listId = ( _jp.value( item, '$..playlistId' ) )
-    const videoId = ( _jp.value( item, '$..videoId' ) )
+    const hasList = ( item.compactPlaylistRenderer || item.playlistRenderer )
+    const hasChannel = ( item.compactChannelRenderer || item.channelRenderer )
+    const hasVideo = ( item.compactVideoRenderer || item.videoRenderer )
+
+    const listId = hasList && ( _jp.value( item, '$..playlistId' ) )
+    const channelId = hasChannel && ( _jp.value( item, '$..channelId' ) )
+    const videoId = hasVideo && ( _jp.value( item, '$..videoId' ) )
 
     if ( videoId ) {
       type = 'video'
+    }
+
+    if ( channelId ) {
+      type = 'channel'
     }
 
     if ( listId ) {
@@ -530,7 +539,10 @@ function parseInitialData ( responseText, callback )
         case 'video':
           {
             const thumbnail = _jp.value( item, '$..thumbnail..url' )
-            const title = _jp.value( item, '$..title..text' )
+            const title = (
+              _jp.value( item, '$..title..text' ) ||
+              _jp.value( item, '$..title..simpleText' )
+            )
 
             const author_name = (
               _jp.value( item, '$..shortBylineText..text' ) ||
@@ -548,13 +560,22 @@ function parseInitialData ( responseText, callback )
             )
 
             const viewCountText = (
-              _jp.value( item, '$..viewCountText..text' )
+              _jp.value( item, '$..viewCountText..text' ) ||
+              _jp.value( item, '$..viewCountText..simpleText' )
             )
 
+            const viewsCount = Number( viewCountText.split( /\s+/ )[ 0 ].split( /[,.]/ ).join( '' ).trim() )
+
             const lengthText = (
-              _jp.value( item, '$..lengthText..text' )
+              _jp.value( item, '$..lengthText..text' ) ||
+              _jp.value( item, '$..lengthText..simpleText' )
             )
             const duration = parseDuration( lengthText )
+
+            const description = (
+              _jp.value( item, '$..description..text' ) ||
+              _jp.value( item, '$..descriptionSnippet..text' )
+            )
 
             // url ( playlist )
             // const url = _jp.value( item, '$..navigationEndpoint..url' )
@@ -567,13 +588,16 @@ function parseInitialData ( responseText, callback )
               url: url,
 
               title: title.trim(),
-              thumbnail: thumbnail,
+              description: description,
+
+              thumbnail: _normalizeThumbnail( thumbnail ),
 
               seconds: Number( duration.seconds ),
               timestamp: duration.timestamp,
               duration: duration,
 
               ago: agoText,
+              views: Number( viewsCount ),
 
               author: {
                 name: author_name,
@@ -586,22 +610,30 @@ function parseInitialData ( responseText, callback )
         case 'list':
           {
             const thumbnail = _jp.value( item, '$..thumbnail..url' )
-            const title = _jp.value( item, '$..title..text' )
+            const title = (
+              _jp.value( item, '$..title..text' ) ||
+              _jp.value( item, '$..title..simpleText' )
+            )
 
             const author_name = (
               _jp.value( item, '$..shortBylineText..text' ) ||
-              _jp.value( item, '$..longBylineText..text' )
-            )
+              _jp.value( item, '$..longBylineText..text' ) ||
+              _jp.value( item, '$..shortBylineText..simpleText' ) ||
+              _jp.value( item, '$..longBylineText..simpleTextn' )
+            ) || 'YouTube'
 
             const author_url = (
               _jp.value( item, '$..shortBylineText..url' ) ||
               _jp.value( item, '$..longBylineText..url' )
-            )
+            ) || ''
 
             const video_count = (
               _jp.value( item, '$..videoCountShortText..text' ) ||
               _jp.value( item, '$..videoCountText..text' ) ||
-              _jp.value( item, '$..thumbnailText..text' )
+              _jp.value( item, '$..videoCountShortText..simpleText' ) ||
+              _jp.value( item, '$..videoCountText..simpleText' ) ||
+              _jp.value( item, '$..thumbnailText..text' ) ||
+              _jp.value( item, '$..thumbnailText..simpleText' )
             )
 
             // url ( playlist )
@@ -615,7 +647,7 @@ function parseInitialData ( responseText, callback )
               url: url,
 
               title: title.trim(),
-              thumbnail: thumbnail,
+              thumbnail: _normalizeThumbnail( thumbnail ),
 
               videoCount: video_count,
 
