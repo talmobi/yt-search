@@ -561,8 +561,6 @@ function parseInitialData ( responseText, callback )
     }
   }
 
-  debug( initialData )
-
   if ( errors.length ) {
     return callback( errors.pop(), results )
   }
@@ -591,6 +589,8 @@ function _normalizeThumbnail ( thumbnails )
 
 /* Old/missing user-agents are usually given a static
  * and legacy compatible page we can parse for information.
+ *
+ * DEPRECATED
  */
 function parseSearchBody ( responseText, callback )
 {
@@ -613,9 +613,6 @@ function parseSearchBody ( responseText, callback )
     const href = a.attr( 'href' ) || ''
 
     const qs = _querystring.parse( href.split( '?', 2 )[ 1 ] )
-
-    // TODO
-    // debug( qs )
 
     // make sure the url is correct ( skip ad urls etc )
     // ref: https://github.com/talmobi/yt-search/issues/3
@@ -722,6 +719,8 @@ function _parseSubCountLabel ( subCountLabel )
  * Parse result section of html containing a video result.
  *
  * @param {object} section - cheerio object
+ *
+ * DEPRECATED
  */
 function _parseVideoResult ( $, section ) {
   const content = $( '.yt-lockup-content', section )
@@ -827,6 +826,8 @@ function _parseVideoResult ( $, section ) {
  * Parse result section of html containing a playlist result.
  *
  * @param {object} section - cheerio object
+ *
+ * DEPRECATED
  */
 function _parseListResult ( $, section ) {
   const content = $( '.yt-lockup-content', section )
@@ -859,7 +860,6 @@ function _parseListResult ( $, section ) {
   const byline_a_href = byline_a.attr( 'href' ) || ''
 
   if ( byline_a_href ) {
-    // debug( byline_a_href )
 
     if ( byline_a_href.indexOf( 'channel/' ) >= 0 ) {
       channelId = byline_a_href.split( '/' ).pop()
@@ -882,7 +882,6 @@ function _parseListResult ( $, section ) {
   // channelName and userName are identical, just parsed
   // from different <a> elements
   const name = channelUrlText || userUrlText
-  // debug( name )
 
   const sidebar = $( '.sidebar', section )
   const videoCountLabel = sidebar.text().trim()
@@ -943,6 +942,8 @@ function _parseListResult ( $, section ) {
  * Parse result section of html containing a channel result.
  *
  * @param {object} section - cheerio object
+ *
+ * DEPRECATED
  */
 function _parseChannelResult ( $, section ) {
   const img = $( 'img', section )
@@ -1381,9 +1382,6 @@ function _parseVideoInitialData ( responseText, callback )
 
   const idata = JSON.parse( initialData[ 0 ] )
   const ipdata = JSON.parse( initialPlayerData[ 0 ] )
-
-  debug( idata )
-  debug( ipdata )
 
   const videoId = _jp.value( idata, '$..currentVideoEndpoint..videoId' )
 
