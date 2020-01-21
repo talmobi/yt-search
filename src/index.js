@@ -28,13 +28,6 @@ const TEMPLATES = {
   SEARCH_DESKTOP: 'https://www.youtube.com/results'
 }
 
-const DEFAULT_YT_SEARCH_QUERY_URI = (
-  'https://www.youtube.com/results?'
-  // 'hl=en&gl=US&category=music' +
-  // '&search_query='
-  // 'search_query='
-)
-
 const ONE_SECOND = 1000
 const ONE_MINUTE = ONE_SECOND * 60
 const TIME_TO_LIVE = ONE_MINUTE * 5
@@ -183,7 +176,7 @@ function getMobileVideos ( _options, callback )
           const accounts = list.filter( accountFilter )
 
           callback( null, {
-            videos: videos.filter( videoFilterDuplicates ),
+            videos: videos,
 
             playlists: playlists,
             lists: playlists,
@@ -265,7 +258,7 @@ function getDesktopVideos ( _options, callback )
           const accounts = list.filter( accountFilter )
 
           callback( null, {
-            videos: videos.filter( videoFilterDuplicates ),
+            videos: videos,
 
             playlists: playlists,
             lists: playlists,
@@ -281,178 +274,12 @@ function getDesktopVideos ( _options, callback )
   } )
 }
 
-function search_desktop ( query, callback )
+
+function videoFilter ( video, index, videos )
 {
-  // get random user agent to set as header.
-  // the document returned by YouTube is going to be
-  // different if we provide a modern user agent. Seems like
-  // most mobile versions also get served these versions.
-  // Mainly the continuation token ( ctoken ) will be provided
-  // which will allow us to get the next page ( actually
-  // scrolling results, as any page shows the same top results )
-  // results.
+  if ( video.type !== 'video' ) return false
 
-  // const userAgent = (
-  //   'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.4 Safari/605.1.15'
-  // )
-
-  let _resolve, _reject
-  const promise = new Promise( function ( resolve, reject ) {
-    _resolve = resolve
-    _reject = reject
-  } )
-
-  // wrap the callback internally to support promises
-  const _callback = callback
-  callback = function _internal_callback ( err, data ) {
-    if ( _callback ) return _callback( err, data )
-    if ( err ) return _reject( err )
-    _resolve( data )
-  }
-
-  let opts = Object.assign( {}, DEFAULT_OPTS )
-
-  if ( !query ) {
-    return callback(
-      new Error( 'No query given.' )
-    )
-  }
-
-  if ( typeof query === 'string' ) {
-    opts = Object.assign( opts, { query: query } )
-  } else {
-    opts = Object.assign( opts, query )
-  }
-
-  if ( !opts.YT_SEARCH_QUERY_URI ) {
-    let uri = DEFAULT_YT_SEARCH_QUERY_URI
-    const language = ( opts.hl || opts.language || opts.lang )
-    if ( language ) uri += '&hl=' + language.slice( 0, 2 )
-    if ( opts.gl ) uri += '&gl=' + opts.gl
-    if ( opts.category ) uri += '&category=' + opts.category
-    opts.YT_SEARCH_QUERY_URI = uri
-  }
-
-  if ( opts.videoId ) {
-    getVideoMetaData( opts.videoId, callback )
-    if ( !_callback ) return promise
-    return
-  }
-
-  if ( opts.listId ) {
-    getPlaylistMetaData( opts.listId, callback )
-    if ( !_callback ) return promise
-    return
-  }
-
-  query = opts.query || opts.search
-
-  next()
-
-  function next () {
-    const q = _querystring.escape( query ).split( /\s+/ )
-    const uri = opts.YT_SEARCH_QUERY_URI + '&search_query=' + q.join( '+' )
-
-    // support starting from 0 index meant as first page
-    if ( opts.pageStart === 0 ) {
-      opts.pageStart++
-      opts.pageEnd++
-    }
-
-    const tasks = []
-    for ( let i = opts.pageStart; i <= opts.pageEnd; i++ ) {
-      const pageNumber = i
-      tasks.push(
-        function task ( taskDone ) {
-          findVideos( uri, pageNumber, function ( err, videos ) {
-            if ( err ) {
-              taskDone( err )
-            } else {
-              taskDone( null, videos )
-            }
-          } )
-        }
-      )
-    }
-
-    _parallel(
-      tasks,
-      1, // max requests at a time
-      function ( err, results ) {
-        if ( err ) {
-          callback( err )
-        } else {
-          // results array is kept in the same order as the
-          // tasks were executed (not when tasks finished) by
-          // the async.parallellimit library
-          // combine results into a single array
-          let list = []
-          for ( let i = 0; i < results.length; i++ ) {
-            list = list.concat( results[ 0 ] )
-          }
-
-          const videos = list.filter( videoFilter )
-          const playlists = list.filter( playlistFilter )
-          const accounts = list.filter( accountFilter )
-
-          callback( null, {
-            videos: videos.filter( videoFilterDuplicates ),
-
-            playlists: playlists,
-            lists: playlists,
-
-            accounts: accounts,
-            channels: accounts
-          } )
-        }
-      }
-    )
-  }
-
-  if ( !_callback ) return promise
-}
-
-function findVideos ( uri, page, callback )
-{
-  uri += '&page=' + page
-
-  const params = _url.parse( uri )
-
-  params.headers = {
-    'user-agent': _userAgent,
-    'accept': 'text/html'
-  }
-
-  _dasu.req( params, function ( err, res, body ) {
-    if ( err ) {
-      callback( err )
-    } else {
-      if ( res.status !== 200 ) {
-        return callback( 'http status: ' + res.status )
-      }
-
-      if ( _debugging ) {
-        const fs = require( 'fs' )
-        const path = require( 'path' )
-        fs.writeFileSync( 'dasu.response', res.responseText, 'utf8' )
-      }
-
-      try {
-        parseSearchBody( body, callback )
-      } catch ( err ) {
-        callback( err )
-      }
-    }
-  } )
-}
-
-function videoFilter ( result )
-{
-  return result.type === 'video'
-}
-
-function videoFilterDuplicates ( video, index, videos )
-{
+  // filter duplciate videos
   const videoId = video.videoId
 
   const firstIndex = videos.findIndex( function ( el ) {
