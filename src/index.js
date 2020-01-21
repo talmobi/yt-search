@@ -3,6 +3,7 @@ const _dasu = require( 'dasu' )
 const _parallel = require( 'async.parallellimit' )
 
 const UserAgent = require( 'user-agents' )
+const _userAgent = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.117 Safari/'
 
 const _url = require( 'url' )
 
@@ -151,7 +152,7 @@ function findMobileVideos ( _options, callback )
   } )
 
   params.headers = {
-    'user-agent': userAgent,
+    'user-agent': _userAgent,
     'accept': 'text/html'
   }
 
@@ -294,7 +295,7 @@ function search_desktop ( query, callback )
   //   'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.4 Safari/605.1.15'
   // )
 
-  debug( 'user-agent: ' + userAgent )
+  debug( 'user-agent: ' + _userAgent )
 
   // attach it to the dasu lirbary because it's convenient
   _dasu._userAgent = userAgent
@@ -420,6 +421,12 @@ function findVideos ( uri, page, callback )
   uri += '&page=' + page
 
   const params = _url.parse( uri )
+
+
+  params.headers = {
+    'user-agent': _userAgent,
+    'accept': 'text/html'
+  }
 
   _dasu.req( params, function ( err, res, body ) {
     if ( err ) {
@@ -1218,6 +1225,10 @@ function getVideoMetaData ( opts, callback )
 
   const params = _url.parse( uri )
 
+  params.headers = {
+    'user-agent': _userAgent
+  }
+
   _dasu.req( params, function ( err, res, body ) {
     if ( err ) {
       callback( err )
@@ -1252,6 +1263,10 @@ function getPlaylistMetaData ( opts, callback )
   const uri = 'https://www.youtube.com/playlist?hl=en&list=' + listId
 
   const params = _url.parse( uri )
+
+  params.headers = {
+    'user-agent': _userAgent
+  }
 
   _dasu.req( params, function ( err, res, body ) {
     if ( err ) {
