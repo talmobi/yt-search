@@ -173,7 +173,7 @@ function getMobileVideos ( _options, callback )
 
           const videos = list.filter( videoFilter )
           const playlists = list.filter( playlistFilter )
-          const accounts = list.filter( accountFilter )
+          const channels = list.filter( channelFilter )
 
           callback( null, {
             videos: videos,
@@ -181,8 +181,8 @@ function getMobileVideos ( _options, callback )
             playlists: playlists,
             lists: playlists,
 
-            accounts: accounts,
-            channels: accounts
+            accounts: channels,
+            channels: channels
           } )
         } )
       } catch ( err ) {
@@ -255,7 +255,7 @@ function getDesktopVideos ( _options, callback )
 
           const videos = list.filter( videoFilter )
           const playlists = list.filter( playlistFilter )
-          const accounts = list.filter( accountFilter )
+          const channels = list.filter( channelFilter )
 
           callback( null, {
             videos: videos,
@@ -263,8 +263,8 @@ function getDesktopVideos ( _options, callback )
             playlists: playlists,
             lists: playlists,
 
-            accounts: accounts,
-            channels: accounts
+            accounts: channels,
+            channels: channels
           } )
         } )
       } catch ( err ) {
@@ -294,7 +294,7 @@ function playlistFilter ( result )
   return result.type === 'list'
 }
 
-function accountFilter ( result )
+function channelFilter ( result )
 {
   return result.type === 'channel'
 }
