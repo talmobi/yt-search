@@ -501,6 +501,8 @@ function parseInitialData ( responseText, callback )
             )
 
             const author_name = (
+              _jp.value( item, '$..shortBylineText..text' ) ||
+              _jp.value( item, '$..longBylineText..text' ) ||
               _jp.value( item, '$..displayName..text' ) ||
               _jp.value( item, '$..displayName..simpleText' )
             )
