@@ -80,7 +80,6 @@ function search ( query, callback )
     _options = query
   }
 
-
   // support common alternatives
   _options.query = _options.query || _options.search
   _options.search = _options.query
@@ -478,8 +477,6 @@ function parseInitialData ( responseText, callback )
     for ( let i = 0; i < scripts.length; i++ ) {
       const script = $( scripts[ i ] ).html()
 
-      // console.log( script )
-
       const lines = script.split( '\n' )
       lines.forEach( function ( line ) {
         if ( line.indexOf( 'responseContext' ) >= 0 ) {
@@ -507,8 +504,6 @@ function parseInitialData ( responseText, callback )
 
     let result = undefined
     let type = 'unknown'
-
-    // console.log( item )
 
     const hasList = ( item.compactPlaylistRenderer || item.playlistRenderer )
     const hasChannel = ( item.compactChannelRenderer || item.channelRenderer )
@@ -1503,8 +1498,6 @@ function _parseVideoInitialData ( responseText, callback )
     for ( let i = 0; i < scripts.length; i++ ) {
       const script = $( scripts[ i ] ).html()
 
-      // console.log( script )
-
       const lines = script.split( '\n' )
       lines.forEach( function ( line ) {
         if ( line.indexOf( 'ytInitialData' ) >= 0 ) {
@@ -1528,8 +1521,6 @@ function _parseVideoInitialData ( responseText, callback )
 
     for ( let i = 0; i < scripts.length; i++ ) {
       const script = $( scripts[ i ] ).html()
-
-      // console.log( script )
 
       const lines = script.split( '\n' )
       lines.forEach( function ( line ) {
