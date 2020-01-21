@@ -2,6 +2,9 @@ const _cheerio = require( 'cheerio' )
 const _dasu = require( 'dasu' )
 const _parallel = require( 'async.parallellimit' )
 
+// use fixed user-agent to get consistent html page documents as
+// it varies depending on the user-agent ( legacy static,
+// mobile, modern desktop )
 const _userAgent = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.117 Safari/'
 
 const _url = require( 'url' )
