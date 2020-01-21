@@ -314,8 +314,13 @@ function parseInitialData ( responseText, callback )
 
       const lines = script.split( '\n' )
       lines.forEach( function ( line ) {
-        if ( line.indexOf( 'responseContext' ) >= 0 ) {
-          initialData = re.exec( line )
+        let i
+        while ( ( i = line.indexOf( 'ytInitialData' ) ) >= 0 ) {
+          line = line.slice( i + 'ytInitialData'.length )
+          const match = re.exec( line )
+          if ( match && match.length > initialData.length ) {
+            initialData = match
+          }
         }
       } )
     }
@@ -1339,7 +1344,9 @@ function _parseVideoInitialData ( responseText, callback )
 
       const lines = script.split( '\n' )
       lines.forEach( function ( line ) {
-        if ( line.indexOf( 'ytInitialData' ) >= 0 ) {
+        let i
+        while ( ( i = line.indexOf( 'ytInitialData' ) ) >= 0 ) {
+          line = line.slice( i + 'ytInitialData'.length )
           const match = re.exec( line )
           if ( match && match.length > initialData.length ) {
             initialData = match
@@ -1363,7 +1370,9 @@ function _parseVideoInitialData ( responseText, callback )
 
       const lines = script.split( '\n' )
       lines.forEach( function ( line ) {
-        if ( line.indexOf( 'ytInitialPlayerResponse' ) >= 0 ) {
+        let i
+        while ( ( i = line.indexOf( 'ytInitialPlayerResponse' ) ) >= 0 ) {
+          line = line.slice( i + 'ytInitialPlayerResponse'.length )
           const match = re.exec( line )
           if ( match && match.length > initialPlayerData.length ) {
             initialPlayerData = match
