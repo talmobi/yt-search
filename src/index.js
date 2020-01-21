@@ -1260,7 +1260,8 @@ function getVideoMetaData ( opts, callback )
       }
 
       try {
-        parseVideoBody( body, callback )
+        // parseVideoBody( body, callback )
+        _parseVideoInitialData( body, callback )
       } catch ( err ) {
         callback( err )
       }
@@ -1461,6 +1462,153 @@ function _toInternalDateString ( date ) {
     date.getUTCMonth() + '-' +
     date.getUTCDate()
   )
+}
+
+function _parseVideoInitialData ( responseText, callback )
+{
+  console.log( '_parseVideoInitialData' )
+
+  const re = /{.*}/
+  const $ = _cheerio.load( responseText )
+
+  let initialData = ''
+
+  if ( !initialData ) {
+    const scripts = $( 'script' )
+
+    for ( let i = 0; i < scripts.length; i++ ) {
+      const script = $( scripts[ i ] ).html()
+
+      // console.log( script )
+
+      const lines = script.split( '\n' )
+      lines.forEach( function ( line ) {
+        if ( line.indexOf( 'ytInitialData' ) >= 0 ) {
+          const match = re.exec( line )
+          if ( match && match.length > initialData.length ) {
+            initialData = match
+          }
+        }
+      } )
+    }
+  }
+
+  if ( !initialData ) {
+    return callback( 'could not find inital data in the html document' )
+  }
+
+  let initialPlayerData = ''
+
+  if ( !initialPlayerData ) {
+    const scripts = $( 'script' )
+
+    for ( let i = 0; i < scripts.length; i++ ) {
+      const script = $( scripts[ i ] ).html()
+
+      // console.log( script )
+
+      const lines = script.split( '\n' )
+      lines.forEach( function ( line ) {
+        if ( line.indexOf( 'ytInitialPlayerResponse' ) >= 0 ) {
+          const match = re.exec( line )
+          if ( match && match.length > initialPlayerData.length ) {
+            initialPlayerData = match
+          }
+        }
+      } )
+    }
+  }
+
+  if ( !initialPlayerData ) {
+    return callback( 'could not find inital player data in the html document' )
+  }
+
+  const idata = JSON.parse( initialData[ 0 ] )
+  const ipdata = JSON.parse( initialPlayerData[ 0 ] )
+
+  debug( idata )
+  debug( ipdata )
+
+  const videoId = _jp.value( idata, '$..currentVideoEndpoint..videoId' )
+
+  if ( !videoId ) {
+    return callback( 'video unavailable' )
+  }
+
+  const title = (
+    _jp.value( idata, '$..videoPrimaryInfoRenderer..title..text' ) ||
+    _jp.value( idata, '$..videoPrimaryInfoRenderer..title..simpleText' ) ||
+    _jp.value( idata, '$..videoPrimaryRenderer..title..text' ) ||
+    _jp.value( idata, '$..videoPrimaryRenderer..title..simpleText' ) ||
+    _jp.value( idata, '$..title..text' ) ||
+    _jp.value( idata, '$..title..simpleText' )
+  )
+
+  const description = (
+    _jp.value( idata, '$..description..text' ) ||
+    _jp.value( idata, '$..description..simpleText' )
+  )
+
+  const author_name = (
+    _jp.value( idata, '$..owner..title..text' ) ||
+    _jp.value( idata, '$..owner..title..simpleText' )
+  )
+
+  const author_url = (
+    _jp.value( idata, '$..owner..navigationEndpoint..url' ) ||
+    _jp.value( idata, '$..owner..title..url' )
+  )
+
+  const thumbnailUrl = 'https://i.ytimg.com/vi/' + videoId + '/hqdefault.jpg'
+
+  const seconds = Number(
+    _jp.value( ipdata, '$..videoDetails..lengthSeconds' )
+  )
+
+  const timestamp = msToTimestamp( seconds * 1000 )
+
+  const duration = parseDuration( timestamp )
+
+  const sentimentBar = (
+    // ex. "tooltip": "116,701 / 8,930"
+    _jp.value( idata, '$..sentimentBar..tooltip' )
+    .split( /[,.]/ ).join( '' )
+    .split( /\D+/ )
+  )
+
+  const likes = Number( sentimentBar[ 0 ] )
+  const dislikes = Number( sentimentBar[ 1 ] )
+
+  const uploadDate = _jp.value( idata, '$..dateText' )
+
+  const video = {
+    title: title,
+    description: description,
+
+    url: TEMPLATES.YT + author_url,
+    videoId: videoId,
+
+    seconds: Number( duration.seconds ),
+    timestamp: duration.timestamp,
+    duration: duration,
+
+    views: Number(
+      _jp.value( ipdata, '$..videoDetails..viewCount' )
+    ),
+
+    genre: ( _jp.value( ipdata, '$..category' ) || '' ).toLowerCase(),
+
+    uploadDate: _jp.value( ipdata, '$..uploadDate' ),
+    ago: _humanTime( new Date( uploadDate ) ), // ex: 10 years ago
+    thumbnail: thumbnailUrl,
+
+    author: {
+      name: author_name,
+      url: TEMPLATES.YT + author_url
+    }
+  }
+
+  callback( null, video )
 }
 
 function parseVideoBody ( responseText, callback )
