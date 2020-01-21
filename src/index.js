@@ -13,7 +13,7 @@ const _boolstring = require( 'boolstring' )
 const _debugging = ( _boolstring( process.env.debug || '' ) )
 
 function debug () {
-  if (  _debugging ) return
+  if ( !_debugging ) return
   console.log.apply( this, arguments )
 }
 
