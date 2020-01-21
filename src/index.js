@@ -1395,6 +1395,13 @@ function _parseVideoInitialData ( responseText, callback )
     return callback( 'video unavailable' )
   }
 
+  if (
+    _jp.value( ipdata, '$..status' ) === 'ERROR' ||
+    _jp.value( ipdata, '$..reason' ) === 'Video unavailable'
+  ) {
+    return callback( 'video unavailable' )
+  }
+
   const title = (
     _jp.value( idata, '$..videoPrimaryInfoRenderer..title..text' ) ||
     _jp.value( idata, '$..videoPrimaryInfoRenderer..title..simpleText' ) ||
