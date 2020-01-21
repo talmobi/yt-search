@@ -554,8 +554,8 @@ function parseInitialData ( responseText, callback )
               videoCount: Number( video_count_label.replace( /\D+/g, '' ) ),
               videoCountLabel: video_count_label,
 
-              subCountLabel: sub_count_label,
-              subCount: _parseSubCountLabel( sub_count_label )
+              subCount: _parseSubCountLabel( sub_count_label ),
+              subCountLabel: sub_count_label
             }
           }
           break
