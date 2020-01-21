@@ -2,6 +2,9 @@ const _cheerio = require( 'cheerio' )
 const _dasu = require( 'dasu' )
 const _parallel = require( 'async.parallellimit' )
 
+// auto follow off
+_dasu.follow = false
+
 // use fixed user-agent to get consistent html page documents as
 // it varies depending on the user-agent ( legacy static,
 // mobile, modern desktop )
