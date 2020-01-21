@@ -581,6 +581,8 @@ function _normalizeThumbnail ( thumbnails )
     t = thumbnails[ 0 ]
   }
 
+  t = t.split( '?' )[ 0 ]
+
   if ( t.indexOf( '//' ) === 0 ) {
     return 'https://' + t.slice( 2 )
   }
