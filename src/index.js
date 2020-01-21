@@ -35,15 +35,6 @@ const ONE_SECOND = 1000
 const ONE_MINUTE = ONE_SECOND * 60
 const TIME_TO_LIVE = ONE_MINUTE * 5
 
-const DEFAULT_OPTS = {
-  YT_SEARCH_QUERY_URI: '',
-  hl: 'en', // en
-  gl: 'US', // US
-  category: '', // music
-  pageStart: 1, // from this page of youtube search results
-  pageEnd: 1 // to this page of youtube search results
-}
-
 /**
  * Exports
  **/
@@ -1094,7 +1085,7 @@ function getVideoMetaData ( opts, callback )
     videoId = opts.videoId
   }
 
-  const uri = 'https://www.youtube.com/watch?hl=en&v=' + videoId
+  const uri = 'https://www.youtube.com/watch?hl=en&gl=US&v=' + videoId
 
   const params = _url.parse( uri )
 
@@ -1142,7 +1133,7 @@ function getPlaylistMetaData ( opts, callback )
     listId = opts.listId || opts.playlistId
   }
 
-  const uri = 'https://www.youtube.com/playlist?hl=en&list=' + listId
+  const uri = 'https://www.youtube.com/playlist?hl=en&gl=US&list=' + listId
 
   const params = _url.parse( uri )
 
@@ -1234,7 +1225,7 @@ function parsePlaylistBody ( responseText, callback )
     title: title,
     listId: listId,
 
-    url: 'https://www.youtube.com/playlist?hl=en&list=' + listId,
+    url: 'https://www.youtube.com/playlist?hl=en&gl=US&list=' + listId,
 
     videoCount: videoCount,
     views: Number( viewCount ),
