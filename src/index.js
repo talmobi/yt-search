@@ -402,7 +402,7 @@ function parseInitialData ( responseText, callback )
               _jp.value( item, '$..lengthText..text' ) ||
               _jp.value( item, '$..lengthText..simpleText' )
             )
-            const duration = parseDuration( lengthText )
+            const duration = parseDuration( lengthText || '0:00' )
 
             const description = (
               _jp.value( item, '$..description..text' ) ||
