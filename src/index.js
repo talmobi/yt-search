@@ -11,8 +11,10 @@ const _jp = require( 'jsonpath' )
 
 const _boolstring = require( 'boolstring' )
 
+const _debugging = ( _boolstring( process.env.debug || '' ) )
+
 function debug () {
-  if ( !_boolstring( process.env.debug || '' ) ) return
+  if (  _debugging ) return
   console.log.apply( this, arguments )
 }
 
@@ -165,10 +167,11 @@ function findMobileVideos ( _options, callback )
         return callback( 'http status: ' + res.status )
       }
 
-      // TODO
-      const fs = require( 'fs' )
-      const path = require( 'path' )
-      fs.writeFileSync( 'dasu.response', res.responseText, 'utf8' )
+      if ( _debugging ) {
+        const fs = require( 'fs' )
+        const path = require( 'path' )
+        fs.writeFileSync( 'dasu.response', res.responseText, 'utf8' )
+      }
 
       try {
         parseInitialData( body, function ( err, results ) {
@@ -242,14 +245,14 @@ function findDesktopVideos ( _options, callback )
       callback( err )
     } else {
       if ( res.status !== 200 ) {
-        console.log( res )
         return callback( 'http status: ' + res.status )
       }
 
-      // TODO
-      const fs = require( 'fs' )
-      const path = require( 'path' )
-      fs.writeFileSync( 'dasu.response', res.responseText, 'utf8' )
+      if ( _debugging ) {
+        const fs = require( 'fs' )
+        const path = require( 'path' )
+        fs.writeFileSync( 'dasu.response', res.responseText, 'utf8' )
+      }
 
       try {
         parseInitialData( body, function ( err, results ) {
@@ -435,6 +438,12 @@ function findVideos ( uri, page, callback )
     } else {
       if ( res.status !== 200 ) {
         return callback( 'http status: ' + res.status )
+      }
+
+      if ( _debugging ) {
+        const fs = require( 'fs' )
+        const path = require( 'path' )
+        fs.writeFileSync( 'dasu.response', res.responseText, 'utf8' )
       }
 
       try {
@@ -786,7 +795,7 @@ function parseSearchBody ( responseText, callback )
     const qs = _querystring.parse( href.split( '?', 2 )[ 1 ] )
 
     // TODO
-    // console.log( qs )
+    // debug( qs )
 
     // make sure the url is correct ( skip ad urls etc )
     // ref: https://github.com/talmobi/yt-search/issues/3
@@ -1023,7 +1032,7 @@ function _parseListResult ( $, section ) {
   const byline_a_href = byline_a.attr( 'href' ) || ''
 
   if ( byline_a_href ) {
-    // console.log( byline_a_href )
+    // debug( byline_a_href )
 
     if ( byline_a_href.indexOf( 'channel/' ) >= 0 ) {
       channelId = byline_a_href.split( '/' ).pop()
@@ -1046,7 +1055,7 @@ function _parseListResult ( $, section ) {
   // channelName and userName are identical, just parsed
   // from different <a> elements
   const name = channelUrlText || userUrlText
-  // console.log( name )
+  // debug( name )
 
   const sidebar = $( '.sidebar', section )
   const videoCountLabel = sidebar.text().trim()
@@ -1233,6 +1242,8 @@ function msToTimestamp ( ms )
  */
 function getVideoMetaData ( opts, callback )
 {
+  debug( 'fn: getVideoMetaData' )
+
   let videoId
 
   if ( typeof opts === 'string' ) {
@@ -1259,6 +1270,12 @@ function getVideoMetaData ( opts, callback )
         return callback( 'http status: ' + res.status )
       }
 
+      if ( _debugging ) {
+        const fs = require( 'fs' )
+        const path = require( 'path' )
+        fs.writeFileSync( 'dasu.response', res.responseText, 'utf8' )
+      }
+
       try {
         // parseVideoBody( body, callback )
         _parseVideoInitialData( body, callback )
@@ -1273,6 +1290,8 @@ function getVideoMetaData ( opts, callback )
  */
 function getPlaylistMetaData ( opts, callback )
 {
+  debug( 'fn: getPlaylistMetaData' )
+
   let listId
 
   if ( typeof opts === 'string' ) {
@@ -1312,6 +1331,8 @@ function getPlaylistMetaData ( opts, callback )
  */
 function parsePlaylistBody ( responseText, callback )
 {
+  debug( 'fn: parsePlaylistBody' )
+
   const $ = _cheerio.load( responseText )
 
   const hti = $( '.pl-header-thumb img' )
@@ -1394,6 +1415,8 @@ function parsePlaylistBody ( responseText, callback )
  * @params {object} - cheerio <a>...</a> tag
  */
 function _parseAuthorAnchorTag ( a ) {
+  debug( 'fn: _parseAuthorAnchorTag' )
+
   let channelId = ''
   let channelUrl = ''
   let channelUrlText = ''
@@ -1436,6 +1459,8 @@ function _parseAuthorAnchorTag ( a ) {
 }
 
 function _parsePlaylistLastUpdateTime ( lastUpdateLabel ) {
+  debug( 'fn: _parsePlaylistLastUpdateTime' )
+
   // ex "Last Updated on Jun 25, 2018"
   // ex: "Viimeksi päivitetty 25.6.2018"
 
@@ -1457,6 +1482,8 @@ function _parsePlaylistLastUpdateTime ( lastUpdateLabel ) {
 }
 
 function _toInternalDateString ( date ) {
+  debug( 'fn: _toInternalDateString' )
+
   return (
     date.getUTCFullYear() + '-' +
     date.getUTCMonth() + '-' +
@@ -1466,7 +1493,7 @@ function _toInternalDateString ( date ) {
 
 function _parseVideoInitialData ( responseText, callback )
 {
-  console.log( '_parseVideoInitialData' )
+  debug( '_parseVideoInitialData' )
 
   const re = /{.*}/
   const $ = _cheerio.load( responseText )
@@ -1613,6 +1640,8 @@ function _parseVideoInitialData ( responseText, callback )
 
 function parseVideoBody ( responseText, callback )
 {
+  debug( 'parseVideoBody' )
+
   const $ = _cheerio.load( responseText )
 
   const ctx = $( '#content' )
@@ -1733,6 +1762,8 @@ function parseVideoBody ( responseText, callback )
 
 function parseHumanDuration ( timestampText )
 {
+  debug( 'parseHumanDuration' )
+
   // ex: PT4M13S
   const pt = timestampText.slice( 0, 2 )
   let timestamp = timestampText.slice( 2 ).toUpperCase()
