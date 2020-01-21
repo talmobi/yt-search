@@ -720,6 +720,7 @@ function parseInitialData ( responseText, callback )
         results.push( result )
       }
     } catch ( err ) {
+      debug( err )
       errors.push( err )
     }
   }
