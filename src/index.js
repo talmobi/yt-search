@@ -8,6 +8,13 @@ _dasu.follow = false
 // use fixed user-agent to get consistent html page documents as
 // it varies depending on the user-agent ( legacy static,
 // mobile, modern desktop )
+// we are relying on getting a modern page that has json data
+// embedded into it that we will parse ( youtube uses this
+// embedded json itself to populate the page ).
+// These modern pages also include continuation tokens ( ctoken
+// ) that are used to get additional results when the user
+// scrolls down to the end of the page -> we will also be using
+// those ctokens to get additional results.
 const _userAgent = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.117 Safari/'
 
 const _url = require( 'url' )
