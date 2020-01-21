@@ -1416,6 +1416,8 @@ function _parseVideoInitialData ( responseText, callback )
   )
 
   const description = (
+    _jp.value( ipdata, '$..description..text' ) ||
+    _jp.value( ipdata, '$..description..simpleText' ) ||
     _jp.value( idata, '$..description..text' ) ||
     _jp.value( idata, '$..description..simpleText' )
   )
