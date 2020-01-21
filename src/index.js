@@ -465,23 +465,39 @@ function accountFilter ( result )
 }
 
 // parse initial-data
-function parseMobileSearchBody ( responseText, callback )
+function parseInitialData ( responseText, callback )
 {
+  const re = /{.*}/
   const $ = _cheerio.load( responseText )
+
+  let initialData = $( 'div#initial-data' ).html()
+  initialData = re.exec( initialData )
+
+  if ( !initialData ) {
+    const scripts = $( 'script' )
+
+    for ( let i = 0; i < scripts.length; i++ ) {
+      const script = $( scripts[ i ] ).html()
+
+      // console.log( script )
+
+      const lines = script.split( '\n' )
+      lines.forEach( function ( line ) {
+        if ( line.indexOf( 'responseContext' ) >= 0 ) {
+          initialData = re.exec( line )
+        }
+      } )
+    }
+  }
+
+  if ( !initialData ) {
+    return callback( 'could not find inital data in the html document' )
+  }
 
   const errors = []
   const results = []
 
-  let initialData = $( 'div#initial-data' ).html()
-
-  initialData = (
-    initialData
-    .split( '<!--' ).join( '' )
-    .split( '-->' ).join( '' )
-    .trim()
-  )
-
-  const json = JSON.parse( initialData )
+  const json = JSON.parse( initialData[ 0 ] )
 
   const items = _jp.query( json, '$..itemSectionRenderer..contents.*' )
 
