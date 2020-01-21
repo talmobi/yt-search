@@ -1,6 +1,6 @@
 let yts = require( '../dist/yt-search.min.js' )
 
-if ( !!process.env.test_yt_search ) {
+if ( !!process.env.debug ) {
   yts = require( '../src/index.js' )
 }
 
