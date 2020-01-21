@@ -737,6 +737,23 @@ function parseInitialData ( responseText, callback )
   return callback( null, results )
 }
 
+function _normalizeThumbnail ( thumbnails )
+{
+  let t
+  if ( typeof thumbnails === 'string' ) {
+    t = thumbnails
+  } else {
+    // handle as array
+    t = thumbnails[ 0 ]
+  }
+
+  if ( t.indexOf( '//' ) === 0 ) {
+    return 'https://' + t.slice( 2 )
+  }
+
+  return t.split( 'http://' ).join( 'https://' )
+}
+
 // parse the plain text response body with cheerio to pin point video information
 function parseSearchBody ( responseText, callback )
 {
