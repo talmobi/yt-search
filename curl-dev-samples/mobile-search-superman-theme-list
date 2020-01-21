@@ -1,0 +1,1442 @@
+<!DOCTYPE html>
+
+<head>
+    <meta name="apple-itunes-app" content="app-id=544007664, app-argument=http://youtube.com/results?hl=en&amp;gl=US&amp;search_query=superman+theme+list&amp;page=1&amp;referring_app=com.apple.mobilesafari-smartbanner, affiliate-data=ct=smart_app_banner_polymer&amp;pt=9008">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta id="theme-meta" name="theme-color" content="hsl(0, 0%, 100%)">
+    <link rel="shortcut icon" href="https://s.ytimg.com/yts/img/favicon-vfl8qSV2F.ico" type="image/x-icon">
+    <link rel="icon" href="https://s.ytimg.com/yts/img/favicon_96-vflW9Ec0w.png" sizes="96x96">
+    <link rel="icon" href="https://s.ytimg.com/yts/img/favicon-vfl8qSV2F.ico" type="image/x-icon">
+    <title>YouTube</title>
+</head>
+
+<body dir="ltr" lang="en">
+    <script>
+        ytInitialPlayerConfig = null;
+        var ytcfg = {
+            d: function() {
+                return (window.yt && yt.config_) || ytcfg.data_ || (ytcfg.data_ = {});
+            },
+            get: function(k, o) {
+                return (k in ytcfg.d()) ? ytcfg.d()[k] : o;
+            },
+            set: function() {
+                var a = arguments;
+                if (a.length > 1) {
+                    ytcfg.d()[a[0]] = a[1];
+                } else {
+                    for (var k in a[0]) {
+                        ytcfg.d()[k] = a[0][k];
+                    }
+                }
+            }
+        };
+        ytcfg.set({
+            "LINK_API_KEY": "AIzaSyCI9xlqOxfnNkwQgJJFUyCLBpLITfP3q9k",
+            "MWEB_STICKY_PLAYER": true,
+            "ZWIEBACK_PING_URLS": ["https:\/\/www.google.fi\/pagead\/lvz?evtid=ADszL7O4ZL4X4lzwTTVCLa56epqaLU4pway-4lU-RMXmoU8tCE_Q5EtDQtAEjxKVUqRal3uP7F2KL41gCZbAYJfW4DtVsxZF_w\u0026pg=results\u0026req_ts=1579503032\u0026sigh=ADRnf4a8MdZIYOUlMhgrGYClHjnVzr8Jeg", "https:\/\/www.google.com\/pagead\/lvz?evtid=ADszL7MicE5dk-fvyodwJ82I2SV6k3TRocb1QoHWfdN3gntyIVWT9xsNNYziYoM67AU_vzzLEI-qnoFUmGZJIsgUKoHYLH_LpQ\u0026pg=results\u0026req_ts=1579503032\u0026sigh=ADRnf4Y5ZMgwuD3ZJnxvN8DvbEBs_qwxMQ"],
+            "CLIENT_PROTOCOL": "HTTP\/1.1",
+            "GAPI_LOCALE": "en_US",
+            "ID_TOKEN": null,
+            "ENABLE_ELEMENT_POOL_AUTO_ABORT": true,
+            "INNERTUBE_API_KEY": "AIzaSyAO_FJ2SlqU8Q4STEHLGCilw_Y9_11qcW8",
+            "VISITOR_DATA": "Cgs1ZC1IWWtjZXF5byi4m5XxBQ%3D%3D",
+            "GOOGLE_FEEDBACK_PRODUCT_ID": "77522",
+            "SHOW_NETZDG_TRANSPARENZBERICHT": false,
+            "INNERTUBE_CONTEXT_CLIENT_VERSION": "2.20200116.05.00",
+            "YTR_FAMILY_CREATION_URL": "https:\/\/families.google.com\/webcreation?usegapi=1",
+            "INNERTUBE_CONTEXT_GL": "US",
+            "ROOT_VE_TYPE": 4724,
+            "XHR_APIARY_HOST": "youtubei.youtube.com",
+            "PLAYER_CSS_URL": "\/yts\/cssbin\/mobile-polymer-player-ias-mweb-2x-vfl98gRzt.css",
+            "GAPI_HOST": "https:\/\/apis.google.com",
+            "HTML_DIR": "ltr",
+            "DEVICE": "cbr=Chrome+Mobile\u0026cmodel=sm-g955f\u0026cbrand=samsung\u0026cos=Android\u0026cbrver=79.0.3945.93\u0026cosver=9\u0026cplatform=MOBILE",
+            "HTML_LANG": "en",
+            "XSRF_TOKEN": "QUFFLUhqbHBDSzNjN0I2al84SVRSX1l4b1hValJuZWVFQXxBQ3Jtc0ttZkJyZWt4SVZMeVY4VV9zVHRHNXF4dVFWZ3dTME9QTkp1UV9WSWhHR0hyc01wb3ZUc01oSlJQY25QWWxvNVhQRXg4bXNlS2dBWjQ0MTFrNmYxTXVKV2tkNmtKaC1XaGNCZmVRajVsYXRmeEFvTEs4ZUVmWTktcUxaRHBqZHJWNjdGREZIMVhsaGh2TTlTbEtmRUNGVGl2LVY0WWc=",
+            "PAGE_BUILD_LABEL": "youtube.ytfe.mweb_20200116_5_RC0",
+            "CLIENT_TRANSPORT": "tcp",
+            "VARIANTS_CHECKSUM": "781368a49e2fe3e6fdf766601d0a3202",
+            "XSRF_FIELD_NAME": "session_token",
+            "SHOW_NETZDG_LOGGED_OUT_REPORT_FORM_LINK": false,
+            "COUNTRY": "United States",
+            "SHOW_SIGN_IN_BUTTON_FROM_HEADER": true,
+            "INNERTUBE_API_VERSION": "v1",
+            "DISABLE_YT_IMG_DELAY_LOADING": true,
+            "LATEST_ECATCHER_SERVICE_TRACKING_PARAMS": {
+                "client.name": "MWEB"
+            },
+            "LOGGED_IN": false,
+            "SESSION_INDEX": null,
+            "SERVICE_WORKER_PROMPT_NOTIFICATIONS": false,
+            "ENABLE_IMG_TRANSITION": false,
+            "LINK_OIS_DOMAIN": "oauthintegrations.googleapis.com",
+            "YPC_MB_URL": "https:\/\/payments.youtube.com\/payments\/v4\/js\/integrator.js?ss=md",
+            "PLAYER_JS_URL": "\/yts\/jsbin\/player-plasma-ias-phone-en_US-vfl7fI3sn\/base.js",
+            "IS_TABLET": false,
+            "EVENT_ID": "uE0lXt6vOMbryQXjtaWwBA",
+            "ONE_PICK_URL": "",
+            "DISABLE_WARM_LOADS": false,
+            "GOOGLE_FEEDBACK_PRODUCT_DATA": {
+                "accept_language": null,
+                "polymer": "active",
+                "polymer2": "active"
+            },
+            "PAGE_CL": 290090003,
+            "GAPI_HINT_PARAMS": "m;\/_\/scs\/abc-static\/_\/js\/k=gapi.gapi.en.Sj5LKyeUKoE.O\/d=1\/ct=zgms\/rs=AHpOoo9ToCtoaz0mr9IKXAop6Eq9AIpSlw\/m=__features__",
+            "SIGNIN_URL": "https:\/\/accounts.google.com\/ServiceLogin?ltmpl=mobile\u0026uilel=3\u0026service=youtube\u0026continue=https%3A%2F%2Fm.youtube.com%2Fsignin%3Fnext%3D%252Fresults%253Fhl%253Den%2526gl%253DUS%2526search_query%253Dsuperman%252Btheme%252Blist%2526page%253D1%2526client%253Dmv-google%26hl%3Den%26action_handle_signin%3Dtrue%26noapp%3D1%26app%3Dm\u0026hl=en\u0026passive=true",
+            "EXPERIMENT_FLAGS": {
+                "mweb_fp_dpad_enable_spat_nav_action_workaround": true,
+                "mweb_fp_minimal_lockups": true,
+                "mweb_add_search_to_pivot_bar": -1,
+                "disable_youthere_lact_threshold_check": true,
+                "web_logging_max_batch": 100,
+                "mweb_always_check_for_cache_data_for_companion": true,
+                "enable_yto_window": true,
+                "mweb_fp_dpad": "home,search",
+                "web_post_search": true,
+                "mweb_fp_auto_fullscreen": true,
+                "log_js_exceptions_fraction": 0.5,
+                "mweb_stt_wug_fallback_languages_with_ytassist": true,
+                "mweb_fetch_guide_except_watch": true,
+                "mweb_tmpdata": true,
+                "ignore_empty_xhr": true,
+                "enable_client_streamz_web": true,
+                "web_gel_timeout_cap": true,
+                "mweb_fp_dpad_enable_missing_cursor_workaround": true,
+                "mweb_enable_custom_control_shared": true,
+                "mweb_native_control_in_faux_fullscreen_shared": true,
+                "enable_mega_header_footer_for_main": true,
+                "mweb_toast_duration_ms": -1,
+                "mweb_service_worker_registration_enabled": true,
+                "web_use_beacon_api_for_ad_click_server_pings": true,
+                "web_system_health_fraction": 0.01,
+                "web_gel_debounce_ms": 10000,
+                "mweb_fp_soft_bar": true,
+                "gfeedback_for_signed_out_users_enabled": true,
+                "custom_csi_timeline_use_gel": true,
+                "mweb_single_endbadge_with_metadata": true,
+                "enable_offer_suppression": true,
+                "mweb_fp_dpad_rate_limit_ms": 0,
+                "enable_ve_tracker_key": true,
+                "web_yt_config_context": true,
+                "mweb_fp_soft_bar_px_scroll_offset": 30,
+                "enable_memberships_and_purchases": true,
+                "retry_web_logging_batches": true,
+                "enable_pushstate_from_client_elements": true,
+                "mweb_autonav": true,
+                "mweb_enable_skippables_on_jio_phone": true,
+                "suggest_exp_str": "",
+                "pass_biscotti_id_in_header_ajax": true,
+                "mweb_fp_dpad_enable_hybrid_navigation": true,
+                "web_network_combined_catch": true,
+                "mweb_sign_in_button_style": "STYLE_SUGGESTIVE_AVATAR",
+                "mweb_fp_soft_bar_initial_hide_timeout_msec": 3000,
+                "mweb_fp_soft_bar_hide_timeout_msec": 2000,
+                "youthere_supported": true,
+                "ensure_vis_persists_in_full_screen_for_mweb": true,
+                "mweb_innertube_response_cache_size": 0,
+                "web_api_url": true,
+                "disable_dark_fashion_destination_launch": true,
+                "w2w_mweb_small_single_video_renderer": true,
+                "mweb_auto_lact": true,
+                "mweb_fp_soft_bar_hide_variation": "",
+                "c3_visibility_w_vetracker": true,
+                "log_window_onerror_fraction": 0.1,
+                "enable_ypc_spinners": true
+            },
+            "INNERTUBE_CONTEXT_HL": "en",
+            "ACCOUNT_LINKING_JS_URL": "\/yts\/jsbin\/mobile-account-linking-vflnipsQ5\/mobile-account-linking.js",
+            "MWEB_SUPPORTS_AUTOPLAY": true,
+            "SCHEDULED_LAZY_LIST": true,
+            "DISABLE_DATA_REPLAY": true,
+            "SBOX_SETTINGS": {
+                "SUGG_EXP_ID": "",
+                "SESSION_INDEX": null,
+                "REQUEST_LANGUAGE": "en",
+                "SEND_VISITOR_DATA": true,
+                "REQUEST_DOMAIN": "us",
+                "IS_FUSION": false,
+                "VISITOR_DATA": "Cgs1ZC1IWWtjZXF5byi4m5XxBQ%3D%3D",
+                "PQ": "",
+                "PSUGGEST_TOKEN": null
+            },
+            "SBOX_JS_URL": "\/yts\/jsbin\/mobile-searchbox-vflzIWkyt\/mobile-searchbox.js",
+            "INNERTUBE_CONTEXT_CLIENT_NAME": 2,
+            "LANGUAGE": "English",
+            "MWEB_CUSTOM_CONTROL": true
+        });
+        ytcfg.msgs = {
+            'HOME': "Home",
+            'SETTINGS_LABEL': "Settings",
+            'MENU_TITLE': "Menu",
+            'MENU_SIGN_IN': "Sign In",
+            'MENU_SETTINGS': "Settings",
+            'MENU_PLAYER_SETTINGS': "Playback Settings",
+            'MENU_FEEDBACK': "Feedback",
+            'MENU_HELP': "Help",
+            'MENU_DESKTOP': "Desktop",
+            'MENU_IMPRESSUM': "Imprint",
+            'MENU_NETZDG': "NetzDG Transparenzbericht",
+            'MENU_YOUR_DATA': "Your data in YouTube",
+            'MENU_NETZDG_REPORT_LINK': "NetzDG Beschwerden",
+            'MENU_EXIT': "Exit",
+            'OPEN_APP': "Open App",
+            'TRENDING': "Trending",
+            'LIBRARY': "Library",
+            'ALL_CHANNELS_LABEL': "All channels",
+            'SIGN_IN_LABEL': "Sign in",
+            'CHANNEL_SWITCHER_LABEL': "Switch account",
+            'ACCOUNT_LABEL': "Account",
+            'SEARCH_FILTERS_LABEL': "Search filters",
+            'SHOW_SEARCH_FILTERS_LABEL': "Show search filters",
+            'HIDE_SEARCH_FILTERS_LABEL': "Hide search filters",
+            'CLOSE_SEARCH_LABEL': "Close search",
+            'SEARCH_LABEL': "Search YouTube",
+            'SEARCH_CLEAR_LABEL': "Clear current search text",
+            'SUGGESTION_DISMISS_LABEL': "Remove",
+            'SUGGESTION_DISMISS_IN_SETTINGS_LABEL': "Remove in settings",
+            'SUGGESTION_DISMISSED_LABEL': "Suggestion Removed",
+            'SEARCH_CHANNEL': "Search channel",
+            'NOT_FOUND_TITLE': "This page isn't available",
+            'NOT_FOUND_MESSAGE': "Please search for something else, or browse your Home feed.",
+            'NOT_FOUND_CTA': "Browse Videos",
+            'INVALID_RESPONSE_RECEIVED': "Invalid response received.",
+            'CONNECT_TO_THE_INTERNET': "Connect to the internet",
+            'NO_MIC_INPUT': "Didn't hear that. Try speaking again.",
+            'OFFLINE_CHECK_CONNECTION': "You're offline. Check your connection.",
+            'PLAYLIST_NAME_MISSING': "Playlist title required.",
+            'PLAYLIST_NAME_TOO_LONG': "Playlist title is too long.",
+            'PLAYLIST_NAME_INVALID_CHARACTERS': "Playlist title can't use \u003c or \u003e",
+            'PLAYLIST_DESCRIPTION_INVALID_CHARACTERS': "Playlist description can't use \u003c or \u003e",
+            'PLEASE_FIX_ERRORS': "Please fix errors and try again.",
+            'OOPS_MESSAGE': "Oops! Something went wrong.",
+            'SETTINGS_MIC_PERMISSION': "Please allow microphone permission in device settings.",
+            'TRY_AGAIN_LATER': "Something went wrong. Please try again later.",
+            'TRY_AGAIN_MIC_PERMISSION': "Please try again and allow microphone permission.",
+            'COMMENTBOX_POST': "Post",
+            'COMMENT_MODAL_CONTENT': "Please sign in to act on this comment.",
+            'REPLIES_SHOW_MORE': "Show more replies",
+            'ACT_ON_THIS_COMMENT': "Show more replies",
+            'ADD_TO_DROPDOWN_LABEL': "Add to playlist",
+            'NEW_PLAYLIST': "New playlist",
+            'REQUIRED_LABEL': "Required",
+            'FLAG_LABEL': "Flag as inappropriate",
+            'FLAG_TITLE': "Inappropriate video?",
+            'FLAG_CONTENT': "Sign in to flag it.",
+            'FLAG_CONFIRM': "Are you sure you want to flag this video?",
+            'CONFIRM_OK': "OK",
+            'NEXT_VIDEO': "Next video",
+            'PLAY_ALL': "Play all",
+            'PREVIOUS_VIDEO': "Previous video",
+            'SAVE_PLAYLIST': "Save",
+            'HIDE_PLAYLIST_VIDEOS': "Hide playlist videos",
+            'SHOW_PLAYLIST_VIDEOS': "Show playlist videos",
+            'CREATE_CHANNEL_TITLE': "Create channel",
+            'WATCHED': "Watched",
+            'MORE_OPTIONS': "More options",
+            'MORE_INFO': "More info",
+            'CANCEL': "Cancel",
+            'SHOW_MORE': "Show more",
+            'SHOW_LESS': "Show less",
+            'HIDE_ALERT': "Hide this alert",
+            'COPY': "Copy",
+            'COPIED_TO_CLIPBOARD': "Copied to clipboard",
+            'CLOSE': "Close",
+            'LONG_PRESS_MIC_TO_SPEAK': "Long press mic_icon_placeholder to speak",
+            'LISTENING': "Listening...",
+            'LOADING': "Loading...",
+            'TERMS_OF_SERVICE': "Terms of Service",
+            'PRIVACY_POLICY': "Privacy Policy",
+            'GOOGLE_COMPANY': "YouTube, a Google company",
+            'AD_BADGE_HINT': "Advertisement",
+            'AD_BADGE_TEXT': "AD",
+            'AUTONAV_TOGGLE': "Autoplay",
+            'COPY_DEBUG_INFO': "Copy Debug Info",
+            'PLAYER_CAPTION': "Captions",
+            'PLAYER_CAPTION_OFF': "Off",
+            'PLAYER_CAPTION_ON': "On",
+            'PLAYER_QUALITY': "Quality",
+            'PLAYER_QUALITY_AUTO': "Auto",
+            'PLAYER_SPEED': "Speed",
+            'PLAYER_SPEED_NORMAL': "Normal",
+            'STATS_FOR_NERDS': "Stats For Nerds",
+            'PLAYER_DOUBLE_TAP_TO_SEEK': "Double tap left or right to skip 10 seconds",
+            'PLAYER_DOUBLE_TAP_TO_SHOW_OR_HIDE_PLAYER_CONTROLS': "Double tap to show or hide player controls",
+            'PLAYER_EXIT_FULLSCREEN': "Exit full screen",
+            'PLAYER_FULLSCREEN': "Full screen",
+            'PLAYER_LIVE_LABEL': "Live",
+            'PLAYER_LIVE_NOW': "Live now",
+            'PLAYER_NEXT': "Next",
+            'PLAYER_PAUSE': "Pause",
+            'PLAYER_PLAY': "Play",
+            'PLAYER_PREVIOUS': "Previous",
+            'PLAYER_PROGRESS_BAR': "Seek slider",
+            'PLAYER_TIME_DURATION': "Time duration",
+            'PLAYER_TIME_ELAPSED': "Time elapsed",
+            'NOTIFICATION_ERROR_MESSAGE': "Something went wrong, please try again.",
+            'FAILED_COPY_ERROR_MESSAGE': "Copy is not supported on the device, failed to copy.",
+            'CLOSE_SETTINGS_LABEL': "Close Settings",
+        };
+    </script>
+    <script>
+        ytcfg.set({
+            "INNERTUBE_CONTEXT": {
+                "client": {
+                    "hl": "en",
+                    "gl": "US",
+                    "deviceMake": "samsung",
+                    "deviceModel": "sm-g955f",
+                    "visitorData": "Cgs1ZC1IWWtjZXF5byi4m5XxBQ%3D%3D",
+                    "userAgent": "Mozilla/5.0 (Linux; Android 9; SM-G955F) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.93 Mobile Safari/537.36,gzip(gfe)",
+                    "clientName": "MWEB",
+                    "clientVersion": "2.20200116.05.00",
+                    "osName": "Android",
+                    "osVersion": "9",
+                    "browserName": "Chrome Mobile",
+                    "browserVersion": "79.0.3945.93"
+                },
+                "request": {
+                    "sessionId": "6783913866581265458"
+                }
+            }
+        });
+    </script>
+    <script>
+        window.yterr = window.yterr || true;
+        window.unhandledErrorMessages = {};
+
+        window.onerror = function(msg, url, line, opt_columnNumber, opt_error) {
+            var err;
+            if (opt_error) {
+                err = opt_error;
+            } else {
+                err = new Error();
+                err.message = msg;
+                err.fileName = url;
+                err.lineNumber = line;
+                if (!isNaN(opt_columnNumber)) {
+                    err['columnNumber'] = opt_columnNumber;
+                }
+            }
+            var message = String(err.message);
+            if (!err.message || message in window.unhandledErrorMessages) {
+                return;
+            }
+            window.unhandledErrorMessages[message] = true;
+            var img = new Image();
+            window.emergencyTimeoutImg = img;
+            img.onload = img.onerror = function() {
+                delete window.emergencyTimeoutImg;
+            };
+            var values = {
+                'client.name': ytcfg.get('INNERTUBE_CONTEXT_CLIENT_NAME'),
+                'client.version': ytcfg.get('INNERTUBE_CONTEXT_CLIENT_VERSION'),
+                'msg': message,
+                'type': 'UnhandledWindow' + err.name,
+                'file': err.fileName,
+                'line': err.lineNumber,
+                'stack': (err.stack || '').substr(0, 500)
+            };
+            var parts = [ytcfg.get(
+                'EMERGENCY_BASE_URL', '/error_204?t=jserror&level=ERROR')];
+            for (var key in values) {
+                var value = values[key];
+                if (value) {
+                    parts.push(key + '=' + encodeURIComponent(value));
+                }
+            }
+            img.src = parts.join('&');
+        };
+    </script>
+    <script>
+        (function() {
+            window['pis'] = 'downloading';
+            var playerScriptReady = false;
+            var playerScript = document.createElement('script');
+            var playerStyles = document.createElement('link');
+
+            function detectAndLogAnyPlayerScriptErrors() {
+                if (window.yt && window.yt.player) {
+                    return;
+                }
+                var xhr = new XMLHttpRequest();
+                xhr.open('GET', playerScript.src);
+                xhr.onreadystatechange = function detectPlayerScriptErrors() {
+                    if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+                        eval(xhr.responseText);
+                    }
+                };
+                xhr.send();
+            }
+
+            function fetchResources() {
+                playerScript.addEventListener('load', function() {
+                    detectAndLogAnyPlayerScriptErrors();
+                    playerScriptReady = true;
+                    window['pis'] = 'uninitialized';
+                });
+                playerScript.src = "/yts/jsbin/player-plasma-ias-phone-en_US-vfl7fI3sn/base.js";
+
+                playerStyles.rel = 'stylesheet';
+                playerStyles.href = "/yts/cssbin/mobile-polymer-player-ias-mweb-2x-vfl98gRzt.css";
+
+                document.head.appendChild(playerScript);
+                document.head.appendChild(playerStyles);
+            }
+
+            function delayedFetch() {
+                window.removeEventListener('click', delayedFetch);
+                window.removeEventListener('load', delayedFetch);
+
+                requestAnimationFrame(function() {
+                    setTimeout(fetchResources);
+                });
+            }
+
+            window.addEventListener('click', delayedFetch);
+            window.addEventListener('load', delayedFetch);
+
+            window.whenPlayerReady = function(cb) {
+                if (playerScriptReady) {
+                    cb();
+                    return;
+                }
+
+                playerScript.addEventListener('load', function listen() {
+                    playerScript.removeEventListener('load', listen);
+                    cb();
+                });
+            };
+        })();
+    </script>
+    <style>
+        html {
+            background-color: white;
+        }
+    </style>
+    <style name="mweb_inline_ghost_card_styles">
+        @-webkit-keyframes spinner {
+            0% {
+                -webkit-transform: rotate(0deg)
+            }
+
+            to {
+                -webkit-transform: rotate(360deg)
+            }
+        }
+
+        @keyframes spinner {
+            0% {
+                transform: rotate(0deg)
+            }
+
+            to {
+                transform: rotate(360deg)
+            }
+        }
+
+        .spinner {
+            display: block;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+            margin: 12px auto;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            border: 2px solid #eee;
+            border-top-color: #666;
+            -webkit-animation: spinner .8s linear infinite;
+            animation: spinner .8s linear infinite
+        }
+
+        .spinner:not([hidden]) {
+            color: #333;
+            font-size: 1.6rem
+        }
+
+        html {
+            font-size: 10px;
+            font-family: Roboto, Arial, sans-serif
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            padding: 0 env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+            font-size: 1.2rem;
+            overflow-x: hidden
+        }
+
+        [hidden][hidden] {
+            display: none;
+            visibility: hidden
+        }
+
+        ytm-app>.spinner {
+            margin-top: 100px
+        }
+
+        ytm-header {
+            display: block
+        }
+
+        header {
+            height: 48px
+        }
+
+        .header-bar-content,
+        .header-bar-endpoint,
+        .mobile-topbar-header-content,
+        .mobile-topbar-header-endpoint {
+            visibility: visible
+        }
+
+        .player-container {
+            position: absolute;
+            top: 48px;
+            right: 0;
+            right: env(safe-area-inset-right);
+            left: 0;
+            left: env(safe-area-inset-left);
+            overflow: hidden;
+            z-index: 1;
+            direction: ltr
+        }
+
+        [has-player-custom-control="true"] .player-container {
+            overflow: visible !important
+        }
+
+        .player-size {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            overflow: hidden;
+            background-color: #000
+        }
+
+        .player-api {
+            display: -webkit-box;
+            display: -moz-box;
+            display: -ms-flexbox;
+            display: -webkit-flex;
+            display: flex;
+            -ms-flex-align: center;
+            -moz-box-align: center;
+            -webkit-box-align: center;
+            -webkit-align-items: center;
+            align-items: center;
+            -ms-flex-pack: center;
+            -webkit-box-pack: center;
+            -webkit-justify-content: center;
+            justify-content: center
+        }
+
+        .player-api[hidden],
+        .player-api[playable="false"],
+        .player-api[loading="true"] {
+            display: none
+        }
+
+        .html5-video-player {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0
+        }
+
+        ytm-app {
+            display: block
+        }
+
+        [has-soft-bar="true"] ytm-app {
+            padding-bottom: 30px
+        }
+
+        [has-pivot-bar="true"] ytm-app {
+            padding-bottom: 48px
+        }
+
+        ytm-header.sticky-player,
+        ytm-header-bar.sticky-player,
+        ytm-mobile-topbar-renderer.sticky-player {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 3;
+            padding: 0;
+            padding: 0 env(safe-area-inset-right) 0 env(safe-area-inset-left)
+        }
+
+        ytm-header-bar.sticky-player.out,
+        ytm-mobile-topbar-renderer.sticky-player.out {
+            top: -48px;
+            transition: transform 195ms cubic-bezier(0.4, 0.0, 1, 1);
+            transition-property: all
+        }
+
+        ytm-header-bar.sticky-player.in,
+        ytm-mobile-topbar-renderer.sticky-player.in {
+            top: 0;
+            transition: transform 225ms cubic-bezier(0.0, 0.0, 0.2, 1);
+            transition-property: all
+        }
+
+        .player-container.sticky-player {
+            position: fixed;
+            top: 48px;
+            right: 0;
+            left: 0;
+            overflow: hidden;
+            z-index: 1
+        }
+
+        .player-container.header-in-player,
+        .player-container.sticky-player.header-in-player {
+            top: 0
+        }
+
+        ytm-app.sticky-player {
+            display: block;
+            padding-top: 48px
+        }
+
+        ytm-app.sticky-player.header-in-player {
+            padding-top: 0
+        }
+
+        @media (min-width:800px) and (min-device-width:550px) and (orientation:landscape) {
+
+            .player-container,
+            .player-container.sticky-player {
+                right: 256px
+            }
+
+            .player-placeholder-wrapper {
+                width: calc(100% - 256px)
+            }
+        }
+
+        @media (min-width:1280px) and (min-device-height:550px) and (orientation:landscape) {
+
+            .player-container,
+            .player-container.sticky-player {
+                right: 500px
+            }
+
+            .player-placeholder-wrapper {
+                width: calc(100% - 500px)
+            }
+        }
+
+        @media (max-width:799px) and (orientation:landscape),
+        (max-device-width:549px) and (orientation:landscape) {
+            .player-size {
+                padding-bottom: calc(56.25% - 96px)
+            }
+        }
+
+        @media (max-width:299px) and (orientation:landscape),
+        (max-width:299px) and (orientation:portrait) {
+            .player-size {
+                padding-bottom: 56.25%
+            }
+        }
+
+        @media (max-width:320px) and (max-height:240px) and (orientation:landscape) {
+            .player-size {
+                padding-bottom: 56.25%
+            }
+        }
+
+        @media (min-width:800px) and (min-device-width:550px) and (orientation:landscape),
+        (min-width:550px) and (min-device-height:800px) and (orientation:portrait) {
+            ytm-app {
+                padding-top: 48px
+            }
+
+            ytm-header,
+            ytm-header-bar,
+            ytm-mobile-topbar-renderer {
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                z-index: 3
+            }
+        }
+
+        .content-error {
+            font-size: 1.4rem;
+            padding: 12px;
+            text-align: center
+        }
+
+        ytm-large-media-item {
+            display: block;
+            padding: 0 12px;
+            min-width: 0
+        }
+
+        ytm-large-media-item[use-vertical-layout] {
+            padding: 0
+        }
+
+        ytm-large-media-item>a {
+            display: block
+        }
+
+        .inline-byline-channel-name {
+            opacity: .6;
+            margin-bottom: 3px
+        }
+
+        .large-media-item-metadata {
+            display: block;
+            -webkit-box-flex: 1;
+            -ms-flex-positive: 1;
+            -webkit-flex-grow: 1;
+            flex-grow: 1;
+            min-width: 0
+        }
+
+        .large-media-item-top-badges ytm-metadata-badge-renderer {
+            display: block
+        }
+
+        .large-media-icon {
+            width: 40px;
+            height: 40px
+        }
+
+        .large-media-channel {
+            -webkit-flex-shrink: 0;
+            -ms-flex-negative: 0;
+            flex-shrink: 0
+        }
+
+        .large-media-item-info,
+        ytm-large-media-item .details {
+            -webkit-box-flex: 1;
+            -ms-flex-positive: 1;
+            -webkit-flex-grow: 1;
+            flex-grow: 1;
+            min-width: 0
+        }
+
+        .large-media-item-info {
+            -ms-flex-align: start;
+            -moz-box-align: start;
+            -webkit-box-align: start;
+            -webkit-align-items: flex-start;
+            align-items: flex-start;
+            margin-left: 12px
+        }
+
+        .large-media-item-info[no-channel-avatar="true"],
+        .details.feature-phone-minimal-lockups .large-media-item-info {
+            margin-left: 0
+        }
+
+        .large-media-item-headline-placeholder {
+            height: 16px;
+            max-width: 300px;
+            margin-bottom: 8px;
+            background-color: hsla(0, 0%, 53.3%, .2);
+            border-radius: 2px
+        }
+
+        .large-media-item-subhead-placeholder {
+            height: 16px;
+            width: 120px;
+            margin-bottom: 3px;
+            background-color: hsla(0, 0%, 53.3%, .2);
+            border-radius: 2px
+        }
+
+        .large-media-item-menu {
+            -webkit-flex-shrink: 0;
+            -ms-flex-negative: 0;
+            flex-shrink: 0
+        }
+
+        .large-media-item-byline {
+            unicode-bidi: isolate
+        }
+
+        ytm-large-media-item .details.feature-phone-minimal-lockups .large-media-channel {
+            display: none
+        }
+
+        ytm-large-media-item .details {
+            margin-top: 12px;
+            margin-bottom: 24px
+        }
+
+        ytm-browse ytm-item-section-renderer:first-of-type ytm-large-media-item {
+            margin: -12px 0 0
+        }
+
+        @media (min-width:550px) and (min-device-height:800px) and (orientation:portrait) {
+            ytm-browse ytm-item-section-renderer:first-of-type ytm-promoted-video-renderer ytm-large-media-item {
+                margin-top: 0
+            }
+        }
+
+        @media (min-aspect-ratio:13/9) and (orientation:landscape),
+        (min-width:800px) and (min-device-width:550px) and (orientation:landscape) {
+            ytm-large-media-item:not([use-vertical-layout]) {
+                display: -webkit-box;
+                display: -moz-box;
+                display: -ms-flexbox;
+                display: -webkit-flex;
+                display: flex;
+                min-width: 0
+            }
+
+            ytm-large-media-item:not([use-vertical-layout]) .large-media-item-thumbnail-container {
+                -webkit-flex-shrink: 0;
+                -ms-flex-negative: 0;
+                flex-shrink: 0
+            }
+
+            ytm-large-media-item:not([use-vertical-layout]) .video-thumbnail-container-large {
+                width: 200px;
+                height: 112px;
+                padding-bottom: 0
+            }
+
+            ytm-large-media-item:not([use-vertical-layout]) .details {
+                -moz-box-orient: vertical;
+                -webkit-box-orient: vertical;
+                -ms-flex-direction: column;
+                -webkit-flex-direction: column;
+                flex-direction: column;
+                margin: 0 12px;
+                min-width: 0;
+                width: 100%
+            }
+
+            ytm-large-media-item:not([use-vertical-layout]) .large-media-item-info {
+                -webkit-box-flex: 0;
+                -ms-flex-positive: 0;
+                -webkit-flex-grow: 0;
+                flex-grow: 0
+            }
+
+            ytm-large-media-item:not([use-vertical-layout]) .large-media-item-metadata {
+                margin-bottom: 2px;
+                max-height: 70px;
+                overflow: hidden;
+                min-width: 0
+            }
+
+            ytm-large-media-item:not([use-vertical-layout]) .large-media-channel {
+                display: -webkit-box;
+                display: -moz-box;
+                display: -ms-flexbox;
+                display: -webkit-flex;
+                display: flex;
+                -webkit-box-flex: 1;
+                -ms-flex-positive: 1;
+                -webkit-flex-grow: 1;
+                flex-grow: 1;
+                -webkit-box-ordinal-group: 2;
+                -webkit-order: 1;
+                -ms-flex-order: 1;
+                order: 1;
+                width: 100%
+            }
+
+            ytm-large-media-item:not([use-vertical-layout]) .large-media-item-extra-endpoint {
+                -webkit-box-flex: 1;
+                -ms-flex-positive: 1;
+                -webkit-flex-grow: 1;
+                flex-grow: 1
+            }
+
+            ytm-browse ytm-item-section-renderer:first-of-type ytm-large-media-item:not([use-vertical-layout]) {
+                margin-top: 0
+            }
+
+            ytm-large-media-item:not([use-vertical-layout]) .large-media-item-info {
+                margin-left: 0
+            }
+        }
+
+        @media (max-width:299px) and (orientation:landscape),
+        (max-width:299px) and (orientation:portrait) {
+            ytm-large-media-item {
+                padding: 0 8px
+            }
+
+            ytm-large-media-item .details {
+                margin-top: 12px;
+                margin-bottom: 12px
+            }
+
+            ytm-browse ytm-item-section-renderer:first-of-type ytm-large-media-item {
+                margin-top: 8px
+            }
+        }
+
+        .video-thumbnail-container-large,
+        .video-thumbnail-container-compact {
+            position: relative;
+            -webkit-flex-shrink: 0;
+            -ms-flex-negative: 0;
+            flex-shrink: 0;
+            overflow: hidden
+        }
+
+        .video-thumbnail-bg {
+            background-color: hsla(0, 0%, 53.3%, .2)
+        }
+
+        .video-thumbnail-container-large {
+            padding-bottom: 56.25%
+        }
+
+        .video-thumbnail-container-compact {
+            width: 160px;
+            height: 90px
+        }
+
+        @media (max-width:549px) and (orientation:portrait),
+        (max-device-height:799px) and (orientation:portrait) {
+            ytm-item-section-renderer:first-of-type .video-thumbnail-container-large {
+                margin-top: 0
+            }
+
+            .video-thumbnail-container-large {
+                margin: -13px -12px 0;
+                padding-top: 13px
+            }
+        }
+
+        @media (max-width:299px) and (orientation:portrait) {
+            .video-thumbnail-container-large {
+                margin: 0;
+                padding-top: 0
+            }
+        }
+
+        ytm-pivot-bar-renderer {
+            display: -webkit-box;
+            display: -moz-box;
+            display: -ms-flexbox;
+            display: -webkit-flex;
+            display: flex;
+            -ms-flex-pack: justify;
+            -webkit-box-pack: justify;
+            -webkit-justify-content: space-around;
+            justify-content: space-around;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 0;
+            padding: 0 env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+            z-index: 2;
+            height: 48px;
+            border-top: 1px solid hsla(0, 0%, 53.3%, .4);
+            background: #fff;
+            color: hsla(0, 0%, 6.7%, .6);
+            font-size: 1.1rem
+        }
+
+        .details {
+            display: -webkit-box;
+            display: -moz-box;
+            display: -ms-flexbox;
+            display: -webkit-flex;
+            display: flex;
+            margin-top: 12px
+        }
+
+        .item {
+            margin-top: 12px;
+            display: block
+        }
+
+        .item:last-child {
+            margin-bottom: 12px
+        }
+
+        @media (max-width:299px) and (orientation:landscape),
+        (max-width:299px) and (orientation:portrait) {
+            .item {
+                margin-top: 8px
+            }
+        }
+
+        ytm-item-section-renderer {
+            display: block;
+            border-bottom: 1px solid hsla(0, 0%, 53.3%, .4)
+        }
+
+        @media (max-width:299px) and (orientation:landscape),
+        (max-width:299px) and (orientation:portrait) {
+            ytm-item-section-renderer.feature-phone-minimal-lockups .icon-button {
+                padding: 0 0 0 8px;
+                width: 24px;
+                height: 24px
+            }
+        }
+
+        ytm-profile-icon {
+            display: inline-block;
+            overflow: hidden;
+            -webkit-flex-shrink: 0;
+            -ms-flex-negative: 0;
+            flex-shrink: 0;
+            border-radius: 50%;
+            background-color: hsla(0, 0%, 53.3%, .2)
+        }
+
+        .compact-media-item {
+            padding: 0 12px;
+            display: -webkit-box;
+            display: -moz-box;
+            display: -ms-flexbox;
+            display: -webkit-flex;
+            display: flex
+        }
+
+        .compact-media-item-image {
+            -webkit-flex-shrink: 0;
+            -ms-flex-negative: 0;
+            flex-shrink: 0
+        }
+
+        .compact-media-item-metadata {
+            display: -webkit-box;
+            display: -moz-box;
+            display: -ms-flexbox;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-box-flex: 1;
+            -ms-flex-positive: 1;
+            -webkit-flex-grow: 1;
+            flex-grow: 1;
+            min-width: 0;
+            overflow: visible
+        }
+
+        .compact-media-item-metadata-content {
+            display: block;
+            -webkit-box-flex: 1;
+            -ms-flex-positive: 1;
+            -webkit-flex-grow: 1;
+            flex-grow: 1;
+            min-width: 0;
+            overflow: hidden;
+            padding: 0 8px
+        }
+
+        .compact-media-item-headline-placeholder {
+            height: 16px;
+            max-width: 300px;
+            margin-bottom: 8px;
+            background-color: hsla(0, 0%, 53.3%, .2);
+            border-radius: 2px
+        }
+
+        .compact-media-item-subhead-placeholder {
+            height: 16px;
+            width: 120px;
+            margin-bottom: 3px;
+            background-color: hsla(0, 0%, 53.3%, .2);
+            border-radius: 2px
+        }
+
+        ytm-rich-grid-renderer {
+            display: block;
+            padding: 0 16px
+        }
+
+        .rich-grid-renderer-contents {
+            margin: 12px calc(-1*8px) 0 calc(-1*8px)
+        }
+
+        ytm-rich-item-renderer {
+            display: inline-block;
+            vertical-align: top;
+            margin: 0 8px;
+            -webkit-flex-shrink: 0;
+            -ms-flex-negative: 0;
+            flex-shrink: 0
+        }
+
+        @media (min-width:550px) and (min-device-height:800px) and (orientation:portrait) {
+            ytm-rich-item-renderer {
+                width: calc(50% - 16px)
+            }
+        }
+
+        @media (min-width:800px) and (min-device-width:550px) and (orientation:landscape) {
+            ytm-rich-item-renderer {
+                width: calc(33.3% - 16px)
+            }
+        }
+
+        @media (min-width:1280px) and (min-device-height:550px) and (orientation:landscape) {
+            ytm-rich-item-renderer {
+                width: calc(25% - 16px)
+            }
+        }
+    </style>
+    <div id="player-container-id" class="player-container sticky-player ">
+        <div id="player" class="player-api player-size" hidden></div>
+        <div id="player-control-container" hidden></div>
+    </div>
+
+
+
+    <ytm-app id="app" class="sticky-player ">
+        <ytm-header id="header" class="sticky-player">
+            <header style="background-color: hsl(0, 0%, 100%); box-shadow: 0 2px 2px rgba(0,0,0,0.2);">
+            </header>
+        </ytm-header>
+        <div hidden class="player-placeholder-wrapper">
+            <div class="player-size sticky-player"></div>
+        </div>
+        <div key="spinner" class="spinner"></div>
+    </ytm-app>
+    <script>
+        (function() {
+            var playerApi = document.getElementById('player');
+            var player;
+            var activeConfig;
+            var latestConfig;
+            var autonavState;
+            var webPlayerContextConfig;
+
+
+            function fireEvent(target, name, detail) {
+                target.dispatchEvent(new CustomEvent(name, {
+                    bubbles: true,
+                    detail: detail
+                }));
+            }
+
+            function createPlayer(config) {
+                yt.player.Application.create(playerApi, config, webPlayerContextConfig);
+                window['pis'] = 'initialized';
+
+                var playerEl = playerApi.firstElementChild;
+                playerEl.addEventListener('onStateChange', function(state) {
+                    fireEvent(playerEl, 'player-state-change', {
+                        state: state
+                    });
+                });
+
+                playerEl.addEventListener('onPlayVideo', function(videoData) {
+                    fireEvent(playerEl, 'on-play-autonav-video', {
+                        videoData: videoData
+                    });
+                });
+
+                playerEl.addEventListener('onPlaylistPrevious', function() {
+                    fireEvent(playerEl, 'on-play-previous-autonav-video');
+                });
+
+                playerEl.addEventListener(
+                    'onFullscreenToggled',
+                    function(isCurrentlyFullscreen) {
+                        fireEvent(playerEl, 'player-fullscreen-change', {
+                            isCurrentlyFullscreen: isCurrentlyFullscreen
+                        });
+                    });
+
+                playerEl.addEventListener('onDompaused', function(data) {
+                    fireEvent(playerEl, 'player-dom-paused');
+                });
+
+                playerEl.addEventListener('onYtShowToast', function(data) {
+                    fireEvent(playerEl, 'yt-show-toast', data);
+                });
+
+                playerEl.addEventListener(
+                    'updateKevlarOrC3Companion',
+                    function(data) {
+                        fireEvent(playerEl, 'yt-update-c3-companion', data);
+                    });
+
+                playerEl.addEventListener(
+                    'onVideoDataChange',
+                    function(data) {
+                        fireEvent(playerEl, 'video-data-change', data);
+                    });
+
+                playerEl.addEventListener(
+                    'onVideoProgress',
+                    function(data) {
+                        fireEvent(playerEl, 'video-progress', data);
+                    });
+
+                playerEl.addEventListener(
+                    'onMutedAutoplayChange',
+                    function(isMutedAutoplay) {
+                        fireEvent(playerEl, 'muted-autoplay-change', {
+                            isMutedAutoplay: isMutedAutoplay
+                        });
+                    });
+
+                return playerEl;
+            }
+
+            function updatePlayerConfig(config) {
+                var hadPlayer = !!player;
+
+                if (!config) {
+
+                    if (player) {
+                        player.stopVideo();
+                    }
+                    return;
+                }
+
+                if (player) {
+                    player.loadVideoByPlayerVars(config.args);
+                } else {
+                    player = createPlayer(config);
+                }
+
+                if (!hadPlayer && (config == ytInitialPlayerConfig)) {
+                    return;
+                }
+
+                player.playVideo();
+            }
+
+            window.setAutonavStateInPlayer = function(newAutonavState) {
+                autonavState = newAutonavState;
+                if (player) {
+                    player.setAutonavState(autonavState);
+                }
+            }
+
+            window.getPlayer = function() {
+                return player;
+            };
+
+            window.loadPlayerConfig =
+                function(newConfig, relatedVideoArgs, watchNextResponse,
+                    unused_botguardData) {
+                    latestConfig = newConfig;
+
+                    window.whenPlayerReady(function() {
+                        if (latestConfig != newConfig) {
+                            return;
+                        }
+
+                        if (activeConfig != newConfig) {
+                            activeConfig = newConfig;
+                            updatePlayerConfig(activeConfig);
+                        }
+
+                        if (player) {
+                            player.updateVideoData({
+                                'raw_watch_next_response': watchNextResponse,
+                                'rvs': relatedVideoArgs
+                            });
+                            player.setAutonavState(autonavState);
+                        }
+                    });
+                };
+        })();
+    </script>
+    <script>
+        var ytcsi = {
+            gt: function(n) {
+                n = (n || '') + 'data_';
+                return ytcsi[n] || (ytcsi[n] = {
+                    tick: {},
+                    info: {}
+                });
+            },
+            now: (window.performance && window.performance.timing && window.performance.now && window.performance.timing.navigationStart) ? function() {
+                return window.performance.timing.navigationStart + window.performance.now();
+            } : function() {
+                return (new Date()).getTime();
+            },
+            tick: function(l, t, n) {
+                ticks = ytcsi.gt(n).tick;
+                var v = t || ytcsi.now();
+                if (ticks[l]) {
+                    ticks['_' + l] = (ticks['_' + l] || [ticks[l]]);
+                    ticks['_' + l].push(v);
+                }
+                ticks[l] = v;
+            },
+            info: function(k, v, n) {
+                ytcsi.gt(n).info[k] = v;
+            },
+            setStart: function(s, t, n) {
+                ytcsi.info('yt_sts', s, n);
+                ytcsi.tick('_start', t, n);
+            }
+        };
+        (function(w, d) {
+            ytcsi.setStart('dhs', w.performance ? w.performance.timing.responseStart : null);
+            var isPrerender = (d.visibilityState || d.webkitVisibilityState) == 'prerender';
+            var vName = (!d.visibilityState && d.webkitVisibilityState) ? 'webkitvisibilitychange' : 'visibilitychange';
+            if (isPrerender) {
+                ytcsi.info('prerender', 1);
+                var startTick = function() {
+                    ytcsi.setStart('dhs');
+                    d.removeEventListener(vName, startTick);
+                };
+                d.addEventListener(vName, startTick, false);
+            }
+            if (d.addEventListener) {
+                d.addEventListener(vName, function() {
+                    ytcsi.tick('vc');
+                }, false);
+            }
+
+            function isGecko() {
+                if (!w.navigator || !w.navigator.userAgent) {
+                    return false;
+                }
+                var ua = w.navigator.userAgent;
+                return ua.indexOf('Gecko') > 0 && ua.toLowerCase().indexOf('webkit') < 0 && ua.indexOf('Edge') < 0 && ua.indexOf('Trident') < 0 && ua.indexOf('MSIE') < 0;
+            }
+            if (isGecko()) {
+                var isHidden = (d.visibilityState || d.webkitVisibilityState) == 'hidden';
+                if (isHidden) {
+                    ytcsi.tick('vc');
+                }
+            }
+            var slt = function(el, t) {
+                setTimeout(function() {
+                    var n = ytcsi.now();
+                    el.loadTime = n;
+                    if (el.slt) {
+                        el.slt();
+                    }
+                }, t);
+            };
+            w.__ytRIL = function(el) {
+                if (!el.getAttribute('data-thumb')) {
+                    if (w.requestAnimationFrame) {
+                        w.requestAnimationFrame(function() {
+                            slt(el, 0);
+                        });
+                    } else {
+                        slt(el, 16);
+                    }
+                }
+            };
+        })(window, document);
+    </script>
+    <style name="www-roboto">
+        @font-face {
+            font-family: 'Roboto';
+            font-style: normal;
+            font-weight: 400;
+            src: url(//fonts.gstatic.com/s/roboto/v18/KFOmCnqEu92Fr1Mu4mxPKTU1Kg.ttf)format('truetype');
+        }
+
+        @font-face {
+            font-family: 'Roboto';
+            font-style: normal;
+            font-weight: 500;
+            src: url(//fonts.gstatic.com/s/roboto/v18/KFOlCnqEu92Fr1MmEU9fBBc9AMP6lQ.ttf)format('truetype');
+        }
+
+        @font-face {
+            font-family: 'Roboto';
+            font-style: italic;
+            font-weight: 400;
+            src: url(//fonts.gstatic.com/s/roboto/v18/KFOkCnqEu92Fr1Mu51xIIzcXKMny.ttf)format('truetype');
+        }
+
+        @font-face {
+            font-family: 'Roboto';
+            font-style: italic;
+            font-weight: 500;
+            src: url(//fonts.gstatic.com/s/roboto/v18/KFOjCnqEu92Fr1Mu51S7ACc6CsHYl4BO.ttf)format('truetype');
+        }
+    </style>
+    <script name="www-roboto">
+        if (document.fonts && document.fonts.load) {
+            document.fonts.load("400 10pt Roboto", "E");
+            document.fonts.load("500 10pt Roboto", "E");
+        }
+    </script>
+    <script src="/yts/jsbin/mobile-c3-vfluiGEbH/mobile-c3.js" type="text/javascript" name="mobile-c3/mobile-c3"></script>
+
+
+
+
+    <link rel="stylesheet" href="/yts/cssbin/mobile-c3-light-pmf-2x-vfl66wNnP.css" name="mobile-c3-light-pmf">
+
+
+    <iframe src="https://accounts.google.com/ServiceLogin?ltmpl=mobile&amp;uilel=3&amp;service=youtube&amp;continue=https%3A%2F%2Fm.youtube.com%2Fsignin%3Ffeature%3Dmobile_passive%26app%3Dm%26action_handle_signin%3Dtrue%26next%3Dhttps%253A%252F%252Fm.youtube.com%252Fsignin_passive%26noapp%3D1%26hl%3Den&amp;hl=en&amp;passive=true" style="display: none"></iframe><!-- end of chunk 1 -->
+    <div id="img-preload" style="display: none;">
+        <img src="https://i.ytimg.com/vi/yCCq_6ankAI/hqdefault.jpg">
+        <img src="https://i.ytimg.com/vi/yCCq_6ankAI/hqdefault.jpg">
+        <img src="https://i.ytimg.com/vi/TrmWoBneIww/hqdefault.jpg">
+        <img src="https://i.ytimg.com/vi/TrmWoBneIww/hqdefault.jpg">
+        <img src="https://i.ytimg.com/vi_webp/e9vrfEoc8_g/hqdefault.webp">
+        <img src="https://i.ytimg.com/vi/z9BL59uiAz8/hqdefault.jpg">
+    </div>
+    <div id="initial-data">
+        {"responseContext":{"serviceTrackingParams":[{"service":"GFEEDBACK","params":[{"key":"has_unlimited_entitlement","value":"False"},{"key":"logged_in","value":"0"}]},{"service":"CSI","params":[{"key":"yt_ad","value":"1"},{"key":"c","value":"MWEB"},{"key":"cver","value":"2.20200116.05.00"},{"key":"yt_li","value":"0"},{"key":"GetSearch_rid","value":"0xf597f2d7343b6978"}]},{"service":"ECATCHER","params":[{"key":"client.version","value":"2.20200109"},{"key":"client.name","value":"MWEB"}]}],"webResponseContextExtensionData":{"webResponseContextPreloadData":{"preloadThumbnailUrls":["https://i.ytimg.com/vi/yCCq_6ankAI/hqdefault.jpg","https://i.ytimg.com/vi/yCCq_6ankAI/hqdefault.jpg","https://i.ytimg.com/vi/TrmWoBneIww/hqdefault.jpg","https://i.ytimg.com/vi/TrmWoBneIww/hqdefault.jpg","https://i.ytimg.com/vi_webp/e9vrfEoc8_g/hqdefault.webp","https://i.ytimg.com/vi/z9BL59uiAz8/hqdefault.jpg"]},"ytConfigData":{"csn":"uE0lXt6vOMbryQXjtaWwBA","visitorData":"Cgs1ZC1IWWtjZXF5byi4m5XxBQ%3D%3D","rootVisualElementType":4724}}},"estimatedResults":"902224","contents":{"sectionListRenderer":{"contents":[{"itemSectionRenderer":{"contents":[{"compactPlaylistRenderer":{"playlistId":"PLYhKAl2FoGzC0IQkgfVtM991w3E8ro1yG","thumbnail":{"thumbnails":[{"url":"https://i.ytimg.com/vi/yCCq_6ankAI/hqdefault.jpg","width":490,"height":368}],"webThumbnailDetailsExtensionData":{"isPreloaded":true}},"title":{"runs":[{"text":"Superman Theme Songs"}]},"shortBylineText":{"runs":[{"text":"AJ Lelievre","navigationEndpoint":{"clickTrackingParams":"CCMQojAYACITCNjDzanLkecCFcMpsgodKnQLszIGc2VhcmNo","commandMetadata":{"webCommandMetadata":{"url":"/channel/UCNtE3kchpzZNnC2ZIGSBR9A","rootVe":3611}},"browseEndpoint":{"browseId":"UCNtE3kchpzZNnC2ZIGSBR9A"}}}]},"videoCountText":{"runs":[{"text":"21"},{"text":" videos"}]},"navigationEndpoint":{"clickTrackingParams":"CCMQojAYACITCNjDzanLkecCFcMpsgodKnQLszIGc2VhcmNo","commandMetadata":{"webCommandMetadata":{"url":"/playlist?list=PLYhKAl2FoGzC0IQkgfVtM991w3E8ro1yG","rootVe":5754}},"browseEndpoint":{"browseId":"VLPLYhKAl2FoGzC0IQkgfVtM991w3E8ro1yG"}},"videoCountShortText":{"runs":[{"text":"21"}]},"trackingParams":"CCMQojAYACITCNjDzanLkecCFcMpsgodKnQLsw==","sidebarThumbnails":[{"thumbnails":[{"url":"https://i.ytimg.com/vi/SyqltDNW998/default.jpg","width":43,"height":20}]},{"thumbnails":[{"url":"https://i.ytimg.com/vi/y0Mnj6_zV4U/default.jpg","width":43,"height":20}]}],"thumbnailText":{"runs":[{"text":"21","bold":true},{"text":" videos"}]},"thumbnailRenderer":{"playlistVideoThumbnailRenderer":{"thumbnail":{"thumbnails":[{"url":"https://i.ytimg.com/vi/yCCq_6ankAI/hqdefault.jpg","width":490,"height":368}],"webThumbnailDetailsExtensionData":{"isPreloaded":true}}}},"longBylineText":{"runs":[{"text":"AJ Lelievre","navigationEndpoint":{"clickTrackingParams":"CCMQojAYACITCNjDzanLkecCFcMpsgodKnQLszIGc2VhcmNo","commandMetadata":{"webCommandMetadata":{"url":"/channel/UCNtE3kchpzZNnC2ZIGSBR9A","rootVe":3611}},"browseEndpoint":{"browseId":"UCNtE3kchpzZNnC2ZIGSBR9A"}}}]}}},{"compactPlaylistRenderer":{"playlistId":"PL8D5935EF8A7A0F61","thumbnail":{"thumbnails":[{"url":"https://i.ytimg.com/vi/TrmWoBneIww/hqdefault.jpg","width":490,"height":368}],"webThumbnailDetailsExtensionData":{"isPreloaded":true}},"title":{"runs":[{"text":"Superman Original Soundtrack"}]},"shortBylineText":{"runs":[{"text":"penguinpoop4","navigationEndpoint":{"clickTrackingParams":"CCIQojAYASITCNjDzanLkecCFcMpsgodKnQLszIGc2VhcmNo","commandMetadata":{"webCommandMetadata":{"url":"/user/penguinpoop4","rootVe":3611}},"browseEndpoint":{"browseId":"UCXRZqBfkE6safJDWbQWgI8A","canonicalBaseUrl":"/user/penguinpoop4"}}}]},"videoCountText":{"runs":[{"text":"16"},{"text":" videos"}]},"navigationEndpoint":{"clickTrackingParams":"CCIQojAYASITCNjDzanLkecCFcMpsgodKnQLszIGc2VhcmNo","commandMetadata":{"webCommandMetadata":{"url":"/playlist?list=PL8D5935EF8A7A0F61","rootVe":5754}},"browseEndpoint":{"browseId":"VLPL8D5935EF8A7A0F61"}},"videoCountShortText":{"runs":[{"text":"16"}]},"trackingParams":"CCIQojAYASITCNjDzanLkecCFcMpsgodKnQLsw==","sidebarThumbnails":[{"thumbnails":[{"url":"https://i.ytimg.com/vi/2s0dHbbGPds/default.jpg","width":43,"height":20}]},{"thumbnails":[{"url":"https://i.ytimg.com/vi/KE5ACiLVh8I/default.jpg","width":43,"height":20}]}],"thumbnailText":{"runs":[{"text":"16","bold":true},{"text":" videos"}]},"thumbnailRenderer":{"playlistVideoThumbnailRenderer":{"thumbnail":{"thumbnails":[{"url":"https://i.ytimg.com/vi/TrmWoBneIww/hqdefault.jpg","width":490,"height":368}],"webThumbnailDetailsExtensionData":{"isPreloaded":true}}}},"longBylineText":{"runs":[{"text":"penguinpoop4","navigationEndpoint":{"clickTrackingParams":"CCIQojAYASITCNjDzanLkecCFcMpsgodKnQLszIGc2VhcmNo","commandMetadata":{"webCommandMetadata":{"url":"/user/penguinpoop4","rootVe":3611}},"browseEndpoint":{"browseId":"UCXRZqBfkE6safJDWbQWgI8A","canonicalBaseUrl":"/user/penguinpoop4"}}}]}}},{"compactVideoRenderer":{"videoId":"e9vrfEoc8_g","thumbnail":{"thumbnails":[{"url":"https://i.ytimg.com/vi_webp/e9vrfEoc8_g/hqdefault.webp","width":490,"height":368}],"webThumbnailDetailsExtensionData":{"isPreloaded":true}},"title":{"runs":[{"text":"Superman Theme"}],"accessibility":{"accessibilityData":{"label":"Superman Theme by Super Man 10 years ago 4 minutes13 seconds 36,308,682 views"}}},"longBylineText":{"runs":[{"text":"Super Man","navigationEndpoint":{"clickTrackingParams":"CCEQpDAYAiITCNjDzanLkecCFcMpsgodKnQLsw==","commandMetadata":{"webCommandMetadata":{"url":"/user/Redmario2569","rootVe":3611}},"browseEndpoint":{"browseId":"UCARqIOgzDc-UUAREIitbBwA","canonicalBaseUrl":"/user/Redmario2569"}}}]},"publishedTimeText":{"runs":[{"text":"10 years ago"}]},"viewCountText":{"runs":[{"text":"36,308,682 views"}]},"lengthText":{"runs":[{"text":"4:13"}],"accessibility":{"accessibilityData":{"label":"4 minutes, 13 seconds"}}},"navigationEndpoint":{"clickTrackingParams":"CCEQpDAYAiITCNjDzanLkecCFcMpsgodKnQLszIGc2VhcmNoUhNzdXBlcm1hbiB0aGVtZSBsaXN0","commandMetadata":{"webCommandMetadata":{"url":"/watch?v=e9vrfEoc8_g","rootVe":3832}},"watchEndpoint":{"videoId":"e9vrfEoc8_g"}},"shortBylineText":{"runs":[{"text":"Super Man","navigationEndpoint":{"clickTrackingParams":"CCEQpDAYAiITCNjDzanLkecCFcMpsgodKnQLsw==","commandMetadata":{"webCommandMetadata":{"url":"/user/Redmario2569","rootVe":3611}},"browseEndpoint":{"browseId":"UCARqIOgzDc-UUAREIitbBwA","canonicalBaseUrl":"/user/Redmario2569"}}}]},"channelThumbnail":{"thumbnails":[{"url":"https://yt3.ggpht.com/a-/AAuE7mCXUh-aoFNxiyeWJ8D7rAfdbenGREAC6s669w=s68-c-k-c0x00ffffff-no-rj-mo","width":68,"height":68}]},"trackingParams":"CCEQpDAYAiITCNjDzanLkecCFcMpsgodKnQLs0D45_PQxO_67Xs=","shortViewCountText":{"runs":[{"text":"36M views"}]},"menu":{"menuRenderer":{"items":[{"menuNavigationItemRenderer":{"text":{"runs":[{"text":"Save to Watch later"}]},"navigationEndpoint":{"clickTrackingParams":"CCEQpDAYAiITCNjDzanLkecCFcMpsgodKnQLsw==","commandMetadata":{"webCommandMetadata":{"url":"https://accounts.google.com/ServiceLogin?service=youtube\u0026uilel=3\u0026passive=true\u0026continue=https%3A%2F%2Fwww.youtube.com%2Fsignin%3Faction_handle_signin%3Dtrue%26app%3Dm%26hl%3Den%26next%3D%252Fresults%253Fhl%253Den%2526gl%253DUS%2526search_query%253Dsuperman%252Btheme%252Blist%2526page%253D1\u0026hl=en","rootVe":83769}},"signInEndpoint":{"hack":true}},"trackingParams":"CCEQpDAYAiITCNjDzanLkecCFcMpsgodKnQLsw=="}}],"trackingParams":"CCEQpDAYAiITCNjDzanLkecCFcMpsgodKnQLsw==","accessibility":{"accessibilityData":{"label":"Action menu"}}}},"thumbnailOverlays":[{"thumbnailOverlayTimeStatusRenderer":{"text":{"runs":[{"text":"4:13"}],"accessibility":{"accessibilityData":{"label":"4 minutes, 13 seconds"}}},"style":"DEFAULT"}}],"accessibility":{"accessibilityData":{"label":"Superman Theme - 4 minutes, 13 seconds - Go to channel - Super Man - 36M views - 10 years ago - play video"}}}},{"compactPlaylistRenderer":{"playlistId":"PLBKadB95sF44vjNzNABcYoF_7ae6lAgJM","thumbnail":{"thumbnails":[{"url":"https://i.ytimg.com/vi/z9BL59uiAz8/default.jpg","width":120,"height":90},{"url":"https://i.ytimg.com/vi/z9BL59uiAz8/mqdefault.jpg","width":320,"height":180},{"url":"https://i.ytimg.com/vi/z9BL59uiAz8/hqdefault.jpg","width":480,"height":360}]},"title":{"runs":[{"text":"Batman V Superman Official Soundtrack Playlist"}]},"shortBylineText":{"runs":[{"text":"WaterTower Music","navigationEndpoint":{"clickTrackingParams":"CCAQojAYAyITCNjDzanLkecCFcMpsgodKnQLszIGc2VhcmNo","commandMetadata":{"webCommandMetadata":{"url":"/user/WaterTowerWB","rootVe":3611}},"browseEndpoint":{"browseId":"UCGkQCAeRjyP9BpNwVFMaJaw","canonicalBaseUrl":"/user/WaterTowerWB"}}}]},"videoCountText":{"runs":[{"text":"20"},{"text":" videos"}]},"navigationEndpoint":{"clickTrackingParams":"CCAQojAYAyITCNjDzanLkecCFcMpsgodKnQLszIGc2VhcmNo","commandMetadata":{"webCommandMetadata":{"url":"/playlist?list=PLBKadB95sF44vjNzNABcYoF_7ae6lAgJM","rootVe":5754}},"browseEndpoint":{"browseId":"VLPLBKadB95sF44vjNzNABcYoF_7ae6lAgJM"}},"videoCountShortText":{"runs":[{"text":"20"}]},"trackingParams":"CCAQojAYAyITCNjDzanLkecCFcMpsgodKnQLsw==","sidebarThumbnails":[{"thumbnails":[{"url":"https://i.ytimg.com/vi/77DOTx6y1os/default.jpg","width":43,"height":20}]},{"thumbnails":[{"url":"https://i.ytimg.com/vi/rD5wQROo_bs/default.jpg","width":43,"height":20}]}],"thumbnailText":{"runs":[{"text":"20","bold":true},{"text":" videos"}]},"ownerBadges":[{"metadataBadgeRenderer":{"icon":{"iconType":"CHECK_CIRCLE_THICK"},"style":"BADGE_STYLE_TYPE_VERIFIED","tooltip":"Verified","trackingParams":"CCAQojAYAyITCNjDzanLkecCFcMpsgodKnQLsw=="}}],"thumbnailRenderer":{"playlistVideoThumbnailRenderer":{"thumbnail":{"thumbnails":[{"url":"https://i.ytimg.com/vi/z9BL59uiAz8/hqdefault.jpg","width":490,"height":368}],"webThumbnailDetailsExtensionData":{"isPreloaded":true}}}},"longBylineText":{"runs":[{"text":"WaterTower Music","navigationEndpoint":{"clickTrackingParams":"CCAQojAYAyITCNjDzanLkecCFcMpsgodKnQLszIGc2VhcmNo","commandMetadata":{"webCommandMetadata":{"url":"/user/WaterTowerWB","rootVe":3611}},"browseEndpoint":{"browseId":"UCGkQCAeRjyP9BpNwVFMaJaw","canonicalBaseUrl":"/user/WaterTowerWB"}}}]}}},{"compactVideoRenderer":{"videoId":"78N2SP6JFaI","thumbnail":{"thumbnails":[{"url":"https://i.ytimg.com/vi_webp/78N2SP6JFaI/default.webp","width":120,"height":90},{"url":"https://i.ytimg.com/vi_webp/78N2SP6JFaI/mqdefault.webp","width":320,"height":180},{"url":"https://i.ytimg.com/vi_webp/78N2SP6JFaI/hqdefault.webp","width":480,"height":360},{"url":"https://i.ytimg.com/vi_webp/78N2SP6JFaI/sddefault.webp","width":640,"height":480}]},"title":{"runs":[{"text":"Superman • Main Theme • John Williams"}],"accessibility":{"accessibilityData":{"label":"Superman • Main Theme • John Williams by HD Film Tributes 4 years ago 4 minutes, 26 seconds 6,672,697 views"}}},"longBylineText":{"runs":[{"text":"HD Film Tributes","navigationEndpoint":{"clickTrackingParams":"CB8QpDAYBCITCNjDzanLkecCFcMpsgodKnQLsw==","commandMetadata":{"webCommandMetadata":{"url":"/user/TheWraith5","rootVe":3611}},"browseEndpoint":{"browseId":"UCK6cr8UqdrKZ4213X-FOStQ","canonicalBaseUrl":"/user/TheWraith5"}}}]},"publishedTimeText":{"runs":[{"text":"4 years ago"}]},"viewCountText":{"runs":[{"text":"6,672,697 views"}]},"lengthText":{"runs":[{"text":"4:26"}],"accessibility":{"accessibilityData":{"label":"4 minutes, 26 seconds"}}},"navigationEndpoint":{"clickTrackingParams":"CB8QpDAYBCITCNjDzanLkecCFcMpsgodKnQLszIGc2VhcmNoUhNzdXBlcm1hbiB0aGVtZSBsaXN0","commandMetadata":{"webCommandMetadata":{"url":"/watch?v=78N2SP6JFaI","rootVe":3832}},"watchEndpoint":{"videoId":"78N2SP6JFaI"}},"shortBylineText":{"runs":[{"text":"HD Film Tributes","navigationEndpoint":{"clickTrackingParams":"CB8QpDAYBCITCNjDzanLkecCFcMpsgodKnQLsw==","commandMetadata":{"webCommandMetadata":{"url":"/user/TheWraith5","rootVe":3611}},"browseEndpoint":{"browseId":"UCK6cr8UqdrKZ4213X-FOStQ","canonicalBaseUrl":"/user/TheWraith5"}}}]},"channelThumbnail":{"thumbnails":[{"url":"https://yt3.ggpht.com/a-/AAuE7mBoZ77rmd2o3EwCPe3oTOrX4KmqMJoyoG3yJA=s68-c-k-c0x00ffffff-no-rj-mo","width":68,"height":68}]},"trackingParams":"CB8QpDAYBCITCNjDzanLkecCFcMpsgodKnQLs0Ciq6T0j8nd4e8B","shortViewCountText":{"runs":[{"text":"6.6M views"}]},"menu":{"menuRenderer":{"items":[{"menuNavigationItemRenderer":{"text":{"runs":[{"text":"Save to Watch later"}]},"navigationEndpoint":{"clickTrackingParams":"CB8QpDAYBCITCNjDzanLkecCFcMpsgodKnQLsw==","commandMetadata":{"webCommandMetadata":{"url":"https://accounts.google.com/ServiceLogin?service=youtube\u0026uilel=3\u0026passive=true\u0026continue=https%3A%2F%2Fwww.youtube.com%2Fsignin%3Faction_handle_signin%3Dtrue%26app%3Dm%26hl%3Den%26next%3D%252Fresults%253Fhl%253Den%2526gl%253DUS%2526search_query%253Dsuperman%252Btheme%252Blist%2526page%253D1\u0026hl=en","rootVe":83769}},"signInEndpoint":{"hack":true}},"trackingParams":"CB8QpDAYBCITCNjDzanLkecCFcMpsgodKnQLsw=="}}],"trackingParams":"CB8QpDAYBCITCNjDzanLkecCFcMpsgodKnQLsw==","accessibility":{"accessibilityData":{"label":"Action menu"}}}},"thumbnailOverlays":[{"thumbnailOverlayTimeStatusRenderer":{"text":{"runs":[{"text":"4:26"}],"accessibility":{"accessibilityData":{"label":"4 minutes, 26 seconds"}}},"style":"DEFAULT"}}],"accessibility":{"accessibilityData":{"label":"Superman • Main Theme • John Williams - 4 minutes, 26 seconds - Go to channel - HD Film Tributes - 6.6M views - 4 years ago - play video"}}}},{"compactPlaylistRenderer":{"playlistId":"PLfIc12jK8BVligmeILkIy61bIQlARSXWh","thumbnail":{"thumbnails":[{"url":"https://i.ytimg.com/vi/SQgMqf8tV6Q/default.jpg","width":120,"height":90},{"url":"https://i.ytimg.com/vi/SQgMqf8tV6Q/mqdefault.jpg","width":320,"height":180},{"url":"https://i.ytimg.com/vi/SQgMqf8tV6Q/hqdefault.jpg","width":480,"height":360}]},"title":{"runs":[{"text":"Superman Themes list"}]},"shortBylineText":{"runs":[{"text":"Ricardo Ribeiro","navigationEndpoint":{"clickTrackingParams":"CB4QojAYBSITCNjDzanLkecCFcMpsgodKnQLszIGc2VhcmNo","commandMetadata":{"webCommandMetadata":{"url":"/user/RicardoRibeiro2000","rootVe":3611}},"browseEndpoint":{"browseId":"UCMh9v2yGETWJ_GGi2JyXfpA","canonicalBaseUrl":"/user/RicardoRibeiro2000"}}}]},"videoCountText":{"runs":[{"text":"23"},{"text":" videos"}]},"navigationEndpoint":{"clickTrackingParams":"CB4QojAYBSITCNjDzanLkecCFcMpsgodKnQLszIGc2VhcmNo","commandMetadata":{"webCommandMetadata":{"url":"/playlist?list=PLfIc12jK8BVligmeILkIy61bIQlARSXWh","rootVe":5754}},"browseEndpoint":{"browseId":"VLPLfIc12jK8BVligmeILkIy61bIQlARSXWh"}},"videoCountShortText":{"runs":[{"text":"23"}]},"trackingParams":"CB4QojAYBSITCNjDzanLkecCFcMpsgodKnQLsw==","sidebarThumbnails":[{"thumbnails":[{"url":"https://i.ytimg.com/vi/jRyf17-FDl8/default.jpg","width":43,"height":20}]},{"thumbnails":[{"url":"https://i.ytimg.com/vi/jsCjxTXQU7g/default.jpg","width":43,"height":20}]}],"thumbnailText":{"runs":[{"text":"23","bold":true},{"text":" videos"}]},"thumbnailRenderer":{"playlistVideoThumbnailRenderer":{"thumbnail":{"thumbnails":[{"url":"https://i.ytimg.com/vi/SQgMqf8tV6Q/default.jpg","width":120,"height":90},{"url":"https://i.ytimg.com/vi/SQgMqf8tV6Q/mqdefault.jpg","width":320,"height":180},{"url":"https://i.ytimg.com/vi/SQgMqf8tV6Q/hqdefault.jpg","width":480,"height":360}]}}},"longBylineText":{"runs":[{"text":"Ricardo Ribeiro","navigationEndpoint":{"clickTrackingParams":"CB4QojAYBSITCNjDzanLkecCFcMpsgodKnQLszIGc2VhcmNo","commandMetadata":{"webCommandMetadata":{"url":"/user/RicardoRibeiro2000","rootVe":3611}},"browseEndpoint":{"browseId":"UCMh9v2yGETWJ_GGi2JyXfpA","canonicalBaseUrl":"/user/RicardoRibeiro2000"}}}]}}},{"compactPlaylistRenderer":{"playlistId":"PLFPLPPYSJ8qBWGVoan-uX8lMjvMeEgmww","thumbnail":{"thumbnails":[{"url":"https://i.ytimg.com/vi/f9_z8MYoKCE/default.jpg","width":120,"height":90},{"url":"https://i.ytimg.com/vi/f9_z8MYoKCE/mqdefault.jpg","width":320,"height":180},{"url":"https://i.ytimg.com/vi/f9_z8MYoKCE/hqdefault.jpg","width":480,"height":360}]},"title":{"runs":[{"text":"Superman theme songs"}]},"shortBylineText":{"runs":[{"text":"Mr. Hellas","navigationEndpoint":{"clickTrackingParams":"CB0QojAYBiITCNjDzanLkecCFcMpsgodKnQLszIGc2VhcmNo","commandMetadata":{"webCommandMetadata":{"url":"/user/funlovingreek2008","rootVe":3611}},"browseEndpoint":{"browseId":"UCa-ygMkaVLATRe0GD0fKaGw","canonicalBaseUrl":"/user/funlovingreek2008"}}}]},"videoCountText":{"runs":[{"text":"31"},{"text":" videos"}]},"navigationEndpoint":{"clickTrackingParams":"CB0QojAYBiITCNjDzanLkecCFcMpsgodKnQLszIGc2VhcmNo","commandMetadata":{"webCommandMetadata":{"url":"/playlist?list=PLFPLPPYSJ8qBWGVoan-uX8lMjvMeEgmww","rootVe":5754}},"browseEndpoint":{"browseId":"VLPLFPLPPYSJ8qBWGVoan-uX8lMjvMeEgmww"}},"videoCountShortText":{"runs":[{"text":"31"}]},"trackingParams":"CB0QojAYBiITCNjDzanLkecCFcMpsgodKnQLsw==","sidebarThumbnails":[{"thumbnails":[{"url":"https://i.ytimg.com/vi/HVQiYW1r4Ks/default.jpg","width":43,"height":20}]},{"thumbnails":[{"url":"https://i.ytimg.com/vi/hTDu5r3CoEM/default.jpg","width":43,"height":20}]}],"thumbnailText":{"runs":[{"text":"31","bold":true},{"text":" videos"}]},"thumbnailRenderer":{"playlistVideoThumbnailRenderer":{"thumbnail":{"thumbnails":[{"url":"https://i.ytimg.com/vi/f9_z8MYoKCE/default.jpg","width":120,"height":90},{"url":"https://i.ytimg.com/vi/f9_z8MYoKCE/mqdefault.jpg","width":320,"height":180},{"url":"https://i.ytimg.com/vi/f9_z8MYoKCE/hqdefault.jpg","width":480,"height":360}]}}},"longBylineText":{"runs":[{"text":"Mr. Hellas","navigationEndpoint":{"clickTrackingParams":"CB0QojAYBiITCNjDzanLkecCFcMpsgodKnQLszIGc2VhcmNo","commandMetadata":{"webCommandMetadata":{"url":"/user/funlovingreek2008","rootVe":3611}},"browseEndpoint":{"browseId":"UCa-ygMkaVLATRe0GD0fKaGw","canonicalBaseUrl":"/user/funlovingreek2008"}}}]}}},{"compactPlaylistRenderer":{"playlistId":"PLYhKAl2FoGzDGzOEJRZOCoaXbmnlbvwgX","thumbnail":{"thumbnails":[{"url":"https://i.ytimg.com/vi/m-9p5D1hBC8/default.jpg","width":120,"height":90},{"url":"https://i.ytimg.com/vi/m-9p5D1hBC8/mqdefault.jpg","width":320,"height":180},{"url":"https://i.ytimg.com/vi/m-9p5D1hBC8/hqdefault.jpg","width":480,"height":360}]},"title":{"runs":[{"text":"Superman Theme Songs"}]},"shortBylineText":{"runs":[{"text":"AJ Lelievre","navigationEndpoint":{"clickTrackingParams":"CBwQojAYByITCNjDzanLkecCFcMpsgodKnQLszIGc2VhcmNo","commandMetadata":{"webCommandMetadata":{"url":"/channel/UCNtE3kchpzZNnC2ZIGSBR9A","rootVe":3611}},"browseEndpoint":{"browseId":"UCNtE3kchpzZNnC2ZIGSBR9A"}}}]},"videoCountText":{"runs":[{"text":"10"},{"text":" videos"}]},"navigationEndpoint":{"clickTrackingParams":"CBwQojAYByITCNjDzanLkecCFcMpsgodKnQLszIGc2VhcmNo","commandMetadata":{"webCommandMetadata":{"url":"/playlist?list=PLYhKAl2FoGzDGzOEJRZOCoaXbmnlbvwgX","rootVe":5754}},"browseEndpoint":{"browseId":"VLPLYhKAl2FoGzDGzOEJRZOCoaXbmnlbvwgX"}},"videoCountShortText":{"runs":[{"text":"10"}]},"trackingParams":"CBwQojAYByITCNjDzanLkecCFcMpsgodKnQLsw==","sidebarThumbnails":[{"thumbnails":[{"url":"https://i.ytimg.com/vi/JRvwel19RRc/default.jpg","width":43,"height":20}]},{"thumbnails":[{"url":"https://i.ytimg.com/vi/OJhFewh_5pU/default.jpg","width":43,"height":20}]}],"thumbnailText":{"runs":[{"text":"10","bold":true},{"text":" videos"}]},"thumbnailRenderer":{"playlistVideoThumbnailRenderer":{"thumbnail":{"thumbnails":[{"url":"https://i.ytimg.com/vi/m-9p5D1hBC8/default.jpg","width":120,"height":90},{"url":"https://i.ytimg.com/vi/m-9p5D1hBC8/mqdefault.jpg","width":320,"height":180},{"url":"https://i.ytimg.com/vi/m-9p5D1hBC8/hqdefault.jpg","width":480,"height":360}]}}},"longBylineText":{"runs":[{"text":"AJ Lelievre","navigationEndpoint":{"clickTrackingParams":"CBwQojAYByITCNjDzanLkecCFcMpsgodKnQLszIGc2VhcmNo","commandMetadata":{"webCommandMetadata":{"url":"/channel/UCNtE3kchpzZNnC2ZIGSBR9A","rootVe":3611}},"browseEndpoint":{"browseId":"UCNtE3kchpzZNnC2ZIGSBR9A"}}}]}}},{"compactPlaylistRenderer":{"playlistId":"PLnxomcA4_BVFUCs5I5krzCm9a19mtgHus","thumbnail":{"thumbnails":[{"url":"https://i.ytimg.com/vi/-yKs5BJd5Ig/default.jpg","width":120,"height":90},{"url":"https://i.ytimg.com/vi/-yKs5BJd5Ig/mqdefault.jpg","width":320,"height":180},{"url":"https://i.ytimg.com/vi/-yKs5BJd5Ig/hqdefault.jpg","width":480,"height":360}]},"title":{"runs":[{"text":"Best Superman Themes"}]},"shortBylineText":{"runs":[{"text":"Raudimus","navigationEndpoint":{"clickTrackingParams":"CBsQojAYCCITCNjDzanLkecCFcMpsgodKnQLszIGc2VhcmNo","commandMetadata":{"webCommandMetadata":{"url":"/user/TheBlackGalesHowl","rootVe":3611}},"browseEndpoint":{"browseId":"UChzgMffTCYp3_wKp0rLa88w","canonicalBaseUrl":"/user/TheBlackGalesHowl"}}}]},"videoCountText":{"runs":[{"text":"10"},{"text":" videos"}]},"navigationEndpoint":{"clickTrackingParams":"CBsQojAYCCITCNjDzanLkecCFcMpsgodKnQLszIGc2VhcmNo","commandMetadata":{"webCommandMetadata":{"url":"/playlist?list=PLnxomcA4_BVFUCs5I5krzCm9a19mtgHus","rootVe":5754}},"browseEndpoint":{"browseId":"VLPLnxomcA4_BVFUCs5I5krzCm9a19mtgHus"}},"videoCountShortText":{"runs":[{"text":"10"}]},"trackingParams":"CBsQojAYCCITCNjDzanLkecCFcMpsgodKnQLsw==","sidebarThumbnails":[{"thumbnails":[{"url":"https://i.ytimg.com/vi/qD0RofPgoo8/default.jpg","width":43,"height":20}]},{"thumbnails":[{"url":"https://i.ytimg.com/vi/DuaOoJcqTBw/default.jpg","width":43,"height":20}]}],"thumbnailText":{"runs":[{"text":"10","bold":true},{"text":" videos"}]},"thumbnailRenderer":{"playlistVideoThumbnailRenderer":{"thumbnail":{"thumbnails":[{"url":"https://i.ytimg.com/vi/-yKs5BJd5Ig/default.jpg","width":120,"height":90},{"url":"https://i.ytimg.com/vi/-yKs5BJd5Ig/mqdefault.jpg","width":320,"height":180},{"url":"https://i.ytimg.com/vi/-yKs5BJd5Ig/hqdefault.jpg","width":480,"height":360}]}}},"longBylineText":{"runs":[{"text":"Raudimus","navigationEndpoint":{"clickTrackingParams":"CBsQojAYCCITCNjDzanLkecCFcMpsgodKnQLszIGc2VhcmNo","commandMetadata":{"webCommandMetadata":{"url":"/user/TheBlackGalesHowl","rootVe":3611}},"browseEndpoint":{"browseId":"UChzgMffTCYp3_wKp0rLa88w","canonicalBaseUrl":"/user/TheBlackGalesHowl"}}}]}}},{"compactPlaylistRenderer":{"playlistId":"PLut-O4t1l08LkArApKa7hwaW3lutJgILT","thumbnail":{"thumbnails":[{"url":"https://i.ytimg.com/vi/S6cPejPrCSk/default.jpg","width":120,"height":90},{"url":"https://i.ytimg.com/vi/S6cPejPrCSk/mqdefault.jpg","width":320,"height":180},{"url":"https://i.ytimg.com/vi/S6cPejPrCSk/hqdefault.jpg","width":480,"height":360}]},"title":{"runs":[{"text":"SUPERMAN THEMES"}]},"shortBylineText":{"runs":[{"text":"Peter Tennant","navigationEndpoint":{"clickTrackingParams":"CBoQojAYCSITCNjDzanLkecCFcMpsgodKnQLszIGc2VhcmNo","commandMetadata":{"webCommandMetadata":{"url":"/channel/UCP5N7tFtgK7ZLYQGTVHFTyw","rootVe":3611}},"browseEndpoint":{"browseId":"UCP5N7tFtgK7ZLYQGTVHFTyw"}}}]},"videoCountText":{"runs":[{"text":"126"},{"text":" videos"}]},"navigationEndpoint":{"clickTrackingParams":"CBoQojAYCSITCNjDzanLkecCFcMpsgodKnQLszIGc2VhcmNo","commandMetadata":{"webCommandMetadata":{"url":"/playlist?list=PLut-O4t1l08LkArApKa7hwaW3lutJgILT","rootVe":5754}},"browseEndpoint":{"browseId":"VLPLut-O4t1l08LkArApKa7hwaW3lutJgILT"}},"videoCountShortText":{"runs":[{"text":"126"}]},"trackingParams":"CBoQojAYCSITCNjDzanLkecCFcMpsgodKnQLsw==","sidebarThumbnails":[{"thumbnails":[{"url":"https://i.ytimg.com/vi/1yjbiAY3lXA/default.jpg","width":43,"height":20}]},{"thumbnails":[{"url":"https://i.ytimg.com/vi/KDqxkySwneM/default.jpg","width":43,"height":20}]}],"thumbnailText":{"runs":[{"text":"126","bold":true},{"text":" videos"}]},"thumbnailRenderer":{"playlistVideoThumbnailRenderer":{"thumbnail":{"thumbnails":[{"url":"https://i.ytimg.com/vi/S6cPejPrCSk/default.jpg","width":120,"height":90},{"url":"https://i.ytimg.com/vi/S6cPejPrCSk/mqdefault.jpg","width":320,"height":180},{"url":"https://i.ytimg.com/vi/S6cPejPrCSk/hqdefault.jpg","width":480,"height":360}]}}},"longBylineText":{"runs":[{"text":"Peter Tennant","navigationEndpoint":{"clickTrackingParams":"CBoQojAYCSITCNjDzanLkecCFcMpsgodKnQLszIGc2VhcmNo","commandMetadata":{"webCommandMetadata":{"url":"/channel/UCP5N7tFtgK7ZLYQGTVHFTyw","rootVe":3611}},"browseEndpoint":{"browseId":"UCP5N7tFtgK7ZLYQGTVHFTyw"}}}]}}},{"compactPlaylistRenderer":{"playlistId":"PLJgXNffRyfG7Sy1Ej8WT0uJQd2t1VorFM","thumbnail":{"thumbnails":[{"url":"https://i.ytimg.com/vi/v5jo9VoU2_k/default.jpg","width":120,"height":90},{"url":"https://i.ytimg.com/vi/v5jo9VoU2_k/mqdefault.jpg","width":320,"height":180},{"url":"https://i.ytimg.com/vi/v5jo9VoU2_k/hqdefault.jpg","width":480,"height":360}]},"title":{"runs":[{"text":"Superman theme"}]},"shortBylineText":{"runs":[{"text":"carla du priest","navigationEndpoint":{"clickTrackingParams":"CBkQojAYCiITCNjDzanLkecCFcMpsgodKnQLszIGc2VhcmNo","commandMetadata":{"webCommandMetadata":{"url":"/user/carlita2275","rootVe":3611}},"browseEndpoint":{"browseId":"UC2sPmmUiERU0NiyZXYkdLEw","canonicalBaseUrl":"/user/carlita2275"}}}]},"videoCountText":{"runs":[{"text":"72"},{"text":" videos"}]},"navigationEndpoint":{"clickTrackingParams":"CBkQojAYCiITCNjDzanLkecCFcMpsgodKnQLszIGc2VhcmNo","commandMetadata":{"webCommandMetadata":{"url":"/playlist?list=PLJgXNffRyfG7Sy1Ej8WT0uJQd2t1VorFM","rootVe":5754}},"browseEndpoint":{"browseId":"VLPLJgXNffRyfG7Sy1Ej8WT0uJQd2t1VorFM"}},"videoCountShortText":{"runs":[{"text":"72"}]},"trackingParams":"CBkQojAYCiITCNjDzanLkecCFcMpsgodKnQLsw==","sidebarThumbnails":[{"thumbnails":[{"url":"https://i.ytimg.com/vi/KiF_M7mVIKE/default.jpg","width":43,"height":20}]},{"thumbnails":[{"url":"https://i.ytimg.com/vi/e9vrfEoc8_g/default.jpg","width":43,"height":20}]}],"thumbnailText":{"runs":[{"text":"72","bold":true},{"text":" videos"}]},"thumbnailRenderer":{"playlistVideoThumbnailRenderer":{"thumbnail":{"thumbnails":[{"url":"https://i.ytimg.com/vi/v5jo9VoU2_k/default.jpg","width":120,"height":90},{"url":"https://i.ytimg.com/vi/v5jo9VoU2_k/mqdefault.jpg","width":320,"height":180},{"url":"https://i.ytimg.com/vi/v5jo9VoU2_k/hqdefault.jpg","width":480,"height":360}]}}},"longBylineText":{"runs":[{"text":"carla du priest","navigationEndpoint":{"clickTrackingParams":"CBkQojAYCiITCNjDzanLkecCFcMpsgodKnQLszIGc2VhcmNo","commandMetadata":{"webCommandMetadata":{"url":"/user/carlita2275","rootVe":3611}},"browseEndpoint":{"browseId":"UC2sPmmUiERU0NiyZXYkdLEw","canonicalBaseUrl":"/user/carlita2275"}}}]}}},{"compactVideoRenderer":{"videoId":"elaygTYyauk","thumbnail":{"thumbnails":[{"url":"https://i.ytimg.com/vi_webp/elaygTYyauk/default.webp","width":120,"height":90},{"url":"https://i.ytimg.com/vi_webp/elaygTYyauk/mqdefault.webp","width":320,"height":180},{"url":"https://i.ytimg.com/vi_webp/elaygTYyauk/hqdefault.webp","width":480,"height":360},{"url":"https://i.ytimg.com/vi_webp/elaygTYyauk/sddefault.webp","width":640,"height":480},{"url":"https://i.ytimg.com/vi/elaygTYyauk/hq720.jpg?sqp=-oaymwEZCK4FEIIDSEbyq4qpAwsIARUAAIhCGAFwAQ==\u0026rs=AOn4CLCEUcwtc-QuYbuxCHAPpVyurCeZPw","width":686,"height":386}]},"title":{"runs":[{"text":"Superman Suite (Themes) | from The Sound of Cinema"}],"accessibility":{"accessibilityData":{"label":"Superman Suite (Themes) | from The Sound of Cinema by Jorah the Andal 1 year ago 8 minutes, 15 seconds 10,226 views"}}},"longBylineText":{"runs":[{"text":"Jorah the Andal","navigationEndpoint":{"clickTrackingParams":"CBgQpDAYCyITCNjDzanLkecCFcMpsgodKnQLsw==","commandMetadata":{"webCommandMetadata":{"url":"/channel/UCedMZfhIlfCyI4O8BprShYw","rootVe":3611}},"browseEndpoint":{"browseId":"UCedMZfhIlfCyI4O8BprShYw"}}}]},"publishedTimeText":{"runs":[{"text":"1 year ago"}]},"viewCountText":{"runs":[{"text":"10,226 views"}]},"lengthText":{"runs":[{"text":"8:15"}],"accessibility":{"accessibilityData":{"label":"8 minutes, 15 seconds"}}},"navigationEndpoint":{"clickTrackingParams":"CBgQpDAYCyITCNjDzanLkecCFcMpsgodKnQLszIGc2VhcmNoUhNzdXBlcm1hbiB0aGVtZSBsaXN0","commandMetadata":{"webCommandMetadata":{"url":"/watch?v=elaygTYyauk","rootVe":3832}},"watchEndpoint":{"videoId":"elaygTYyauk"}},"shortBylineText":{"runs":[{"text":"Jorah the Andal","navigationEndpoint":{"clickTrackingParams":"CBgQpDAYCyITCNjDzanLkecCFcMpsgodKnQLsw==","commandMetadata":{"webCommandMetadata":{"url":"/channel/UCedMZfhIlfCyI4O8BprShYw","rootVe":3611}},"browseEndpoint":{"browseId":"UCedMZfhIlfCyI4O8BprShYw"}}}]},"channelThumbnail":{"thumbnails":[{"url":"https://yt3.ggpht.com/a-/AAuE7mB489vnjyODFLyaqLw0yVJ3_S_BFXopPLXfBw=s68-c-k-c0x00ffffff-no-rj-mo","width":68,"height":68}]},"trackingParams":"CBgQpDAYCyITCNjDzanLkecCFcMpsgodKnQLs0Dp1cmxk9Csq3o=","shortViewCountText":{"runs":[{"text":"10K views"}]},"menu":{"menuRenderer":{"items":[{"menuNavigationItemRenderer":{"text":{"runs":[{"text":"Save to Watch later"}]},"navigationEndpoint":{"clickTrackingParams":"CBgQpDAYCyITCNjDzanLkecCFcMpsgodKnQLsw==","commandMetadata":{"webCommandMetadata":{"url":"https://accounts.google.com/ServiceLogin?service=youtube\u0026uilel=3\u0026passive=true\u0026continue=https%3A%2F%2Fwww.youtube.com%2Fsignin%3Faction_handle_signin%3Dtrue%26app%3Dm%26hl%3Den%26next%3D%252Fresults%253Fhl%253Den%2526gl%253DUS%2526search_query%253Dsuperman%252Btheme%252Blist%2526page%253D1\u0026hl=en","rootVe":83769}},"signInEndpoint":{"hack":true}},"trackingParams":"CBgQpDAYCyITCNjDzanLkecCFcMpsgodKnQLsw=="}}],"trackingParams":"CBgQpDAYCyITCNjDzanLkecCFcMpsgodKnQLsw==","accessibility":{"accessibilityData":{"label":"Action menu"}}}},"thumbnailOverlays":[{"thumbnailOverlayTimeStatusRenderer":{"text":{"runs":[{"text":"8:15"}],"accessibility":{"accessibilityData":{"label":"8 minutes, 15 seconds"}}},"style":"DEFAULT"}}],"accessibility":{"accessibilityData":{"label":"Superman Suite (Themes) | from The Sound of Cinema - 8 minutes, 15 seconds - Go to channel - Jorah the Andal - 10K views - 1 year ago - play video"}}}},{"compactVideoRenderer":{"videoId":"ACeO5Yf1r9w","thumbnail":{"thumbnails":[{"url":"https://i.ytimg.com/vi_webp/ACeO5Yf1r9w/default.webp","width":120,"height":90},{"url":"https://i.ytimg.com/vi_webp/ACeO5Yf1r9w/mqdefault.webp","width":320,"height":180},{"url":"https://i.ytimg.com/vi_webp/ACeO5Yf1r9w/hqdefault.webp","width":480,"height":360},{"url":"https://i.ytimg.com/vi_webp/ACeO5Yf1r9w/sddefault.webp","width":640,"height":480},{"url":"https://i.ytimg.com/vi/ACeO5Yf1r9w/hq720.jpg?sqp=-oaymwEZCK4FEIIDSEbyq4qpAwsIARUAAIhCGAFwAQ==\u0026rs=AOn4CLA_fozYfrrHQWw2Ev3l_hfbGlbzZQ","width":686,"height":386}]},"title":{"runs":[{"text":"Supergirl CW Soundtrack - Superman Theme Extended"}],"accessibility":{"accessibilityData":{"label":"Supergirl CW Soundtrack - Superman Theme Extended by Flash Music 2 years ago 6 minutes, 45 seconds 111,151 views"}}},"longBylineText":{"runs":[{"text":"Flash Music","navigationEndpoint":{"clickTrackingParams":"CBcQpDAYDCITCNjDzanLkecCFcMpsgodKnQLsw==","commandMetadata":{"webCommandMetadata":{"url":"/channel/UCQuG69m9Mb_5Y8mGSRpLy9Q","rootVe":3611}},"browseEndpoint":{"browseId":"UCQuG69m9Mb_5Y8mGSRpLy9Q"}}}]},"publishedTimeText":{"runs":[{"text":"2 years ago"}]},"viewCountText":{"runs":[{"text":"111,151 views"}]},"lengthText":{"runs":[{"text":"6:45"}],"accessibility":{"accessibilityData":{"label":"6 minutes, 45 seconds"}}},"navigationEndpoint":{"clickTrackingParams":"CBcQpDAYDCITCNjDzanLkecCFcMpsgodKnQLszIGc2VhcmNoUhNzdXBlcm1hbiB0aGVtZSBsaXN0","commandMetadata":{"webCommandMetadata":{"url":"/watch?v=ACeO5Yf1r9w","rootVe":3832}},"watchEndpoint":{"videoId":"ACeO5Yf1r9w"}},"shortBylineText":{"runs":[{"text":"Flash Music","navigationEndpoint":{"clickTrackingParams":"CBcQpDAYDCITCNjDzanLkecCFcMpsgodKnQLsw==","commandMetadata":{"webCommandMetadata":{"url":"/channel/UCQuG69m9Mb_5Y8mGSRpLy9Q","rootVe":3611}},"browseEndpoint":{"browseId":"UCQuG69m9Mb_5Y8mGSRpLy9Q"}}}]},"channelThumbnail":{"thumbnails":[{"url":"https://yt3.ggpht.com/a-/AAuE7mBv8MQpWcMuFBWJV-P8JxNI4dFfuenoZanwMA=s68-c-k-c0x00ffffff-no-rj-mo","width":68,"height":68}]},"trackingParams":"CBcQpDAYDCITCNjDzanLkecCFcMpsgodKnQLs0Dc39a_2NzjEw==","shortViewCountText":{"runs":[{"text":"111K views"}]},"menu":{"menuRenderer":{"items":[{"menuNavigationItemRenderer":{"text":{"runs":[{"text":"Save to Watch later"}]},"navigationEndpoint":{"clickTrackingParams":"CBcQpDAYDCITCNjDzanLkecCFcMpsgodKnQLsw==","commandMetadata":{"webCommandMetadata":{"url":"https://accounts.google.com/ServiceLogin?service=youtube\u0026uilel=3\u0026passive=true\u0026continue=https%3A%2F%2Fwww.youtube.com%2Fsignin%3Faction_handle_signin%3Dtrue%26app%3Dm%26hl%3Den%26next%3D%252Fresults%253Fhl%253Den%2526gl%253DUS%2526search_query%253Dsuperman%252Btheme%252Blist%2526page%253D1\u0026hl=en","rootVe":83769}},"signInEndpoint":{"hack":true}},"trackingParams":"CBcQpDAYDCITCNjDzanLkecCFcMpsgodKnQLsw=="}}],"trackingParams":"CBcQpDAYDCITCNjDzanLkecCFcMpsgodKnQLsw==","accessibility":{"accessibilityData":{"label":"Action menu"}}}},"thumbnailOverlays":[{"thumbnailOverlayTimeStatusRenderer":{"text":{"runs":[{"text":"6:45"}],"accessibility":{"accessibilityData":{"label":"6 minutes, 45 seconds"}}},"style":"DEFAULT"}}],"accessibility":{"accessibilityData":{"label":"Supergirl CW Soundtrack - Superman Theme Extended - 6 minutes, 45 seconds - Go to channel - Flash Music - 111K views - 2 years ago - play video"}}}},{"compactPlaylistRenderer":{"playlistId":"PL99Up5XRP36xyDVMFqDgqrsbQV0hmxzMk","thumbnail":{"thumbnails":[{"url":"https://i.ytimg.com/vi/olg5vR4PlyM/default.jpg","width":120,"height":90},{"url":"https://i.ytimg.com/vi/olg5vR4PlyM/mqdefault.jpg","width":320,"height":180},{"url":"https://i.ytimg.com/vi/olg5vR4PlyM/hqdefault.jpg","width":480,"height":360}]},"title":{"runs":[{"text":"Superman themes"}]},"shortBylineText":{"runs":[{"text":"Fred Flintstone","navigationEndpoint":{"clickTrackingParams":"CBYQojAYDSITCNjDzanLkecCFcMpsgodKnQLszIGc2VhcmNo","commandMetadata":{"webCommandMetadata":{"url":"/user/twinmountainrock","rootVe":3611}},"browseEndpoint":{"browseId":"UCanYk5fnT_Q1UvVDYTtrhmg","canonicalBaseUrl":"/user/twinmountainrock"}}}]},"videoCountText":{"runs":[{"text":"10"},{"text":" videos"}]},"navigationEndpoint":{"clickTrackingParams":"CBYQojAYDSITCNjDzanLkecCFcMpsgodKnQLszIGc2VhcmNo","commandMetadata":{"webCommandMetadata":{"url":"/playlist?list=PL99Up5XRP36xyDVMFqDgqrsbQV0hmxzMk","rootVe":5754}},"browseEndpoint":{"browseId":"VLPL99Up5XRP36xyDVMFqDgqrsbQV0hmxzMk"}},"videoCountShortText":{"runs":[{"text":"10"}]},"trackingParams":"CBYQojAYDSITCNjDzanLkecCFcMpsgodKnQLsw==","sidebarThumbnails":[{"thumbnails":[{"url":"https://i.ytimg.com/vi/dtT_97px8sQ/default.jpg","width":43,"height":20}]},{"thumbnails":[{"url":"https://i.ytimg.com/vi/w4OdIOGBW2Q/default.jpg","width":43,"height":20}]}],"thumbnailText":{"runs":[{"text":"10","bold":true},{"text":" videos"}]},"thumbnailRenderer":{"playlistVideoThumbnailRenderer":{"thumbnail":{"thumbnails":[{"url":"https://i.ytimg.com/vi/olg5vR4PlyM/default.jpg","width":120,"height":90},{"url":"https://i.ytimg.com/vi/olg5vR4PlyM/mqdefault.jpg","width":320,"height":180},{"url":"https://i.ytimg.com/vi/olg5vR4PlyM/hqdefault.jpg","width":480,"height":360}]}}},"longBylineText":{"runs":[{"text":"Fred Flintstone","navigationEndpoint":{"clickTrackingParams":"CBYQojAYDSITCNjDzanLkecCFcMpsgodKnQLszIGc2VhcmNo","commandMetadata":{"webCommandMetadata":{"url":"/user/twinmountainrock","rootVe":3611}},"browseEndpoint":{"browseId":"UCanYk5fnT_Q1UvVDYTtrhmg","canonicalBaseUrl":"/user/twinmountainrock"}}}]}}},{"compactPlaylistRenderer":{"playlistId":"PLuvZu_2C83XKx8XQBu7MT5iKwKB20Go_h","thumbnail":{"thumbnails":[{"url":"https://i.ytimg.com/vi/yCmII_GqPXs/default.jpg","width":120,"height":90},{"url":"https://i.ytimg.com/vi/yCmII_GqPXs/mqdefault.jpg","width":320,"height":180},{"url":"https://i.ytimg.com/vi/yCmII_GqPXs/hqdefault.jpg","width":480,"height":360}]},"title":{"runs":[{"text":"Superman theme"}]},"shortBylineText":{"runs":[{"text":"filmserienmusic mix","navigationEndpoint":{"clickTrackingParams":"CBUQojAYDiITCNjDzanLkecCFcMpsgodKnQLszIGc2VhcmNo","commandMetadata":{"webCommandMetadata":{"url":"/channel/UCsZcNSAmZIaEuCsHE4coOvg","rootVe":3611}},"browseEndpoint":{"browseId":"UCsZcNSAmZIaEuCsHE4coOvg"}}}]},"videoCountText":{"runs":[{"text":"6"},{"text":" videos"}]},"navigationEndpoint":{"clickTrackingParams":"CBUQojAYDiITCNjDzanLkecCFcMpsgodKnQLszIGc2VhcmNo","commandMetadata":{"webCommandMetadata":{"url":"/playlist?list=PLuvZu_2C83XKx8XQBu7MT5iKwKB20Go_h","rootVe":5754}},"browseEndpoint":{"browseId":"VLPLuvZu_2C83XKx8XQBu7MT5iKwKB20Go_h"}},"videoCountShortText":{"runs":[{"text":"6"}]},"trackingParams":"CBUQojAYDiITCNjDzanLkecCFcMpsgodKnQLsw==","sidebarThumbnails":[{"thumbnails":[{"url":"https://i.ytimg.com/vi/_r3J8YYJQb0/default.jpg","width":43,"height":20}]},{"thumbnails":[{"url":"https://i.ytimg.com/vi/AOAEvftwdAE/default.jpg","width":43,"height":20}]}],"thumbnailText":{"runs":[{"text":"6","bold":true},{"text":" videos"}]},"thumbnailRenderer":{"playlistVideoThumbnailRenderer":{"thumbnail":{"thumbnails":[{"url":"https://i.ytimg.com/vi/yCmII_GqPXs/default.jpg","width":120,"height":90},{"url":"https://i.ytimg.com/vi/yCmII_GqPXs/mqdefault.jpg","width":320,"height":180},{"url":"https://i.ytimg.com/vi/yCmII_GqPXs/hqdefault.jpg","width":480,"height":360}]}}},"longBylineText":{"runs":[{"text":"filmserienmusic mix","navigationEndpoint":{"clickTrackingParams":"CBUQojAYDiITCNjDzanLkecCFcMpsgodKnQLszIGc2VhcmNo","commandMetadata":{"webCommandMetadata":{"url":"/channel/UCsZcNSAmZIaEuCsHE4coOvg","rootVe":3611}},"browseEndpoint":{"browseId":"UCsZcNSAmZIaEuCsHE4coOvg"}}}]}}},{"compactPlaylistRenderer":{"playlistId":"PLssq-Q7y-8rl4LsCv3eOdOHzSXW544Ma6","thumbnail":{"thumbnails":[{"url":"https://i.ytimg.com/vi/519IOFJEneQ/default.jpg","width":120,"height":90},{"url":"https://i.ytimg.com/vi/519IOFJEneQ/mqdefault.jpg","width":320,"height":180},{"url":"https://i.ytimg.com/vi/519IOFJEneQ/hqdefault.jpg","width":480,"height":360}]},"title":{"runs":[{"text":"Superman theme mashup"}]},"shortBylineText":{"runs":[{"text":"JudahtheLion01","navigationEndpoint":{"clickTrackingParams":"CBQQojAYDyITCNjDzanLkecCFcMpsgodKnQLszIGc2VhcmNo","commandMetadata":{"webCommandMetadata":{"url":"/channel/UCgYya-68x26LaTOEZ-lxEmQ","rootVe":3611}},"browseEndpoint":{"browseId":"UCgYya-68x26LaTOEZ-lxEmQ"}}}]},"videoCountText":{"runs":[{"text":"14"},{"text":" videos"}]},"navigationEndpoint":{"clickTrackingParams":"CBQQojAYDyITCNjDzanLkecCFcMpsgodKnQLszIGc2VhcmNo","commandMetadata":{"webCommandMetadata":{"url":"/playlist?list=PLssq-Q7y-8rl4LsCv3eOdOHzSXW544Ma6","rootVe":5754}},"browseEndpoint":{"browseId":"VLPLssq-Q7y-8rl4LsCv3eOdOHzSXW544Ma6"}},"videoCountShortText":{"runs":[{"text":"14"}]},"trackingParams":"CBQQojAYDyITCNjDzanLkecCFcMpsgodKnQLsw==","sidebarThumbnails":[{"thumbnails":[{"url":"https://i.ytimg.com/vi/dtT_97px8sQ/default.jpg","width":43,"height":20}]}],"thumbnailText":{"runs":[{"text":"14","bold":true},{"text":" videos"}]},"thumbnailRenderer":{"playlistVideoThumbnailRenderer":{"thumbnail":{"thumbnails":[{"url":"https://i.ytimg.com/vi/519IOFJEneQ/default.jpg","width":120,"height":90},{"url":"https://i.ytimg.com/vi/519IOFJEneQ/mqdefault.jpg","width":320,"height":180},{"url":"https://i.ytimg.com/vi/519IOFJEneQ/hqdefault.jpg","width":480,"height":360}]}}},"longBylineText":{"runs":[{"text":"JudahtheLion01","navigationEndpoint":{"clickTrackingParams":"CBQQojAYDyITCNjDzanLkecCFcMpsgodKnQLszIGc2VhcmNo","commandMetadata":{"webCommandMetadata":{"url":"/channel/UCgYya-68x26LaTOEZ-lxEmQ","rootVe":3611}},"browseEndpoint":{"browseId":"UCgYya-68x26LaTOEZ-lxEmQ"}}}]}}},{"compactPlaylistRenderer":{"playlistId":"PLgKpIWJIvvu6jKDBpN52_hzWSOxJz_Daf","thumbnail":{"thumbnails":[{"url":"https://i.ytimg.com/vi/EBatxZ90wag/default.jpg","width":120,"height":90},{"url":"https://i.ytimg.com/vi/EBatxZ90wag/mqdefault.jpg","width":320,"height":180},{"url":"https://i.ytimg.com/vi/EBatxZ90wag/hqdefault.jpg","width":480,"height":360}]},"title":{"runs":[{"text":"Superman Theme song by John Williams orchestra"}]},"shortBylineText":{"runs":[{"text":"Adrian Tan","navigationEndpoint":{"clickTrackingParams":"CBMQojAYECITCNjDzanLkecCFcMpsgodKnQLszIGc2VhcmNo","commandMetadata":{"webCommandMetadata":{"url":"/user/chaidrian","rootVe":3611}},"browseEndpoint":{"browseId":"UCd6TG8KywmCu_G4rCGKJRAQ","canonicalBaseUrl":"/user/chaidrian"}}}]},"videoCountText":{"runs":[{"text":"8"},{"text":" videos"}]},"navigationEndpoint":{"clickTrackingParams":"CBMQojAYECITCNjDzanLkecCFcMpsgodKnQLszIGc2VhcmNo","commandMetadata":{"webCommandMetadata":{"url":"/playlist?list=PLgKpIWJIvvu6jKDBpN52_hzWSOxJz_Daf","rootVe":5754}},"browseEndpoint":{"browseId":"VLPLgKpIWJIvvu6jKDBpN52_hzWSOxJz_Daf"}},"videoCountShortText":{"runs":[{"text":"8"}]},"trackingParams":"CBMQojAYECITCNjDzanLkecCFcMpsgodKnQLsw==","sidebarThumbnails":[{"thumbnails":[{"url":"https://i.ytimg.com/vi/IL-pu2vhb88/default.jpg","width":43,"height":20}]},{"thumbnails":[{"url":"https://i.ytimg.com/vi/dydhnAi0A3E/default.jpg","width":43,"height":20}]}],"thumbnailText":{"runs":[{"text":"8","bold":true},{"text":" videos"}]},"thumbnailRenderer":{"playlistVideoThumbnailRenderer":{"thumbnail":{"thumbnails":[{"url":"https://i.ytimg.com/vi/EBatxZ90wag/default.jpg","width":120,"height":90},{"url":"https://i.ytimg.com/vi/EBatxZ90wag/mqdefault.jpg","width":320,"height":180},{"url":"https://i.ytimg.com/vi/EBatxZ90wag/hqdefault.jpg","width":480,"height":360}]}}},"longBylineText":{"runs":[{"text":"Adrian Tan","navigationEndpoint":{"clickTrackingParams":"CBMQojAYECITCNjDzanLkecCFcMpsgodKnQLszIGc2VhcmNo","commandMetadata":{"webCommandMetadata":{"url":"/user/chaidrian","rootVe":3611}},"browseEndpoint":{"browseId":"UCd6TG8KywmCu_G4rCGKJRAQ","canonicalBaseUrl":"/user/chaidrian"}}}]}}},{"compactVideoRenderer":{"videoId":"hyGuS5WiPk8","thumbnail":{"thumbnails":[{"url":"https://i.ytimg.com/vi_webp/hyGuS5WiPk8/default.webp","width":120,"height":90},{"url":"https://i.ytimg.com/vi_webp/hyGuS5WiPk8/mqdefault.webp","width":320,"height":180},{"url":"https://i.ytimg.com/vi_webp/hyGuS5WiPk8/hqdefault.webp","width":480,"height":360}]},"title":{"runs":[{"text":"Ken Thorne - Superman ll (Original Soundtrack) 1980"}],"accessibility":{"accessibilityData":{"label":"Ken Thorne - Superman ll (Original Soundtrack) 1980 by kenthornesuperman2 9 years ago 10 minutes 538,240 views"}}},"longBylineText":{"runs":[{"text":"kenthornesuperman2","navigationEndpoint":{"clickTrackingParams":"CBIQpDAYESITCNjDzanLkecCFcMpsgodKnQLsw==","commandMetadata":{"webCommandMetadata":{"url":"/user/kenthornesuperman2","rootVe":3611}},"browseEndpoint":{"browseId":"UCCPm5c6pn-1Tq2Y8fXrGCNQ","canonicalBaseUrl":"/user/kenthornesuperman2"}}}]},"publishedTimeText":{"runs":[{"text":"9 years ago"}]},"viewCountText":{"runs":[{"text":"538,240 views"}]},"lengthText":{"runs":[{"text":"10:46"}],"accessibility":{"accessibilityData":{"label":"10 minutes"}}},"navigationEndpoint":{"clickTrackingParams":"CBIQpDAYESITCNjDzanLkecCFcMpsgodKnQLszIGc2VhcmNoUhNzdXBlcm1hbiB0aGVtZSBsaXN0","commandMetadata":{"webCommandMetadata":{"url":"/watch?v=hyGuS5WiPk8","rootVe":3832}},"watchEndpoint":{"videoId":"hyGuS5WiPk8"}},"shortBylineText":{"runs":[{"text":"kenthornesuperman2","navigationEndpoint":{"clickTrackingParams":"CBIQpDAYESITCNjDzanLkecCFcMpsgodKnQLsw==","commandMetadata":{"webCommandMetadata":{"url":"/user/kenthornesuperman2","rootVe":3611}},"browseEndpoint":{"browseId":"UCCPm5c6pn-1Tq2Y8fXrGCNQ","canonicalBaseUrl":"/user/kenthornesuperman2"}}}]},"channelThumbnail":{"thumbnails":[{"url":"https://yt3.ggpht.com/a-/AAuE7mCPWgP4cDCEy_eqjyGbBIkpAXlOOHvA2_Bhrw=s68-c-k-c0x00ffffff-no-rj-mo","width":68,"height":68}]},"trackingParams":"CBIQpDAYESITCNjDzanLkecCFcMpsgodKnQLs0DP_IitucnrkIcB","shortViewCountText":{"runs":[{"text":"538K views"}]},"menu":{"menuRenderer":{"items":[{"menuNavigationItemRenderer":{"text":{"runs":[{"text":"Save to Watch later"}]},"navigationEndpoint":{"clickTrackingParams":"CBIQpDAYESITCNjDzanLkecCFcMpsgodKnQLsw==","commandMetadata":{"webCommandMetadata":{"url":"https://accounts.google.com/ServiceLogin?service=youtube\u0026uilel=3\u0026passive=true\u0026continue=https%3A%2F%2Fwww.youtube.com%2Fsignin%3Faction_handle_signin%3Dtrue%26app%3Dm%26hl%3Den%26next%3D%252Fresults%253Fhl%253Den%2526gl%253DUS%2526search_query%253Dsuperman%252Btheme%252Blist%2526page%253D1\u0026hl=en","rootVe":83769}},"signInEndpoint":{"hack":true}},"trackingParams":"CBIQpDAYESITCNjDzanLkecCFcMpsgodKnQLsw=="}}],"trackingParams":"CBIQpDAYESITCNjDzanLkecCFcMpsgodKnQLsw==","accessibility":{"accessibilityData":{"label":"Action menu"}}}},"thumbnailOverlays":[{"thumbnailOverlayTimeStatusRenderer":{"text":{"runs":[{"text":"10:46"}],"accessibility":{"accessibilityData":{"label":"10 minutes"}}},"style":"DEFAULT"}}],"accessibility":{"accessibilityData":{"label":"Ken Thorne - Superman ll (Original Soundtrack) 1980 - 10 minutes - Go to channel - kenthornesuperman2 - 538K views - 9 years ago - play video"}}}},{"compactVideoRenderer":{"videoId":"ugENK30_h2A","thumbnail":{"thumbnails":[{"url":"https://i.ytimg.com/vi_webp/ugENK30_h2A/default.webp","width":120,"height":90},{"url":"https://i.ytimg.com/vi_webp/ugENK30_h2A/mqdefault.webp","width":320,"height":180},{"url":"https://i.ytimg.com/vi_webp/ugENK30_h2A/hqdefault.webp","width":480,"height":360},{"url":"https://i.ytimg.com/vi_webp/ugENK30_h2A/sddefault.webp","width":640,"height":480}]},"title":{"runs":[{"text":"Superman Suite (Theme) Second Edit | Supergirl"}],"accessibility":{"accessibilityData":{"label":"Superman Suite (Theme) Second Edit | Supergirl by Jorah the Andal 1 year ago 3 minutes, 56 seconds 13,212 views"}}},"longBylineText":{"runs":[{"text":"Jorah the Andal","navigationEndpoint":{"clickTrackingParams":"CBEQpDAYEiITCNjDzanLkecCFcMpsgodKnQLsw==","commandMetadata":{"webCommandMetadata":{"url":"/channel/UCedMZfhIlfCyI4O8BprShYw","rootVe":3611}},"browseEndpoint":{"browseId":"UCedMZfhIlfCyI4O8BprShYw"}}}]},"publishedTimeText":{"runs":[{"text":"1 year ago"}]},"viewCountText":{"runs":[{"text":"13,212 views"}]},"lengthText":{"runs":[{"text":"3:56"}],"accessibility":{"accessibilityData":{"label":"3 minutes, 56 seconds"}}},"navigationEndpoint":{"clickTrackingParams":"CBEQpDAYEiITCNjDzanLkecCFcMpsgodKnQLszIGc2VhcmNoUhNzdXBlcm1hbiB0aGVtZSBsaXN0","commandMetadata":{"webCommandMetadata":{"url":"/watch?v=ugENK30_h2A","rootVe":3832}},"watchEndpoint":{"videoId":"ugENK30_h2A"}},"shortBylineText":{"runs":[{"text":"Jorah the Andal","navigationEndpoint":{"clickTrackingParams":"CBEQpDAYEiITCNjDzanLkecCFcMpsgodKnQLsw==","commandMetadata":{"webCommandMetadata":{"url":"/channel/UCedMZfhIlfCyI4O8BprShYw","rootVe":3611}},"browseEndpoint":{"browseId":"UCedMZfhIlfCyI4O8BprShYw"}}}]},"channelThumbnail":{"thumbnails":[{"url":"https://yt3.ggpht.com/a-/AAuE7mB489vnjyODFLyaqLw0yVJ3_S_BFXopPLXfBw=s68-c-k-c0x00ffffff-no-rj-mo","width":68,"height":68}]},"trackingParams":"CBEQpDAYEiITCNjDzanLkecCFcMpsgodKnQLs0Dgjv7pt6XDgLoB","shortViewCountText":{"runs":[{"text":"13K views"}]},"menu":{"menuRenderer":{"items":[{"menuNavigationItemRenderer":{"text":{"runs":[{"text":"Save to Watch later"}]},"navigationEndpoint":{"clickTrackingParams":"CBEQpDAYEiITCNjDzanLkecCFcMpsgodKnQLsw==","commandMetadata":{"webCommandMetadata":{"url":"https://accounts.google.com/ServiceLogin?service=youtube\u0026uilel=3\u0026passive=true\u0026continue=https%3A%2F%2Fwww.youtube.com%2Fsignin%3Faction_handle_signin%3Dtrue%26app%3Dm%26hl%3Den%26next%3D%252Fresults%253Fhl%253Den%2526gl%253DUS%2526search_query%253Dsuperman%252Btheme%252Blist%2526page%253D1\u0026hl=en","rootVe":83769}},"signInEndpoint":{"hack":true}},"trackingParams":"CBEQpDAYEiITCNjDzanLkecCFcMpsgodKnQLsw=="}}],"trackingParams":"CBEQpDAYEiITCNjDzanLkecCFcMpsgodKnQLsw==","accessibility":{"accessibilityData":{"label":"Action menu"}}}},"thumbnailOverlays":[{"thumbnailOverlayTimeStatusRenderer":{"text":{"runs":[{"text":"3:56"}],"accessibility":{"accessibilityData":{"label":"3 minutes, 56 seconds"}}},"style":"DEFAULT"}}],"accessibility":{"accessibilityData":{"label":"Superman Suite (Theme) Second Edit | Supergirl - 3 minutes, 56 seconds - Go to channel - Jorah the Andal - 13K views - 1 year ago - play video"}}}},{"compactVideoRenderer":{"videoId":"-h5qX8kL7q8","thumbnail":{"thumbnails":[{"url":"https://i.ytimg.com/vi/-h5qX8kL7q8/default.jpg","width":120,"height":90},{"url":"https://i.ytimg.com/vi/-h5qX8kL7q8/mqdefault.jpg","width":320,"height":180},{"url":"https://i.ytimg.com/vi/-h5qX8kL7q8/hqdefault.jpg","width":480,"height":360},{"url":"https://i.ytimg.com/vi/-h5qX8kL7q8/sddefault.jpg","width":640,"height":480},{"url":"https://i.ytimg.com/vi/-h5qX8kL7q8/hq720.jpg?sqp=-oaymwEZCK4FEIIDSEbyq4qpAwsIARUAAIhCGAFwAQ==\u0026rs=AOn4CLAXhOXcl9ouWIsI-Fv6VTx1bnu_-w","width":686,"height":386}]},"title":{"runs":[{"text":"John Williams ~ Superman (The Best Theme For 'The Man Of Steel')"}],"accessibility":{"accessibilityData":{"label":"John Williams ~ Superman (The Best Theme For 'The Man Of Steel') by TheNewFormat 9 years ago 4 minutes, 24 seconds 2,074,884 views"}}},"longBylineText":{"runs":[{"text":"TheNewFormat","navigationEndpoint":{"clickTrackingParams":"CBAQpDAYEyITCNjDzanLkecCFcMpsgodKnQLsw==","commandMetadata":{"webCommandMetadata":{"url":"/user/TheNewFormat","rootVe":3611}},"browseEndpoint":{"browseId":"UCOTi-kqWFDlHE6ReY_i7rPw","canonicalBaseUrl":"/user/TheNewFormat"}}}]},"publishedTimeText":{"runs":[{"text":"9 years ago"}]},"viewCountText":{"runs":[{"text":"2,074,884 views"}]},"lengthText":{"runs":[{"text":"4:24"}],"accessibility":{"accessibilityData":{"label":"4 minutes, 24 seconds"}}},"navigationEndpoint":{"clickTrackingParams":"CBAQpDAYEyITCNjDzanLkecCFcMpsgodKnQLszIGc2VhcmNoUhNzdXBlcm1hbiB0aGVtZSBsaXN0","commandMetadata":{"webCommandMetadata":{"url":"/watch?v=-h5qX8kL7q8","rootVe":3832}},"watchEndpoint":{"videoId":"-h5qX8kL7q8"}},"shortBylineText":{"runs":[{"text":"TheNewFormat","navigationEndpoint":{"clickTrackingParams":"CBAQpDAYEyITCNjDzanLkecCFcMpsgodKnQLsw==","commandMetadata":{"webCommandMetadata":{"url":"/user/TheNewFormat","rootVe":3611}},"browseEndpoint":{"browseId":"UCOTi-kqWFDlHE6ReY_i7rPw","canonicalBaseUrl":"/user/TheNewFormat"}}}]},"channelThumbnail":{"thumbnails":[{"url":"https://yt3.ggpht.com/a-/AAuE7mBlWke1D2LZIZOY9kSiLqXid_FaVi05bmzveQ=s68-c-k-c0x00ffffff-no-rj-mo","width":68,"height":68}]},"trackingParams":"CBAQpDAYEyITCNjDzanLkecCFcMpsgodKnQLs0Cv3a_I_Muaj_oB","shortViewCountText":{"runs":[{"text":"2M views"}]},"menu":{"menuRenderer":{"items":[{"menuNavigationItemRenderer":{"text":{"runs":[{"text":"Save to Watch later"}]},"navigationEndpoint":{"clickTrackingParams":"CBAQpDAYEyITCNjDzanLkecCFcMpsgodKnQLsw==","commandMetadata":{"webCommandMetadata":{"url":"https://accounts.google.com/ServiceLogin?service=youtube\u0026uilel=3\u0026passive=true\u0026continue=https%3A%2F%2Fwww.youtube.com%2Fsignin%3Faction_handle_signin%3Dtrue%26app%3Dm%26hl%3Den%26next%3D%252Fresults%253Fhl%253Den%2526gl%253DUS%2526search_query%253Dsuperman%252Btheme%252Blist%2526page%253D1\u0026hl=en","rootVe":83769}},"signInEndpoint":{"hack":true}},"trackingParams":"CBAQpDAYEyITCNjDzanLkecCFcMpsgodKnQLsw=="}}],"trackingParams":"CBAQpDAYEyITCNjDzanLkecCFcMpsgodKnQLsw==","accessibility":{"accessibilityData":{"label":"Action menu"}}}},"thumbnailOverlays":[{"thumbnailOverlayTimeStatusRenderer":{"text":{"runs":[{"text":"4:24"}],"accessibility":{"accessibilityData":{"label":"4 minutes, 24 seconds"}}},"style":"DEFAULT"}}],"accessibility":{"accessibilityData":{"label":"John Williams ~ Superman (The Best Theme For 'The Man Of Steel') - 4 minutes, 24 seconds - Go to channel - TheNewFormat - 2M views - 9 years ago - play video"}}}}],"continuations":[{"nextContinuationData":{"continuation":"EoMHEhNzdXBlcm1hbiB0aGVtZSBsaXN0GvwFU0JTQ0FTSlFURmxvUzBGc01rWnZSM3BETUVsUmEyZG1WblJOT1RreGR6TkZPSEp2TVhsSGdnRVNVRXc0UkRVNU16VkZSamhCTjBFd1JqWXhnZ0VMWlRsMmNtWkZiMk00WDJlQ0FTSlFURUpMWVdSQ09UVnpSalEwZG1wT2VrNUJRbU5aYjBaZk4yRmxObXhCWjBwTmdnRUxOemhPTWxOUU5rcEdZVW1DQVNKUVRHWkpZekV5YWtzNFFsWnNhV2R0WlVsTWEwbDVOakZpU1ZGc1FWSlRXRmRvZ2dFaVVFeEdVRXhRVUZsVFNqaHhRbGRIVm05aGJpMTFXRGhzVFdwMlRXVkZaMjEzZDRJQklsQk1XV2hMUVd3eVJtOUhla1JIZWs5RlNsSmFUME52WVZoaWJXNXNZblozWjFpQ0FTSlFURzU0YjIxalFUUmZRbFpHVlVOek5VazFhM0o2UTIwNVlURTViWFJuU0hWemdnRWlVRXgxZEMxUE5IUXhiREE0VEd0QmNrRndTMkUzYUhkaFZ6TnNkWFJLWjBsTVZJSUJJbEJNU21kWVRtWm1VbmxtUnpkVGVURkZhamhYVkRCMVNsRmtNblF4Vm05eVJrMkNBUXRsYkdGNVoxUlplV0YxYTRJQkMwRkRaVTgxV1dZeGNqbDNnZ0VpVUV3NU9WVndOVmhTVURNMmVIbEVWazFHY1VSbmNYSnpZbEZXTUdodGVIcE5hNElCSWxCTWRYWmFkVjh5UXpneldFdDRPRmhSUW5VM1RWUTFhVXQzUzBJeU1FZHZYMmlDQVNKUVRITnpjUzFSTjNrdE9ISnNORXh6UTNZelpVOWtUMGg2VTFoWE5UUTBUV0UyZ2dFaVVFeG5TM0JKVjBwSmRuWjFObXBMUkVKd1RqVXlYMmg2VjFOUGVFcDZYMFJoWm9JQkMyaDVSM1ZUTlZkcFVHczRnZ0VMZFdkRlRrc3pNRjlvTWtHQ0FRc3RhRFZ4V0RoclREZHhPSmdCQVElM0QlM0TKAWwaFWh0dHBzOi8vbS55b3V0dWJlLmNvbSIAKlFodHRwczovL20ueW91dHViZS5jb20vcmVzdWx0cz9obD1lbiZnbD1VUyZzZWFyY2hfcXVlcnk9c3VwZXJtYW4rdGhlbWUrbGlzdCZwYWdlPTEYvN7oGA%3D%3D","clickTrackingParams":"CA8QybcCIhMI2MPNqcuR5wIVwymyCh0qdAuz","label":{"runs":[{"text":"Show more"}]},"autoloadEnabled":true}}],"trackingParams":"CA4Quy8YACITCNjDzanLkecCFcMpsgodKnQLsw=="}}],"continuations":[{"reloadContinuationData":{"continuation":"EoQBEhNzdXBlcm1hbiB0aGVtZSBsaXN0ygFsGhVodHRwczovL20ueW91dHViZS5jb20iACpRaHR0cHM6Ly9tLnlvdXR1YmUuY29tL3Jlc3VsdHM_aGw9ZW4mZ2w9VVMmc2VhcmNoX3F1ZXJ5PXN1cGVybWFuK3RoZW1lK2xpc3QmcGFnZT0xGIHg6Bg%3D","clickTrackingParams":"CA0QxqYCIhMI2MPNqcuR5wIVwymyCh0qdAuz"}}],"trackingParams":"CAEQui8iEwjYw82py5HnAhXDKbIKHSp0C7M=","subMenu":{"searchSubMenuRenderer":{"title":{"runs":[{"text":"Search options"}]},"groups":[{"searchFilterGroupRenderer":{"title":{"simpleText":"Type"},"filters":[{"searchFilterRenderer":{"label":{"simpleText":"All"},"status":"FILTER_STATUS_SELECTED","navigationEndpoint":{"clickTrackingParams":"CAwQk3UYACITCNjDzanLkecCFcMpsgodKnQLsw==","commandMetadata":{"webCommandMetadata":{"url":"/results?search_query=superman+theme+list","rootVe":4724}},"searchEndpoint":{"query":"superman theme list"}},"tooltip":"Remove All filter","trackingParams":"CAwQk3UYACITCNjDzanLkecCFcMpsgodKnQLsw=="}},{"searchFilterRenderer":{"label":{"simpleText":"Channel"},"navigationEndpoint":{"clickTrackingParams":"CAsQk3UYASITCNjDzanLkecCFcMpsgodKnQLsw==","commandMetadata":{"webCommandMetadata":{"url":"/results?search_query=superman+theme+list\u0026sp=EgIQAg%253D%253D","rootVe":4724}},"searchEndpoint":{"query":"superman theme list","params":"EgIQAg%3D%3D"}},"tooltip":"Search for Channel","trackingParams":"CAsQk3UYASITCNjDzanLkecCFcMpsgodKnQLsw=="}},{"searchFilterRenderer":{"label":{"simpleText":"Playlist"},"navigationEndpoint":{"clickTrackingParams":"CAoQk3UYAiITCNjDzanLkecCFcMpsgodKnQLsw==","commandMetadata":{"webCommandMetadata":{"url":"/results?search_query=superman+theme+list\u0026sp=EgIQAw%253D%253D","rootVe":4724}},"searchEndpoint":{"query":"superman theme list","params":"EgIQAw%3D%3D"}},"tooltip":"Search for Playlist","trackingParams":"CAoQk3UYAiITCNjDzanLkecCFcMpsgodKnQLsw=="}}],"trackingParams":"CAkQknUYACITCNjDzanLkecCFcMpsgodKnQLsw=="}},{"searchFilterGroupRenderer":{"title":{"simpleText":"Upload date"},"filters":[{"searchFilterRenderer":{"label":{"simpleText":"Anytime"},"status":"FILTER_STATUS_SELECTED","navigationEndpoint":{"clickTrackingParams":"CAgQk3UYACITCNjDzanLkecCFcMpsgodKnQLsw==","commandMetadata":{"webCommandMetadata":{"url":"/results?search_query=superman+theme+list","rootVe":4724}},"searchEndpoint":{"query":"superman theme list"}},"tooltip":"Remove Anytime filter","trackingParams":"CAgQk3UYACITCNjDzanLkecCFcMpsgodKnQLsw=="}},{"searchFilterRenderer":{"label":{"simpleText":"Today"},"navigationEndpoint":{"clickTrackingParams":"CAcQk3UYASITCNjDzanLkecCFcMpsgodKnQLsw==","commandMetadata":{"webCommandMetadata":{"url":"/results?search_query=superman+theme+list\u0026sp=EgIIAg%253D%253D","rootVe":4724}},"searchEndpoint":{"query":"superman theme list","params":"EgIIAg%3D%3D"}},"tooltip":"Search for Today","trackingParams":"CAcQk3UYASITCNjDzanLkecCFcMpsgodKnQLsw=="}},{"searchFilterRenderer":{"label":{"simpleText":"This week"},"navigationEndpoint":{"clickTrackingParams":"CAYQk3UYAiITCNjDzanLkecCFcMpsgodKnQLsw==","commandMetadata":{"webCommandMetadata":{"url":"/results?search_query=superman+theme+list\u0026sp=EgIIAw%253D%253D","rootVe":4724}},"searchEndpoint":{"query":"superman theme list","params":"EgIIAw%3D%3D"}},"tooltip":"Search for This week","trackingParams":"CAYQk3UYAiITCNjDzanLkecCFcMpsgodKnQLsw=="}},{"searchFilterRenderer":{"label":{"simpleText":"This month"},"navigationEndpoint":{"clickTrackingParams":"CAUQk3UYAyITCNjDzanLkecCFcMpsgodKnQLsw==","commandMetadata":{"webCommandMetadata":{"url":"/results?search_query=superman+theme+list\u0026sp=EgIIBA%253D%253D","rootVe":4724}},"searchEndpoint":{"query":"superman theme list","params":"EgIIBA%3D%3D"}},"tooltip":"Search for This month","trackingParams":"CAUQk3UYAyITCNjDzanLkecCFcMpsgodKnQLsw=="}},{"searchFilterRenderer":{"label":{"simpleText":"This year"},"navigationEndpoint":{"clickTrackingParams":"CAQQk3UYBCITCNjDzanLkecCFcMpsgodKnQLsw==","commandMetadata":{"webCommandMetadata":{"url":"/results?search_query=superman+theme+list\u0026sp=EgIIBQ%253D%253D","rootVe":4724}},"searchEndpoint":{"query":"superman theme list","params":"EgIIBQ%3D%3D"}},"tooltip":"Search for This year","trackingParams":"CAQQk3UYBCITCNjDzanLkecCFcMpsgodKnQLsw=="}}],"trackingParams":"CAMQknUYASITCNjDzanLkecCFcMpsgodKnQLsw=="}}],"trackingParams":"CAIQkXUiEwjYw82py5HnAhXDKbIKHSp0C7M="}}}},"trackingParams":"CAAQvGkiEwjYw82py5HnAhXDKbIKHSp0C7M=","adSafetyReason":{"isCrosswalk":true}}
+    </div>
+    <script>
+        if (!window.loadInitialResponse) {
+            const appContents = document.querySelector('.spinner');
+            if (appContents) {
+                appContents.style.display = 'none';
+            }
+            var msg = ytcfg.msgs['NOTIFICATION_ERROR_MESSAGE'];
+            if (!navigator.onLine) {
+                msg = ytcfg.msgs['OFFLINE_CHECK_CONNECTION'];
+            }
+            var err = document.createElement('div');
+            err.className = 'content-error';
+            err.appendChild(document.createTextNode(msg));
+            document.body.appendChild(err);
+        }
+        ytInitialPlayerConfig = null;
+        ytInitialPlayerResponse = null;
+        history.scrollRestoration = 'manual';
+        initialData = JSON.parse(document.getElementById('initial-data').firstChild.data);
+        loadInitialResponse(window.location.href, {
+            page: "search",
+            response: initialData,
+            player: ytInitialPlayerConfig,
+            playerResponse: ytInitialPlayerResponse
+        });
+        history.scrollRestoration = 'auto';
+    </script>
+    <div id="initial-guide-data">
+        <!-- {"responseContext":{"serviceTrackingParams":[{"service":"CSI","params":[{"key":"GetGuide_rid","value":"0xf597f2d7343b6978"},{"key":"c","value":"MWEB"},{"key":"cver","value":"2.20200116.05.00"},{"key":"yt_li","value":"0"}]},{"service":"GFEEDBACK","params":[{"key":"e","value":"23723207,23744176,23804281,23827263,23837040,23837993,23839597,23841119,23842630,23847143,23848795,23855886,23857949,23859802,23859863,23860721,23862834,23864294,23865479,23866807,23868056,23868589,23869122,23869330,23869498,23869913,23871541,23871541,9449243,9466593"},{"key":"logged_in","value":"0"}]},{"service":"ECATCHER","params":[{"key":"client.name","value":"MWEB"},{"key":"client.version","value":"2.20200116"},{"key":"innertube.build.changelist","value":"290089773"},{"key":"innertube.build.experiments.source_version","value":"290352961"},{"key":"innertube.build.label","value":"youtube.ytfe.innertube_20200116_5_RC0"},{"key":"innertube.build.timestamp","value":"1579198380"},{"key":"innertube.build.variants.checksum","value":"781368a49e2fe3e6fdf766601d0a3202"},{"key":"innertube.run.job","value":"ytfe-innertube-replica-only.ytfe"}]}],"maxAgeSeconds":3600,"webResponseContextExtensionData":{"ytConfigData":{"csn":"uE0lXt6vOMbryQXjtaWwBA","visitorData":"Cgs1ZC1IWWtjZXF5byi4m5XxBQ%3D%3D","rootVisualElementType":4724}}},"items":[{"pivotBarRenderer":{"items":[{"pivotBarItemRenderer":{"pivotIdentifier":"FEwhat_to_watch","navigationEndpoint":{"clickTrackingParams":"CAkQ2qgBGAAiEwjT2M2py5HnAhVTVLIKHQ7cC2E=","commandMetadata":{"webCommandMetadata":{"url":"/","rootVe":3854}},"browseEndpoint":{"browseId":"FEwhat_to_watch"}},"title":{"runs":[{"text":"Home"}]},"accessibility":{"accessibilityData":{"label":"Home"}},"icon":{"iconType":"TAB_HOME"},"trackingParams":"CAkQ2qgBGAAiEwjT2M2py5HnAhVTVLIKHQ7cC2E=","targetId":"pivot-w2w"}},{"pivotBarItemRenderer":{"pivotIdentifier":"FEtrending","navigationEndpoint":{"clickTrackingParams":"CAgQ2qgBGAEiEwjT2M2py5HnAhVTVLIKHQ7cC2E=","commandMetadata":{"webCommandMetadata":{"url":"/feed/trending","rootVe":6827}},"browseEndpoint":{"browseId":"FEtrending"}},"title":{"runs":[{"text":"Trending"}]},"accessibility":{"accessibilityData":{"label":"Trending"}},"icon":{"iconType":"TAB_TRENDING"},"trackingParams":"CAgQ2qgBGAEiEwjT2M2py5HnAhVTVLIKHQ7cC2E=","targetId":"pivot-trending"}},{"pivotBarItemRenderer":{"pivotIdentifier":"FElibrary","navigationEndpoint":{"clickTrackingParams":"CAcQ2qgBGAIiEwjT2M2py5HnAhVTVLIKHQ7cC2E=","commandMetadata":{"webCommandMetadata":{"url":"/feed/library","rootVe":6827}},"browseEndpoint":{"browseId":"FElibrary"}},"title":{"runs":[{"text":"Library"}]},"accessibility":{"accessibilityData":{"label":"Library"}},"icon":{"iconType":"VIDEO_LIBRARY_WHITE"},"trackingParams":"CAcQ2qgBGAIiEwjT2M2py5HnAhVTVLIKHQ7cC2E=","targetId":"pivot-library"}}],"trackingParams":"CAYQ2agBGAAiEwjT2M2py5HnAhVTVLIKHQ7cC2E="}},{"mobileTopbarRenderer":{"placeholderText":{"runs":[{"text":"Search"}]},"trackingParams":"CAEQwbIBGAEiEwjT2M2py5HnAhVTVLIKHQ7cC2E=","buttons":[{"topbarMenuButtonRenderer":{"icon":{"iconType":"ACCOUNT_CIRCLE"},"menuRenderer":{"multiPageMenuRenderer":{"sections":[{"multiPageMenuSectionRenderer":{"items":[{"compactLinkRenderer":{"icon":{"iconType":"SWITCH_ACCOUNTS"},"title":{"runs":[{"text":"Sign in"}]},"navigationEndpoint":{"clickTrackingParams":"CAUQp0wYACITCNPYzanLkecCFVNUsgodDtwLYQ==","commandMetadata":{"webCommandMetadata":{"url":"https://accounts.google.com/ServiceLogin?service=youtube\u0026uilel=3\u0026passive=true\u0026continue=https%3A%2F%2Fwww.youtube.com%2Fsignin%3Faction_handle_signin%3Dtrue%26app%3Dm%26hl%3Den%26next%3D%252Fresults%253Fhl%253Den%2526gl%253DUS%2526search_query%253Dsuperman%252Btheme%252Blist%2526page%253D1\u0026hl=en","rootVe":83769}},"signInEndpoint":{"hack":true}},"trackingParams":"CAUQp0wYACITCNPYzanLkecCFVNUsgodDtwLYQ=="}}],"trackingParams":"CAQQ968BGAAiEwjT2M2py5HnAhVTVLIKHQ7cC2E="}}],"trackingParams":"CAMQ_6sBIhMI09jNqcuR5wIVU1SyCh0O3Ath","footer":{"privacyTosFooterRenderer":{"privacyTitle":{"runs":[{"text":"Privacy Policy"}]},"tosTitle":{"runs":[{"text":"Terms of Service"}]},"privacyCommand":{"clickTrackingParams":"CAMQ_6sBIhMI09jNqcuR5wIVU1SyCh0O3Ath","commandMetadata":{"webCommandMetadata":{"url":"https://policies.google.com/privacy?hl=en","rootVe":83769}},"urlEndpoint":{"url":"https://policies.google.com/privacy?hl=en","target":"TARGET_NEW_WINDOW"}},"tosCommand":{"clickTrackingParams":"CAMQ_6sBIhMI09jNqcuR5wIVU1SyCh0O3Ath","commandMetadata":{"webCommandMetadata":{"url":"https://www.youtube.com/t/terms?chromeless=1\u0026gl=US","rootVe":83769}},"urlEndpoint":{"url":"https://www.youtube.com/t/terms?chromeless=1\u0026gl=US"}}}},"title":{"simpleMenuHeaderRenderer":{"title":{"runs":[{"text":"Account"}]}}}}},"trackingParams":"CAIQ_qsBGAAiEwjT2M2py5HnAhVTVLIKHQ7cC2E="}}]}}],"trackingParams":"CAAQumkiEwjT2M2py5HnAhVTVLIKHQ7cC2E="} -->
+    </div>
+    <script>
+        (function() {
+            var parsedGuideResponse;
+            var guideEl;
+            var guideResponse;
+            if (window.loadGuideResponse) {
+                guideEl = document.getElementById('initial-guide-data');
+                guideResponse = guideEl && guideEl.firstChild && guideEl.firstChild.data;
+                parsedGuideResponse = guideResponse ? JSON.parse(guideResponse) : null;
+                loadGuideResponse(parsedGuideResponse);
+            }
+        })();
+    </script>
+    <script>
+        if (window.ytcsi) {
+            window.ytcsi.info("st", 312, '');
+        }
+    </script>
+</body>
+
+</html>
