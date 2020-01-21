@@ -101,7 +101,6 @@ function search ( query, callback )
   work()
 
   function work () {
-    // findMobileVideos( _options, callback )
     findDesktopVideos( _options, callback )
   }
 }
@@ -116,6 +115,14 @@ function search ( query, callback )
  * video results in this function.
  * findDesktopVideos will be using an older strategy to get
  * more video results.
+ *
+ * DEPRECATED!
+ *
+ * The initial data of video resulsts provided for mobiles
+ * lack certain information such as video description snippets.
+ * I've decided not to parse mobile sites and instead attempt to
+ * GET desktop documents with more information to parse by
+ * settings desktop-like user-agents and using desktop url's.
  */
 function findMobileVideos ( _options, callback )
 {
