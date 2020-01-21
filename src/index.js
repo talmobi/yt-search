@@ -1212,9 +1212,13 @@ function msToTimestamp ( ms )
 {
   let t = ''
 
-  const h = ms / ( 1000 * 60 * 60 )
-  const m = ms / ( 1000 * 60 ) % 60
-  const s = ms / ( 1000 * 60 * 60 ) % 60
+  const MS_HOUR = 1000 * 60 * 60
+  const MS_MINUTE = 1000 * 60
+  const MS_SECOND = 1000
+
+  const h = Math.floor( ms / MS_HOUR )
+  const m = Math.floor( ms / MS_MINUTE ) % 60
+  const s = Math.floor( ms / MS_SECOND ) % 60
 
   if ( h ) t += h + ':'
   if ( m ) t += m + ':'
