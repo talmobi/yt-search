@@ -1154,6 +1154,12 @@ function getPlaylistMetaData ( opts, callback )
         return callback( 'http status: ' + res.status )
       }
 
+      if ( _debugging ) {
+        const fs = require( 'fs' )
+        const path = require( 'path' )
+        fs.writeFileSync( 'dasu.response', res.responseText, 'utf8' )
+      }
+
       try {
         parsePlaylistBody( body, callback )
       } catch ( err ) {
