@@ -195,9 +195,85 @@ function findMobileVideos ( _options, callback )
   } )
 }
 
-function findDesktopVideos ()
+function findDesktopVideos ( _options, callback )
 {
-  // TODO
+  // querystring variables
+  const q = _querystring.escape( _options.query ).split( /\s+/ )
+  const hl = _options.hl || 'en'
+  const gl = _options.gl || 'US'
+  const category = _options.category || '' // music
+
+  const pageStart = 1
+  const pageEnd = _options.pageEnd || 1
+
+  let queryString = '?'
+  queryString += 'search_query=' + q.join( '+' )
+
+  queryString += '&'
+  queryString += '&hl=' + hl
+
+  queryString += '&'
+  queryString += '&gl=' + gl
+
+  if ( category ) { // ex. "music"
+    queryString += '&'
+    queryString += '&category=' + category
+  }
+
+  const uri = TEMPLATES.SEARCH_DESKTOP + queryString
+
+  const params = _url.parse( uri )
+
+  // We need to provide a legitimate modern desktop user-agent
+  // to get a modern html results document we can parse
+  const userAgent = new UserAgent( {
+    deviceCategory: 'desktop'
+  } )
+
+  params.headers = {
+    'user-agent': _userAgent,
+    'accept': 'text/html'
+  }
+
+  _dasu.req( params, function ( err, res, body ) {
+    if ( err ) {
+      callback( err )
+    } else {
+      if ( res.status !== 200 ) {
+        console.log( res )
+        return callback( 'http status: ' + res.status )
+      }
+
+      // TODO
+      const fs = require( 'fs' )
+      const path = require( 'path' )
+      fs.writeFileSync( 'dasu.response', res.responseText, 'utf8' )
+
+      try {
+        parseInitialData( body, function ( err, results ) {
+          if ( err ) return callback( err )
+
+          const list = results
+
+          const videos = list.filter( videoFilter )
+          const playlists = list.filter( playlistFilter )
+          const accounts = list.filter( accountFilter )
+
+          callback( null, {
+            videos: videos.filter( videoFilterDuplicates ),
+
+            playlists: playlists,
+            lists: playlists,
+
+            accounts: accounts,
+            channels: accounts
+          } )
+        } )
+      } catch ( err ) {
+        callback( err )
+      }
+    }
+  } )
 }
 
 function search_desktop ( query, callback )
