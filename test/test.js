@@ -285,7 +285,7 @@ test( 'search results: playlist', function ( t ) {
   } )
 } )
 
-test.only( 'search results: channel', function ( t ) {
+test( 'search results: channel', function ( t ) {
   t.plan( 5 )
 
   yts( 'PewDiePie', function ( err, r ) {
