@@ -216,7 +216,15 @@ function getDesktopVideos ( _options, callback )
   const category = _options.category || '' // music
 
   const pageStart = 1
-  const pageEnd = _options.pageEnd || 1
+  const pageEnd = Number( _options.pageEnd ) || 1
+
+  if ( Number.isNaN( pageEnd ) ) {
+    callback( 'error: pageEnd must be a number' )
+  }
+
+  _options.pageStart = pageStart
+  _options.pageEnd = pageEnd
+  _options.currentPage = _options.currentPage || pageStart
 
   let queryString = '?'
   queryString += 'search_query=' + q.join( '+' )
