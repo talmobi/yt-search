@@ -300,7 +300,11 @@ function getDesktopVideos ( _options, callback )
             _options.currentPage <= _options.pageEnd
           )
 
-          if ( getMoreResults ) {
+          if ( getMoreResults && results._ctoken ) {
+            // remove existing ctoken
+            _options.query.split( /&ctoken=.*/ ).join( '' )
+            _options.query += '&ctoken=' + results._ctoken
+
             setTimeout( function () {
               debug( 'getting next results: ' + _options.currentPage )
               getDesktopVideos( _options, callback )
@@ -641,6 +645,9 @@ function parseInitialData ( responseText, callback )
       errors.push( err )
     }
   }
+
+  const ctoken = _jp.value( json, '$..continuation' )
+  results._ctoken = ctoken
 
   if ( errors.length ) {
     return callback( errors.pop(), results )
