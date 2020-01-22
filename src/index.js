@@ -242,6 +242,11 @@ function getDesktopVideos ( _options, callback )
     queryString += '&category=' + category
   }
 
+  if ( _options.ctoken ) { // ex. "music"
+    queryString += '&'
+    queryString += '&ctoken=' + _options.ctoken
+  }
+
   const uri = TEMPLATES.SEARCH_DESKTOP + queryString
 
   const params = _url.parse( uri )
@@ -303,14 +308,11 @@ function getDesktopVideos ( _options, callback )
           )
 
           if ( getMoreResults && results._ctoken ) {
-            // remove existing ctoken
-            _options.query.split( /&ctoken=.*/ ).join( '' )
-            _options.query += '&ctoken=' + results._ctoken
+            _options.ctoken = results._ctoken
 
             setTimeout( function () {
-              debug( 'getting next results: ' + _options.currentPage )
               getDesktopVideos( _options, callback )
-            }, 1000 ) // delay a bit to try and prevent throttling
+            }, 3000 ) // delay a bit to try and prevent throttling
           } else {
             const videos = _options._data.videos.filter( videoFilter )
             const playlists = _options._data.playlists.filter( playlistFilter )
