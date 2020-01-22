@@ -246,7 +246,9 @@ function getDesktopVideos ( _options, callback )
 
   params.headers = {
     'user-agent': _userAgent,
-    'accept': 'text/html'
+    'accept': 'text/html',
+    'accept-encoding': 'gzip',
+    'accept-language': 'en-US,en-GB'
   }
 
   _dasu.req( params, function ( err, res, body ) {
