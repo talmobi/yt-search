@@ -258,6 +258,7 @@ function getDesktopVideos ( _options, callback )
     'accept-language': 'en-US,en-GB'
   }
 
+  debug( 'getting results: ' + _options.currentPage )
   _dasu.req( params, function ( err, res, body ) {
     if ( err ) {
       callback( err )
