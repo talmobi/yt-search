@@ -81,8 +81,10 @@ function search ( query, callback )
 
   if ( _options.userAgent ) _userAgent = _options.userAgent
 
-  // support common alternatives
+  // support common alternatives ( mutates )
   _options.query = _options.query || _options.search
+
+  // initial search text ( _options.query is mutated )
   _options.search = _options.query
 
   // ignore query, only get metadata from specific video id
