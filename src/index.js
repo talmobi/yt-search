@@ -275,15 +275,52 @@ function getDesktopVideos ( _options, callback )
           const playlists = list.filter( playlistFilter )
           const channels = list.filter( channelFilter )
 
-          callback( null, {
-            videos: videos,
+          // keep saving results into temporary memory while
+          // we get more results
+          _options._data = _options._data || {}
 
-            playlists: playlists,
-            lists: playlists,
+          // init memory
+          _options._data.videos = _options._data.videos || []
+          _options._data.playlists = _options._data.playlists || []
+          _options._data.channels = _options._data.channels || []
 
-            accounts: channels,
-            channels: channels
+          // push received results into memory
+          videos.forEach( function ( item ) {
+            _options._data.videos.push( item )
           } )
+          playlists.forEach( function ( item ) {
+            _options._data.playlists.push( item )
+          } )
+          channels.forEach( function ( item ) {
+            _options._data.channels.push( item )
+          } )
+
+          _options.currentPage++
+          const getMoreResults = (
+            _options.currentPage <= _options.pageEnd
+          )
+
+          if ( getMoreResults ) {
+            setTimeout( function () {
+              debug( 'getting next results: ' + _options.currentPage )
+              getDesktopVideos( _options, callback )
+            }, 1000 ) // delay a bit to try and prevent throttling
+          } else {
+            const videos = _options._data.videos.filter( videoFilter )
+            const playlists = _options._data.playlists.filter( playlistFilter )
+            const channels = _options._data.channels.filter( channelFilter )
+
+            // return all found videos
+            callback( null, {
+              videos: videos,
+
+              playlists: playlists,
+              lists: playlists,
+
+              accounts: channels,
+              channels: channels
+            } )
+          }
         } )
       } catch ( err ) {
         callback( err )
