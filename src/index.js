@@ -334,7 +334,7 @@ function videoFilter ( video, index, videos )
 {
   if ( video.type !== 'video' ) return false
 
-  // filter duplciate videos
+  // filter duplicates
   const videoId = video.videoId
 
   const firstIndex = videos.findIndex( function ( el ) {
@@ -344,14 +344,32 @@ function videoFilter ( video, index, videos )
   return ( firstIndex === index )
 }
 
-function playlistFilter ( result )
+function playlistFilter ( result, index, results )
 {
-  return result.type === 'list'
+  if ( result.type !== 'list' ) return false
+
+  // filter duplicates
+  const id = result.listId
+
+  const firstIndex = results.findIndex( function ( el ) {
+    return ( id === el.listId )
+  } )
+
+  return ( firstIndex === index )
 }
 
 function channelFilter ( result )
 {
-  return result.type === 'channel'
+  if ( result.type !== 'channel' ) return false
+
+  // filter duplicates
+  const url = result.url
+
+  const firstIndex = results.findIndex( function ( el ) {
+    return ( url === el.url )
+  } )
+
+  return ( firstIndex === index )
 }
 
 /* For "modern" user-agents the html document returned from
