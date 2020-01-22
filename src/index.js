@@ -15,7 +15,9 @@ _dasu.follow = false
 // ) that are used to get additional results when the user
 // scrolls down to the end of the page -> we will also be using
 // those ctokens to get additional results.
-const _userAgent = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.117 Safari/'
+const DEFAULT_USER_AGENT = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.117 Safari/'
+
+let _userAgent = DEFAULT_USER_AGENT // mutable global user-agent
 
 const _url = require( 'url' )
 
@@ -76,6 +78,8 @@ function search ( query, callback )
   } else {
     _options = query
   }
+
+  if ( _options.userAgent ) _userAgent = _options.userAgent
 
   // support common alternatives
   _options.query = _options.query || _options.search
