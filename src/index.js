@@ -6,8 +6,8 @@ const _parallel = require( 'async.parallellimit' )
 _dasu.follow = false
 _dasu.debug = true
 
-// TODO crawl google bot friendly static results
-// Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html) (yt-search)
+// google bot user-agent
+// Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)
 
 // use fixed user-agent to get consistent html page documents as
 // it varies depending on the user-agent ( legacy static,
@@ -19,7 +19,7 @@ _dasu.debug = true
 // ) that are used to get additional results when the user
 // scrolls down to the end of the page -> we will also be using
 // those ctokens to get additional results.
-const DEFAULT_USER_AGENT = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.117 Safari/'
+const DEFAULT_USER_AGENT = 'Mozilla/5.0 (compatible; yt-search; +https://www.npmjs.com/package/yt-search)'
 
 let _userAgent = DEFAULT_USER_AGENT // mutable global user-agent
 
