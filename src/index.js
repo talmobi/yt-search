@@ -371,7 +371,7 @@ function playlistFilter ( result, index, results )
   return ( firstIndex === index )
 }
 
-function channelFilter ( result )
+function channelFilter ( result, index, results )
 {
   if ( result.type !== 'channel' ) return false
 
