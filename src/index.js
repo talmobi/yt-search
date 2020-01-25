@@ -4,6 +4,10 @@ const _parallel = require( 'async.parallellimit' )
 
 // auto follow off
 _dasu.follow = false
+_dasu.debug = true
+
+// TODO crawl google bot friendly static results
+// Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html) (yt-search)
 
 // use fixed user-agent to get consistent html page documents as
 // it varies depending on the user-agent ( legacy static,
