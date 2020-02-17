@@ -55,10 +55,13 @@ ytSearch(
 
       // console.log( r.selected.value )
 
-      var url = (
-        videos[ r.selected.index ].url
-      )
-      console.log( url )
+      const video = videos[ r.selected.index ]
+
+      if ( argv[ 'v' ] || argv[ '--id' ] ) {
+        console.log( video.videoId )
+      } else {
+        console.log( video.url )
+      }
 
       process.exit()
     } )
