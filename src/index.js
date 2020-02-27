@@ -110,8 +110,151 @@ function search ( query, callback )
   work()
 
   function work () {
-    getDesktopVideos( _options, callback )
+    getSearchResults( _options, callback )
   }
+}
+
+/* Request search page results with provided
+ * search_query term
+ */
+function getSearchResults ( _options, callback )
+{
+  // querystring variables
+  const q = _querystring.escape( _options.query ).split( /\s+/ )
+  const hl = _options.hl || 'en'
+  const gl = _options.gl || 'US'
+  const category = _options.category || '' // music
+
+  let pageStart = (
+    Number( _options.pageStart ) || 1
+  )
+
+  let pageEnd = (
+    Number( _options.pageEnd ) ||
+    Number( _options.pages ) || 1
+  )
+
+  // handle zero-index start
+  if ( pageStart <= 0 ) {
+    pageStart = 1
+    if ( pageEnd >= 1 ) {
+      pageEnd += 1
+    }
+  }
+
+  if ( Number.isNaN( pageEnd ) ) {
+    callback( 'error: pageEnd must be a number' )
+  }
+
+  _options.pageStart = pageStart
+  _options.pageEnd = pageEnd
+  _options.currentPage = _options.currentPage || pageStart
+
+  let queryString = '?'
+  queryString += 'search_query=' + q.join( '+' )
+
+  // language
+  queryString += '&'
+  queryString += '&hl=' + hl
+
+  // location
+  queryString += '&'
+  queryString += '&gl=' + gl
+
+  if ( category ) { // ex. "music"
+    queryString += '&'
+    queryString += '&category=' + category
+  }
+
+  const uri = TEMPLATES.SEARCH_DESKTOP + queryString
+
+  const params = _url.parse( uri )
+
+  params.headers = {
+    'user-agent': _userAgent,
+    'accept': 'text/html',
+    'accept-encoding': 'gzip',
+    'accept-language': 'en-US'
+  }
+
+  debug( 'getting results: ' + _options.currentPage )
+  _dasu.req( params, function ( err, res, body ) {
+    if ( err ) {
+      callback( err )
+    } else {
+      if ( res.status !== 200 ) {
+        return callback( 'http status: ' + res.status )
+      }
+
+      if ( _debugging ) {
+        const fs = require( 'fs' )
+        const path = require( 'path' )
+        fs.writeFileSync( 'dasu.response', res.responseText, 'utf8' )
+      }
+
+      try {
+        _parseSearchResults( body, function ( err, results ) {
+          if ( err ) return callback( err )
+
+          const list = results
+
+          const videos = list.filter( videoFilter )
+          const playlists = list.filter( playlistFilter )
+          const channels = list.filter( channelFilter )
+
+          // keep saving results into temporary memory while
+          // we get more results
+          _options._data = _options._data || {}
+
+          // init memory
+          _options._data.videos = _options._data.videos || []
+          _options._data.playlists = _options._data.playlists || []
+          _options._data.channels = _options._data.channels || []
+
+          // push received results into memory
+          videos.forEach( function ( item ) {
+            _options._data.videos.push( item )
+          } )
+          playlists.forEach( function ( item ) {
+            _options._data.playlists.push( item )
+          } )
+          channels.forEach( function ( item ) {
+            _options._data.channels.push( item )
+          } )
+
+          _options.currentPage++
+          const getMoreResults = (
+            _options.currentPage <= _options.pageEnd
+          )
+
+          if ( getMoreResults && results._ctoken ) {
+            _options.ctoken = results._ctoken
+
+            setTimeout( function () {
+              getDesktopVideos( _options, callback )
+            }, 3000 ) // delay a bit to try and prevent throttling
+          } else {
+            const videos = _options._data.videos.filter( videoFilter )
+            const playlists = _options._data.playlists.filter( playlistFilter )
+            const channels = _options._data.channels.filter( channelFilter )
+
+            // return all found videos
+            callback( null, {
+              videos: videos,
+
+              playlists: playlists,
+              lists: playlists,
+
+              accounts: channels,
+              channels: channels
+            } )
+          }
+        } )
+      } catch ( err ) {
+        callback( err )
+      }
+    }
+  } )
 }
 
 function videoFilter ( video, index, videos )
@@ -180,110 +323,6 @@ function _normalizeThumbnail ( thumbnails )
   return t.split( 'http://' ).join( 'https://' )
 }
 
-/* Old/missing user-agents are usually given a static
- * and legacy compatible page we can parse for information.
- *
- * DEPRECATED
- */
-function parseSearchBody ( responseText, callback )
-{
-  const $ = _cheerio.load( responseText )
-
-  const sections = $( '.yt-lockup' )
-
-  const errors = []
-  const results = []
-
-  for ( let i = 0; i < sections.length; i++ ) {
-    const section = sections[ i ]
-    const content = $( '.yt-lockup-content', section )
-    const title = $( '.yt-lockup-title', content )
-
-    const a = $( 'a', title )
-    const span = $( 'span', title )
-    const duration = parseDuration( span.text() )
-
-    const href = a.attr( 'href' ) || ''
-
-    const qs = _querystring.parse( href.split( '?', 2 )[ 1 ] )
-
-    // make sure the url is correct ( skip ad urls etc )
-    // ref: https://github.com/talmobi/yt-search/issues/3
-    if (
-      ( href.indexOf( '/watch?' ) !== 0 ) &&
-      ( href.indexOf( '/user/' ) !== 0 ) &&
-      ( href.indexOf( '/channel/' ) !== 0 )
-    ) continue
-
-    const videoId = qs.v
-    const listId = qs.list
-
-    let type = 'unknown' // possibly ads
-
-    /* Standard watch?v={videoId} url's without &list=
-     * query string variables
-     */
-    if ( videoId ) type = 'video'
-
-    /* Playlist results can look like watch?v={videoId} url's
-     * which mean they will just play that at the start when you
-     * open the link. We will consider these resulsts as
-     * primarily playlist results. ( Even though they're kind of
-     * a combination of video + list result )
-     */
-    if ( listId ) type = 'list'
-
-    /* Channel results will link to the user/channel page
-     * directly. There are two types of url's that both link to
-     * the same page.
-     * 1. user url: ex. /user/pewdiepie
-     * 2. channel url: ex. /channel/UC-lHJZR3Gqxm24_Vd_AJ5Yw
-     *
-     * Why does YouTube have these two forms? Something to do
-     * with google integration etc. channel urls is the newer
-     * update format as well as separating users from channels I
-     * guess ( 1 user can have multiple channels? )
-     */
-    if (
-      ( href.indexOf( '/channel/' ) >= 0 ) ||
-      ( href.indexOf( '/user/' ) >= 0 )
-    ) type = 'channel'
-
-    // TODO parse lists differently based on type
-    let result
-
-    try {
-      switch ( type ) {
-        case 'video': // video result
-          // ex: https://youtube.com/watch?v=e9vrfEoc8_g
-          result = _parseVideoResult( $, section )
-          break
-        case 'list': // playlist result
-          // ex: https://youtube.com/playlist?list=PL7k0JFoxwvTbKL8kjGI_CaV31QxCGf1vJ
-          result = _parseListResult( $, section )
-          break
-        case 'channel': // channel result
-          // ex: https://youtube.com/user/pewdiepie
-          result = _parseChannelResult( $, section )
-          break
-      }
-    } catch ( err ) {
-      errors.push( err )
-    }
-
-    if ( !result ) continue // skip undefined results
-
-    result.type = type
-    results.push( result )
-  }
-
-  if ( errors.length ) {
-    return callback( errors, results )
-  }
-
-  return callback( null, results )
-}
-
 /* Helper fn to parse sub count labels
  * and turn them into Numbers.
  *
@@ -313,12 +352,47 @@ function _parseSubCountLabel ( subCountLabel )
  *
  * @param {string} body - html response text
  */
-function _parseVideoResult ( $, section ) {
-  const content = $( '.yt-lockup-content', section )
+function _parseSearchResults ( body, callback ) {
+  const $ = _cheerio.load( body )
+
+  const tiles = $( 'li .yt-lockup-tile' )
+
+  const results = []
+  const errors = []
+
+  const pages = $( 'div.search-pager' )
+
+  for ( let i = 0; i < tiles.length; i++ ) {
+    const tile = $( tiles[ i ] )
+
+    try {
+      const result = _parseSearchResultTile( $, tile )
+
+      if ( result ) {
+        results.push( result )
+      }
+    } catch ( err ) {
+      errors.push( err )
+    }
+  }
+
+  const err = errors[ 0 ] || undefined
+
+  callback( err, results )
+}
+
+function _parseSearchResultTile ( body ) {
+  const $ = _cheerio.load( body )
+
+  const tile = $( 'li .yt-lockup-tile' )
+
+  const content = $( '.yt-lockup-content', tile )
   const title = $( '.yt-lockup-title', content )
 
+  const thumbnail = $( 'img', tile ).src
+
   const a = $( 'a', title )
-  const span = $( 'span', title )
+  const span = $( 'span', title ) // ex. " - Duration 4:13"
   const duration = parseDuration( span.text() )
 
   const href = a.attr( 'href' ) || ''
@@ -385,7 +459,7 @@ function _parseVideoResult ( $, section ) {
     // genre: undefined,
     // TODO genre not possible to get in bulk search results
 
-    thumbnail: thumbnailUrl,
+    thumbnail: thumbnailUrlHQ,
     image: thumbnailUrlHQ,
 
     // TODO uploadDate not possible to get in bulk search results
