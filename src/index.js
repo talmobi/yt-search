@@ -154,15 +154,18 @@ function getSearchResults ( _options, callback )
   queryString += 'search_query=' + q.join( '+' )
 
   // language
-  queryString += '&'
-  queryString += '&hl=' + hl
+  // queryString += '&'
+  if ( queryString.indexOf( '&hl=' ) === -1 ) {
+    queryString += '&hl=' + hl
+  }
 
   // location
-  queryString += '&'
-  queryString += '&gl=' + gl
+  // queryString += '&'
+  if ( queryString.indexOf( '&gl=' ) === -1 ) {
+    queryString += '&gl=' + gl
+  }
 
   if ( category ) { // ex. "music"
-    queryString += '&'
     queryString += '&category=' + category
   }
 
