@@ -307,7 +307,7 @@ function _parseSubCountLabel ( subCountLabel )
 }
 
 /**
- * Parse result section of html containing a video result.
+ * Parse result section of html ( Mozilla/5.0 compatible ) containing video results.
  *
  * @param {object} section - cheerio object
  *
