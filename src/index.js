@@ -470,17 +470,7 @@ function _parseSearchResultTile ( body ) {
       // simplified details due to YouTube's funky combination
       // of user/channel id's/name (caused by Google Plus Integration)
       name: userUrlText || channelUrlText,
-      id: userId || channelId,
-      url:  user.attr( 'href' ) || channel.attr( 'href' ),
-
-      // more specific details
-      userId: userId,
-      userName: userUrlText, // same as channelName
-      userUrl: user.attr( 'href' ) || '',
-
-      channelId: channelId,
-      channelUrl: channel.attr( 'href' ) || '',
-      channelName: channelUrlText
+      url:  user.attr( 'href' ) || channel.attr( 'href' )
     }
   }
 
