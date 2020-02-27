@@ -309,9 +309,7 @@ function _parseSubCountLabel ( subCountLabel )
 /**
  * Parse result section of html ( Mozilla/5.0 compatible ) containing video results.
  *
- * @param {object} section - cheerio object
- *
- * DEPRECATED
+ * @param {string} body - html response text
  */
 function _parseVideoResult ( $, section ) {
   const content = $( '.yt-lockup-content', section )
