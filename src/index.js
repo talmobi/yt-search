@@ -169,6 +169,10 @@ function getSearchResults ( _options, callback )
     queryString += '&category=' + category
   }
 
+  if ( _options.sp ) {
+    queryString += '&sp=' + _options.sp
+  }
+
   const uri = TEMPLATES.SEARCH_DESKTOP + queryString
 
   const params = _url.parse( uri )
@@ -230,12 +234,12 @@ function getSearchResults ( _options, callback )
             _options.currentPage <= _options.pageEnd
           )
 
-          if ( getMoreResults && results._ctoken ) {
-            _options.ctoken = results._ctoken
+          if ( getMoreResults && results._sp ) {
+            _options.sp = results._sp
 
             setTimeout( function () {
-              getDesktopVideos( _options, callback )
-            }, 3000 ) // delay a bit to try and prevent throttling
+              getSearchResults( _options, callback )
+            }, 1500 ) // delay a bit to try and prevent throttling
           } else {
             const videos = _options._data.videos.filter( videoFilter )
             const playlists = _options._data.playlists.filter( playlistFilter )
@@ -363,7 +367,8 @@ function _parseSearchResults ( body, callback ) {
   const results = []
   const errors = []
 
-  const pages = $( 'div.search-pager' )
+  const nextPage = $( 'div.search-pager > button ~' )[ 0 ]
+  results._sp = nextPage.attribs.href.split( '&sp=' )[ 1 ]
 
   for ( let i = 0; i < tiles.length; i++ ) {
     const tile = $( tiles[ i ] )
