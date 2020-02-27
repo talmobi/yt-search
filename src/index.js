@@ -82,6 +82,7 @@ function search ( query, callback )
     _options = query
   }
 
+  // override userAgent if set ( not recommended )
   if ( _options.userAgent ) _userAgent = _options.userAgent
 
   // support common alternatives ( mutates )
