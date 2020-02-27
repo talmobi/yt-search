@@ -17,11 +17,18 @@ let _userAgent = DEFAULT_USER_AGENT // mutable global user-agent
 
 const _url = require( 'url' )
 
-const _jp = require( 'jsonpath' )
+const _envs = {}
+Object.keys( process.env ).forEach(
+  function ( key ) {
+    const n = process.env[ key ]
+    if ( n == '0' || n == 'false' || !n ) {
+      return _envs[ key ] = false
+    }
+    _envs[ key ] = n
+  }
+)
 
-const _boolstring = require( 'boolstring' )
-
-const _debugging = ( _boolstring( process.env.debug || '' ) )
+const _debugging = _envs.debug
 
 function debug () {
   if ( !_debugging ) return
