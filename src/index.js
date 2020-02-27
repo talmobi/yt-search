@@ -11,7 +11,9 @@ _dasu.debug = true
 
 // use fixed user-agent to get consistent html page documents as
 // it varies depending on the user-agent
-const DEFAULT_USER_AGENT = 'Mozilla/5.0 (compatible; yt-search; +https://www.npmjs.com/package/yt-search)'
+// the string "Googlebot" seems to give us pages without
+// warnings to update our browser, which is why we keep it in
+const DEFAULT_USER_AGENT = 'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html) (yt-search; https://www.npmjs.com/package/yt-search)'
 
 let _userAgent = DEFAULT_USER_AGENT // mutable global user-agent
 
