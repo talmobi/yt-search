@@ -88,10 +88,10 @@ function search ( query, callback )
   if ( _options.userAgent ) _userAgent = _options.userAgent
 
   // support common alternatives ( mutates )
-  _options.query = _options.query || _options.search
+  _options.search = _options.query || _options.search
 
-  // initial search text ( _options.query is mutated )
-  _options.search = _options.query
+  // initial search text ( _options.search is mutated )
+  _options.original_search = _options.search
 
   // ignore query, only get metadata from specific video id
   if ( _options.videoId ) {
@@ -103,7 +103,7 @@ function search ( query, callback )
     return getPlaylistMetaData( _options.listId, callback )
   }
 
-  if ( !_options.query ) {
+  if ( !_options.search ) {
     return callback( Error( 'yt-search: no query given' ) )
   }
 
@@ -120,7 +120,7 @@ function search ( query, callback )
 function getSearchResults ( _options, callback )
 {
   // querystring variables
-  const q = _querystring.escape( _options.query ).split( /\s+/ )
+  const q = _querystring.escape( _options.search ).split( /\s+/ )
   const hl = _options.hl || 'en'
   const gl = _options.gl || 'US'
   const category = _options.category || '' // music
