@@ -10,15 +10,7 @@ _dasu.debug = true
 // Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)
 
 // use fixed user-agent to get consistent html page documents as
-// it varies depending on the user-agent ( legacy static,
-// mobile, modern desktop )
-// we are relying on getting a modern page that has json data
-// embedded into it that we will parse ( youtube uses this
-// embedded json itself to populate the page ).
-// These modern pages also include continuation tokens ( ctoken
-// ) that are used to get additional results when the user
-// scrolls down to the end of the page -> we will also be using
-// those ctokens to get additional results.
+// it varies depending on the user-agent
 const DEFAULT_USER_AGENT = 'Mozilla/5.0 (compatible; yt-search; +https://www.npmjs.com/package/yt-search)'
 
 let _userAgent = DEFAULT_USER_AGENT // mutable global user-agent
