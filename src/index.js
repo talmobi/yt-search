@@ -184,6 +184,8 @@ function getSearchResults ( _options, callback )
     'accept-language': 'en-US'
   }
 
+  debug( params )
+
   debug( 'getting results: ' + _options.currentPage )
   _dasu.req( params, function ( err, res, body ) {
     if ( err ) {
