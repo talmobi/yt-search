@@ -510,8 +510,6 @@ function _parseVideoResult ( $, tile ) {
  * Parse result section of html containing a playlist result.
  *
  * @param {object} section - cheerio object
- *
- * DEPRECATED
  */
 function _parseListResult ( $, section ) {
   const content = $( '.yt-lockup-content', section )
@@ -626,8 +624,6 @@ function _parseListResult ( $, section ) {
  * Parse result section of html containing a channel result.
  *
  * @param {object} section - cheerio object
- *
- * DEPRECATED
  */
 function _parseChannelResult ( $, section ) {
   const img = $( 'img', section )
