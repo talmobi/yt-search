@@ -430,7 +430,6 @@ function _parseVideoResult ( $, tile ) {
   const qs = _querystring.parse( href.split( '?', 2 )[ 1 ] )
 
   const videoId = qs.v
-  const listId = qs.list
 
   const description = $( '.yt-lockup-description', content ).text().trim()
 
