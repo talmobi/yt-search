@@ -367,8 +367,12 @@ function _parseSearchResults ( body, callback ) {
   const results = []
   const errors = []
 
-  const nextPage = $( 'div.search-pager > button ~' )[ 0 ]
-  results._sp = nextPage.attribs.href.split( '&sp=' )[ 1 ]
+  try {
+    const nextPage = $( 'div.search-pager > button ~' )[ 0 ]
+    results._sp = nextPage.attribs.href.split( '&sp=' )[ 1 ]
+  } catch ( ignore ) {
+    debug( 'next page results link not found' )
+  }
 
   for ( let i = 0; i < tiles.length; i++ ) {
     const tile = $( tiles[ i ] )
