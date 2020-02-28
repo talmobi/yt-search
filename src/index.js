@@ -396,6 +396,26 @@ function _parseSearchResults ( body, callback ) {
 }
 
 function _parseSearchResultTile ( $, tile  ) {
+  const a = $( 'a', tile )
+  const href = a.attr( 'href' ) || ''
+  const qs = _querystring.parse( href.split( '?', 2 )[ 1 ] )
+
+  if ( qs.list ) {
+    return _parseListResult( $, tile )
+  }
+
+  if ( href.indexOf( '/channel/' ) === 0 || href.indexOf( '/user/' ) === 0 ) {
+    return _parseChannelResult( $, tile )
+  }
+
+  if ( qs.v ) {
+  return _parseVideoResult( $, tile )
+  }
+
+  return undefined
+}
+
+function _parseVideoResult ( $, tile ) {
   const content = $( '.yt-lockup-content', tile )
   const title = $( '.yt-lockup-title', content )
 
