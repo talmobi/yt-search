@@ -393,11 +393,7 @@ function _parseSearchResults ( body, callback ) {
   callback( err, results )
 }
 
-function _parseSearchResultTile ( body ) {
-  const $ = _cheerio.load( body )
-
-  const tile = $( 'li .yt-lockup-tile' )
-
+function _parseSearchResultTile ( $, tile  ) {
   const content = $( '.yt-lockup-content', tile )
   const title = $( '.yt-lockup-title', content )
 
