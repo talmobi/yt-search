@@ -1183,31 +1183,41 @@ function parseHumanDuration ( timestampText )
 // run tests is script is run directly
 if ( require.main === module ) {
   // https://www.youtube.com/watch?v=e9vrfEoc8_g
-  test( 'superman theme list' )
+  test( 'superman theme list pewdiepie channel' )
 }
 
 function test ( query )
 {
-  console.log( 'doing list search' )
-  search( query, function ( error, r ) {
+  console.log( 'test: doing list search' )
+
+  const opts = {
+    query: query,
+    pageEnd: 1
+  }
+
+  search( opts, function ( error, r ) {
     if ( error ) throw error
 
     const videos = r.videos
     const playlists = r.playlists
-    const accounts = r.accounts
+    const channels = r.channels
 
     console.log( 'videos: ' + videos.length )
     console.log( 'playlists: ' + playlists.length )
-    console.log( 'accounts: ' + accounts.length )
+    console.log( 'channels: ' + channels.length )
 
-    for ( let i = 0; i < 3; i++ ) {
+    for ( let i = 0; i < videos.length; i++ ) {
       const song = videos[ i ]
       const time = ` (${ song.timestamp })`
       console.log( song.title + time )
     }
 
     playlists.forEach( function ( p ) {
-      // console.log( p )
+      console.log( `playlist: ${ p.title } | ${ p.listId }` )
+    } )
+
+    channels.forEach( function ( c ) {
+      console.log( `channel: ${ c.title } | ${ c.description }` )
     } )
   } )
 }
