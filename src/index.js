@@ -488,7 +488,6 @@ function _parseVideoResult ( $, tile ) {
     // genre: undefined,
     // TODO genre not possible to get in bulk search results
 
-    thumbnail: thumbnailUrlHQ,
     image: thumbnailUrlHQ,
 
     // TODO uploadDate not possible to get in bulk search results
@@ -598,7 +597,6 @@ function _parseListResult ( $, section ) {
     videoCountLabel: videoCountLabel,
     videoCount: videoCount,
 
-    thumbnail: thumbnailUrlHQ || thumbnailUrl,
     image: thumbnailUrlHQ,
 
     author: {
@@ -673,7 +671,7 @@ function _parseChannelResult ( $, section ) {
     videoCountLabel: videoCountLabel,
     videoCount: videoCount,
 
-    thumbnail: thumbnailUrl,
+    image: thumbnailUrl,
 
     name: userUrlText || channelUrlText,
     id: userId || channelId,
@@ -924,7 +922,7 @@ function parsePlaylistBody ( responseText, callback )
     // lastUpdate: lastUpdate,
     date: lastUpdate,
 
-    thumbnail: thumbnailUrl,
+    image: thumbnailUrl,
 
     // playlist items/videos
     items: list,
@@ -1116,7 +1114,6 @@ function parseVideoBody ( responseText, callback )
     uploadDate: uploadDate,
     ago: _humanTime( new Date( uploadDate ) ), // ex: 10 years ago
 
-    thumbnail: thumbnailUrlHQ || thumbnailUrl,
     image: thumbnailUrlHQ,
 
     author: {
