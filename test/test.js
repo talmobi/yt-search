@@ -290,8 +290,8 @@ test( 'search results: playlist', function ( t ) {
   } )
 } )
 
-test.only( 'search results: channel', function ( t ) {
-  t.plan( 5 )
+test( 'search results: channel', function ( t ) {
+  t.plan( 6 )
 
   yts( 'PewDiePie', function ( err, r ) {
     t.error( err, 'no errors OK!' )
@@ -304,7 +304,7 @@ test.only( 'search results: channel', function ( t ) {
 
     t.ok( topChannel.videoCount > 4000, 'video count' )
 
-    console.log( topChannel.thumbnail )
+    // console.log( topChannel.thumbnail )
     dasu.req( topChannel.thumbnail, function ( err, res, body ) {
       const fs = require( 'fs' )
       const path = require( 'path' )
@@ -322,7 +322,8 @@ test.only( 'search results: channel', function ( t ) {
         const t2 = path.join( __dirname, 'stage', 'pewdiepiew-thumbnail.png' )
         looksSame( t1, t2, { tolerance: 5 }, function ( err, r ) {
           if ( err ) console.log( err )
-          console.log( r )
+          t.error( err, 'no errors' )
+          // console.log( r )
           t.equal( r.equal, true, 'thumbnails looks the same' )
         } )
       }
