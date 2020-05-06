@@ -920,7 +920,9 @@ function parsePlaylistBody ( responseText, callback )
 
     videoCount: videoCount,
     views: Number( viewCount ),
-    lastUpdate: lastUpdate,
+
+    // lastUpdate: lastUpdate,
+    date: lastUpdate,
 
     thumbnail: thumbnailUrl,
 
