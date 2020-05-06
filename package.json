@@ -48,13 +48,10 @@
     "browserify": "~16.2.3",
     "cross-env": "~6.0.3",
     "faucet": "0.0.1",
-    "jimp": "~0.10.3",
-    "looks-same": "~7.2.2",
+    "looks-same-plus": "0.0.1",
     "mocha": "~5.2.0",
-    "pixelmatch": "~5.2.0",
     "spacestandard": "~0.2.0",
     "tape": "~4.9.0",
-    "tempfile": "~3.0.0",
     "uglify-js": "~3.4.9"
   }
 }

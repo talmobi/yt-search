@@ -1,9 +1,6 @@
 let yts = require( '../dist/yt-search.min.js' )
 
-const Jimp = require( 'jimp' )
-const looksSame = require( 'looks-same' )
-const dasu = require( 'dasu' )
-const tempfile = require( 'tempfile' )
+const looksSamePlus = require( 'looks-same-plus' )
 
 if ( !!process.env.debug ) {
   yts = require( '../src/index.js' )
@@ -304,30 +301,17 @@ test( 'search results: channel', function ( t ) {
 
     t.ok( topChannel.videoCount > 4000, 'video count' )
 
-    // console.log( topChannel.thumbnail )
-    dasu.req( topChannel.thumbnail, function ( err, res, body ) {
-      const fs = require( 'fs' )
-      const path = require( 'path' )
-
-      const i = tempfile()
-      fs.writeFileSync( i, body, { encoding: 'binary' } )
-
-      const t1 = tempfile( '.png' )
-      Jimp.read( i )
-      .then( function ( img ) {
-        img.write( t1, next )
-      } )
-
-      function next () {
-        const t2 = path.join( __dirname, 'stage', 'pewdiepiew-thumbnail.png' )
-        looksSame( t1, t2, { tolerance: 5 }, function ( err, r ) {
-          if ( err ) console.log( err )
-          t.error( err, 'no errors' )
-          // console.log( r )
-          t.equal( r.equal, true, 'thumbnails looks the same' )
-        } )
+    console.log( topChannel.thumbnail )
+    looksSamePlus(
+      topChannel.thumbnail,
+      require( 'path' ).join( __dirname, 'stage', 'pewdiepiew-thumbnail.png' ),
+      { tolerance: 5 },
+      function ( err, r ) {
+        t.error( err, 'no errors' )
+        console.log( r )
+        t.equal( r.equal, true, 'thumbnails looks the same' )
       }
-    } )
+    )
   } )
 } )
 
