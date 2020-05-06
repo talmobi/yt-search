@@ -489,6 +489,7 @@ function _parseVideoResult ( $, tile ) {
     // TODO genre not possible to get in bulk search results
 
     image: thumbnailUrlHQ,
+    thumbnail: thumbnailUrlHQ, // DEPRECATED
 
     // TODO uploadDate not possible to get in bulk search results
     // uploadDate: undefined,
@@ -598,6 +599,7 @@ function _parseListResult ( $, section ) {
     videoCount: videoCount,
 
     image: thumbnailUrlHQ,
+    thumbnail: thumbnailUrlHQ, // DEPRECATED
 
     author: {
       name: userUrlText || channelUrlText,
@@ -672,6 +674,7 @@ function _parseChannelResult ( $, section ) {
     videoCount: videoCount,
 
     image: thumbnailUrl,
+    thumbnail: thumbnailUrl, // DEPRECATED
 
     name: userUrlText || channelUrlText,
     id: userId || channelId,
@@ -923,6 +926,7 @@ function parsePlaylistBody ( responseText, callback )
     date: lastUpdate,
 
     image: thumbnailUrl,
+    thumbnail: thumbnailUrl, // DEPRECATED
 
     // playlist items/videos
     items: list,
@@ -1115,6 +1119,7 @@ function parseVideoBody ( responseText, callback )
     ago: _humanTime( new Date( uploadDate ) ), // ex: 10 years ago
 
     image: thumbnailUrlHQ,
+    thumbnail: thumbnailUrlHQ, // DEPRECATED
 
     author: {
       // simplified details due to YouTube's funky combination
