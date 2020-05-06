@@ -304,7 +304,7 @@ test( 'search results: channel', function ( t ) {
     console.log( topChannel.image )
     looksSamePlus(
       topChannel.image,
-      require( 'path' ).join( __dirname, 'stage', 'pewdiepiew-image.png' ),
+      require( 'path' ).join( __dirname, 'stage', 'pewdiepiew-thumbnail.png' ),
       { tolerance: 5 },
       function ( err, r ) {
         t.error( err, 'no errors' )
