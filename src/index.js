@@ -936,7 +936,7 @@ function parsePlaylistBody ( responseText, callback )
 
 /**
  * @params {object} - cheerio <a>...</a> tag
- * DEPRECATED
+ * TODO
  */
 function _parseAuthorAnchorTag ( a ) {
   debug( 'fn: _parseAuthorAnchorTag' )
