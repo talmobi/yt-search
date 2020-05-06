@@ -919,7 +919,7 @@ function parsePlaylistBody ( responseText, callback )
 
     url: 'https://youtube.com/playlist?list=' + listId,
 
-    videoCount: videoCount,
+    videoCount: videoCount, // DEPRECATED
     views: Number( viewCount ),
 
     // lastUpdate: lastUpdate,
