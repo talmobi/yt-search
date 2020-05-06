@@ -185,7 +185,7 @@ test( 'video metadata by id', function ( t ) {
     // t.equal( video.author.id, 'Redmario2569', 'author id' )
     t.equal( video.author.url, 'https://youtube.com/user/Redmario2569', 'author url' )
 
-    t.equal( video.thumbnail, 'https://i.ytimg.com/vi/e9vrfEoc8_g/hqdefault.jpg', 'thumbnail' )
+    t.equal( video.image, 'https://i.ytimg.com/vi/e9vrfEoc8_g/hqdefault.jpg', 'image' )
     // t.equal( video.image, 'https://i.ytimg.com/vi/e9vrfEoc8_g/hqdefault.jpg', 'image' )
   } )
 } )
@@ -221,7 +221,7 @@ test( 'video metadata by id _JzeIf1zT14', function ( t ) {
     // t.equal( video.author.id, 'UCF7YjO3SzVUGJYcXipRY0zQ', 'author id' )
     t.equal( video.author.url, 'https://youtube.com/channel/UCF7YjO3SzVUGJYcXipRY0zQ', 'author url' )
 
-    t.equal( video.thumbnail, 'https://i.ytimg.com/vi/_JzeIf1zT14/hqdefault.jpg', 'thumbnail' )
+    t.equal( video.image, 'https://i.ytimg.com/vi/_JzeIf1zT14/hqdefault.jpg', 'image' )
     // t.equal( video.image, 'https://i.ytimg.com/vi/_JzeIf1zT14/hqdefault.jpg', 'image' )
   } )
 } )
@@ -246,7 +246,7 @@ test( 'playlist metadata by id', function ( t ) {
     // t.equal( playlist.author.channelId, 'UCdwR7fIE2xyXlNRc7fb9tJg', 'author channelId' )
     t.equal( playlist.author.url, 'https://youtube.com/channel/UCdwR7fIE2xyXlNRc7fb9tJg', 'author url' )
 
-    t.equal( playlist.thumbnail, 'https://i.ytimg.com/vi/IQtKjU_pOuw/hqdefault.jpg', 'playlist thumbnail' )
+    t.equal( playlist.image, 'https://i.ytimg.com/vi/IQtKjU_pOuw/hqdefault.jpg', 'playlist image' )
   } )
 } )
 
@@ -282,7 +282,7 @@ test( 'search results: playlist', function ( t ) {
 
     t.equal( sts.url, 'https://youtube.com/playlist?list=PLYhKAl2FoGzC0IQkgfVtM991w3E8ro1yG', 'playlist url' )
     t.equal( sts.listId, 'PLYhKAl2FoGzC0IQkgfVtM991w3E8ro1yG', 'playlist id' )
-    t.equal( sts.thumbnail, 'https://i.ytimg.com/vi/yCCq_6ankAI/hqdefault.jpg', 'playlist thumbnail' )
+    t.equal( sts.image, 'https://i.ytimg.com/vi/yCCq_6ankAI/hqdefault.jpg', 'playlist image' )
     t.equal( sts.type, 'list', 'playlist type' )
   } )
 } )
@@ -301,15 +301,15 @@ test( 'search results: channel', function ( t ) {
 
     t.ok( topChannel.videoCount > 4000, 'video count' )
 
-    console.log( topChannel.thumbnail )
+    console.log( topChannel.image )
     looksSamePlus(
-      topChannel.thumbnail,
-      require( 'path' ).join( __dirname, 'stage', 'pewdiepiew-thumbnail.png' ),
+      topChannel.image,
+      require( 'path' ).join( __dirname, 'stage', 'pewdiepiew-image.png' ),
       { tolerance: 5 },
       function ( err, r ) {
         t.error( err, 'no errors' )
         console.log( r )
-        t.equal( r.equal, true, 'thumbnails looks the same' )
+        t.equal( r.equal, true, 'images looks the same' )
       }
     )
   } )
