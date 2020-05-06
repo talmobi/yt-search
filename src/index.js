@@ -598,7 +598,7 @@ function _parseListResult ( $, section ) {
     videoCountLabel: videoCountLabel,
     videoCount: videoCount,
 
-    thumbnail: thumbnailUrl,
+    thumbnail: thumbnailUrlHQ || thumbnailUrl,
     image: thumbnailUrlHQ,
 
     author: {
@@ -791,8 +791,8 @@ function getVideoMetaData ( opts, callback )
       }
 
       try {
-        // parseVideoBody( body, callback )
-        _parseVideoInitialData( body, callback )
+        parseVideoBody( body, callback )
+        // _parseVideoInitialData( body, callback )
       } catch ( err ) {
         callback( err )
       }
@@ -839,8 +839,8 @@ function getPlaylistMetaData ( opts, callback )
       }
 
       try {
-        // parsePlaylistBody( body, callback )
-        _parsePlaylistInitialData( body, callback )
+        parsePlaylistBody( body, callback )
+        // _parsePlaylistInitialData( body, callback )
       } catch ( err ) {
         callback( err )
       }
@@ -849,7 +849,7 @@ function getPlaylistMetaData ( opts, callback )
 }
 
 /* Parse response html from playlist url
- * DEPRECATED
+ * TODO
  */
 function parsePlaylistBody ( responseText, callback )
 {
@@ -926,6 +926,7 @@ function parsePlaylistBody ( responseText, callback )
 
     // playlist items/videos
     items: list,
+    videos: list,
 
     author: author
   }
@@ -1014,7 +1015,7 @@ function _toInternalDateString ( date ) {
   )
 }
 
-// DEPRECATED
+// TODO
 function parseVideoBody ( responseText, callback )
 {
   debug( 'parseVideoBody' )
@@ -1113,7 +1114,7 @@ function parseVideoBody ( responseText, callback )
     uploadDate: uploadDate,
     ago: _humanTime( new Date( uploadDate ) ), // ex: 10 years ago
 
-    thumbnail: thumbnailUrl,
+    thumbnail: thumbnailUrlHQ || thumbnailUrl,
     image: thumbnailUrlHQ,
 
     author: {
