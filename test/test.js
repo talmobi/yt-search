@@ -1,5 +1,10 @@
 let yts = require( '../dist/yt-search.min.js' )
 
+const Jimp = require( 'jimp' )
+const looksSame = require( 'looks-same' )
+const dasu = require( 'dasu' )
+const tempfile = require( 'tempfile' )
+
 if ( !!process.env.debug ) {
   yts = require( '../src/index.js' )
 }
@@ -285,7 +290,7 @@ test( 'search results: playlist', function ( t ) {
   } )
 } )
 
-test( 'search results: channel', function ( t ) {
+test.only( 'search results: channel', function ( t ) {
   t.plan( 5 )
 
   yts( 'PewDiePie', function ( err, r ) {
@@ -298,7 +303,30 @@ test( 'search results: channel', function ( t ) {
     t.equal( topChannel.url, 'https://youtube.com/user/PewDiePie', 'channel url' )
 
     t.ok( topChannel.videoCount > 4000, 'video count' )
-    t.equal( topChannel.thumbnail, 'https://yt3.ggpht.com/a/AGF-l79FVckie4j9WT-4cEW6iu3gPd4GivQf_XNSWg=s176-c-k-c0x00ffffff-no-rj-mo', 'thumbnail url' )
+
+    console.log( topChannel.thumbnail )
+    dasu.req( topChannel.thumbnail, function ( err, res, body ) {
+      const fs = require( 'fs' )
+      const path = require( 'path' )
+
+      const i = tempfile()
+      fs.writeFileSync( i, body, { encoding: 'binary' } )
+
+      const t1 = tempfile( '.png' )
+      Jimp.read( i )
+      .then( function ( img ) {
+        img.write( t1, next )
+      } )
+
+      function next () {
+        const t2 = path.join( __dirname, 'stage', 'pewdiepiew-thumbnail.png' )
+        looksSame( t1, t2, { tolerance: 5 }, function ( err, r ) {
+          if ( err ) console.log( err )
+          console.log( r )
+          t.equal( r.equal, true, 'thumbnails looks the same' )
+        } )
+      }
+    } )
   } )
 } )
 
