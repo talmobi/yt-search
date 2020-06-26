@@ -163,7 +163,7 @@ test( 'search by video id', function ( t ) {
 } )
 
 test( 'video metadata by id', function ( t ) {
-  t.plan( 11 )
+  t.plan( 12 )
 
   yts( { videoId: 'e9vrfEoc8_g' }, function ( err, video ) {
     t.error( err, 'no errors OK!' )
@@ -186,7 +186,7 @@ test( 'video metadata by id', function ( t ) {
     t.equal( video.author.url, 'https://youtube.com/user/Redmario2569', 'author url' )
 
     t.equal( video.image, 'https://i.ytimg.com/vi/e9vrfEoc8_g/hqdefault.jpg', 'image' )
-    // t.equal( video.image, 'https://i.ytimg.com/vi/e9vrfEoc8_g/hqdefault.jpg', 'image' )
+    t.equal( video.image, video.thumbnail, 'common alternative' )
   } )
 } )
 
@@ -199,7 +199,7 @@ test( 'video metadata by faulty/non-existing id', function ( t ) {
 } )
 
 test( 'video metadata by id _JzeIf1zT14', function ( t ) {
-  t.plan( 11 )
+  t.plan( 12 )
 
   yts( { videoId: '_JzeIf1zT14' }, function ( err, video ) {
     t.error( err, 'no errors OK!' )
@@ -222,12 +222,12 @@ test( 'video metadata by id _JzeIf1zT14', function ( t ) {
     t.equal( video.author.url, 'https://youtube.com/channel/UCF7YjO3SzVUGJYcXipRY0zQ', 'author url' )
 
     t.equal( video.image, 'https://i.ytimg.com/vi/_JzeIf1zT14/hqdefault.jpg', 'image' )
-    // t.equal( video.image, 'https://i.ytimg.com/vi/_JzeIf1zT14/hqdefault.jpg', 'image' )
+    t.equal( video.image, video.thumbnail, 'common alternative' )
   } )
 } )
 
 test( 'playlist metadata by id', function ( t ) {
-  t.plan( 10 )
+  t.plan( 11 )
 
   yts( { listId: 'PL7k0JFoxwvTbKL8kjGI_CaV31QxCGf1vJ' }, function ( err, playlist ) {
     t.error( err, 'no errors OK!' )
@@ -247,6 +247,7 @@ test( 'playlist metadata by id', function ( t ) {
     t.equal( playlist.author.url, 'https://youtube.com/channel/UCdwR7fIE2xyXlNRc7fb9tJg', 'author url' )
 
     t.equal( playlist.image, 'https://i.ytimg.com/vi/IQtKjU_pOuw/hqdefault.jpg', 'playlist image' )
+    t.equal( playlist.image, playlist.thumbnail, 'common alternative' )
   } )
 } )
 
@@ -259,7 +260,7 @@ test( 'playlist metadata by faulty/non-existing id', function ( t ) {
 } )
 
 test( 'search results: playlist', function ( t ) {
-  t.plan( 5 )
+  t.plan( 6 )
 
   yts( 'superman theme list', function ( err, r ) {
     t.error( err, 'no errors OK!' )
@@ -279,10 +280,10 @@ test( 'search results: playlist', function ( t ) {
       return keep
     } )[ 0 ]
 
-
     t.equal( sts.url, 'https://youtube.com/playlist?list=PLYhKAl2FoGzC0IQkgfVtM991w3E8ro1yG', 'playlist url' )
     t.equal( sts.listId, 'PLYhKAl2FoGzC0IQkgfVtM991w3E8ro1yG', 'playlist id' )
     t.equal( sts.image, 'https://i.ytimg.com/vi/yCCq_6ankAI/hqdefault.jpg', 'playlist image' )
+    t.equal( sts.image, sts.thumbnail, 'common alternative' )
     t.equal( sts.type, 'list', 'playlist type' )
   } )
 } )
