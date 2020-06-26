@@ -4,7 +4,7 @@ const _parallel = require( 'async.parallellimit' )
 
 // auto follow off
 _dasu.follow = false
-_dasu.debug = true
+_dasu.debug = false
 
 // google bot user-agent
 // Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)
