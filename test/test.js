@@ -1,6 +1,8 @@
 let yts = require( '../dist/yt-search.min.js' )
 
-if ( !!process.env.test_yt_search ) {
+const looksSamePlus = require( 'looks-same-plus' )
+
+if ( !!process.env.debug ) {
   yts = require( '../src/index.js' )
 }
 
@@ -161,7 +163,7 @@ test( 'search by video id', function ( t ) {
 } )
 
 test( 'video metadata by id', function ( t ) {
-  t.plan( 13 )
+  t.plan( 12 )
 
   yts( { videoId: 'e9vrfEoc8_g' }, function ( err, video ) {
     t.error( err, 'no errors OK!' )
@@ -180,11 +182,11 @@ test( 'video metadata by id', function ( t ) {
     t.equal( video.genre, 'music', 'genre is music' )
     t.equal( video.uploadDate, '2009-07-27', 'uploadDate' )
 
-    t.equal( video.author.id, 'Redmario2569', 'author id' )
+    // t.equal( video.author.id, 'Redmario2569', 'author id' )
     t.equal( video.author.url, 'https://youtube.com/user/Redmario2569', 'author url' )
 
-    t.equal( video.thumbnail, 'https://i.ytimg.com/vi/e9vrfEoc8_g/default.jpg', 'thumbnail' )
     t.equal( video.image, 'https://i.ytimg.com/vi/e9vrfEoc8_g/hqdefault.jpg', 'image' )
+    t.equal( video.image, video.thumbnail, 'common alternative' )
   } )
 } )
 
@@ -197,7 +199,7 @@ test( 'video metadata by faulty/non-existing id', function ( t ) {
 } )
 
 test( 'video metadata by id _JzeIf1zT14', function ( t ) {
-  t.plan( 13 )
+  t.plan( 12 )
 
   yts( { videoId: '_JzeIf1zT14' }, function ( err, video ) {
     t.error( err, 'no errors OK!' )
@@ -209,18 +211,18 @@ test( 'video metadata by id _JzeIf1zT14', function ( t ) {
     t.equal( video.timestamp, '2:27', 'timestamp' )
     t.equal( video.seconds, 147, 'seconds (duration)' )
 
-    t.ok( video.description.indexOf( 'Produced by: Josh A SPOTIFY' ) >= 0, 'description' )
+    t.ok( video.description.indexOf( 'Produced by: Josh' ) >= 0, 'description' )
 
     t.ok( video.views > ( 1 * MILLION ), 'views over 1 Million' )
 
     t.equal( video.genre, 'music', 'genre is music' )
     t.equal( video.uploadDate, '2018-10-12', 'uploadDate' )
 
-    t.equal( video.author.id, 'UCF7YjO3SzVUGJYcXipRY0zQ', 'author id' )
+    // t.equal( video.author.id, 'UCF7YjO3SzVUGJYcXipRY0zQ', 'author id' )
     t.equal( video.author.url, 'https://youtube.com/channel/UCF7YjO3SzVUGJYcXipRY0zQ', 'author url' )
 
-    t.equal( video.thumbnail, 'https://i.ytimg.com/vi/_JzeIf1zT14/default.jpg', 'thumnail' )
     t.equal( video.image, 'https://i.ytimg.com/vi/_JzeIf1zT14/hqdefault.jpg', 'image' )
+    t.equal( video.image, video.thumbnail, 'common alternative' )
   } )
 } )
 
@@ -233,18 +235,19 @@ test( 'playlist metadata by id', function ( t ) {
     t.equal( playlist.title, 'Superman Themes', 'title' )
     t.equal( playlist.listId, 'PL7k0JFoxwvTbKL8kjGI_CaV31QxCGf1vJ', 'listId' )
 
-    t.equal( playlist.url, 'https://www.youtube.com/playlist?hl=en&list=PL7k0JFoxwvTbKL8kjGI_CaV31QxCGf1vJ', 'playlist url' )
+    t.equal( playlist.url, 'https://youtube.com/playlist?list=PL7k0JFoxwvTbKL8kjGI_CaV31QxCGf1vJ', 'playlist url' )
 
-    t.equal( playlist.videoCount, 10 , 'views over 300 (as of 2020-01-08)' )
+    t.ok( playlist.videos.length >= 10 , 'videos equal or over 10 (as of 2020-01-08)' )
     t.ok( playlist.views > 300, 'views over 300 (as of 2020-01-08)' )
 
-    t.equal( playlist.lastUpdate, '2018-5-24' , 'last updated' )
+    t.equal( playlist.date, '2018-5-24' , 'date' )
 
     t.equal( playlist.author.name, 'Cave Spider10', 'author name' )
-    t.equal( playlist.author.channelId, 'UCdwR7fIE2xyXlNRc7fb9tJg', 'author channelId' )
-    t.equal( playlist.author.channelUrl, 'https://youtube.com/channel/UCdwR7fIE2xyXlNRc7fb9tJg', 'author channelUrl' )
+    // t.equal( playlist.author.channelId, 'UCdwR7fIE2xyXlNRc7fb9tJg', 'author channelId' )
+    t.equal( playlist.author.url, 'https://youtube.com/channel/UCdwR7fIE2xyXlNRc7fb9tJg', 'author url' )
 
-    t.equal( playlist.thumbnail, 'https://i.ytimg.com/vi/IQtKjU_pOuw/hqdefault.jpg', 'playlist thumbnail' )
+    t.equal( playlist.image, 'https://i.ytimg.com/vi/IQtKjU_pOuw/hqdefault.jpg', 'playlist image' )
+    t.equal( playlist.image, playlist.thumbnail, 'common alternative' )
   } )
 } )
 
@@ -257,7 +260,7 @@ test( 'playlist metadata by faulty/non-existing id', function ( t ) {
 } )
 
 test( 'search results: playlist', function ( t ) {
-  t.plan( 5 )
+  t.plan( 6 )
 
   yts( 'superman theme list', function ( err, r ) {
     t.error( err, 'no errors OK!' )
@@ -277,16 +280,16 @@ test( 'search results: playlist', function ( t ) {
       return keep
     } )[ 0 ]
 
-
     t.equal( sts.url, 'https://youtube.com/playlist?list=PLYhKAl2FoGzC0IQkgfVtM991w3E8ro1yG', 'playlist url' )
     t.equal( sts.listId, 'PLYhKAl2FoGzC0IQkgfVtM991w3E8ro1yG', 'playlist id' )
-    t.equal( sts.thumbnail, 'https://i.ytimg.com/vi/yCCq_6ankAI/default.jpg', 'playlist thumbnail' )
+    t.equal( sts.image, 'https://i.ytimg.com/vi/yCCq_6ankAI/hqdefault.jpg', 'playlist image' )
+    t.equal( sts.image, sts.thumbnail, 'common alternative' )
     t.equal( sts.type, 'list', 'playlist type' )
   } )
 } )
 
 test( 'search results: channel', function ( t ) {
-  t.plan( 5 )
+  t.plan( 6 )
 
   yts( 'PewDiePie', function ( err, r ) {
     t.error( err, 'no errors OK!' )
@@ -298,7 +301,18 @@ test( 'search results: channel', function ( t ) {
     t.equal( topChannel.url, 'https://youtube.com/user/PewDiePie', 'channel url' )
 
     t.ok( topChannel.videoCount > 4000, 'video count' )
-    t.equal( topChannel.thumbnail, 'https://yt3.ggpht.com/a/AGF-l79FVckie4j9WT-4cEW6iu3gPd4GivQf_XNSWg=s176-c-k-c0x00ffffff-no-rj-mo', 'thumbnail url' )
+
+    console.log( topChannel.image )
+    looksSamePlus(
+      topChannel.image,
+      require( 'path' ).join( __dirname, 'stage', 'pewdiepie-thumbnail.png' ),
+      { tolerance: 5 },
+      function ( err, r ) {
+        t.error( err, 'no errors' )
+        console.log( r )
+        t.equal( r.equal, true, 'images looks the same' )
+      }
+    )
   } )
 } )
 

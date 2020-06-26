@@ -1,0 +1,3017 @@
+{
+  "responseContext": {
+    "serviceTrackingParams": [
+      {
+        "service": "GFEEDBACK",
+        "params": [
+          { "key": "has_unlimited_entitlement", "value": "False" },
+          { "key": "logged_in", "value": "0" }
+        ]
+      },
+      {
+        "service": "CSI",
+        "params": [
+          { "key": "yt_ad", "value": "1" },
+          { "key": "c", "value": "MWEB" },
+          { "key": "cver", "value": "2.20200116.05.00" },
+          { "key": "yt_li", "value": "0" },
+          { "key": "GetSearch_rid", "value": "0xf597f2d7343b6978" }
+        ]
+      },
+      {
+        "service": "ECATCHER",
+        "params": [
+          { "key": "client.version", "value": "2.20200109" },
+          { "key": "client.name", "value": "MWEB" }
+        ]
+      }
+    ],
+    "webResponseContextExtensionData": {
+      "webResponseContextPreloadData": {
+        "preloadThumbnailUrls": [
+          "https://i.ytimg.com/vi/yCCq_6ankAI/hqdefault.jpg",
+          "https://i.ytimg.com/vi/yCCq_6ankAI/hqdefault.jpg",
+          "https://i.ytimg.com/vi/TrmWoBneIww/hqdefault.jpg",
+          "https://i.ytimg.com/vi/TrmWoBneIww/hqdefault.jpg",
+          "https://i.ytimg.com/vi_webp/e9vrfEoc8_g/hqdefault.webp",
+          "https://i.ytimg.com/vi/z9BL59uiAz8/hqdefault.jpg"
+        ]
+      },
+      "ytConfigData": {
+        "csn": "uE0lXt6vOMbryQXjtaWwBA",
+        "visitorData": "Cgs1ZC1IWWtjZXF5byi4m5XxBQ%3D%3D",
+        "rootVisualElementType": 4724
+      }
+    }
+  },
+  "estimatedResults": "902224",
+  "contents": {
+    "sectionListRenderer": {
+      "contents": [
+        {
+          "itemSectionRenderer": {
+            "contents": [
+              {
+                "compactPlaylistRenderer": {
+                  "playlistId": "PLYhKAl2FoGzC0IQkgfVtM991w3E8ro1yG",
+                  "thumbnail": {
+                    "thumbnails": [
+                      {
+                        "url": "https://i.ytimg.com/vi/yCCq_6ankAI/hqdefault.jpg",
+                        "width": 490,
+                        "height": 368
+                      }
+                    ],
+                    "webThumbnailDetailsExtensionData": { "isPreloaded": true }
+                  },
+                  "title": { "runs": [{ "text": "Superman Theme Songs" }] },
+                  "shortBylineText": {
+                    "runs": [
+                      {
+                        "text": "AJ Lelievre",
+                        "navigationEndpoint": {
+                          "clickTrackingParams": "CCMQojAYACITCNjDzanLkecCFcMpsgodKnQLszIGc2VhcmNo",
+                          "commandMetadata": {
+                            "webCommandMetadata": {
+                              "url": "/channel/UCNtE3kchpzZNnC2ZIGSBR9A",
+                              "rootVe": 3611
+                            }
+                          },
+                          "browseEndpoint": {
+                            "browseId": "UCNtE3kchpzZNnC2ZIGSBR9A"
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "videoCountText": {
+                    "runs": [{ "text": "21" }, { "text": " videos" }]
+                  },
+                  "navigationEndpoint": {
+                    "clickTrackingParams": "CCMQojAYACITCNjDzanLkecCFcMpsgodKnQLszIGc2VhcmNo",
+                    "commandMetadata": {
+                      "webCommandMetadata": {
+                        "url": "/playlist?list=PLYhKAl2FoGzC0IQkgfVtM991w3E8ro1yG",
+                        "rootVe": 5754
+                      }
+                    },
+                    "browseEndpoint": {
+                      "browseId": "VLPLYhKAl2FoGzC0IQkgfVtM991w3E8ro1yG"
+                    }
+                  },
+                  "videoCountShortText": { "runs": [{ "text": "21" }] },
+                  "trackingParams": "CCMQojAYACITCNjDzanLkecCFcMpsgodKnQLsw==",
+                  "sidebarThumbnails": [
+                    {
+                      "thumbnails": [
+                        {
+                          "url": "https://i.ytimg.com/vi/SyqltDNW998/default.jpg",
+                          "width": 43,
+                          "height": 20
+                        }
+                      ]
+                    },
+                    {
+                      "thumbnails": [
+                        {
+                          "url": "https://i.ytimg.com/vi/y0Mnj6_zV4U/default.jpg",
+                          "width": 43,
+                          "height": 20
+                        }
+                      ]
+                    }
+                  ],
+                  "thumbnailText": {
+                    "runs": [
+                      { "text": "21", "bold": true },
+                      { "text": " videos" }
+                    ]
+                  },
+                  "thumbnailRenderer": {
+                    "playlistVideoThumbnailRenderer": {
+                      "thumbnail": {
+                        "thumbnails": [
+                          {
+                            "url": "https://i.ytimg.com/vi/yCCq_6ankAI/hqdefault.jpg",
+                            "width": 490,
+                            "height": 368
+                          }
+                        ],
+                        "webThumbnailDetailsExtensionData": {
+                          "isPreloaded": true
+                        }
+                      }
+                    }
+                  },
+                  "longBylineText": {
+                    "runs": [
+                      {
+                        "text": "AJ Lelievre",
+                        "navigationEndpoint": {
+                          "clickTrackingParams": "CCMQojAYACITCNjDzanLkecCFcMpsgodKnQLszIGc2VhcmNo",
+                          "commandMetadata": {
+                            "webCommandMetadata": {
+                              "url": "/channel/UCNtE3kchpzZNnC2ZIGSBR9A",
+                              "rootVe": 3611
+                            }
+                          },
+                          "browseEndpoint": {
+                            "browseId": "UCNtE3kchpzZNnC2ZIGSBR9A"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              },
+              {
+                "compactPlaylistRenderer": {
+                  "playlistId": "PL8D5935EF8A7A0F61",
+                  "thumbnail": {
+                    "thumbnails": [
+                      {
+                        "url": "https://i.ytimg.com/vi/TrmWoBneIww/hqdefault.jpg",
+                        "width": 490,
+                        "height": 368
+                      }
+                    ],
+                    "webThumbnailDetailsExtensionData": { "isPreloaded": true }
+                  },
+                  "title": {
+                    "runs": [{ "text": "Superman Original Soundtrack" }]
+                  },
+                  "shortBylineText": {
+                    "runs": [
+                      {
+                        "text": "penguinpoop4",
+                        "navigationEndpoint": {
+                          "clickTrackingParams": "CCIQojAYASITCNjDzanLkecCFcMpsgodKnQLszIGc2VhcmNo",
+                          "commandMetadata": {
+                            "webCommandMetadata": {
+                              "url": "/user/penguinpoop4",
+                              "rootVe": 3611
+                            }
+                          },
+                          "browseEndpoint": {
+                            "browseId": "UCXRZqBfkE6safJDWbQWgI8A",
+                            "canonicalBaseUrl": "/user/penguinpoop4"
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "videoCountText": {
+                    "runs": [{ "text": "16" }, { "text": " videos" }]
+                  },
+                  "navigationEndpoint": {
+                    "clickTrackingParams": "CCIQojAYASITCNjDzanLkecCFcMpsgodKnQLszIGc2VhcmNo",
+                    "commandMetadata": {
+                      "webCommandMetadata": {
+                        "url": "/playlist?list=PL8D5935EF8A7A0F61",
+                        "rootVe": 5754
+                      }
+                    },
+                    "browseEndpoint": { "browseId": "VLPL8D5935EF8A7A0F61" }
+                  },
+                  "videoCountShortText": { "runs": [{ "text": "16" }] },
+                  "trackingParams": "CCIQojAYASITCNjDzanLkecCFcMpsgodKnQLsw==",
+                  "sidebarThumbnails": [
+                    {
+                      "thumbnails": [
+                        {
+                          "url": "https://i.ytimg.com/vi/2s0dHbbGPds/default.jpg",
+                          "width": 43,
+                          "height": 20
+                        }
+                      ]
+                    },
+                    {
+                      "thumbnails": [
+                        {
+                          "url": "https://i.ytimg.com/vi/KE5ACiLVh8I/default.jpg",
+                          "width": 43,
+                          "height": 20
+                        }
+                      ]
+                    }
+                  ],
+                  "thumbnailText": {
+                    "runs": [
+                      { "text": "16", "bold": true },
+                      { "text": " videos" }
+                    ]
+                  },
+                  "thumbnailRenderer": {
+                    "playlistVideoThumbnailRenderer": {
+                      "thumbnail": {
+                        "thumbnails": [
+                          {
+                            "url": "https://i.ytimg.com/vi/TrmWoBneIww/hqdefault.jpg",
+                            "width": 490,
+                            "height": 368
+                          }
+                        ],
+                        "webThumbnailDetailsExtensionData": {
+                          "isPreloaded": true
+                        }
+                      }
+                    }
+                  },
+                  "longBylineText": {
+                    "runs": [
+                      {
+                        "text": "penguinpoop4",
+                        "navigationEndpoint": {
+                          "clickTrackingParams": "CCIQojAYASITCNjDzanLkecCFcMpsgodKnQLszIGc2VhcmNo",
+                          "commandMetadata": {
+                            "webCommandMetadata": {
+                              "url": "/user/penguinpoop4",
+                              "rootVe": 3611
+                            }
+                          },
+                          "browseEndpoint": {
+                            "browseId": "UCXRZqBfkE6safJDWbQWgI8A",
+                            "canonicalBaseUrl": "/user/penguinpoop4"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              },
+              {
+                "compactVideoRenderer": {
+                  "videoId": "e9vrfEoc8_g",
+                  "thumbnail": {
+                    "thumbnails": [
+                      {
+                        "url": "https://i.ytimg.com/vi_webp/e9vrfEoc8_g/hqdefault.webp",
+                        "width": 490,
+                        "height": 368
+                      }
+                    ],
+                    "webThumbnailDetailsExtensionData": { "isPreloaded": true }
+                  },
+                  "title": {
+                    "runs": [{ "text": "Superman Theme" }],
+                    "accessibility": {
+                      "accessibilityData": {
+                        "label": "Superman Theme by Super Man 10 years ago 4 minutes13 seconds 36,308,682 views"
+                      }
+                    }
+                  },
+                  "longBylineText": {
+                    "runs": [
+                      {
+                        "text": "Super Man",
+                        "navigationEndpoint": {
+                          "clickTrackingParams": "CCEQpDAYAiITCNjDzanLkecCFcMpsgodKnQLsw==",
+                          "commandMetadata": {
+                            "webCommandMetadata": {
+                              "url": "/user/Redmario2569",
+                              "rootVe": 3611
+                            }
+                          },
+                          "browseEndpoint": {
+                            "browseId": "UCARqIOgzDc-UUAREIitbBwA",
+                            "canonicalBaseUrl": "/user/Redmario2569"
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "publishedTimeText": { "runs": [{ "text": "10 years ago" }] },
+                  "viewCountText": { "runs": [{ "text": "36,308,682 views" }] },
+                  "lengthText": {
+                    "runs": [{ "text": "4:13" }],
+                    "accessibility": {
+                      "accessibilityData": { "label": "4 minutes, 13 seconds" }
+                    }
+                  },
+                  "navigationEndpoint": {
+                    "clickTrackingParams": "CCEQpDAYAiITCNjDzanLkecCFcMpsgodKnQLszIGc2VhcmNoUhNzdXBlcm1hbiB0aGVtZSBsaXN0",
+                    "commandMetadata": {
+                      "webCommandMetadata": {
+                        "url": "/watch?v=e9vrfEoc8_g",
+                        "rootVe": 3832
+                      }
+                    },
+                    "watchEndpoint": { "videoId": "e9vrfEoc8_g" }
+                  },
+                  "shortBylineText": {
+                    "runs": [
+                      {
+                        "text": "Super Man",
+                        "navigationEndpoint": {
+                          "clickTrackingParams": "CCEQpDAYAiITCNjDzanLkecCFcMpsgodKnQLsw==",
+                          "commandMetadata": {
+                            "webCommandMetadata": {
+                              "url": "/user/Redmario2569",
+                              "rootVe": 3611
+                            }
+                          },
+                          "browseEndpoint": {
+                            "browseId": "UCARqIOgzDc-UUAREIitbBwA",
+                            "canonicalBaseUrl": "/user/Redmario2569"
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "channelThumbnail": {
+                    "thumbnails": [
+                      {
+                        "url": "https://yt3.ggpht.com/a-/AAuE7mCXUh-aoFNxiyeWJ8D7rAfdbenGREAC6s669w=s68-c-k-c0x00ffffff-no-rj-mo",
+                        "width": 68,
+                        "height": 68
+                      }
+                    ]
+                  },
+                  "trackingParams": "CCEQpDAYAiITCNjDzanLkecCFcMpsgodKnQLs0D45_PQxO_67Xs=",
+                  "shortViewCountText": { "runs": [{ "text": "36M views" }] },
+                  "menu": {
+                    "menuRenderer": {
+                      "items": [
+                        {
+                          "menuNavigationItemRenderer": {
+                            "text": {
+                              "runs": [{ "text": "Save to Watch later" }]
+                            },
+                            "navigationEndpoint": {
+                              "clickTrackingParams": "CCEQpDAYAiITCNjDzanLkecCFcMpsgodKnQLsw==",
+                              "commandMetadata": {
+                                "webCommandMetadata": {
+                                  "url": "https://accounts.google.com/ServiceLogin?service=youtube\u0026uilel=3\u0026passive=true\u0026continue=https%3A%2F%2Fwww.youtube.com%2Fsignin%3Faction_handle_signin%3Dtrue%26app%3Dm%26hl%3Den%26next%3D%252Fresults%253Fhl%253Den%2526gl%253DUS%2526search_query%253Dsuperman%252Btheme%252Blist%2526page%253D1\u0026hl=en",
+                                  "rootVe": 83769
+                                }
+                              },
+                              "signInEndpoint": { "hack": true }
+                            },
+                            "trackingParams": "CCEQpDAYAiITCNjDzanLkecCFcMpsgodKnQLsw=="
+                          }
+                        }
+                      ],
+                      "trackingParams": "CCEQpDAYAiITCNjDzanLkecCFcMpsgodKnQLsw==",
+                      "accessibility": {
+                        "accessibilityData": { "label": "Action menu" }
+                      }
+                    }
+                  },
+                  "thumbnailOverlays": [
+                    {
+                      "thumbnailOverlayTimeStatusRenderer": {
+                        "text": {
+                          "runs": [{ "text": "4:13" }],
+                          "accessibility": {
+                            "accessibilityData": {
+                              "label": "4 minutes, 13 seconds"
+                            }
+                          }
+                        },
+                        "style": "DEFAULT"
+                      }
+                    }
+                  ],
+                  "accessibility": {
+                    "accessibilityData": {
+                      "label": "Superman Theme - 4 minutes, 13 seconds - Go to channel - Super Man - 36M views - 10 years ago - play video"
+                    }
+                  }
+                }
+              },
+              {
+                "compactPlaylistRenderer": {
+                  "playlistId": "PLBKadB95sF44vjNzNABcYoF_7ae6lAgJM",
+                  "thumbnail": {
+                    "thumbnails": [
+                      {
+                        "url": "https://i.ytimg.com/vi/z9BL59uiAz8/default.jpg",
+                        "width": 120,
+                        "height": 90
+                      },
+                      {
+                        "url": "https://i.ytimg.com/vi/z9BL59uiAz8/mqdefault.jpg",
+                        "width": 320,
+                        "height": 180
+                      },
+                      {
+                        "url": "https://i.ytimg.com/vi/z9BL59uiAz8/hqdefault.jpg",
+                        "width": 480,
+                        "height": 360
+                      }
+                    ]
+                  },
+                  "title": {
+                    "runs": [
+                      {
+                        "text": "Batman V Superman Official Soundtrack Playlist"
+                      }
+                    ]
+                  },
+                  "shortBylineText": {
+                    "runs": [
+                      {
+                        "text": "WaterTower Music",
+                        "navigationEndpoint": {
+                          "clickTrackingParams": "CCAQojAYAyITCNjDzanLkecCFcMpsgodKnQLszIGc2VhcmNo",
+                          "commandMetadata": {
+                            "webCommandMetadata": {
+                              "url": "/user/WaterTowerWB",
+                              "rootVe": 3611
+                            }
+                          },
+                          "browseEndpoint": {
+                            "browseId": "UCGkQCAeRjyP9BpNwVFMaJaw",
+                            "canonicalBaseUrl": "/user/WaterTowerWB"
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "videoCountText": {
+                    "runs": [{ "text": "20" }, { "text": " videos" }]
+                  },
+                  "navigationEndpoint": {
+                    "clickTrackingParams": "CCAQojAYAyITCNjDzanLkecCFcMpsgodKnQLszIGc2VhcmNo",
+                    "commandMetadata": {
+                      "webCommandMetadata": {
+                        "url": "/playlist?list=PLBKadB95sF44vjNzNABcYoF_7ae6lAgJM",
+                        "rootVe": 5754
+                      }
+                    },
+                    "browseEndpoint": {
+                      "browseId": "VLPLBKadB95sF44vjNzNABcYoF_7ae6lAgJM"
+                    }
+                  },
+                  "videoCountShortText": { "runs": [{ "text": "20" }] },
+                  "trackingParams": "CCAQojAYAyITCNjDzanLkecCFcMpsgodKnQLsw==",
+                  "sidebarThumbnails": [
+                    {
+                      "thumbnails": [
+                        {
+                          "url": "https://i.ytimg.com/vi/77DOTx6y1os/default.jpg",
+                          "width": 43,
+                          "height": 20
+                        }
+                      ]
+                    },
+                    {
+                      "thumbnails": [
+                        {
+                          "url": "https://i.ytimg.com/vi/rD5wQROo_bs/default.jpg",
+                          "width": 43,
+                          "height": 20
+                        }
+                      ]
+                    }
+                  ],
+                  "thumbnailText": {
+                    "runs": [
+                      { "text": "20", "bold": true },
+                      { "text": " videos" }
+                    ]
+                  },
+                  "ownerBadges": [
+                    {
+                      "metadataBadgeRenderer": {
+                        "icon": { "iconType": "CHECK_CIRCLE_THICK" },
+                        "style": "BADGE_STYLE_TYPE_VERIFIED",
+                        "tooltip": "Verified",
+                        "trackingParams": "CCAQojAYAyITCNjDzanLkecCFcMpsgodKnQLsw=="
+                      }
+                    }
+                  ],
+                  "thumbnailRenderer": {
+                    "playlistVideoThumbnailRenderer": {
+                      "thumbnail": {
+                        "thumbnails": [
+                          {
+                            "url": "https://i.ytimg.com/vi/z9BL59uiAz8/hqdefault.jpg",
+                            "width": 490,
+                            "height": 368
+                          }
+                        ],
+                        "webThumbnailDetailsExtensionData": {
+                          "isPreloaded": true
+                        }
+                      }
+                    }
+                  },
+                  "longBylineText": {
+                    "runs": [
+                      {
+                        "text": "WaterTower Music",
+                        "navigationEndpoint": {
+                          "clickTrackingParams": "CCAQojAYAyITCNjDzanLkecCFcMpsgodKnQLszIGc2VhcmNo",
+                          "commandMetadata": {
+                            "webCommandMetadata": {
+                              "url": "/user/WaterTowerWB",
+                              "rootVe": 3611
+                            }
+                          },
+                          "browseEndpoint": {
+                            "browseId": "UCGkQCAeRjyP9BpNwVFMaJaw",
+                            "canonicalBaseUrl": "/user/WaterTowerWB"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              },
+              {
+                "compactVideoRenderer": {
+                  "videoId": "78N2SP6JFaI",
+                  "thumbnail": {
+                    "thumbnails": [
+                      {
+                        "url": "https://i.ytimg.com/vi_webp/78N2SP6JFaI/default.webp",
+                        "width": 120,
+                        "height": 90
+                      },
+                      {
+                        "url": "https://i.ytimg.com/vi_webp/78N2SP6JFaI/mqdefault.webp",
+                        "width": 320,
+                        "height": 180
+                      },
+                      {
+                        "url": "https://i.ytimg.com/vi_webp/78N2SP6JFaI/hqdefault.webp",
+                        "width": 480,
+                        "height": 360
+                      },
+                      {
+                        "url": "https://i.ytimg.com/vi_webp/78N2SP6JFaI/sddefault.webp",
+                        "width": 640,
+                        "height": 480
+                      }
+                    ]
+                  },
+                  "title": {
+                    "runs": [
+                      { "text": "Superman • Main Theme • John Williams" }
+                    ],
+                    "accessibility": {
+                      "accessibilityData": {
+                        "label": "Superman • Main Theme • John Williams by HD Film Tributes 4 years ago 4 minutes, 26 seconds 6,672,697 views"
+                      }
+                    }
+                  },
+                  "longBylineText": {
+                    "runs": [
+                      {
+                        "text": "HD Film Tributes",
+                        "navigationEndpoint": {
+                          "clickTrackingParams": "CB8QpDAYBCITCNjDzanLkecCFcMpsgodKnQLsw==",
+                          "commandMetadata": {
+                            "webCommandMetadata": {
+                              "url": "/user/TheWraith5",
+                              "rootVe": 3611
+                            }
+                          },
+                          "browseEndpoint": {
+                            "browseId": "UCK6cr8UqdrKZ4213X-FOStQ",
+                            "canonicalBaseUrl": "/user/TheWraith5"
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "publishedTimeText": { "runs": [{ "text": "4 years ago" }] },
+                  "viewCountText": { "runs": [{ "text": "6,672,697 views" }] },
+                  "lengthText": {
+                    "runs": [{ "text": "4:26" }],
+                    "accessibility": {
+                      "accessibilityData": { "label": "4 minutes, 26 seconds" }
+                    }
+                  },
+                  "navigationEndpoint": {
+                    "clickTrackingParams": "CB8QpDAYBCITCNjDzanLkecCFcMpsgodKnQLszIGc2VhcmNoUhNzdXBlcm1hbiB0aGVtZSBsaXN0",
+                    "commandMetadata": {
+                      "webCommandMetadata": {
+                        "url": "/watch?v=78N2SP6JFaI",
+                        "rootVe": 3832
+                      }
+                    },
+                    "watchEndpoint": { "videoId": "78N2SP6JFaI" }
+                  },
+                  "shortBylineText": {
+                    "runs": [
+                      {
+                        "text": "HD Film Tributes",
+                        "navigationEndpoint": {
+                          "clickTrackingParams": "CB8QpDAYBCITCNjDzanLkecCFcMpsgodKnQLsw==",
+                          "commandMetadata": {
+                            "webCommandMetadata": {
+                              "url": "/user/TheWraith5",
+                              "rootVe": 3611
+                            }
+                          },
+                          "browseEndpoint": {
+                            "browseId": "UCK6cr8UqdrKZ4213X-FOStQ",
+                            "canonicalBaseUrl": "/user/TheWraith5"
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "channelThumbnail": {
+                    "thumbnails": [
+                      {
+                        "url": "https://yt3.ggpht.com/a-/AAuE7mBoZ77rmd2o3EwCPe3oTOrX4KmqMJoyoG3yJA=s68-c-k-c0x00ffffff-no-rj-mo",
+                        "width": 68,
+                        "height": 68
+                      }
+                    ]
+                  },
+                  "trackingParams": "CB8QpDAYBCITCNjDzanLkecCFcMpsgodKnQLs0Ciq6T0j8nd4e8B",
+                  "shortViewCountText": { "runs": [{ "text": "6.6M views" }] },
+                  "menu": {
+                    "menuRenderer": {
+                      "items": [
+                        {
+                          "menuNavigationItemRenderer": {
+                            "text": {
+                              "runs": [{ "text": "Save to Watch later" }]
+                            },
+                            "navigationEndpoint": {
+                              "clickTrackingParams": "CB8QpDAYBCITCNjDzanLkecCFcMpsgodKnQLsw==",
+                              "commandMetadata": {
+                                "webCommandMetadata": {
+                                  "url": "https://accounts.google.com/ServiceLogin?service=youtube\u0026uilel=3\u0026passive=true\u0026continue=https%3A%2F%2Fwww.youtube.com%2Fsignin%3Faction_handle_signin%3Dtrue%26app%3Dm%26hl%3Den%26next%3D%252Fresults%253Fhl%253Den%2526gl%253DUS%2526search_query%253Dsuperman%252Btheme%252Blist%2526page%253D1\u0026hl=en",
+                                  "rootVe": 83769
+                                }
+                              },
+                              "signInEndpoint": { "hack": true }
+                            },
+                            "trackingParams": "CB8QpDAYBCITCNjDzanLkecCFcMpsgodKnQLsw=="
+                          }
+                        }
+                      ],
+                      "trackingParams": "CB8QpDAYBCITCNjDzanLkecCFcMpsgodKnQLsw==",
+                      "accessibility": {
+                        "accessibilityData": { "label": "Action menu" }
+                      }
+                    }
+                  },
+                  "thumbnailOverlays": [
+                    {
+                      "thumbnailOverlayTimeStatusRenderer": {
+                        "text": {
+                          "runs": [{ "text": "4:26" }],
+                          "accessibility": {
+                            "accessibilityData": {
+                              "label": "4 minutes, 26 seconds"
+                            }
+                          }
+                        },
+                        "style": "DEFAULT"
+                      }
+                    }
+                  ],
+                  "accessibility": {
+                    "accessibilityData": {
+                      "label": "Superman • Main Theme • John Williams - 4 minutes, 26 seconds - Go to channel - HD Film Tributes - 6.6M views - 4 years ago - play video"
+                    }
+                  }
+                }
+              },
+              {
+                "compactPlaylistRenderer": {
+                  "playlistId": "PLfIc12jK8BVligmeILkIy61bIQlARSXWh",
+                  "thumbnail": {
+                    "thumbnails": [
+                      {
+                        "url": "https://i.ytimg.com/vi/SQgMqf8tV6Q/default.jpg",
+                        "width": 120,
+                        "height": 90
+                      },
+                      {
+                        "url": "https://i.ytimg.com/vi/SQgMqf8tV6Q/mqdefault.jpg",
+                        "width": 320,
+                        "height": 180
+                      },
+                      {
+                        "url": "https://i.ytimg.com/vi/SQgMqf8tV6Q/hqdefault.jpg",
+                        "width": 480,
+                        "height": 360
+                      }
+                    ]
+                  },
+                  "title": { "runs": [{ "text": "Superman Themes list" }] },
+                  "shortBylineText": {
+                    "runs": [
+                      {
+                        "text": "Ricardo Ribeiro",
+                        "navigationEndpoint": {
+                          "clickTrackingParams": "CB4QojAYBSITCNjDzanLkecCFcMpsgodKnQLszIGc2VhcmNo",
+                          "commandMetadata": {
+                            "webCommandMetadata": {
+                              "url": "/user/RicardoRibeiro2000",
+                              "rootVe": 3611
+                            }
+                          },
+                          "browseEndpoint": {
+                            "browseId": "UCMh9v2yGETWJ_GGi2JyXfpA",
+                            "canonicalBaseUrl": "/user/RicardoRibeiro2000"
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "videoCountText": {
+                    "runs": [{ "text": "23" }, { "text": " videos" }]
+                  },
+                  "navigationEndpoint": {
+                    "clickTrackingParams": "CB4QojAYBSITCNjDzanLkecCFcMpsgodKnQLszIGc2VhcmNo",
+                    "commandMetadata": {
+                      "webCommandMetadata": {
+                        "url": "/playlist?list=PLfIc12jK8BVligmeILkIy61bIQlARSXWh",
+                        "rootVe": 5754
+                      }
+                    },
+                    "browseEndpoint": {
+                      "browseId": "VLPLfIc12jK8BVligmeILkIy61bIQlARSXWh"
+                    }
+                  },
+                  "videoCountShortText": { "runs": [{ "text": "23" }] },
+                  "trackingParams": "CB4QojAYBSITCNjDzanLkecCFcMpsgodKnQLsw==",
+                  "sidebarThumbnails": [
+                    {
+                      "thumbnails": [
+                        {
+                          "url": "https://i.ytimg.com/vi/jRyf17-FDl8/default.jpg",
+                          "width": 43,
+                          "height": 20
+                        }
+                      ]
+                    },
+                    {
+                      "thumbnails": [
+                        {
+                          "url": "https://i.ytimg.com/vi/jsCjxTXQU7g/default.jpg",
+                          "width": 43,
+                          "height": 20
+                        }
+                      ]
+                    }
+                  ],
+                  "thumbnailText": {
+                    "runs": [
+                      { "text": "23", "bold": true },
+                      { "text": " videos" }
+                    ]
+                  },
+                  "thumbnailRenderer": {
+                    "playlistVideoThumbnailRenderer": {
+                      "thumbnail": {
+                        "thumbnails": [
+                          {
+                            "url": "https://i.ytimg.com/vi/SQgMqf8tV6Q/default.jpg",
+                            "width": 120,
+                            "height": 90
+                          },
+                          {
+                            "url": "https://i.ytimg.com/vi/SQgMqf8tV6Q/mqdefault.jpg",
+                            "width": 320,
+                            "height": 180
+                          },
+                          {
+                            "url": "https://i.ytimg.com/vi/SQgMqf8tV6Q/hqdefault.jpg",
+                            "width": 480,
+                            "height": 360
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  "longBylineText": {
+                    "runs": [
+                      {
+                        "text": "Ricardo Ribeiro",
+                        "navigationEndpoint": {
+                          "clickTrackingParams": "CB4QojAYBSITCNjDzanLkecCFcMpsgodKnQLszIGc2VhcmNo",
+                          "commandMetadata": {
+                            "webCommandMetadata": {
+                              "url": "/user/RicardoRibeiro2000",
+                              "rootVe": 3611
+                            }
+                          },
+                          "browseEndpoint": {
+                            "browseId": "UCMh9v2yGETWJ_GGi2JyXfpA",
+                            "canonicalBaseUrl": "/user/RicardoRibeiro2000"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              },
+              {
+                "compactPlaylistRenderer": {
+                  "playlistId": "PLFPLPPYSJ8qBWGVoan-uX8lMjvMeEgmww",
+                  "thumbnail": {
+                    "thumbnails": [
+                      {
+                        "url": "https://i.ytimg.com/vi/f9_z8MYoKCE/default.jpg",
+                        "width": 120,
+                        "height": 90
+                      },
+                      {
+                        "url": "https://i.ytimg.com/vi/f9_z8MYoKCE/mqdefault.jpg",
+                        "width": 320,
+                        "height": 180
+                      },
+                      {
+                        "url": "https://i.ytimg.com/vi/f9_z8MYoKCE/hqdefault.jpg",
+                        "width": 480,
+                        "height": 360
+                      }
+                    ]
+                  },
+                  "title": { "runs": [{ "text": "Superman theme songs" }] },
+                  "shortBylineText": {
+                    "runs": [
+                      {
+                        "text": "Mr. Hellas",
+                        "navigationEndpoint": {
+                          "clickTrackingParams": "CB0QojAYBiITCNjDzanLkecCFcMpsgodKnQLszIGc2VhcmNo",
+                          "commandMetadata": {
+                            "webCommandMetadata": {
+                              "url": "/user/funlovingreek2008",
+                              "rootVe": 3611
+                            }
+                          },
+                          "browseEndpoint": {
+                            "browseId": "UCa-ygMkaVLATRe0GD0fKaGw",
+                            "canonicalBaseUrl": "/user/funlovingreek2008"
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "videoCountText": {
+                    "runs": [{ "text": "31" }, { "text": " videos" }]
+                  },
+                  "navigationEndpoint": {
+                    "clickTrackingParams": "CB0QojAYBiITCNjDzanLkecCFcMpsgodKnQLszIGc2VhcmNo",
+                    "commandMetadata": {
+                      "webCommandMetadata": {
+                        "url": "/playlist?list=PLFPLPPYSJ8qBWGVoan-uX8lMjvMeEgmww",
+                        "rootVe": 5754
+                      }
+                    },
+                    "browseEndpoint": {
+                      "browseId": "VLPLFPLPPYSJ8qBWGVoan-uX8lMjvMeEgmww"
+                    }
+                  },
+                  "videoCountShortText": { "runs": [{ "text": "31" }] },
+                  "trackingParams": "CB0QojAYBiITCNjDzanLkecCFcMpsgodKnQLsw==",
+                  "sidebarThumbnails": [
+                    {
+                      "thumbnails": [
+                        {
+                          "url": "https://i.ytimg.com/vi/HVQiYW1r4Ks/default.jpg",
+                          "width": 43,
+                          "height": 20
+                        }
+                      ]
+                    },
+                    {
+                      "thumbnails": [
+                        {
+                          "url": "https://i.ytimg.com/vi/hTDu5r3CoEM/default.jpg",
+                          "width": 43,
+                          "height": 20
+                        }
+                      ]
+                    }
+                  ],
+                  "thumbnailText": {
+                    "runs": [
+                      { "text": "31", "bold": true },
+                      { "text": " videos" }
+                    ]
+                  },
+                  "thumbnailRenderer": {
+                    "playlistVideoThumbnailRenderer": {
+                      "thumbnail": {
+                        "thumbnails": [
+                          {
+                            "url": "https://i.ytimg.com/vi/f9_z8MYoKCE/default.jpg",
+                            "width": 120,
+                            "height": 90
+                          },
+                          {
+                            "url": "https://i.ytimg.com/vi/f9_z8MYoKCE/mqdefault.jpg",
+                            "width": 320,
+                            "height": 180
+                          },
+                          {
+                            "url": "https://i.ytimg.com/vi/f9_z8MYoKCE/hqdefault.jpg",
+                            "width": 480,
+                            "height": 360
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  "longBylineText": {
+                    "runs": [
+                      {
+                        "text": "Mr. Hellas",
+                        "navigationEndpoint": {
+                          "clickTrackingParams": "CB0QojAYBiITCNjDzanLkecCFcMpsgodKnQLszIGc2VhcmNo",
+                          "commandMetadata": {
+                            "webCommandMetadata": {
+                              "url": "/user/funlovingreek2008",
+                              "rootVe": 3611
+                            }
+                          },
+                          "browseEndpoint": {
+                            "browseId": "UCa-ygMkaVLATRe0GD0fKaGw",
+                            "canonicalBaseUrl": "/user/funlovingreek2008"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              },
+              {
+                "compactPlaylistRenderer": {
+                  "playlistId": "PLYhKAl2FoGzDGzOEJRZOCoaXbmnlbvwgX",
+                  "thumbnail": {
+                    "thumbnails": [
+                      {
+                        "url": "https://i.ytimg.com/vi/m-9p5D1hBC8/default.jpg",
+                        "width": 120,
+                        "height": 90
+                      },
+                      {
+                        "url": "https://i.ytimg.com/vi/m-9p5D1hBC8/mqdefault.jpg",
+                        "width": 320,
+                        "height": 180
+                      },
+                      {
+                        "url": "https://i.ytimg.com/vi/m-9p5D1hBC8/hqdefault.jpg",
+                        "width": 480,
+                        "height": 360
+                      }
+                    ]
+                  },
+                  "title": { "runs": [{ "text": "Superman Theme Songs" }] },
+                  "shortBylineText": {
+                    "runs": [
+                      {
+                        "text": "AJ Lelievre",
+                        "navigationEndpoint": {
+                          "clickTrackingParams": "CBwQojAYByITCNjDzanLkecCFcMpsgodKnQLszIGc2VhcmNo",
+                          "commandMetadata": {
+                            "webCommandMetadata": {
+                              "url": "/channel/UCNtE3kchpzZNnC2ZIGSBR9A",
+                              "rootVe": 3611
+                            }
+                          },
+                          "browseEndpoint": {
+                            "browseId": "UCNtE3kchpzZNnC2ZIGSBR9A"
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "videoCountText": {
+                    "runs": [{ "text": "10" }, { "text": " videos" }]
+                  },
+                  "navigationEndpoint": {
+                    "clickTrackingParams": "CBwQojAYByITCNjDzanLkecCFcMpsgodKnQLszIGc2VhcmNo",
+                    "commandMetadata": {
+                      "webCommandMetadata": {
+                        "url": "/playlist?list=PLYhKAl2FoGzDGzOEJRZOCoaXbmnlbvwgX",
+                        "rootVe": 5754
+                      }
+                    },
+                    "browseEndpoint": {
+                      "browseId": "VLPLYhKAl2FoGzDGzOEJRZOCoaXbmnlbvwgX"
+                    }
+                  },
+                  "videoCountShortText": { "runs": [{ "text": "10" }] },
+                  "trackingParams": "CBwQojAYByITCNjDzanLkecCFcMpsgodKnQLsw==",
+                  "sidebarThumbnails": [
+                    {
+                      "thumbnails": [
+                        {
+                          "url": "https://i.ytimg.com/vi/JRvwel19RRc/default.jpg",
+                          "width": 43,
+                          "height": 20
+                        }
+                      ]
+                    },
+                    {
+                      "thumbnails": [
+                        {
+                          "url": "https://i.ytimg.com/vi/OJhFewh_5pU/default.jpg",
+                          "width": 43,
+                          "height": 20
+                        }
+                      ]
+                    }
+                  ],
+                  "thumbnailText": {
+                    "runs": [
+                      { "text": "10", "bold": true },
+                      { "text": " videos" }
+                    ]
+                  },
+                  "thumbnailRenderer": {
+                    "playlistVideoThumbnailRenderer": {
+                      "thumbnail": {
+                        "thumbnails": [
+                          {
+                            "url": "https://i.ytimg.com/vi/m-9p5D1hBC8/default.jpg",
+                            "width": 120,
+                            "height": 90
+                          },
+                          {
+                            "url": "https://i.ytimg.com/vi/m-9p5D1hBC8/mqdefault.jpg",
+                            "width": 320,
+                            "height": 180
+                          },
+                          {
+                            "url": "https://i.ytimg.com/vi/m-9p5D1hBC8/hqdefault.jpg",
+                            "width": 480,
+                            "height": 360
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  "longBylineText": {
+                    "runs": [
+                      {
+                        "text": "AJ Lelievre",
+                        "navigationEndpoint": {
+                          "clickTrackingParams": "CBwQojAYByITCNjDzanLkecCFcMpsgodKnQLszIGc2VhcmNo",
+                          "commandMetadata": {
+                            "webCommandMetadata": {
+                              "url": "/channel/UCNtE3kchpzZNnC2ZIGSBR9A",
+                              "rootVe": 3611
+                            }
+                          },
+                          "browseEndpoint": {
+                            "browseId": "UCNtE3kchpzZNnC2ZIGSBR9A"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              },
+              {
+                "compactPlaylistRenderer": {
+                  "playlistId": "PLnxomcA4_BVFUCs5I5krzCm9a19mtgHus",
+                  "thumbnail": {
+                    "thumbnails": [
+                      {
+                        "url": "https://i.ytimg.com/vi/-yKs5BJd5Ig/default.jpg",
+                        "width": 120,
+                        "height": 90
+                      },
+                      {
+                        "url": "https://i.ytimg.com/vi/-yKs5BJd5Ig/mqdefault.jpg",
+                        "width": 320,
+                        "height": 180
+                      },
+                      {
+                        "url": "https://i.ytimg.com/vi/-yKs5BJd5Ig/hqdefault.jpg",
+                        "width": 480,
+                        "height": 360
+                      }
+                    ]
+                  },
+                  "title": { "runs": [{ "text": "Best Superman Themes" }] },
+                  "shortBylineText": {
+                    "runs": [
+                      {
+                        "text": "Raudimus",
+                        "navigationEndpoint": {
+                          "clickTrackingParams": "CBsQojAYCCITCNjDzanLkecCFcMpsgodKnQLszIGc2VhcmNo",
+                          "commandMetadata": {
+                            "webCommandMetadata": {
+                              "url": "/user/TheBlackGalesHowl",
+                              "rootVe": 3611
+                            }
+                          },
+                          "browseEndpoint": {
+                            "browseId": "UChzgMffTCYp3_wKp0rLa88w",
+                            "canonicalBaseUrl": "/user/TheBlackGalesHowl"
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "videoCountText": {
+                    "runs": [{ "text": "10" }, { "text": " videos" }]
+                  },
+                  "navigationEndpoint": {
+                    "clickTrackingParams": "CBsQojAYCCITCNjDzanLkecCFcMpsgodKnQLszIGc2VhcmNo",
+                    "commandMetadata": {
+                      "webCommandMetadata": {
+                        "url": "/playlist?list=PLnxomcA4_BVFUCs5I5krzCm9a19mtgHus",
+                        "rootVe": 5754
+                      }
+                    },
+                    "browseEndpoint": {
+                      "browseId": "VLPLnxomcA4_BVFUCs5I5krzCm9a19mtgHus"
+                    }
+                  },
+                  "videoCountShortText": { "runs": [{ "text": "10" }] },
+                  "trackingParams": "CBsQojAYCCITCNjDzanLkecCFcMpsgodKnQLsw==",
+                  "sidebarThumbnails": [
+                    {
+                      "thumbnails": [
+                        {
+                          "url": "https://i.ytimg.com/vi/qD0RofPgoo8/default.jpg",
+                          "width": 43,
+                          "height": 20
+                        }
+                      ]
+                    },
+                    {
+                      "thumbnails": [
+                        {
+                          "url": "https://i.ytimg.com/vi/DuaOoJcqTBw/default.jpg",
+                          "width": 43,
+                          "height": 20
+                        }
+                      ]
+                    }
+                  ],
+                  "thumbnailText": {
+                    "runs": [
+                      { "text": "10", "bold": true },
+                      { "text": " videos" }
+                    ]
+                  },
+                  "thumbnailRenderer": {
+                    "playlistVideoThumbnailRenderer": {
+                      "thumbnail": {
+                        "thumbnails": [
+                          {
+                            "url": "https://i.ytimg.com/vi/-yKs5BJd5Ig/default.jpg",
+                            "width": 120,
+                            "height": 90
+                          },
+                          {
+                            "url": "https://i.ytimg.com/vi/-yKs5BJd5Ig/mqdefault.jpg",
+                            "width": 320,
+                            "height": 180
+                          },
+                          {
+                            "url": "https://i.ytimg.com/vi/-yKs5BJd5Ig/hqdefault.jpg",
+                            "width": 480,
+                            "height": 360
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  "longBylineText": {
+                    "runs": [
+                      {
+                        "text": "Raudimus",
+                        "navigationEndpoint": {
+                          "clickTrackingParams": "CBsQojAYCCITCNjDzanLkecCFcMpsgodKnQLszIGc2VhcmNo",
+                          "commandMetadata": {
+                            "webCommandMetadata": {
+                              "url": "/user/TheBlackGalesHowl",
+                              "rootVe": 3611
+                            }
+                          },
+                          "browseEndpoint": {
+                            "browseId": "UChzgMffTCYp3_wKp0rLa88w",
+                            "canonicalBaseUrl": "/user/TheBlackGalesHowl"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              },
+              {
+                "compactPlaylistRenderer": {
+                  "playlistId": "PLut-O4t1l08LkArApKa7hwaW3lutJgILT",
+                  "thumbnail": {
+                    "thumbnails": [
+                      {
+                        "url": "https://i.ytimg.com/vi/S6cPejPrCSk/default.jpg",
+                        "width": 120,
+                        "height": 90
+                      },
+                      {
+                        "url": "https://i.ytimg.com/vi/S6cPejPrCSk/mqdefault.jpg",
+                        "width": 320,
+                        "height": 180
+                      },
+                      {
+                        "url": "https://i.ytimg.com/vi/S6cPejPrCSk/hqdefault.jpg",
+                        "width": 480,
+                        "height": 360
+                      }
+                    ]
+                  },
+                  "title": { "runs": [{ "text": "SUPERMAN THEMES" }] },
+                  "shortBylineText": {
+                    "runs": [
+                      {
+                        "text": "Peter Tennant",
+                        "navigationEndpoint": {
+                          "clickTrackingParams": "CBoQojAYCSITCNjDzanLkecCFcMpsgodKnQLszIGc2VhcmNo",
+                          "commandMetadata": {
+                            "webCommandMetadata": {
+                              "url": "/channel/UCP5N7tFtgK7ZLYQGTVHFTyw",
+                              "rootVe": 3611
+                            }
+                          },
+                          "browseEndpoint": {
+                            "browseId": "UCP5N7tFtgK7ZLYQGTVHFTyw"
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "videoCountText": {
+                    "runs": [{ "text": "126" }, { "text": " videos" }]
+                  },
+                  "navigationEndpoint": {
+                    "clickTrackingParams": "CBoQojAYCSITCNjDzanLkecCFcMpsgodKnQLszIGc2VhcmNo",
+                    "commandMetadata": {
+                      "webCommandMetadata": {
+                        "url": "/playlist?list=PLut-O4t1l08LkArApKa7hwaW3lutJgILT",
+                        "rootVe": 5754
+                      }
+                    },
+                    "browseEndpoint": {
+                      "browseId": "VLPLut-O4t1l08LkArApKa7hwaW3lutJgILT"
+                    }
+                  },
+                  "videoCountShortText": { "runs": [{ "text": "126" }] },
+                  "trackingParams": "CBoQojAYCSITCNjDzanLkecCFcMpsgodKnQLsw==",
+                  "sidebarThumbnails": [
+                    {
+                      "thumbnails": [
+                        {
+                          "url": "https://i.ytimg.com/vi/1yjbiAY3lXA/default.jpg",
+                          "width": 43,
+                          "height": 20
+                        }
+                      ]
+                    },
+                    {
+                      "thumbnails": [
+                        {
+                          "url": "https://i.ytimg.com/vi/KDqxkySwneM/default.jpg",
+                          "width": 43,
+                          "height": 20
+                        }
+                      ]
+                    }
+                  ],
+                  "thumbnailText": {
+                    "runs": [
+                      { "text": "126", "bold": true },
+                      { "text": " videos" }
+                    ]
+                  },
+                  "thumbnailRenderer": {
+                    "playlistVideoThumbnailRenderer": {
+                      "thumbnail": {
+                        "thumbnails": [
+                          {
+                            "url": "https://i.ytimg.com/vi/S6cPejPrCSk/default.jpg",
+                            "width": 120,
+                            "height": 90
+                          },
+                          {
+                            "url": "https://i.ytimg.com/vi/S6cPejPrCSk/mqdefault.jpg",
+                            "width": 320,
+                            "height": 180
+                          },
+                          {
+                            "url": "https://i.ytimg.com/vi/S6cPejPrCSk/hqdefault.jpg",
+                            "width": 480,
+                            "height": 360
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  "longBylineText": {
+                    "runs": [
+                      {
+                        "text": "Peter Tennant",
+                        "navigationEndpoint": {
+                          "clickTrackingParams": "CBoQojAYCSITCNjDzanLkecCFcMpsgodKnQLszIGc2VhcmNo",
+                          "commandMetadata": {
+                            "webCommandMetadata": {
+                              "url": "/channel/UCP5N7tFtgK7ZLYQGTVHFTyw",
+                              "rootVe": 3611
+                            }
+                          },
+                          "browseEndpoint": {
+                            "browseId": "UCP5N7tFtgK7ZLYQGTVHFTyw"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              },
+              {
+                "compactPlaylistRenderer": {
+                  "playlistId": "PLJgXNffRyfG7Sy1Ej8WT0uJQd2t1VorFM",
+                  "thumbnail": {
+                    "thumbnails": [
+                      {
+                        "url": "https://i.ytimg.com/vi/v5jo9VoU2_k/default.jpg",
+                        "width": 120,
+                        "height": 90
+                      },
+                      {
+                        "url": "https://i.ytimg.com/vi/v5jo9VoU2_k/mqdefault.jpg",
+                        "width": 320,
+                        "height": 180
+                      },
+                      {
+                        "url": "https://i.ytimg.com/vi/v5jo9VoU2_k/hqdefault.jpg",
+                        "width": 480,
+                        "height": 360
+                      }
+                    ]
+                  },
+                  "title": { "runs": [{ "text": "Superman theme" }] },
+                  "shortBylineText": {
+                    "runs": [
+                      {
+                        "text": "carla du priest",
+                        "navigationEndpoint": {
+                          "clickTrackingParams": "CBkQojAYCiITCNjDzanLkecCFcMpsgodKnQLszIGc2VhcmNo",
+                          "commandMetadata": {
+                            "webCommandMetadata": {
+                              "url": "/user/carlita2275",
+                              "rootVe": 3611
+                            }
+                          },
+                          "browseEndpoint": {
+                            "browseId": "UC2sPmmUiERU0NiyZXYkdLEw",
+                            "canonicalBaseUrl": "/user/carlita2275"
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "videoCountText": {
+                    "runs": [{ "text": "72" }, { "text": " videos" }]
+                  },
+                  "navigationEndpoint": {
+                    "clickTrackingParams": "CBkQojAYCiITCNjDzanLkecCFcMpsgodKnQLszIGc2VhcmNo",
+                    "commandMetadata": {
+                      "webCommandMetadata": {
+                        "url": "/playlist?list=PLJgXNffRyfG7Sy1Ej8WT0uJQd2t1VorFM",
+                        "rootVe": 5754
+                      }
+                    },
+                    "browseEndpoint": {
+                      "browseId": "VLPLJgXNffRyfG7Sy1Ej8WT0uJQd2t1VorFM"
+                    }
+                  },
+                  "videoCountShortText": { "runs": [{ "text": "72" }] },
+                  "trackingParams": "CBkQojAYCiITCNjDzanLkecCFcMpsgodKnQLsw==",
+                  "sidebarThumbnails": [
+                    {
+                      "thumbnails": [
+                        {
+                          "url": "https://i.ytimg.com/vi/KiF_M7mVIKE/default.jpg",
+                          "width": 43,
+                          "height": 20
+                        }
+                      ]
+                    },
+                    {
+                      "thumbnails": [
+                        {
+                          "url": "https://i.ytimg.com/vi/e9vrfEoc8_g/default.jpg",
+                          "width": 43,
+                          "height": 20
+                        }
+                      ]
+                    }
+                  ],
+                  "thumbnailText": {
+                    "runs": [
+                      { "text": "72", "bold": true },
+                      { "text": " videos" }
+                    ]
+                  },
+                  "thumbnailRenderer": {
+                    "playlistVideoThumbnailRenderer": {
+                      "thumbnail": {
+                        "thumbnails": [
+                          {
+                            "url": "https://i.ytimg.com/vi/v5jo9VoU2_k/default.jpg",
+                            "width": 120,
+                            "height": 90
+                          },
+                          {
+                            "url": "https://i.ytimg.com/vi/v5jo9VoU2_k/mqdefault.jpg",
+                            "width": 320,
+                            "height": 180
+                          },
+                          {
+                            "url": "https://i.ytimg.com/vi/v5jo9VoU2_k/hqdefault.jpg",
+                            "width": 480,
+                            "height": 360
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  "longBylineText": {
+                    "runs": [
+                      {
+                        "text": "carla du priest",
+                        "navigationEndpoint": {
+                          "clickTrackingParams": "CBkQojAYCiITCNjDzanLkecCFcMpsgodKnQLszIGc2VhcmNo",
+                          "commandMetadata": {
+                            "webCommandMetadata": {
+                              "url": "/user/carlita2275",
+                              "rootVe": 3611
+                            }
+                          },
+                          "browseEndpoint": {
+                            "browseId": "UC2sPmmUiERU0NiyZXYkdLEw",
+                            "canonicalBaseUrl": "/user/carlita2275"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              },
+              {
+                "compactVideoRenderer": {
+                  "videoId": "elaygTYyauk",
+                  "thumbnail": {
+                    "thumbnails": [
+                      {
+                        "url": "https://i.ytimg.com/vi_webp/elaygTYyauk/default.webp",
+                        "width": 120,
+                        "height": 90
+                      },
+                      {
+                        "url": "https://i.ytimg.com/vi_webp/elaygTYyauk/mqdefault.webp",
+                        "width": 320,
+                        "height": 180
+                      },
+                      {
+                        "url": "https://i.ytimg.com/vi_webp/elaygTYyauk/hqdefault.webp",
+                        "width": 480,
+                        "height": 360
+                      },
+                      {
+                        "url": "https://i.ytimg.com/vi_webp/elaygTYyauk/sddefault.webp",
+                        "width": 640,
+                        "height": 480
+                      },
+                      {
+                        "url": "https://i.ytimg.com/vi/elaygTYyauk/hq720.jpg?sqp=-oaymwEZCK4FEIIDSEbyq4qpAwsIARUAAIhCGAFwAQ==\u0026rs=AOn4CLCEUcwtc-QuYbuxCHAPpVyurCeZPw",
+                        "width": 686,
+                        "height": 386
+                      }
+                    ]
+                  },
+                  "title": {
+                    "runs": [
+                      {
+                        "text": "Superman Suite (Themes) | from The Sound of Cinema"
+                      }
+                    ],
+                    "accessibility": {
+                      "accessibilityData": {
+                        "label": "Superman Suite (Themes) | from The Sound of Cinema by Jorah the Andal 1 year ago 8 minutes, 15 seconds 10,226 views"
+                      }
+                    }
+                  },
+                  "longBylineText": {
+                    "runs": [
+                      {
+                        "text": "Jorah the Andal",
+                        "navigationEndpoint": {
+                          "clickTrackingParams": "CBgQpDAYCyITCNjDzanLkecCFcMpsgodKnQLsw==",
+                          "commandMetadata": {
+                            "webCommandMetadata": {
+                              "url": "/channel/UCedMZfhIlfCyI4O8BprShYw",
+                              "rootVe": 3611
+                            }
+                          },
+                          "browseEndpoint": {
+                            "browseId": "UCedMZfhIlfCyI4O8BprShYw"
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "publishedTimeText": { "runs": [{ "text": "1 year ago" }] },
+                  "viewCountText": { "runs": [{ "text": "10,226 views" }] },
+                  "lengthText": {
+                    "runs": [{ "text": "8:15" }],
+                    "accessibility": {
+                      "accessibilityData": { "label": "8 minutes, 15 seconds" }
+                    }
+                  },
+                  "navigationEndpoint": {
+                    "clickTrackingParams": "CBgQpDAYCyITCNjDzanLkecCFcMpsgodKnQLszIGc2VhcmNoUhNzdXBlcm1hbiB0aGVtZSBsaXN0",
+                    "commandMetadata": {
+                      "webCommandMetadata": {
+                        "url": "/watch?v=elaygTYyauk",
+                        "rootVe": 3832
+                      }
+                    },
+                    "watchEndpoint": { "videoId": "elaygTYyauk" }
+                  },
+                  "shortBylineText": {
+                    "runs": [
+                      {
+                        "text": "Jorah the Andal",
+                        "navigationEndpoint": {
+                          "clickTrackingParams": "CBgQpDAYCyITCNjDzanLkecCFcMpsgodKnQLsw==",
+                          "commandMetadata": {
+                            "webCommandMetadata": {
+                              "url": "/channel/UCedMZfhIlfCyI4O8BprShYw",
+                              "rootVe": 3611
+                            }
+                          },
+                          "browseEndpoint": {
+                            "browseId": "UCedMZfhIlfCyI4O8BprShYw"
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "channelThumbnail": {
+                    "thumbnails": [
+                      {
+                        "url": "https://yt3.ggpht.com/a-/AAuE7mB489vnjyODFLyaqLw0yVJ3_S_BFXopPLXfBw=s68-c-k-c0x00ffffff-no-rj-mo",
+                        "width": 68,
+                        "height": 68
+                      }
+                    ]
+                  },
+                  "trackingParams": "CBgQpDAYCyITCNjDzanLkecCFcMpsgodKnQLs0Dp1cmxk9Csq3o=",
+                  "shortViewCountText": { "runs": [{ "text": "10K views" }] },
+                  "menu": {
+                    "menuRenderer": {
+                      "items": [
+                        {
+                          "menuNavigationItemRenderer": {
+                            "text": {
+                              "runs": [{ "text": "Save to Watch later" }]
+                            },
+                            "navigationEndpoint": {
+                              "clickTrackingParams": "CBgQpDAYCyITCNjDzanLkecCFcMpsgodKnQLsw==",
+                              "commandMetadata": {
+                                "webCommandMetadata": {
+                                  "url": "https://accounts.google.com/ServiceLogin?service=youtube\u0026uilel=3\u0026passive=true\u0026continue=https%3A%2F%2Fwww.youtube.com%2Fsignin%3Faction_handle_signin%3Dtrue%26app%3Dm%26hl%3Den%26next%3D%252Fresults%253Fhl%253Den%2526gl%253DUS%2526search_query%253Dsuperman%252Btheme%252Blist%2526page%253D1\u0026hl=en",
+                                  "rootVe": 83769
+                                }
+                              },
+                              "signInEndpoint": { "hack": true }
+                            },
+                            "trackingParams": "CBgQpDAYCyITCNjDzanLkecCFcMpsgodKnQLsw=="
+                          }
+                        }
+                      ],
+                      "trackingParams": "CBgQpDAYCyITCNjDzanLkecCFcMpsgodKnQLsw==",
+                      "accessibility": {
+                        "accessibilityData": { "label": "Action menu" }
+                      }
+                    }
+                  },
+                  "thumbnailOverlays": [
+                    {
+                      "thumbnailOverlayTimeStatusRenderer": {
+                        "text": {
+                          "runs": [{ "text": "8:15" }],
+                          "accessibility": {
+                            "accessibilityData": {
+                              "label": "8 minutes, 15 seconds"
+                            }
+                          }
+                        },
+                        "style": "DEFAULT"
+                      }
+                    }
+                  ],
+                  "accessibility": {
+                    "accessibilityData": {
+                      "label": "Superman Suite (Themes) | from The Sound of Cinema - 8 minutes, 15 seconds - Go to channel - Jorah the Andal - 10K views - 1 year ago - play video"
+                    }
+                  }
+                }
+              },
+              {
+                "compactVideoRenderer": {
+                  "videoId": "ACeO5Yf1r9w",
+                  "thumbnail": {
+                    "thumbnails": [
+                      {
+                        "url": "https://i.ytimg.com/vi_webp/ACeO5Yf1r9w/default.webp",
+                        "width": 120,
+                        "height": 90
+                      },
+                      {
+                        "url": "https://i.ytimg.com/vi_webp/ACeO5Yf1r9w/mqdefault.webp",
+                        "width": 320,
+                        "height": 180
+                      },
+                      {
+                        "url": "https://i.ytimg.com/vi_webp/ACeO5Yf1r9w/hqdefault.webp",
+                        "width": 480,
+                        "height": 360
+                      },
+                      {
+                        "url": "https://i.ytimg.com/vi_webp/ACeO5Yf1r9w/sddefault.webp",
+                        "width": 640,
+                        "height": 480
+                      },
+                      {
+                        "url": "https://i.ytimg.com/vi/ACeO5Yf1r9w/hq720.jpg?sqp=-oaymwEZCK4FEIIDSEbyq4qpAwsIARUAAIhCGAFwAQ==\u0026rs=AOn4CLA_fozYfrrHQWw2Ev3l_hfbGlbzZQ",
+                        "width": 686,
+                        "height": 386
+                      }
+                    ]
+                  },
+                  "title": {
+                    "runs": [
+                      {
+                        "text": "Supergirl CW Soundtrack - Superman Theme Extended"
+                      }
+                    ],
+                    "accessibility": {
+                      "accessibilityData": {
+                        "label": "Supergirl CW Soundtrack - Superman Theme Extended by Flash Music 2 years ago 6 minutes, 45 seconds 111,151 views"
+                      }
+                    }
+                  },
+                  "longBylineText": {
+                    "runs": [
+                      {
+                        "text": "Flash Music",
+                        "navigationEndpoint": {
+                          "clickTrackingParams": "CBcQpDAYDCITCNjDzanLkecCFcMpsgodKnQLsw==",
+                          "commandMetadata": {
+                            "webCommandMetadata": {
+                              "url": "/channel/UCQuG69m9Mb_5Y8mGSRpLy9Q",
+                              "rootVe": 3611
+                            }
+                          },
+                          "browseEndpoint": {
+                            "browseId": "UCQuG69m9Mb_5Y8mGSRpLy9Q"
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "publishedTimeText": { "runs": [{ "text": "2 years ago" }] },
+                  "viewCountText": { "runs": [{ "text": "111,151 views" }] },
+                  "lengthText": {
+                    "runs": [{ "text": "6:45" }],
+                    "accessibility": {
+                      "accessibilityData": { "label": "6 minutes, 45 seconds" }
+                    }
+                  },
+                  "navigationEndpoint": {
+                    "clickTrackingParams": "CBcQpDAYDCITCNjDzanLkecCFcMpsgodKnQLszIGc2VhcmNoUhNzdXBlcm1hbiB0aGVtZSBsaXN0",
+                    "commandMetadata": {
+                      "webCommandMetadata": {
+                        "url": "/watch?v=ACeO5Yf1r9w",
+                        "rootVe": 3832
+                      }
+                    },
+                    "watchEndpoint": { "videoId": "ACeO5Yf1r9w" }
+                  },
+                  "shortBylineText": {
+                    "runs": [
+                      {
+                        "text": "Flash Music",
+                        "navigationEndpoint": {
+                          "clickTrackingParams": "CBcQpDAYDCITCNjDzanLkecCFcMpsgodKnQLsw==",
+                          "commandMetadata": {
+                            "webCommandMetadata": {
+                              "url": "/channel/UCQuG69m9Mb_5Y8mGSRpLy9Q",
+                              "rootVe": 3611
+                            }
+                          },
+                          "browseEndpoint": {
+                            "browseId": "UCQuG69m9Mb_5Y8mGSRpLy9Q"
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "channelThumbnail": {
+                    "thumbnails": [
+                      {
+                        "url": "https://yt3.ggpht.com/a-/AAuE7mBv8MQpWcMuFBWJV-P8JxNI4dFfuenoZanwMA=s68-c-k-c0x00ffffff-no-rj-mo",
+                        "width": 68,
+                        "height": 68
+                      }
+                    ]
+                  },
+                  "trackingParams": "CBcQpDAYDCITCNjDzanLkecCFcMpsgodKnQLs0Dc39a_2NzjEw==",
+                  "shortViewCountText": { "runs": [{ "text": "111K views" }] },
+                  "menu": {
+                    "menuRenderer": {
+                      "items": [
+                        {
+                          "menuNavigationItemRenderer": {
+                            "text": {
+                              "runs": [{ "text": "Save to Watch later" }]
+                            },
+                            "navigationEndpoint": {
+                              "clickTrackingParams": "CBcQpDAYDCITCNjDzanLkecCFcMpsgodKnQLsw==",
+                              "commandMetadata": {
+                                "webCommandMetadata": {
+                                  "url": "https://accounts.google.com/ServiceLogin?service=youtube\u0026uilel=3\u0026passive=true\u0026continue=https%3A%2F%2Fwww.youtube.com%2Fsignin%3Faction_handle_signin%3Dtrue%26app%3Dm%26hl%3Den%26next%3D%252Fresults%253Fhl%253Den%2526gl%253DUS%2526search_query%253Dsuperman%252Btheme%252Blist%2526page%253D1\u0026hl=en",
+                                  "rootVe": 83769
+                                }
+                              },
+                              "signInEndpoint": { "hack": true }
+                            },
+                            "trackingParams": "CBcQpDAYDCITCNjDzanLkecCFcMpsgodKnQLsw=="
+                          }
+                        }
+                      ],
+                      "trackingParams": "CBcQpDAYDCITCNjDzanLkecCFcMpsgodKnQLsw==",
+                      "accessibility": {
+                        "accessibilityData": { "label": "Action menu" }
+                      }
+                    }
+                  },
+                  "thumbnailOverlays": [
+                    {
+                      "thumbnailOverlayTimeStatusRenderer": {
+                        "text": {
+                          "runs": [{ "text": "6:45" }],
+                          "accessibility": {
+                            "accessibilityData": {
+                              "label": "6 minutes, 45 seconds"
+                            }
+                          }
+                        },
+                        "style": "DEFAULT"
+                      }
+                    }
+                  ],
+                  "accessibility": {
+                    "accessibilityData": {
+                      "label": "Supergirl CW Soundtrack - Superman Theme Extended - 6 minutes, 45 seconds - Go to channel - Flash Music - 111K views - 2 years ago - play video"
+                    }
+                  }
+                }
+              },
+              {
+                "compactPlaylistRenderer": {
+                  "playlistId": "PL99Up5XRP36xyDVMFqDgqrsbQV0hmxzMk",
+                  "thumbnail": {
+                    "thumbnails": [
+                      {
+                        "url": "https://i.ytimg.com/vi/olg5vR4PlyM/default.jpg",
+                        "width": 120,
+                        "height": 90
+                      },
+                      {
+                        "url": "https://i.ytimg.com/vi/olg5vR4PlyM/mqdefault.jpg",
+                        "width": 320,
+                        "height": 180
+                      },
+                      {
+                        "url": "https://i.ytimg.com/vi/olg5vR4PlyM/hqdefault.jpg",
+                        "width": 480,
+                        "height": 360
+                      }
+                    ]
+                  },
+                  "title": { "runs": [{ "text": "Superman themes" }] },
+                  "shortBylineText": {
+                    "runs": [
+                      {
+                        "text": "Fred Flintstone",
+                        "navigationEndpoint": {
+                          "clickTrackingParams": "CBYQojAYDSITCNjDzanLkecCFcMpsgodKnQLszIGc2VhcmNo",
+                          "commandMetadata": {
+                            "webCommandMetadata": {
+                              "url": "/user/twinmountainrock",
+                              "rootVe": 3611
+                            }
+                          },
+                          "browseEndpoint": {
+                            "browseId": "UCanYk5fnT_Q1UvVDYTtrhmg",
+                            "canonicalBaseUrl": "/user/twinmountainrock"
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "videoCountText": {
+                    "runs": [{ "text": "10" }, { "text": " videos" }]
+                  },
+                  "navigationEndpoint": {
+                    "clickTrackingParams": "CBYQojAYDSITCNjDzanLkecCFcMpsgodKnQLszIGc2VhcmNo",
+                    "commandMetadata": {
+                      "webCommandMetadata": {
+                        "url": "/playlist?list=PL99Up5XRP36xyDVMFqDgqrsbQV0hmxzMk",
+                        "rootVe": 5754
+                      }
+                    },
+                    "browseEndpoint": {
+                      "browseId": "VLPL99Up5XRP36xyDVMFqDgqrsbQV0hmxzMk"
+                    }
+                  },
+                  "videoCountShortText": { "runs": [{ "text": "10" }] },
+                  "trackingParams": "CBYQojAYDSITCNjDzanLkecCFcMpsgodKnQLsw==",
+                  "sidebarThumbnails": [
+                    {
+                      "thumbnails": [
+                        {
+                          "url": "https://i.ytimg.com/vi/dtT_97px8sQ/default.jpg",
+                          "width": 43,
+                          "height": 20
+                        }
+                      ]
+                    },
+                    {
+                      "thumbnails": [
+                        {
+                          "url": "https://i.ytimg.com/vi/w4OdIOGBW2Q/default.jpg",
+                          "width": 43,
+                          "height": 20
+                        }
+                      ]
+                    }
+                  ],
+                  "thumbnailText": {
+                    "runs": [
+                      { "text": "10", "bold": true },
+                      { "text": " videos" }
+                    ]
+                  },
+                  "thumbnailRenderer": {
+                    "playlistVideoThumbnailRenderer": {
+                      "thumbnail": {
+                        "thumbnails": [
+                          {
+                            "url": "https://i.ytimg.com/vi/olg5vR4PlyM/default.jpg",
+                            "width": 120,
+                            "height": 90
+                          },
+                          {
+                            "url": "https://i.ytimg.com/vi/olg5vR4PlyM/mqdefault.jpg",
+                            "width": 320,
+                            "height": 180
+                          },
+                          {
+                            "url": "https://i.ytimg.com/vi/olg5vR4PlyM/hqdefault.jpg",
+                            "width": 480,
+                            "height": 360
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  "longBylineText": {
+                    "runs": [
+                      {
+                        "text": "Fred Flintstone",
+                        "navigationEndpoint": {
+                          "clickTrackingParams": "CBYQojAYDSITCNjDzanLkecCFcMpsgodKnQLszIGc2VhcmNo",
+                          "commandMetadata": {
+                            "webCommandMetadata": {
+                              "url": "/user/twinmountainrock",
+                              "rootVe": 3611
+                            }
+                          },
+                          "browseEndpoint": {
+                            "browseId": "UCanYk5fnT_Q1UvVDYTtrhmg",
+                            "canonicalBaseUrl": "/user/twinmountainrock"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              },
+              {
+                "compactPlaylistRenderer": {
+                  "playlistId": "PLuvZu_2C83XKx8XQBu7MT5iKwKB20Go_h",
+                  "thumbnail": {
+                    "thumbnails": [
+                      {
+                        "url": "https://i.ytimg.com/vi/yCmII_GqPXs/default.jpg",
+                        "width": 120,
+                        "height": 90
+                      },
+                      {
+                        "url": "https://i.ytimg.com/vi/yCmII_GqPXs/mqdefault.jpg",
+                        "width": 320,
+                        "height": 180
+                      },
+                      {
+                        "url": "https://i.ytimg.com/vi/yCmII_GqPXs/hqdefault.jpg",
+                        "width": 480,
+                        "height": 360
+                      }
+                    ]
+                  },
+                  "title": { "runs": [{ "text": "Superman theme" }] },
+                  "shortBylineText": {
+                    "runs": [
+                      {
+                        "text": "filmserienmusic mix",
+                        "navigationEndpoint": {
+                          "clickTrackingParams": "CBUQojAYDiITCNjDzanLkecCFcMpsgodKnQLszIGc2VhcmNo",
+                          "commandMetadata": {
+                            "webCommandMetadata": {
+                              "url": "/channel/UCsZcNSAmZIaEuCsHE4coOvg",
+                              "rootVe": 3611
+                            }
+                          },
+                          "browseEndpoint": {
+                            "browseId": "UCsZcNSAmZIaEuCsHE4coOvg"
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "videoCountText": {
+                    "runs": [{ "text": "6" }, { "text": " videos" }]
+                  },
+                  "navigationEndpoint": {
+                    "clickTrackingParams": "CBUQojAYDiITCNjDzanLkecCFcMpsgodKnQLszIGc2VhcmNo",
+                    "commandMetadata": {
+                      "webCommandMetadata": {
+                        "url": "/playlist?list=PLuvZu_2C83XKx8XQBu7MT5iKwKB20Go_h",
+                        "rootVe": 5754
+                      }
+                    },
+                    "browseEndpoint": {
+                      "browseId": "VLPLuvZu_2C83XKx8XQBu7MT5iKwKB20Go_h"
+                    }
+                  },
+                  "videoCountShortText": { "runs": [{ "text": "6" }] },
+                  "trackingParams": "CBUQojAYDiITCNjDzanLkecCFcMpsgodKnQLsw==",
+                  "sidebarThumbnails": [
+                    {
+                      "thumbnails": [
+                        {
+                          "url": "https://i.ytimg.com/vi/_r3J8YYJQb0/default.jpg",
+                          "width": 43,
+                          "height": 20
+                        }
+                      ]
+                    },
+                    {
+                      "thumbnails": [
+                        {
+                          "url": "https://i.ytimg.com/vi/AOAEvftwdAE/default.jpg",
+                          "width": 43,
+                          "height": 20
+                        }
+                      ]
+                    }
+                  ],
+                  "thumbnailText": {
+                    "runs": [
+                      { "text": "6", "bold": true },
+                      { "text": " videos" }
+                    ]
+                  },
+                  "thumbnailRenderer": {
+                    "playlistVideoThumbnailRenderer": {
+                      "thumbnail": {
+                        "thumbnails": [
+                          {
+                            "url": "https://i.ytimg.com/vi/yCmII_GqPXs/default.jpg",
+                            "width": 120,
+                            "height": 90
+                          },
+                          {
+                            "url": "https://i.ytimg.com/vi/yCmII_GqPXs/mqdefault.jpg",
+                            "width": 320,
+                            "height": 180
+                          },
+                          {
+                            "url": "https://i.ytimg.com/vi/yCmII_GqPXs/hqdefault.jpg",
+                            "width": 480,
+                            "height": 360
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  "longBylineText": {
+                    "runs": [
+                      {
+                        "text": "filmserienmusic mix",
+                        "navigationEndpoint": {
+                          "clickTrackingParams": "CBUQojAYDiITCNjDzanLkecCFcMpsgodKnQLszIGc2VhcmNo",
+                          "commandMetadata": {
+                            "webCommandMetadata": {
+                              "url": "/channel/UCsZcNSAmZIaEuCsHE4coOvg",
+                              "rootVe": 3611
+                            }
+                          },
+                          "browseEndpoint": {
+                            "browseId": "UCsZcNSAmZIaEuCsHE4coOvg"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              },
+              {
+                "compactPlaylistRenderer": {
+                  "playlistId": "PLssq-Q7y-8rl4LsCv3eOdOHzSXW544Ma6",
+                  "thumbnail": {
+                    "thumbnails": [
+                      {
+                        "url": "https://i.ytimg.com/vi/519IOFJEneQ/default.jpg",
+                        "width": 120,
+                        "height": 90
+                      },
+                      {
+                        "url": "https://i.ytimg.com/vi/519IOFJEneQ/mqdefault.jpg",
+                        "width": 320,
+                        "height": 180
+                      },
+                      {
+                        "url": "https://i.ytimg.com/vi/519IOFJEneQ/hqdefault.jpg",
+                        "width": 480,
+                        "height": 360
+                      }
+                    ]
+                  },
+                  "title": { "runs": [{ "text": "Superman theme mashup" }] },
+                  "shortBylineText": {
+                    "runs": [
+                      {
+                        "text": "JudahtheLion01",
+                        "navigationEndpoint": {
+                          "clickTrackingParams": "CBQQojAYDyITCNjDzanLkecCFcMpsgodKnQLszIGc2VhcmNo",
+                          "commandMetadata": {
+                            "webCommandMetadata": {
+                              "url": "/channel/UCgYya-68x26LaTOEZ-lxEmQ",
+                              "rootVe": 3611
+                            }
+                          },
+                          "browseEndpoint": {
+                            "browseId": "UCgYya-68x26LaTOEZ-lxEmQ"
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "videoCountText": {
+                    "runs": [{ "text": "14" }, { "text": " videos" }]
+                  },
+                  "navigationEndpoint": {
+                    "clickTrackingParams": "CBQQojAYDyITCNjDzanLkecCFcMpsgodKnQLszIGc2VhcmNo",
+                    "commandMetadata": {
+                      "webCommandMetadata": {
+                        "url": "/playlist?list=PLssq-Q7y-8rl4LsCv3eOdOHzSXW544Ma6",
+                        "rootVe": 5754
+                      }
+                    },
+                    "browseEndpoint": {
+                      "browseId": "VLPLssq-Q7y-8rl4LsCv3eOdOHzSXW544Ma6"
+                    }
+                  },
+                  "videoCountShortText": { "runs": [{ "text": "14" }] },
+                  "trackingParams": "CBQQojAYDyITCNjDzanLkecCFcMpsgodKnQLsw==",
+                  "sidebarThumbnails": [
+                    {
+                      "thumbnails": [
+                        {
+                          "url": "https://i.ytimg.com/vi/dtT_97px8sQ/default.jpg",
+                          "width": 43,
+                          "height": 20
+                        }
+                      ]
+                    }
+                  ],
+                  "thumbnailText": {
+                    "runs": [
+                      { "text": "14", "bold": true },
+                      { "text": " videos" }
+                    ]
+                  },
+                  "thumbnailRenderer": {
+                    "playlistVideoThumbnailRenderer": {
+                      "thumbnail": {
+                        "thumbnails": [
+                          {
+                            "url": "https://i.ytimg.com/vi/519IOFJEneQ/default.jpg",
+                            "width": 120,
+                            "height": 90
+                          },
+                          {
+                            "url": "https://i.ytimg.com/vi/519IOFJEneQ/mqdefault.jpg",
+                            "width": 320,
+                            "height": 180
+                          },
+                          {
+                            "url": "https://i.ytimg.com/vi/519IOFJEneQ/hqdefault.jpg",
+                            "width": 480,
+                            "height": 360
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  "longBylineText": {
+                    "runs": [
+                      {
+                        "text": "JudahtheLion01",
+                        "navigationEndpoint": {
+                          "clickTrackingParams": "CBQQojAYDyITCNjDzanLkecCFcMpsgodKnQLszIGc2VhcmNo",
+                          "commandMetadata": {
+                            "webCommandMetadata": {
+                              "url": "/channel/UCgYya-68x26LaTOEZ-lxEmQ",
+                              "rootVe": 3611
+                            }
+                          },
+                          "browseEndpoint": {
+                            "browseId": "UCgYya-68x26LaTOEZ-lxEmQ"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              },
+              {
+                "compactPlaylistRenderer": {
+                  "playlistId": "PLgKpIWJIvvu6jKDBpN52_hzWSOxJz_Daf",
+                  "thumbnail": {
+                    "thumbnails": [
+                      {
+                        "url": "https://i.ytimg.com/vi/EBatxZ90wag/default.jpg",
+                        "width": 120,
+                        "height": 90
+                      },
+                      {
+                        "url": "https://i.ytimg.com/vi/EBatxZ90wag/mqdefault.jpg",
+                        "width": 320,
+                        "height": 180
+                      },
+                      {
+                        "url": "https://i.ytimg.com/vi/EBatxZ90wag/hqdefault.jpg",
+                        "width": 480,
+                        "height": 360
+                      }
+                    ]
+                  },
+                  "title": {
+                    "runs": [
+                      {
+                        "text": "Superman Theme song by John Williams orchestra"
+                      }
+                    ]
+                  },
+                  "shortBylineText": {
+                    "runs": [
+                      {
+                        "text": "Adrian Tan",
+                        "navigationEndpoint": {
+                          "clickTrackingParams": "CBMQojAYECITCNjDzanLkecCFcMpsgodKnQLszIGc2VhcmNo",
+                          "commandMetadata": {
+                            "webCommandMetadata": {
+                              "url": "/user/chaidrian",
+                              "rootVe": 3611
+                            }
+                          },
+                          "browseEndpoint": {
+                            "browseId": "UCd6TG8KywmCu_G4rCGKJRAQ",
+                            "canonicalBaseUrl": "/user/chaidrian"
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "videoCountText": {
+                    "runs": [{ "text": "8" }, { "text": " videos" }]
+                  },
+                  "navigationEndpoint": {
+                    "clickTrackingParams": "CBMQojAYECITCNjDzanLkecCFcMpsgodKnQLszIGc2VhcmNo",
+                    "commandMetadata": {
+                      "webCommandMetadata": {
+                        "url": "/playlist?list=PLgKpIWJIvvu6jKDBpN52_hzWSOxJz_Daf",
+                        "rootVe": 5754
+                      }
+                    },
+                    "browseEndpoint": {
+                      "browseId": "VLPLgKpIWJIvvu6jKDBpN52_hzWSOxJz_Daf"
+                    }
+                  },
+                  "videoCountShortText": { "runs": [{ "text": "8" }] },
+                  "trackingParams": "CBMQojAYECITCNjDzanLkecCFcMpsgodKnQLsw==",
+                  "sidebarThumbnails": [
+                    {
+                      "thumbnails": [
+                        {
+                          "url": "https://i.ytimg.com/vi/IL-pu2vhb88/default.jpg",
+                          "width": 43,
+                          "height": 20
+                        }
+                      ]
+                    },
+                    {
+                      "thumbnails": [
+                        {
+                          "url": "https://i.ytimg.com/vi/dydhnAi0A3E/default.jpg",
+                          "width": 43,
+                          "height": 20
+                        }
+                      ]
+                    }
+                  ],
+                  "thumbnailText": {
+                    "runs": [
+                      { "text": "8", "bold": true },
+                      { "text": " videos" }
+                    ]
+                  },
+                  "thumbnailRenderer": {
+                    "playlistVideoThumbnailRenderer": {
+                      "thumbnail": {
+                        "thumbnails": [
+                          {
+                            "url": "https://i.ytimg.com/vi/EBatxZ90wag/default.jpg",
+                            "width": 120,
+                            "height": 90
+                          },
+                          {
+                            "url": "https://i.ytimg.com/vi/EBatxZ90wag/mqdefault.jpg",
+                            "width": 320,
+                            "height": 180
+                          },
+                          {
+                            "url": "https://i.ytimg.com/vi/EBatxZ90wag/hqdefault.jpg",
+                            "width": 480,
+                            "height": 360
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  "longBylineText": {
+                    "runs": [
+                      {
+                        "text": "Adrian Tan",
+                        "navigationEndpoint": {
+                          "clickTrackingParams": "CBMQojAYECITCNjDzanLkecCFcMpsgodKnQLszIGc2VhcmNo",
+                          "commandMetadata": {
+                            "webCommandMetadata": {
+                              "url": "/user/chaidrian",
+                              "rootVe": 3611
+                            }
+                          },
+                          "browseEndpoint": {
+                            "browseId": "UCd6TG8KywmCu_G4rCGKJRAQ",
+                            "canonicalBaseUrl": "/user/chaidrian"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              },
+              {
+                "compactVideoRenderer": {
+                  "videoId": "hyGuS5WiPk8",
+                  "thumbnail": {
+                    "thumbnails": [
+                      {
+                        "url": "https://i.ytimg.com/vi_webp/hyGuS5WiPk8/default.webp",
+                        "width": 120,
+                        "height": 90
+                      },
+                      {
+                        "url": "https://i.ytimg.com/vi_webp/hyGuS5WiPk8/mqdefault.webp",
+                        "width": 320,
+                        "height": 180
+                      },
+                      {
+                        "url": "https://i.ytimg.com/vi_webp/hyGuS5WiPk8/hqdefault.webp",
+                        "width": 480,
+                        "height": 360
+                      }
+                    ]
+                  },
+                  "title": {
+                    "runs": [
+                      {
+                        "text": "Ken Thorne - Superman ll (Original Soundtrack) 1980"
+                      }
+                    ],
+                    "accessibility": {
+                      "accessibilityData": {
+                        "label": "Ken Thorne - Superman ll (Original Soundtrack) 1980 by kenthornesuperman2 9 years ago 10 minutes 538,240 views"
+                      }
+                    }
+                  },
+                  "longBylineText": {
+                    "runs": [
+                      {
+                        "text": "kenthornesuperman2",
+                        "navigationEndpoint": {
+                          "clickTrackingParams": "CBIQpDAYESITCNjDzanLkecCFcMpsgodKnQLsw==",
+                          "commandMetadata": {
+                            "webCommandMetadata": {
+                              "url": "/user/kenthornesuperman2",
+                              "rootVe": 3611
+                            }
+                          },
+                          "browseEndpoint": {
+                            "browseId": "UCCPm5c6pn-1Tq2Y8fXrGCNQ",
+                            "canonicalBaseUrl": "/user/kenthornesuperman2"
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "publishedTimeText": { "runs": [{ "text": "9 years ago" }] },
+                  "viewCountText": { "runs": [{ "text": "538,240 views" }] },
+                  "lengthText": {
+                    "runs": [{ "text": "10:46" }],
+                    "accessibility": {
+                      "accessibilityData": { "label": "10 minutes" }
+                    }
+                  },
+                  "navigationEndpoint": {
+                    "clickTrackingParams": "CBIQpDAYESITCNjDzanLkecCFcMpsgodKnQLszIGc2VhcmNoUhNzdXBlcm1hbiB0aGVtZSBsaXN0",
+                    "commandMetadata": {
+                      "webCommandMetadata": {
+                        "url": "/watch?v=hyGuS5WiPk8",
+                        "rootVe": 3832
+                      }
+                    },
+                    "watchEndpoint": { "videoId": "hyGuS5WiPk8" }
+                  },
+                  "shortBylineText": {
+                    "runs": [
+                      {
+                        "text": "kenthornesuperman2",
+                        "navigationEndpoint": {
+                          "clickTrackingParams": "CBIQpDAYESITCNjDzanLkecCFcMpsgodKnQLsw==",
+                          "commandMetadata": {
+                            "webCommandMetadata": {
+                              "url": "/user/kenthornesuperman2",
+                              "rootVe": 3611
+                            }
+                          },
+                          "browseEndpoint": {
+                            "browseId": "UCCPm5c6pn-1Tq2Y8fXrGCNQ",
+                            "canonicalBaseUrl": "/user/kenthornesuperman2"
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "channelThumbnail": {
+                    "thumbnails": [
+                      {
+                        "url": "https://yt3.ggpht.com/a-/AAuE7mCPWgP4cDCEy_eqjyGbBIkpAXlOOHvA2_Bhrw=s68-c-k-c0x00ffffff-no-rj-mo",
+                        "width": 68,
+                        "height": 68
+                      }
+                    ]
+                  },
+                  "trackingParams": "CBIQpDAYESITCNjDzanLkecCFcMpsgodKnQLs0DP_IitucnrkIcB",
+                  "shortViewCountText": { "runs": [{ "text": "538K views" }] },
+                  "menu": {
+                    "menuRenderer": {
+                      "items": [
+                        {
+                          "menuNavigationItemRenderer": {
+                            "text": {
+                              "runs": [{ "text": "Save to Watch later" }]
+                            },
+                            "navigationEndpoint": {
+                              "clickTrackingParams": "CBIQpDAYESITCNjDzanLkecCFcMpsgodKnQLsw==",
+                              "commandMetadata": {
+                                "webCommandMetadata": {
+                                  "url": "https://accounts.google.com/ServiceLogin?service=youtube\u0026uilel=3\u0026passive=true\u0026continue=https%3A%2F%2Fwww.youtube.com%2Fsignin%3Faction_handle_signin%3Dtrue%26app%3Dm%26hl%3Den%26next%3D%252Fresults%253Fhl%253Den%2526gl%253DUS%2526search_query%253Dsuperman%252Btheme%252Blist%2526page%253D1\u0026hl=en",
+                                  "rootVe": 83769
+                                }
+                              },
+                              "signInEndpoint": { "hack": true }
+                            },
+                            "trackingParams": "CBIQpDAYESITCNjDzanLkecCFcMpsgodKnQLsw=="
+                          }
+                        }
+                      ],
+                      "trackingParams": "CBIQpDAYESITCNjDzanLkecCFcMpsgodKnQLsw==",
+                      "accessibility": {
+                        "accessibilityData": { "label": "Action menu" }
+                      }
+                    }
+                  },
+                  "thumbnailOverlays": [
+                    {
+                      "thumbnailOverlayTimeStatusRenderer": {
+                        "text": {
+                          "runs": [{ "text": "10:46" }],
+                          "accessibility": {
+                            "accessibilityData": { "label": "10 minutes" }
+                          }
+                        },
+                        "style": "DEFAULT"
+                      }
+                    }
+                  ],
+                  "accessibility": {
+                    "accessibilityData": {
+                      "label": "Ken Thorne - Superman ll (Original Soundtrack) 1980 - 10 minutes - Go to channel - kenthornesuperman2 - 538K views - 9 years ago - play video"
+                    }
+                  }
+                }
+              },
+              {
+                "compactVideoRenderer": {
+                  "videoId": "ugENK30_h2A",
+                  "thumbnail": {
+                    "thumbnails": [
+                      {
+                        "url": "https://i.ytimg.com/vi_webp/ugENK30_h2A/default.webp",
+                        "width": 120,
+                        "height": 90
+                      },
+                      {
+                        "url": "https://i.ytimg.com/vi_webp/ugENK30_h2A/mqdefault.webp",
+                        "width": 320,
+                        "height": 180
+                      },
+                      {
+                        "url": "https://i.ytimg.com/vi_webp/ugENK30_h2A/hqdefault.webp",
+                        "width": 480,
+                        "height": 360
+                      },
+                      {
+                        "url": "https://i.ytimg.com/vi_webp/ugENK30_h2A/sddefault.webp",
+                        "width": 640,
+                        "height": 480
+                      }
+                    ]
+                  },
+                  "title": {
+                    "runs": [
+                      {
+                        "text": "Superman Suite (Theme) Second Edit | Supergirl"
+                      }
+                    ],
+                    "accessibility": {
+                      "accessibilityData": {
+                        "label": "Superman Suite (Theme) Second Edit | Supergirl by Jorah the Andal 1 year ago 3 minutes, 56 seconds 13,212 views"
+                      }
+                    }
+                  },
+                  "longBylineText": {
+                    "runs": [
+                      {
+                        "text": "Jorah the Andal",
+                        "navigationEndpoint": {
+                          "clickTrackingParams": "CBEQpDAYEiITCNjDzanLkecCFcMpsgodKnQLsw==",
+                          "commandMetadata": {
+                            "webCommandMetadata": {
+                              "url": "/channel/UCedMZfhIlfCyI4O8BprShYw",
+                              "rootVe": 3611
+                            }
+                          },
+                          "browseEndpoint": {
+                            "browseId": "UCedMZfhIlfCyI4O8BprShYw"
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "publishedTimeText": { "runs": [{ "text": "1 year ago" }] },
+                  "viewCountText": { "runs": [{ "text": "13,212 views" }] },
+                  "lengthText": {
+                    "runs": [{ "text": "3:56" }],
+                    "accessibility": {
+                      "accessibilityData": { "label": "3 minutes, 56 seconds" }
+                    }
+                  },
+                  "navigationEndpoint": {
+                    "clickTrackingParams": "CBEQpDAYEiITCNjDzanLkecCFcMpsgodKnQLszIGc2VhcmNoUhNzdXBlcm1hbiB0aGVtZSBsaXN0",
+                    "commandMetadata": {
+                      "webCommandMetadata": {
+                        "url": "/watch?v=ugENK30_h2A",
+                        "rootVe": 3832
+                      }
+                    },
+                    "watchEndpoint": { "videoId": "ugENK30_h2A" }
+                  },
+                  "shortBylineText": {
+                    "runs": [
+                      {
+                        "text": "Jorah the Andal",
+                        "navigationEndpoint": {
+                          "clickTrackingParams": "CBEQpDAYEiITCNjDzanLkecCFcMpsgodKnQLsw==",
+                          "commandMetadata": {
+                            "webCommandMetadata": {
+                              "url": "/channel/UCedMZfhIlfCyI4O8BprShYw",
+                              "rootVe": 3611
+                            }
+                          },
+                          "browseEndpoint": {
+                            "browseId": "UCedMZfhIlfCyI4O8BprShYw"
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "channelThumbnail": {
+                    "thumbnails": [
+                      {
+                        "url": "https://yt3.ggpht.com/a-/AAuE7mB489vnjyODFLyaqLw0yVJ3_S_BFXopPLXfBw=s68-c-k-c0x00ffffff-no-rj-mo",
+                        "width": 68,
+                        "height": 68
+                      }
+                    ]
+                  },
+                  "trackingParams": "CBEQpDAYEiITCNjDzanLkecCFcMpsgodKnQLs0Dgjv7pt6XDgLoB",
+                  "shortViewCountText": { "runs": [{ "text": "13K views" }] },
+                  "menu": {
+                    "menuRenderer": {
+                      "items": [
+                        {
+                          "menuNavigationItemRenderer": {
+                            "text": {
+                              "runs": [{ "text": "Save to Watch later" }]
+                            },
+                            "navigationEndpoint": {
+                              "clickTrackingParams": "CBEQpDAYEiITCNjDzanLkecCFcMpsgodKnQLsw==",
+                              "commandMetadata": {
+                                "webCommandMetadata": {
+                                  "url": "https://accounts.google.com/ServiceLogin?service=youtube\u0026uilel=3\u0026passive=true\u0026continue=https%3A%2F%2Fwww.youtube.com%2Fsignin%3Faction_handle_signin%3Dtrue%26app%3Dm%26hl%3Den%26next%3D%252Fresults%253Fhl%253Den%2526gl%253DUS%2526search_query%253Dsuperman%252Btheme%252Blist%2526page%253D1\u0026hl=en",
+                                  "rootVe": 83769
+                                }
+                              },
+                              "signInEndpoint": { "hack": true }
+                            },
+                            "trackingParams": "CBEQpDAYEiITCNjDzanLkecCFcMpsgodKnQLsw=="
+                          }
+                        }
+                      ],
+                      "trackingParams": "CBEQpDAYEiITCNjDzanLkecCFcMpsgodKnQLsw==",
+                      "accessibility": {
+                        "accessibilityData": { "label": "Action menu" }
+                      }
+                    }
+                  },
+                  "thumbnailOverlays": [
+                    {
+                      "thumbnailOverlayTimeStatusRenderer": {
+                        "text": {
+                          "runs": [{ "text": "3:56" }],
+                          "accessibility": {
+                            "accessibilityData": {
+                              "label": "3 minutes, 56 seconds"
+                            }
+                          }
+                        },
+                        "style": "DEFAULT"
+                      }
+                    }
+                  ],
+                  "accessibility": {
+                    "accessibilityData": {
+                      "label": "Superman Suite (Theme) Second Edit | Supergirl - 3 minutes, 56 seconds - Go to channel - Jorah the Andal - 13K views - 1 year ago - play video"
+                    }
+                  }
+                }
+              },
+              {
+                "compactVideoRenderer": {
+                  "videoId": "-h5qX8kL7q8",
+                  "thumbnail": {
+                    "thumbnails": [
+                      {
+                        "url": "https://i.ytimg.com/vi/-h5qX8kL7q8/default.jpg",
+                        "width": 120,
+                        "height": 90
+                      },
+                      {
+                        "url": "https://i.ytimg.com/vi/-h5qX8kL7q8/mqdefault.jpg",
+                        "width": 320,
+                        "height": 180
+                      },
+                      {
+                        "url": "https://i.ytimg.com/vi/-h5qX8kL7q8/hqdefault.jpg",
+                        "width": 480,
+                        "height": 360
+                      },
+                      {
+                        "url": "https://i.ytimg.com/vi/-h5qX8kL7q8/sddefault.jpg",
+                        "width": 640,
+                        "height": 480
+                      },
+                      {
+                        "url": "https://i.ytimg.com/vi/-h5qX8kL7q8/hq720.jpg?sqp=-oaymwEZCK4FEIIDSEbyq4qpAwsIARUAAIhCGAFwAQ==\u0026rs=AOn4CLAXhOXcl9ouWIsI-Fv6VTx1bnu_-w",
+                        "width": 686,
+                        "height": 386
+                      }
+                    ]
+                  },
+                  "title": {
+                    "runs": [
+                      {
+                        "text": "John Williams ~ Superman (The Best Theme For 'The Man Of Steel')"
+                      }
+                    ],
+                    "accessibility": {
+                      "accessibilityData": {
+                        "label": "John Williams ~ Superman (The Best Theme For 'The Man Of Steel') by TheNewFormat 9 years ago 4 minutes, 24 seconds 2,074,884 views"
+                      }
+                    }
+                  },
+                  "longBylineText": {
+                    "runs": [
+                      {
+                        "text": "TheNewFormat",
+                        "navigationEndpoint": {
+                          "clickTrackingParams": "CBAQpDAYEyITCNjDzanLkecCFcMpsgodKnQLsw==",
+                          "commandMetadata": {
+                            "webCommandMetadata": {
+                              "url": "/user/TheNewFormat",
+                              "rootVe": 3611
+                            }
+                          },
+                          "browseEndpoint": {
+                            "browseId": "UCOTi-kqWFDlHE6ReY_i7rPw",
+                            "canonicalBaseUrl": "/user/TheNewFormat"
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "publishedTimeText": { "runs": [{ "text": "9 years ago" }] },
+                  "viewCountText": { "runs": [{ "text": "2,074,884 views" }] },
+                  "lengthText": {
+                    "runs": [{ "text": "4:24" }],
+                    "accessibility": {
+                      "accessibilityData": { "label": "4 minutes, 24 seconds" }
+                    }
+                  },
+                  "navigationEndpoint": {
+                    "clickTrackingParams": "CBAQpDAYEyITCNjDzanLkecCFcMpsgodKnQLszIGc2VhcmNoUhNzdXBlcm1hbiB0aGVtZSBsaXN0",
+                    "commandMetadata": {
+                      "webCommandMetadata": {
+                        "url": "/watch?v=-h5qX8kL7q8",
+                        "rootVe": 3832
+                      }
+                    },
+                    "watchEndpoint": { "videoId": "-h5qX8kL7q8" }
+                  },
+                  "shortBylineText": {
+                    "runs": [
+                      {
+                        "text": "TheNewFormat",
+                        "navigationEndpoint": {
+                          "clickTrackingParams": "CBAQpDAYEyITCNjDzanLkecCFcMpsgodKnQLsw==",
+                          "commandMetadata": {
+                            "webCommandMetadata": {
+                              "url": "/user/TheNewFormat",
+                              "rootVe": 3611
+                            }
+                          },
+                          "browseEndpoint": {
+                            "browseId": "UCOTi-kqWFDlHE6ReY_i7rPw",
+                            "canonicalBaseUrl": "/user/TheNewFormat"
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "channelThumbnail": {
+                    "thumbnails": [
+                      {
+                        "url": "https://yt3.ggpht.com/a-/AAuE7mBlWke1D2LZIZOY9kSiLqXid_FaVi05bmzveQ=s68-c-k-c0x00ffffff-no-rj-mo",
+                        "width": 68,
+                        "height": 68
+                      }
+                    ]
+                  },
+                  "trackingParams": "CBAQpDAYEyITCNjDzanLkecCFcMpsgodKnQLs0Cv3a_I_Muaj_oB",
+                  "shortViewCountText": { "runs": [{ "text": "2M views" }] },
+                  "menu": {
+                    "menuRenderer": {
+                      "items": [
+                        {
+                          "menuNavigationItemRenderer": {
+                            "text": {
+                              "runs": [{ "text": "Save to Watch later" }]
+                            },
+                            "navigationEndpoint": {
+                              "clickTrackingParams": "CBAQpDAYEyITCNjDzanLkecCFcMpsgodKnQLsw==",
+                              "commandMetadata": {
+                                "webCommandMetadata": {
+                                  "url": "https://accounts.google.com/ServiceLogin?service=youtube\u0026uilel=3\u0026passive=true\u0026continue=https%3A%2F%2Fwww.youtube.com%2Fsignin%3Faction_handle_signin%3Dtrue%26app%3Dm%26hl%3Den%26next%3D%252Fresults%253Fhl%253Den%2526gl%253DUS%2526search_query%253Dsuperman%252Btheme%252Blist%2526page%253D1\u0026hl=en",
+                                  "rootVe": 83769
+                                }
+                              },
+                              "signInEndpoint": { "hack": true }
+                            },
+                            "trackingParams": "CBAQpDAYEyITCNjDzanLkecCFcMpsgodKnQLsw=="
+                          }
+                        }
+                      ],
+                      "trackingParams": "CBAQpDAYEyITCNjDzanLkecCFcMpsgodKnQLsw==",
+                      "accessibility": {
+                        "accessibilityData": { "label": "Action menu" }
+                      }
+                    }
+                  },
+                  "thumbnailOverlays": [
+                    {
+                      "thumbnailOverlayTimeStatusRenderer": {
+                        "text": {
+                          "runs": [{ "text": "4:24" }],
+                          "accessibility": {
+                            "accessibilityData": {
+                              "label": "4 minutes, 24 seconds"
+                            }
+                          }
+                        },
+                        "style": "DEFAULT"
+                      }
+                    }
+                  ],
+                  "accessibility": {
+                    "accessibilityData": {
+                      "label": "John Williams ~ Superman (The Best Theme For 'The Man Of Steel') - 4 minutes, 24 seconds - Go to channel - TheNewFormat - 2M views - 9 years ago - play video"
+                    }
+                  }
+                }
+              }
+            ],
+            "continuations": [
+              {
+                "nextContinuationData": {
+                  "continuation": "EoMHEhNzdXBlcm1hbiB0aGVtZSBsaXN0GvwFU0JTQ0FTSlFURmxvUzBGc01rWnZSM3BETUVsUmEyZG1WblJOT1RreGR6TkZPSEp2TVhsSGdnRVNVRXc0UkRVNU16VkZSamhCTjBFd1JqWXhnZ0VMWlRsMmNtWkZiMk00WDJlQ0FTSlFURUpMWVdSQ09UVnpSalEwZG1wT2VrNUJRbU5aYjBaZk4yRmxObXhCWjBwTmdnRUxOemhPTWxOUU5rcEdZVW1DQVNKUVRHWkpZekV5YWtzNFFsWnNhV2R0WlVsTWEwbDVOakZpU1ZGc1FWSlRXRmRvZ2dFaVVFeEdVRXhRVUZsVFNqaHhRbGRIVm05aGJpMTFXRGhzVFdwMlRXVkZaMjEzZDRJQklsQk1XV2hMUVd3eVJtOUhla1JIZWs5RlNsSmFUME52WVZoaWJXNXNZblozWjFpQ0FTSlFURzU0YjIxalFUUmZRbFpHVlVOek5VazFhM0o2UTIwNVlURTViWFJuU0hWemdnRWlVRXgxZEMxUE5IUXhiREE0VEd0QmNrRndTMkUzYUhkaFZ6TnNkWFJLWjBsTVZJSUJJbEJNU21kWVRtWm1VbmxtUnpkVGVURkZhamhYVkRCMVNsRmtNblF4Vm05eVJrMkNBUXRsYkdGNVoxUlplV0YxYTRJQkMwRkRaVTgxV1dZeGNqbDNnZ0VpVUV3NU9WVndOVmhTVURNMmVIbEVWazFHY1VSbmNYSnpZbEZXTUdodGVIcE5hNElCSWxCTWRYWmFkVjh5UXpneldFdDRPRmhSUW5VM1RWUTFhVXQzUzBJeU1FZHZYMmlDQVNKUVRITnpjUzFSTjNrdE9ISnNORXh6UTNZelpVOWtUMGg2VTFoWE5UUTBUV0UyZ2dFaVVFeG5TM0JKVjBwSmRuWjFObXBMUkVKd1RqVXlYMmg2VjFOUGVFcDZYMFJoWm9JQkMyaDVSM1ZUTlZkcFVHczRnZ0VMZFdkRlRrc3pNRjlvTWtHQ0FRc3RhRFZ4V0RoclREZHhPSmdCQVElM0QlM0TKAWwaFWh0dHBzOi8vbS55b3V0dWJlLmNvbSIAKlFodHRwczovL20ueW91dHViZS5jb20vcmVzdWx0cz9obD1lbiZnbD1VUyZzZWFyY2hfcXVlcnk9c3VwZXJtYW4rdGhlbWUrbGlzdCZwYWdlPTEYvN7oGA%3D%3D",
+                  "clickTrackingParams": "CA8QybcCIhMI2MPNqcuR5wIVwymyCh0qdAuz",
+                  "label": { "runs": [{ "text": "Show more" }] },
+                  "autoloadEnabled": true
+                }
+              }
+            ],
+            "trackingParams": "CA4Quy8YACITCNjDzanLkecCFcMpsgodKnQLsw=="
+          }
+        }
+      ],
+      "continuations": [
+        {
+          "reloadContinuationData": {
+            "continuation": "EoQBEhNzdXBlcm1hbiB0aGVtZSBsaXN0ygFsGhVodHRwczovL20ueW91dHViZS5jb20iACpRaHR0cHM6Ly9tLnlvdXR1YmUuY29tL3Jlc3VsdHM_aGw9ZW4mZ2w9VVMmc2VhcmNoX3F1ZXJ5PXN1cGVybWFuK3RoZW1lK2xpc3QmcGFnZT0xGIHg6Bg%3D",
+            "clickTrackingParams": "CA0QxqYCIhMI2MPNqcuR5wIVwymyCh0qdAuz"
+          }
+        }
+      ],
+      "trackingParams": "CAEQui8iEwjYw82py5HnAhXDKbIKHSp0C7M=",
+      "subMenu": {
+        "searchSubMenuRenderer": {
+          "title": { "runs": [{ "text": "Search options" }] },
+          "groups": [
+            {
+              "searchFilterGroupRenderer": {
+                "title": { "simpleText": "Type" },
+                "filters": [
+                  {
+                    "searchFilterRenderer": {
+                      "label": { "simpleText": "All" },
+                      "status": "FILTER_STATUS_SELECTED",
+                      "navigationEndpoint": {
+                        "clickTrackingParams": "CAwQk3UYACITCNjDzanLkecCFcMpsgodKnQLsw==",
+                        "commandMetadata": {
+                          "webCommandMetadata": {
+                            "url": "/results?search_query=superman+theme+list",
+                            "rootVe": 4724
+                          }
+                        },
+                        "searchEndpoint": { "query": "superman theme list" }
+                      },
+                      "tooltip": "Remove All filter",
+                      "trackingParams": "CAwQk3UYACITCNjDzanLkecCFcMpsgodKnQLsw=="
+                    }
+                  },
+                  {
+                    "searchFilterRenderer": {
+                      "label": { "simpleText": "Channel" },
+                      "navigationEndpoint": {
+                        "clickTrackingParams": "CAsQk3UYASITCNjDzanLkecCFcMpsgodKnQLsw==",
+                        "commandMetadata": {
+                          "webCommandMetadata": {
+                            "url": "/results?search_query=superman+theme+list\u0026sp=EgIQAg%253D%253D",
+                            "rootVe": 4724
+                          }
+                        },
+                        "searchEndpoint": {
+                          "query": "superman theme list",
+                          "params": "EgIQAg%3D%3D"
+                        }
+                      },
+                      "tooltip": "Search for Channel",
+                      "trackingParams": "CAsQk3UYASITCNjDzanLkecCFcMpsgodKnQLsw=="
+                    }
+                  },
+                  {
+                    "searchFilterRenderer": {
+                      "label": { "simpleText": "Playlist" },
+                      "navigationEndpoint": {
+                        "clickTrackingParams": "CAoQk3UYAiITCNjDzanLkecCFcMpsgodKnQLsw==",
+                        "commandMetadata": {
+                          "webCommandMetadata": {
+                            "url": "/results?search_query=superman+theme+list\u0026sp=EgIQAw%253D%253D",
+                            "rootVe": 4724
+                          }
+                        },
+                        "searchEndpoint": {
+                          "query": "superman theme list",
+                          "params": "EgIQAw%3D%3D"
+                        }
+                      },
+                      "tooltip": "Search for Playlist",
+                      "trackingParams": "CAoQk3UYAiITCNjDzanLkecCFcMpsgodKnQLsw=="
+                    }
+                  }
+                ],
+                "trackingParams": "CAkQknUYACITCNjDzanLkecCFcMpsgodKnQLsw=="
+              }
+            },
+            {
+              "searchFilterGroupRenderer": {
+                "title": { "simpleText": "Upload date" },
+                "filters": [
+                  {
+                    "searchFilterRenderer": {
+                      "label": { "simpleText": "Anytime" },
+                      "status": "FILTER_STATUS_SELECTED",
+                      "navigationEndpoint": {
+                        "clickTrackingParams": "CAgQk3UYACITCNjDzanLkecCFcMpsgodKnQLsw==",
+                        "commandMetadata": {
+                          "webCommandMetadata": {
+                            "url": "/results?search_query=superman+theme+list",
+                            "rootVe": 4724
+                          }
+                        },
+                        "searchEndpoint": { "query": "superman theme list" }
+                      },
+                      "tooltip": "Remove Anytime filter",
+                      "trackingParams": "CAgQk3UYACITCNjDzanLkecCFcMpsgodKnQLsw=="
+                    }
+                  },
+                  {
+                    "searchFilterRenderer": {
+                      "label": { "simpleText": "Today" },
+                      "navigationEndpoint": {
+                        "clickTrackingParams": "CAcQk3UYASITCNjDzanLkecCFcMpsgodKnQLsw==",
+                        "commandMetadata": {
+                          "webCommandMetadata": {
+                            "url": "/results?search_query=superman+theme+list\u0026sp=EgIIAg%253D%253D",
+                            "rootVe": 4724
+                          }
+                        },
+                        "searchEndpoint": {
+                          "query": "superman theme list",
+                          "params": "EgIIAg%3D%3D"
+                        }
+                      },
+                      "tooltip": "Search for Today",
+                      "trackingParams": "CAcQk3UYASITCNjDzanLkecCFcMpsgodKnQLsw=="
+                    }
+                  },
+                  {
+                    "searchFilterRenderer": {
+                      "label": { "simpleText": "This week" },
+                      "navigationEndpoint": {
+                        "clickTrackingParams": "CAYQk3UYAiITCNjDzanLkecCFcMpsgodKnQLsw==",
+                        "commandMetadata": {
+                          "webCommandMetadata": {
+                            "url": "/results?search_query=superman+theme+list\u0026sp=EgIIAw%253D%253D",
+                            "rootVe": 4724
+                          }
+                        },
+                        "searchEndpoint": {
+                          "query": "superman theme list",
+                          "params": "EgIIAw%3D%3D"
+                        }
+                      },
+                      "tooltip": "Search for This week",
+                      "trackingParams": "CAYQk3UYAiITCNjDzanLkecCFcMpsgodKnQLsw=="
+                    }
+                  },
+                  {
+                    "searchFilterRenderer": {
+                      "label": { "simpleText": "This month" },
+                      "navigationEndpoint": {
+                        "clickTrackingParams": "CAUQk3UYAyITCNjDzanLkecCFcMpsgodKnQLsw==",
+                        "commandMetadata": {
+                          "webCommandMetadata": {
+                            "url": "/results?search_query=superman+theme+list\u0026sp=EgIIBA%253D%253D",
+                            "rootVe": 4724
+                          }
+                        },
+                        "searchEndpoint": {
+                          "query": "superman theme list",
+                          "params": "EgIIBA%3D%3D"
+                        }
+                      },
+                      "tooltip": "Search for This month",
+                      "trackingParams": "CAUQk3UYAyITCNjDzanLkecCFcMpsgodKnQLsw=="
+                    }
+                  },
+                  {
+                    "searchFilterRenderer": {
+                      "label": { "simpleText": "This year" },
+                      "navigationEndpoint": {
+                        "clickTrackingParams": "CAQQk3UYBCITCNjDzanLkecCFcMpsgodKnQLsw==",
+                        "commandMetadata": {
+                          "webCommandMetadata": {
+                            "url": "/results?search_query=superman+theme+list\u0026sp=EgIIBQ%253D%253D",
+                            "rootVe": 4724
+                          }
+                        },
+                        "searchEndpoint": {
+                          "query": "superman theme list",
+                          "params": "EgIIBQ%3D%3D"
+                        }
+                      },
+                      "tooltip": "Search for This year",
+                      "trackingParams": "CAQQk3UYBCITCNjDzanLkecCFcMpsgodKnQLsw=="
+                    }
+                  }
+                ],
+                "trackingParams": "CAMQknUYASITCNjDzanLkecCFcMpsgodKnQLsw=="
+              }
+            }
+          ],
+          "trackingParams": "CAIQkXUiEwjYw82py5HnAhXDKbIKHSp0C7M="
+        }
+      }
+    }
+  },
+  "trackingParams": "CAAQvGkiEwjYw82py5HnAhXDKbIKHSp0C7M=",
+  "adSafetyReason": { "isCrosswalk": true }
+}

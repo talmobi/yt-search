@@ -2,32 +2,55 @@ const _cheerio = require( 'cheerio' )
 const _dasu = require( 'dasu' )
 const _parallel = require( 'async.parallellimit' )
 
+// auto follow off
+_dasu.follow = false
+_dasu.debug = true
+
+// google bot user-agent
+// Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)
+
+// use fixed user-agent to get consistent html page documents as
+// it varies depending on the user-agent
+// the string "Googlebot" seems to give us pages without
+// warnings to update our browser, which is why we keep it in
+const DEFAULT_USER_AGENT = 'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html) (yt-search; https://www.npmjs.com/package/yt-search)'
+
+let _userAgent = DEFAULT_USER_AGENT // mutable global user-agent
+
 const _url = require( 'url' )
+
+const _envs = {}
+Object.keys( process.env ).forEach(
+  function ( key ) {
+    const n = process.env[ key ]
+    if ( n == '0' || n == 'false' || !n ) {
+      return _envs[ key ] = false
+    }
+    _envs[ key ] = n
+  }
+)
+
+const _debugging = _envs.debug
+
+function debug () {
+  if ( !_debugging ) return
+  console.log.apply( this, arguments )
+}
 
 // used to escape query strings
 const _querystring = require( 'querystring' )
 
 const _humanTime = require( 'human-time' )
 
-const DEFAULT_YT_SEARCH_QUERY_URI = (
-  'https://www.youtube.com/results?'
-  // 'hl=en&gl=US&category=music' +
-  // '&search_query='
-  // 'search_query='
-)
+const TEMPLATES = {
+  YT: 'https://youtube.com',
+  SEARCH_MOBILE: 'https://m.youtube.com/results',
+  SEARCH_DESKTOP: 'https://www.youtube.com/results'
+}
 
 const ONE_SECOND = 1000
 const ONE_MINUTE = ONE_SECOND * 60
 const TIME_TO_LIVE = ONE_MINUTE * 5
-
-const DEFAULT_OPTS = {
-  YT_SEARCH_QUERY_URI: '',
-  hl: 'en', // en
-  gl: 'US', // US
-  category: '', // music
-  pageStart: 1, // from this page of youtube search results
-  pageEnd: 1 // to this page of youtube search results
-}
 
 /**
  * Exports
@@ -42,128 +65,128 @@ module.exports.search = search
  */
 function search ( query, callback )
 {
-  let _resolve, _reject
-  const promise = new Promise( function ( resolve, reject ) {
-    _resolve = resolve
-    _reject = reject
-  } )
-
-  // wrap the callback internally to support promises
-  const _callback = callback
-  callback = function _internal_callback ( err, data ) {
-    if ( _callback ) return _callback( err, data )
-    if ( err ) return _reject( err )
-    _resolve( data )
+  // support promises when no callback given
+  if ( !callback ) {
+    return new Promise( function ( resolve, reject ) {
+      search( query, function ( err, data ) {
+        if ( err ) return reject( err )
+        resolve( data )
+      } )
+    } )
   }
 
-  let opts = Object.assign( {}, DEFAULT_OPTS )
-
-  if ( !query ) {
-    return callback(
-      new Error( 'No query given.' )
-    )
-  }
-
+  let _options
   if ( typeof query === 'string' ) {
-    opts = Object.assign( opts, { query: query } )
+    _options = {
+      query: query
+    }
   } else {
-    opts = Object.assign( opts, query )
+    _options = query
   }
 
-  if ( !opts.YT_SEARCH_QUERY_URI ) {
-    let uri = DEFAULT_YT_SEARCH_QUERY_URI
-    const language = ( opts.hl || opts.language || opts.lang )
-    if ( language ) uri += '&hl=' + language.slice( 0, 2 )
-    if ( opts.gl ) uri += '&gl=' + opts.gl
-    if ( opts.category ) uri += '&category=' + opts.category
-    opts.YT_SEARCH_QUERY_URI = uri
+  // override userAgent if set ( not recommended )
+  if ( _options.userAgent ) _userAgent = _options.userAgent
+
+  // support common alternatives ( mutates )
+  _options.search = _options.query || _options.search
+
+  // initial search text ( _options.search is mutated )
+  _options.original_search = _options.search
+
+  // ignore query, only get metadata from specific video id
+  if ( _options.videoId ) {
+    return getVideoMetaData( _options.videoId, callback )
   }
 
-  if ( opts.videoId ) {
-    getVideoMetaData( opts.videoId, callback )
-    if ( !_callback ) return promise
-    return
+  // ignore query, only get metadata from specific playlist id
+  if ( _options.listId ) {
+    return getPlaylistMetaData( _options.listId, callback )
   }
 
-  if ( opts.listId ) {
-    getPlaylistMetaData( opts.listId, callback )
-    if ( !_callback ) return promise
-    return
+  if ( !_options.search ) {
+    return callback( Error( 'yt-search: no query given' ) )
   }
 
-  query = opts.query || opts.search
+  work()
 
-  next()
-
-  function next () {
-    const q = _querystring.escape( query ).split( /\s+/ )
-    const uri = opts.YT_SEARCH_QUERY_URI + '&search_query=' + q.join( '+' )
-
-    // support starting from 0 index meant as first page
-    if ( opts.pageStart === 0 ) {
-      opts.pageStart++
-      opts.pageEnd++
-    }
-
-    const tasks = []
-    for ( let i = opts.pageStart; i <= opts.pageEnd; i++ ) {
-      const pageNumber = i
-      tasks.push(
-        function task ( taskDone ) {
-          findVideos( uri, pageNumber, function ( err, videos ) {
-            if ( err ) {
-              taskDone( err )
-            } else {
-              taskDone( null, videos )
-            }
-          } )
-        }
-      )
-    }
-
-    _parallel(
-      tasks,
-      1, // max requests at a time
-      function ( err, results ) {
-        if ( err ) {
-          callback( err )
-        } else {
-          // results array is kept in the same order as the
-          // tasks were executed (not when tasks finished) by
-          // the async.parallellimit library
-          // combine results into a single array
-          let list = []
-          for ( let i = 0; i < results.length; i++ ) {
-            list = list.concat( results[ 0 ] )
-          }
-
-          const videos = list.filter( videoFilter )
-          const playlists = list.filter( playlistFilter )
-          const accounts = list.filter( accountFilter )
-
-          callback( null, {
-            videos: videos.filter( videoFilterDuplicates ),
-
-            playlists: playlists,
-            lists: playlists,
-
-            accounts: accounts,
-            channels: accounts
-          } )
-        }
-      }
-    )
+  function work () {
+    getSearchResults( _options, callback )
   }
-
-  if ( !_callback ) return promise
 }
 
-function findVideos ( uri, page, callback )
+/* Request search page results with provided
+ * search_query term
+ */
+function getSearchResults ( _options, callback )
 {
-  uri += '&page=' + page
+  // querystring variables
+  const q = _querystring.escape( _options.search ).split( /\s+/ )
+  const hl = _options.hl || 'en'
+  const gl = _options.gl || 'US'
+  const category = _options.category || '' // music
+
+  let pageStart = (
+    Number( _options.pageStart ) || 1
+  )
+
+  let pageEnd = (
+    Number( _options.pageEnd ) ||
+    Number( _options.pages ) || 1
+  )
+
+  // handle zero-index start
+  if ( pageStart <= 0 ) {
+    pageStart = 1
+    if ( pageEnd >= 1 ) {
+      pageEnd += 1
+    }
+  }
+
+  if ( Number.isNaN( pageEnd ) ) {
+    callback( 'error: pageEnd must be a number' )
+  }
+
+  _options.pageStart = pageStart
+  _options.pageEnd = pageEnd
+  _options.currentPage = _options.currentPage || pageStart
+
+  let queryString = '?'
+  queryString += 'search_query=' + q.join( '+' )
+
+  // language
+  // queryString += '&'
+  if ( queryString.indexOf( '&hl=' ) === -1 ) {
+    queryString += '&hl=' + hl
+  }
+
+  // location
+  // queryString += '&'
+  if ( queryString.indexOf( '&gl=' ) === -1 ) {
+    queryString += '&gl=' + gl
+  }
+
+  if ( category ) { // ex. "music"
+    queryString += '&category=' + category
+  }
+
+  if ( _options.sp ) {
+    queryString += '&sp=' + _options.sp
+  }
+
+  const uri = TEMPLATES.SEARCH_DESKTOP + queryString
 
   const params = _url.parse( uri )
 
+  params.headers = {
+    'user-agent': _userAgent,
+    'accept': 'text/html',
+    'accept-encoding': 'gzip',
+    'accept-language': 'en-US'
+  }
+
+  debug( params )
+
+  debug( 'getting results: ' + _options.currentPage )
   _dasu.req( params, function ( err, res, body ) {
     if ( err ) {
       callback( err )
@@ -172,8 +195,70 @@ function findVideos ( uri, page, callback )
         return callback( 'http status: ' + res.status )
       }
 
+      if ( _debugging ) {
+        const fs = require( 'fs' )
+        const path = require( 'path' )
+        fs.writeFileSync( 'dasu.response', res.responseText, 'utf8' )
+      }
+
       try {
-        parseSearchBody( body, callback )
+        _parseSearchResults( body, function ( err, results ) {
+          if ( err ) return callback( err )
+
+          const list = results
+
+          const videos = list.filter( videoFilter )
+          const playlists = list.filter( playlistFilter )
+          const channels = list.filter( channelFilter )
+
+          // keep saving results into temporary memory while
+          // we get more results
+          _options._data = _options._data || {}
+
+          // init memory
+          _options._data.videos = _options._data.videos || []
+          _options._data.playlists = _options._data.playlists || []
+          _options._data.channels = _options._data.channels || []
+
+          // push received results into memory
+          videos.forEach( function ( item ) {
+            _options._data.videos.push( item )
+          } )
+          playlists.forEach( function ( item ) {
+            _options._data.playlists.push( item )
+          } )
+          channels.forEach( function ( item ) {
+            _options._data.channels.push( item )
+          } )
+
+          _options.currentPage++
+          const getMoreResults = (
+            _options.currentPage <= _options.pageEnd
+          )
+
+          if ( getMoreResults && results._sp ) {
+            _options.sp = results._sp
+
+            setTimeout( function () {
+              getSearchResults( _options, callback )
+            }, 1500 ) // delay a bit to try and prevent throttling
+          } else {
+            const videos = _options._data.videos.filter( videoFilter )
+            const playlists = _options._data.playlists.filter( playlistFilter )
+            const channels = _options._data.channels.filter( channelFilter )
+
+            // return all found videos
+            callback( null, {
+              videos: videos,
+
+              playlists: playlists,
+              lists: playlists,
+
+              accounts: channels,
+              channels: channels
+            } )
+          }
+        } )
       } catch ( err ) {
         callback( err )
       }
@@ -181,13 +266,11 @@ function findVideos ( uri, page, callback )
   } )
 }
 
-function videoFilter ( result )
+function videoFilter ( video, index, videos )
 {
-  return result.type === 'video'
-}
+  if ( video.type !== 'video' ) return false
 
-function videoFilterDuplicates ( video, index, videos )
-{
+  // filter duplicates
   const videoId = video.videoId
 
   const firstIndex = videos.findIndex( function ( el ) {
@@ -197,130 +280,149 @@ function videoFilterDuplicates ( video, index, videos )
   return ( firstIndex === index )
 }
 
-function playlistFilter ( result )
+function playlistFilter ( result, index, results )
 {
-  return result.type === 'list'
+  if ( result.type !== 'list' ) return false
+
+  // filter duplicates
+  const id = result.listId
+
+  const firstIndex = results.findIndex( function ( el ) {
+    return ( id === el.listId )
+  } )
+
+  return ( firstIndex === index )
 }
 
-function accountFilter ( result )
+function channelFilter ( result, index, results )
 {
-  return result.type === 'channel'
+  if ( result.type !== 'channel' ) return false
+
+  // filter duplicates
+  const url = result.url
+
+  const firstIndex = results.findIndex( function ( el ) {
+    return ( url === el.url )
+  } )
+
+  return ( firstIndex === index )
 }
 
-// parse the plain text response body with cheerio to pin point video information
-function parseSearchBody ( responseText, callback )
+/* Helper fn to choose a good thumbnail.
+ */
+function _normalizeThumbnail ( thumbnails )
 {
-  const $ = _cheerio.load( responseText )
+  let t
+  if ( typeof thumbnails === 'string' ) {
+    t = thumbnails
+  } else {
+    // handle as array
+    t = thumbnails[ 0 ]
+  }
 
-  const sections = $( '.yt-lockup' )
+  t = t.split( '?' )[ 0 ]
 
-  const errors = []
+  t = t.split( '/default.jpg' ).join( '/hqdefault.jpg' )
+  t = t.split( '/default.jpeg' ).join( '/hqdefault.jpeg' )
+
+  if ( t.indexOf( '//' ) === 0 ) {
+    return 'https://' + t.slice( 2 )
+  }
+
+  return t.split( 'http://' ).join( 'https://' )
+}
+
+/* Helper fn to parse sub count labels
+ * and turn them into Numbers.
+ *
+ * It's an estimate but can be useful for sorting etc.
+ *
+ * ex. "102M subscribers" -> 102000000
+ */
+function _parseSubCountLabel ( subCountLabel )
+{
+  const label = (
+    subCountLabel.split( /\s+/ )
+    .filter( function ( w ) { return w.match( /\d/ ) } )
+  )[ 0 ].toLowerCase()
+
+  const num = Number( label.replace( /\D/g, '' ) )
+
+  const THOUSAND = 1000
+  const MILLION = THOUSAND * THOUSAND
+
+  if ( label.indexOf( 'm' ) >= 0 ) return MILLION * num
+  if ( label.indexOf( 'k' ) >= 0 ) return THOUSAND * num
+  return num
+}
+
+/**
+ * Parse result section of html ( Mozilla/5.0 compatible ) containing video results.
+ *
+ * @param {string} body - html response text
+ */
+function _parseSearchResults ( body, callback ) {
+  const $ = _cheerio.load( body )
+
+  const tiles = $( 'li .yt-lockup-tile' )
+
   const results = []
+  const errors = []
 
-  for ( let i = 0; i < sections.length; i++ ) {
-    const section = sections[ i ]
-    const content = $( '.yt-lockup-content', section )
-    const title = $( '.yt-lockup-title', content )
+  try {
+    const nextPage = $( 'div.search-pager > button ~' )[ 0 ]
+    results._sp = nextPage.attribs.href.split( '&sp=' )[ 1 ]
+  } catch ( ignore ) {
+    debug( 'next page results link not found' )
+  }
 
-    const a = $( 'a', title )
-    const span = $( 'span', title )
-    const duration = parseDuration( span.text() )
-
-    const href = a.attr( 'href' ) || ''
-
-    const qs = _querystring.parse( href.split( '?', 2 )[ 1 ] )
-
-    // TODO
-    // console.log( qs )
-
-    // make sure the url is correct ( skip ad urls etc )
-    // ref: https://github.com/talmobi/yt-search/issues/3
-    if (
-      ( href.indexOf( '/watch?' ) !== 0 ) &&
-      ( href.indexOf( '/user/' ) !== 0 ) &&
-      ( href.indexOf( '/channel/' ) !== 0 )
-    ) continue
-
-    const videoId = qs.v
-    const listId = qs.list
-
-    let type = 'unknown' // possibly ads
-
-    /* Standard watch?v={videoId} url's without &list=
-     * query string variables
-     */
-    if ( videoId ) type = 'video'
-
-    /* Playlist results can look like watch?v={videoId} url's
-     * which mean they will just play that at the start when you
-     * open the link. We will consider these resulsts as
-     * primarily playlist results. ( Even though they're kind of
-     * a combination of video + list result )
-     */
-    if ( listId ) type = 'list'
-
-    /* Channel results will link to the user/channel page
-     * directly. There are two types of url's that both link to
-     * the same page.
-     * 1. user url: ex. /user/pewdiepie
-     * 2. channel url: ex. /channel/UC-lHJZR3Gqxm24_Vd_AJ5Yw
-     *
-     * Why does YouTube have these two forms? Something to do
-     * with google integration etc. channel urls is the newer
-     * update format as well as separating users from channels I
-     * guess ( 1 user can have multiple channels? )
-     */
-    if (
-      ( href.indexOf( '/channel/' ) >= 0 ) ||
-      ( href.indexOf( '/user/' ) >= 0 )
-    ) type = 'channel'
-
-    // TODO parse lists differently based on type
-    let result
+  for ( let i = 0; i < tiles.length; i++ ) {
+    const tile = $( tiles[ i ] )
 
     try {
-      switch ( type ) {
-        case 'video': // video result
-          // ex: https://youtube.com/watch?v=e9vrfEoc8_g
-          result = _parseVideoResult( $, section )
-          break
-        case 'list': // playlist result
-          // ex: https://youtube.com/playlist?list=PL7k0JFoxwvTbKL8kjGI_CaV31QxCGf1vJ
-          result = _parseListResult( $, section )
-          break
-        case 'channel': // channel result
-          // ex: https://youtube.com/user/pewdiepie
-          result = _parseChannelResult( $, section )
-          break
+      const result = _parseSearchResultTile( $, tile )
+
+      if ( result ) {
+        results.push( result )
       }
     } catch ( err ) {
       errors.push( err )
     }
-
-    if ( !result ) continue // skip undefined results
-
-    result.type = type
-    results.push( result )
   }
 
-  if ( errors.length ) {
-    return callback( errors, results )
-  }
+  const err = errors[ 0 ] || undefined
 
-  return callback( null, results )
+  callback( err, results )
 }
 
-/**
- * Parse result section of html containing a video result.
- *
- * @param {object} section - cheerio object
- */
-function _parseVideoResult ( $, section ) {
-  const content = $( '.yt-lockup-content', section )
+function _parseSearchResultTile ( $, tile  ) {
+  const a = $( 'a', tile )
+  const href = a.attr( 'href' ) || ''
+  const qs = _querystring.parse( href.split( '?', 2 )[ 1 ] )
+
+  if ( qs.list ) {
+    return _parseListResult( $, tile )
+  }
+
+  if ( href.indexOf( '/channel/' ) === 0 || href.indexOf( '/user/' ) === 0 ) {
+    return _parseChannelResult( $, tile )
+  }
+
+  if ( qs.v ) {
+  return _parseVideoResult( $, tile )
+  }
+
+  return undefined
+}
+
+function _parseVideoResult ( $, tile ) {
+  const content = $( '.yt-lockup-content', tile )
   const title = $( '.yt-lockup-title', content )
 
+  const thumbnail = $( 'img', tile ).src
+
   const a = $( 'a', title )
-  const span = $( 'span', title )
+  const span = $( 'span', title ) // ex. " - Duration 4:13"
   const duration = parseDuration( span.text() )
 
   const href = a.attr( 'href' ) || ''
@@ -328,7 +430,6 @@ function _parseVideoResult ( $, section ) {
   const qs = _querystring.parse( href.split( '?', 2 )[ 1 ] )
 
   const videoId = qs.v
-  const listId = qs.list
 
   const description = $( '.yt-lockup-description', content ).text().trim()
 
@@ -387,8 +488,8 @@ function _parseVideoResult ( $, section ) {
     // genre: undefined,
     // TODO genre not possible to get in bulk search results
 
-    thumbnail: thumbnailUrl,
     image: thumbnailUrlHQ,
+    thumbnail: thumbnailUrlHQ, // DEPRECATED
 
     // TODO uploadDate not possible to get in bulk search results
     // uploadDate: undefined,
@@ -398,17 +499,7 @@ function _parseVideoResult ( $, section ) {
       // simplified details due to YouTube's funky combination
       // of user/channel id's/name (caused by Google Plus Integration)
       name: userUrlText || channelUrlText,
-      id: userId || channelId,
-      url:  user.attr( 'href' ) || channel.attr( 'href' ),
-
-      // more specific details
-      userId: userId,
-      userName: userUrlText, // same as channelName
-      userUrl: user.attr( 'href' ) || '',
-
-      channelId: channelId,
-      channelUrl: channel.attr( 'href' ) || '',
-      channelName: channelUrlText
+      url:  user.attr( 'href' ) || channel.attr( 'href' )
     }
   }
 
@@ -451,7 +542,6 @@ function _parseListResult ( $, section ) {
   const byline_a_href = byline_a.attr( 'href' ) || ''
 
   if ( byline_a_href ) {
-    // console.log( byline_a_href )
 
     if ( byline_a_href.indexOf( 'channel/' ) >= 0 ) {
       channelId = byline_a_href.split( '/' ).pop()
@@ -474,7 +564,6 @@ function _parseListResult ( $, section ) {
   // channelName and userName are identical, just parsed
   // from different <a> elements
   const name = channelUrlText || userUrlText
-  // console.log( name )
 
   const sidebar = $( '.sidebar', section )
   const videoCountLabel = sidebar.text().trim()
@@ -509,8 +598,8 @@ function _parseListResult ( $, section ) {
     videoCountLabel: videoCountLabel,
     videoCount: videoCount,
 
-    thumbnail: thumbnailUrl,
     image: thumbnailUrlHQ,
+    thumbnail: thumbnailUrlHQ, // DEPRECATED
 
     author: {
       name: userUrlText || channelUrlText,
@@ -584,7 +673,8 @@ function _parseChannelResult ( $, section ) {
     videoCountLabel: videoCountLabel,
     videoCount: videoCount,
 
-    thumbnail: thumbnailUrl,
+    image: thumbnailUrl,
+    thumbnail: thumbnailUrl, // DEPRECATED
 
     name: userUrlText || channelUrlText,
     id: userId || channelId,
@@ -593,6 +683,9 @@ function _parseChannelResult ( $, section ) {
   }
 }
 
+/* Helper fn to parse duration labels
+ * ex: Duration: 2:27, Kesto: 1.07.54
+ */
 function parseDuration ( timestampText )
 {
   var a = timestampText.split( /\s+/ )
@@ -636,13 +729,20 @@ function parseDuration ( timestampText )
   }
 }
 
+/* Helper fn to transform ms to timestamp
+ * ex: 253000 -> "4:13"
+ */
 function msToTimestamp ( ms )
 {
   let t = ''
 
-  const h = ms / ( 1000 * 60 * 60 )
-  const m = ms / ( 1000 * 60 ) % 60
-  const s = ms / ( 1000 * 60 * 60 ) % 60
+  const MS_HOUR = 1000 * 60 * 60
+  const MS_MINUTE = 1000 * 60
+  const MS_SECOND = 1000
+
+  const h = Math.floor( ms / MS_HOUR )
+  const m = Math.floor( ms / MS_MINUTE ) % 60
+  const s = Math.floor( ms / MS_SECOND ) % 60
 
   if ( h ) t += h + ':'
   if ( m ) t += m + ':'
@@ -657,6 +757,8 @@ function msToTimestamp ( ms )
  */
 function getVideoMetaData ( opts, callback )
 {
+  debug( 'fn: getVideoMetaData' )
+
   let videoId
 
   if ( typeof opts === 'string' ) {
@@ -667,9 +769,13 @@ function getVideoMetaData ( opts, callback )
     videoId = opts.videoId
   }
 
-  const uri = 'https://www.youtube.com/watch?hl=en&v=' + videoId
+  const uri = 'https://www.youtube.com/watch?hl=en&gl=US&v=' + videoId
 
   const params = _url.parse( uri )
+
+  params.headers = {
+    'user-agent': _userAgent
+  }
 
   _dasu.req( params, function ( err, res, body ) {
     if ( err ) {
@@ -679,8 +785,15 @@ function getVideoMetaData ( opts, callback )
         return callback( 'http status: ' + res.status )
       }
 
+      if ( _debugging ) {
+        const fs = require( 'fs' )
+        const path = require( 'path' )
+        fs.writeFileSync( 'dasu.response', res.responseText, 'utf8' )
+      }
+
       try {
         parseVideoBody( body, callback )
+        // _parseVideoInitialData( body, callback )
       } catch ( err ) {
         callback( err )
       }
@@ -692,6 +805,8 @@ function getVideoMetaData ( opts, callback )
  */
 function getPlaylistMetaData ( opts, callback )
 {
+  debug( 'fn: getPlaylistMetaData' )
+
   let listId
 
   if ( typeof opts === 'string' ) {
@@ -702,9 +817,13 @@ function getPlaylistMetaData ( opts, callback )
     listId = opts.listId || opts.playlistId
   }
 
-  const uri = 'https://www.youtube.com/playlist?hl=en&list=' + listId
+  const uri = 'https://www.youtube.com/playlist?hl=en&gl=US&list=' + listId
 
   const params = _url.parse( uri )
+
+  params.headers = {
+    'user-agent': _userAgent
+  }
 
   _dasu.req( params, function ( err, res, body ) {
     if ( err ) {
@@ -714,8 +833,15 @@ function getPlaylistMetaData ( opts, callback )
         return callback( 'http status: ' + res.status )
       }
 
+      if ( _debugging ) {
+        const fs = require( 'fs' )
+        const path = require( 'path' )
+        fs.writeFileSync( 'dasu.response', res.responseText, 'utf8' )
+      }
+
       try {
         parsePlaylistBody( body, callback )
+        // _parsePlaylistInitialData( body, callback )
       } catch ( err ) {
         callback( err )
       }
@@ -724,9 +850,12 @@ function getPlaylistMetaData ( opts, callback )
 }
 
 /* Parse response html from playlist url
+ * TODO
  */
 function parsePlaylistBody ( responseText, callback )
 {
+  debug( 'fn: parsePlaylistBody' )
+
   const $ = _cheerio.load( responseText )
 
   const hti = $( '.pl-header-thumb img' )
@@ -788,16 +917,20 @@ function parsePlaylistBody ( responseText, callback )
     title: title,
     listId: listId,
 
-    url: 'https://www.youtube.com/playlist?hl=en&list=' + listId,
+    url: 'https://youtube.com/playlist?list=' + listId,
 
-    videoCount: videoCount,
+    videoCount: videoCount, // DEPRECATED
     views: Number( viewCount ),
-    lastUpdate: lastUpdate,
 
-    thumbnail: thumbnailUrl,
+    // lastUpdate: lastUpdate,
+    date: lastUpdate,
+
+    image: thumbnailUrl,
+    thumbnail: thumbnailUrl, // DEPRECATED
 
     // playlist items/videos
     items: list,
+    videos: list,
 
     author: author
   }
@@ -807,8 +940,11 @@ function parsePlaylistBody ( responseText, callback )
 
 /**
  * @params {object} - cheerio <a>...</a> tag
+ * TODO
  */
 function _parseAuthorAnchorTag ( a ) {
+  debug( 'fn: _parseAuthorAnchorTag' )
+
   let channelId = ''
   let channelUrl = ''
   let channelUrlText = ''
@@ -851,6 +987,8 @@ function _parseAuthorAnchorTag ( a ) {
 }
 
 function _parsePlaylistLastUpdateTime ( lastUpdateLabel ) {
+  debug( 'fn: _parsePlaylistLastUpdateTime' )
+
   // ex "Last Updated on Jun 25, 2018"
   // ex: "Viimeksi päivitetty 25.6.2018"
 
@@ -872,6 +1010,8 @@ function _parsePlaylistLastUpdateTime ( lastUpdateLabel ) {
 }
 
 function _toInternalDateString ( date ) {
+  debug( 'fn: _toInternalDateString' )
+
   return (
     date.getUTCFullYear() + '-' +
     date.getUTCMonth() + '-' +
@@ -879,8 +1019,11 @@ function _toInternalDateString ( date ) {
   )
 }
 
+// TODO
 function parseVideoBody ( responseText, callback )
 {
+  debug( 'parseVideoBody' )
+
   const $ = _cheerio.load( responseText )
 
   const ctx = $( '#content' )
@@ -975,8 +1118,8 @@ function parseVideoBody ( responseText, callback )
     uploadDate: uploadDate,
     ago: _humanTime( new Date( uploadDate ) ), // ex: 10 years ago
 
-    thumbnail: thumbnailUrl,
     image: thumbnailUrlHQ,
+    thumbnail: thumbnailUrlHQ, // DEPRECATED
 
     author: {
       // simplified details due to YouTube's funky combination
@@ -999,8 +1142,13 @@ function parseVideoBody ( responseText, callback )
   callback( null, video )
 }
 
+/* Parses a type of human-like timestamps found on YouTube.
+ * ex: "PT4M13S" -> "4:13"
+ */
 function parseHumanDuration ( timestampText )
 {
+  debug( 'parseHumanDuration' )
+
   // ex: PT4M13S
   const pt = timestampText.slice( 0, 2 )
   let timestamp = timestampText.slice( 2 ).toUpperCase()
@@ -1040,31 +1188,41 @@ function parseHumanDuration ( timestampText )
 // run tests is script is run directly
 if ( require.main === module ) {
   // https://www.youtube.com/watch?v=e9vrfEoc8_g
-  test( 'superman theme list' )
+  test( 'superman theme list pewdiepie channel' )
 }
 
 function test ( query )
 {
-  console.log( 'doing list search' )
-  search( query, function ( error, r ) {
+  console.log( 'test: doing list search' )
+
+  const opts = {
+    query: query,
+    pageEnd: 1
+  }
+
+  search( opts, function ( error, r ) {
     if ( error ) throw error
 
     const videos = r.videos
     const playlists = r.playlists
-    const accounts = r.accounts
+    const channels = r.channels
 
     console.log( 'videos: ' + videos.length )
     console.log( 'playlists: ' + playlists.length )
-    console.log( 'accounts: ' + accounts.length )
+    console.log( 'channels: ' + channels.length )
 
-    for ( let i = 0; i < 3; i++ ) {
+    for ( let i = 0; i < videos.length; i++ ) {
       const song = videos[ i ]
       const time = ` (${ song.timestamp })`
       console.log( song.title + time )
     }
 
     playlists.forEach( function ( p ) {
-      // console.log( p )
+      console.log( `playlist: ${ p.title } | ${ p.listId }` )
+    } )
+
+    channels.forEach( function ( c ) {
+      console.log( `channel: ${ c.title } | ${ c.description }` )
     } )
   } )
 }

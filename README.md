@@ -83,6 +83,9 @@ yts( opts, function ( err, r ) {
 } )
 ```
 
+## Alternatives
+[ytsr](https://www.npmjs.com/package/ytsr)
+
 ## Test
 ```
 npm test

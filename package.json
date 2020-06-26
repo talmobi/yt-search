@@ -11,6 +11,7 @@
     "dist/yt-search.min.js"
   ],
   "scripts": {
+    "debug": "debug=1 node src/index.js --silent",
     "build": "npm run build:src && npm run uglify",
     "build:src": "browserify --node --no-bundle-external --standalone ytSearch -t [ babelify --presets [ env ] ] src/index.js -o dist/yt-search.js 2>&1 | wooster",
     "uglify": "uglifyjs dist/yt-search.js -cmo dist/yt-search.min.js",
@@ -32,9 +33,11 @@
   },
   "dependencies": {
     "async.parallellimit": "~0.5.2",
+    "boolstring": "~1.0.2",
     "cheerio": "~0.22.0",
-    "dasu": "0.0.23",
+    "dasu": "~0.4.0",
     "human-time": "0.0.2",
+    "jsonpath": "~1.0.2",
     "minimist": "~1.2.0",
     "node-fzf": "~0.5.1"
   },
@@ -45,6 +48,7 @@
     "browserify": "~16.2.3",
     "cross-env": "~6.0.3",
     "faucet": "0.0.1",
+    "looks-same-plus": "0.0.1",
     "mocha": "~5.2.0",
     "spacestandard": "~0.2.0",
     "tape": "~4.9.0",
