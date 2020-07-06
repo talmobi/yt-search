@@ -42,7 +42,7 @@ ytSearch(
       var text = (
         title +
         ' ($t)'.replace( '$t', song.timestamp ) +
-        ' - ' + song.videoId
+        ' | ' + song.videoId + ' | ' + song.views
       )
 
       list.push( text )
