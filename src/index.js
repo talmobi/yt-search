@@ -265,10 +265,6 @@ function getSearchResults ( _options, callback )
               orderedVideos.push( video )
             }
 
-            orderedVideos.forEach( function ( video ) {
-              console.log( video.views )
-            } )
-
             // return all found videos
             callback( null, {
               videos: orderedVideos,
