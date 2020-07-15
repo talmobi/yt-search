@@ -835,7 +835,10 @@ function getPlaylistMetaData ( opts, callback )
     listId = opts.listId || opts.playlistId
   }
 
-  const uri = 'https://www.youtube.com/playlist?hl=en&gl=US&list=' + listId
+  const uri = (
+    'https://www.youtube.com/playlist?hl=en&gl=US&list=' + listId
+    + '&disable_polymer=1' // disable new layout, TODO learn to parse polymer?
+  )
 
   const params = _url.parse( uri )
 
