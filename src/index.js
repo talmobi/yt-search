@@ -6,6 +6,8 @@ const _parallel = require( 'async.parallellimit' )
 _dasu.follow = false
 _dasu.debug = false
 
+const _jp = require( 'jsonpath' )
+
 // google bot user-agent
 // Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)
 
@@ -843,7 +845,8 @@ function getPlaylistMetaData ( opts, callback )
   const params = _url.parse( uri )
 
   params.headers = {
-    'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36 Edg/83.0.100.0'
+    'user-agent': _userAgent
+    // 'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36 Edg/83.0.100.0'
   }
 
   _dasu.req( params, function ( err, res, body ) {
@@ -861,8 +864,8 @@ function getPlaylistMetaData ( opts, callback )
       }
 
       try {
-        parsePlaylistBody( body, callback )
-        // _parsePlaylistInitialData( body, callback )
+        // parsePlaylistBody( body, callback )
+        parsePlaylistInitialData( body, callback )
       } catch ( err ) {
         callback( err )
       }
@@ -957,6 +960,82 @@ function parsePlaylistBody ( responseText, callback )
   }
 
   callback( null, playlist )
+}
+
+function parsePlaylistInitialData ( responseText, callback )
+{
+  debug( 'fn: parsePlaylistBody' )
+  console.log( 'parsePlaylistInitialData' )
+
+  const jsonString = responseText.match( /ytInitialData.*=\s*({.*});/ )[ 1 ]
+
+  // console.log( jsonString )
+
+  if ( !jsonString ) {
+    throw new Error( 'failed to parse ytInitialData json data' )
+  }
+
+  let json = JSON.parse( jsonString )
+  //console.log( json )
+
+  // TODO parse relevant json data with jsonpath
+  const listId = ( _jp.value( json, '$..microformat..urlCanonical' ) ).split( '=' )[ 1 ]
+  console.log( 'listId: ' + listId )
+
+  const viewCount = _jp.value( json, '$..sidebar.playlistSidebarRenderer.items[0]..stats[1].simpleText' ).match( /\d+/ )
+  console.log( 'viewCount: ' + viewCount )
+
+  const list = _jp.query( json, '$..contents..tabs[0]..contents[0]..contents[0]..contents' )[ 0 ]
+  const videos = []
+
+  list.forEach( function ( playlistVideoRenderer ) {
+    const json = playlistVideoRenderer
+    const video = {
+      title: _jp.value( json, '$..title..simpleText' ),
+
+      videoId: _jp.value( json, '$..videoId' ),
+      listId: listId,
+
+      thumbnail:  _jp.value( json, '$..thumbnail..thumbnails[0]..url' ).split( '?' )[ 0 ],
+
+      author: {
+        name: _jp.value( json, '$..shortBylineText..runs[0]..text' ),
+        url: 'https://youtube.com' + _jp.value( json, '$..shortBylineText..runs[0]..url' ),
+      }
+    }
+
+    videos.push( video )
+  } )
+
+  console.log( videos )
+  console.log( 'videos.length: ' + videos.length )
+
+  const playlist = {
+    title: _jp.value( json, '$..microformat..title' ),
+    listId: listId,
+
+    url: 'https://youtube.com/playlist?list=' + listId,
+
+    views: Number( viewCount ),
+
+    // lastUpdate: lastUpdate,
+    date: _parsePlaylistLastUpdateTime(
+      _jp.value( json, '$..sidebar.playlistSidebarRenderer.items[0]..stats[2]..simpleText' )
+    ),
+
+    image: videos[ 0 ].thumbnail,
+    thumbnail: videos[ 0 ].thumbnail,
+
+    // playlist items/videos
+    videos: videos,
+
+    author: {
+      name: _jp.value( json, '$..videoOwner..title..runs[0]..text' ),
+      url: 'https://youtube.com' + _jp.value( json, '$..videoOwner..navigationEndpoint..url' )
+    }
+  }
+
+  callback && callback( null, playlist )
 }
 
 /**
