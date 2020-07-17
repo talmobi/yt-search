@@ -839,14 +839,12 @@ function getPlaylistMetaData ( opts, callback )
 
   const uri = (
     'https://www.youtube.com/playlist?hl=en&gl=US&list=' + listId
-    + '&disable_polymer=1' // disable new layout, TODO learn to parse polymer?
   )
 
   const params = _url.parse( uri )
 
   params.headers = {
     'user-agent': _userAgent
-    // 'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36 Edg/83.0.100.0'
   }
 
   _dasu.req( params, function ( err, res, body ) {
