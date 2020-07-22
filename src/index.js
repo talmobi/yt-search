@@ -1371,7 +1371,7 @@ function _parseVideoInitialData ( responseText, callback )
     title: title,
     description: description,
 
-    url: TEMPLATES.YT + author_url,
+    url: TEMPLATES.YT + '/watch?v=' + videoId,
     videoId: videoId,
 
     seconds: Number( duration.seconds ),
