@@ -163,7 +163,7 @@ test( 'search by video id', function ( t ) {
 } )
 
 test( 'video metadata by id', function ( t ) {
-  t.plan( 12 )
+  t.plan( 13 )
 
   yts( { videoId: 'e9vrfEoc8_g' }, function ( err, video ) {
     t.error( err, 'no errors OK!' )
@@ -172,6 +172,8 @@ test( 'video metadata by id', function ( t ) {
 
     t.equal( video.title, 'Superman Theme', 'title' )
     t.equal( video.videoId, 'e9vrfEoc8_g', 'videoId' )
+    t.equal( video.url, 'https://youtube.com/watch?v=e9vrfEoc8_g' )
+
     t.equal( video.timestamp, '4:13', 'timestamp' )
     t.equal( video.seconds, 253, 'seconds (duration)' )
 
@@ -199,7 +201,7 @@ test( 'video metadata by faulty/non-existing id', function ( t ) {
 } )
 
 test( 'video metadata by id _JzeIf1zT14', function ( t ) {
-  t.plan( 12 )
+  t.plan( 13 )
 
   yts( { videoId: '_JzeIf1zT14' }, function ( err, video ) {
     t.error( err, 'no errors OK!' )
@@ -208,6 +210,8 @@ test( 'video metadata by id _JzeIf1zT14', function ( t ) {
 
     t.equal( video.title, 'Josh A & Jake Hill - Rest in Pieces (Lyrics)', 'title' )
     t.equal( video.videoId, '_JzeIf1zT14', 'videoId' )
+    t.equal( video.url, 'https://youtube.com/watch?v=_JzeIf1zT14' )
+
     t.equal( video.timestamp, '2:27', 'timestamp' )
     t.equal( video.seconds, 147, 'seconds (duration)' )
 
