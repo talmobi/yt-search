@@ -794,8 +794,13 @@ function getVideoMetaData ( opts, callback )
   const params = _url.parse( uri )
 
   params.headers = {
-    'user-agent': _userAgent
+    'user-agent': _userAgent,
+    'accept': 'text/html',
+    'accept-encoding': 'gzip',
+    'accept-language': 'en-US'
   }
+
+  params.headers[ 'user-agent' ] = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.1.1 Safari/605.1.15'
 
   _dasu.req( params, function ( err, res, body ) {
     if ( err ) {
