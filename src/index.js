@@ -1252,58 +1252,18 @@ function _parseVideoInitialData ( responseText, callback )
 {
   debug( '_parseVideoInitialData' )
 
-  const re = /{.*}/
-  const $ = _cheerio.load( responseText )
+  // const fs = require( 'fs' )
+  // fs.writeFileSync( 'tmp.file', responseText )
 
-  let initialData = ''
+  const initialData = responseText.match( /ytInitialData.*=\s*({.*});/ )
 
-  if ( !initialData ) {
-    const scripts = $( 'script' )
-
-    for ( let i = 0; i < scripts.length; i++ ) {
-      const script = $( scripts[ i ] ).html()
-
-      const lines = script.split( '\n' )
-      lines.forEach( function ( line ) {
-        let i
-        while ( ( i = line.indexOf( 'ytInitialData' ) ) >= 0 ) {
-          line = line.slice( i + 'ytInitialData'.length )
-          const match = re.exec( line )
-          if ( match && match.length > initialData.length ) {
-            initialData = match
-          }
-        }
-      } )
-    }
-  }
-
-  if ( !initialData ) {
+  if ( !initialData[ 1 ] ) {
     return callback( 'could not find inital data in the html document' )
   }
 
-  let initialPlayerData = ''
+  const initialPlayerData = responseText.match( /ytInitialPlayerResponse.*=\s*({.*});/ )
 
-  if ( !initialPlayerData ) {
-    const scripts = $( 'script' )
-
-    for ( let i = 0; i < scripts.length; i++ ) {
-      const script = $( scripts[ i ] ).html()
-
-      const lines = script.split( '\n' )
-      lines.forEach( function ( line ) {
-        let i
-        while ( ( i = line.indexOf( 'ytInitialPlayerResponse' ) ) >= 0 ) {
-          line = line.slice( i + 'ytInitialPlayerResponse'.length )
-          const match = re.exec( line )
-          if ( match && match.length > initialPlayerData.length ) {
-            initialPlayerData = match
-          }
-        }
-      } )
-    }
-  }
-
-  if ( !initialPlayerData ) {
+  if ( !initialPlayerData[ 1 ] ) {
     return callback( 'could not find inital player data in the html document' )
   }
 
@@ -1311,8 +1271,8 @@ function _parseVideoInitialData ( responseText, callback )
   // debug( '\n------------------\n' )
   // debug( initialPlayerData[ 0 ] )
 
-  const idata = JSON.parse( initialData[ 0 ] )
-  const ipdata = JSON.parse( initialPlayerData[ 0 ] )
+  const idata = JSON.parse( initialData[ 1 ] )
+  const ipdata = JSON.parse( initialPlayerData[ 1 ] )
 
   const videoId = _jp.value( idata, '$..currentVideoEndpoint..videoId' )
 
