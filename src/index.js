@@ -849,7 +849,10 @@ function getPlaylistMetaData ( opts, callback )
   const params = _url.parse( uri )
 
   params.headers = {
-    'user-agent': _userAgent
+    'user-agent': _userAgent,
+    'accept': 'text/html',
+    'accept-encoding': 'gzip',
+    'accept-language': 'en-US'
   }
 
   _dasu.req( params, function ( err, res, body ) {
