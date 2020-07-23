@@ -1,4 +1,5 @@
 let yts = require( '../dist/yt-search.min.js' )
+// let yts = require( '../dist/yt-search.js' )
 
 const looksSamePlus = require( 'looks-same-plus' )
 
