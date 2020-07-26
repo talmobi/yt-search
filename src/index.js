@@ -249,27 +249,9 @@ function getSearchResults ( _options, callback )
             const playlists = _options._data.playlists.filter( playlistFilter )
             const channels = _options._data.channels.filter( channelFilter )
 
-            const orderedVideos = []
-            const lowViewVideos = []
-
-            for ( let i = 0; i < videos.length; i++ ) {
-              const video = videos[ i ]
-              if ( video.views < 5 ) {
-                lowViewVideos.push( video )
-              } else {
-                orderedVideos.push( video )
-              }
-            }
-
-            // append the low viewed videos at the end
-            for ( let i = 0; i < lowViewVideos.length; i++ ) {
-              const video = lowViewVideos[ i ]
-              orderedVideos.push( video )
-            }
-
             // return all found videos
             callback( null, {
-              videos: orderedVideos,
+              videos: videos,
 
               playlists: playlists,
               lists: playlists,
