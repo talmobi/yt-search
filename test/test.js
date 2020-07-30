@@ -156,10 +156,13 @@ test( 'search by video id', function ( t ) {
   yts( opts, function ( err, r ) {
     t.error( err, 'no errors OK!' )
 
-    const topVideo = r.videos[ 0 ]
-
-    t.ok( topVideo.title.match( /josh.*jake.*hill.*rest.*piece.*lyric/i ), 'top result title matched!' )
-    t.ok( topVideo.videoId, opts.search, 'top result video id matched!' )
+    for ( video of r.videos ) {
+      if ( video.videoId == opts.search ) {
+        t.ok( video.title.match( /josh.*jake.*hill.*rest.*piece.*lyric/i ), 'top result title matched!' )
+        t.ok( video.videoId, opts.search, 'top result video id matched!' )
+        break
+      }
+    }
   } )
 } )
 
@@ -333,6 +336,11 @@ test( 'test promise support ( search by video id )', async function ( t ) {
 
   const topVideo = r.videos[ 0 ]
 
-  t.ok( topVideo.title.match( /josh.*jake.*hill.*rest.*piece.*lyric/i ), 'top result title matched!' )
-  t.ok( topVideo.videoId, opts.search, 'top result video id matched!' )
+  for ( video of r.videos ) {
+    if ( video.videoId == opts.search ) {
+      t.ok( video.title.match( /josh.*jake.*hill.*rest.*piece.*lyric/i ), 'top result title matched!' )
+      t.ok( video.videoId, opts.search, 'top result video id matched!' )
+      break
+    }
+  }
 } )
