@@ -243,7 +243,7 @@ function getSearchResults ( _options, callback )
 
             setTimeout( function () {
               getSearchResults( _options, callback )
-            }, 1500 ) // delay a bit to try and prevent throttling
+            }, 2500 ) // delay a bit to try and prevent throttling
           } else {
             const videos = _options._data.videos.filter( videoFilter )
             const playlists = _options._data.playlists.filter( playlistFilter )
