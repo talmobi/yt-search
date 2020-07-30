@@ -953,7 +953,6 @@ function parsePlaylistBody ( responseText, callback )
 function parsePlaylistInitialData ( responseText, callback )
 {
   debug( 'fn: parsePlaylistBody' )
-  console.log( 'parsePlaylistInitialData' )
 
   const jsonString = responseText.match( /ytInitialData.*=\s*({.*});/ )[ 1 ]
 
@@ -968,10 +967,10 @@ function parsePlaylistInitialData ( responseText, callback )
 
   // TODO parse relevant json data with jsonpath
   const listId = ( _jp.value( json, '$..microformat..urlCanonical' ) ).split( '=' )[ 1 ]
-  console.log( 'listId: ' + listId )
+  // console.log( 'listId: ' + listId )
 
   const viewCount = _jp.value( json, '$..sidebar.playlistSidebarRenderer.items[0]..stats[1].simpleText' ).match( /\d+/ )
-  console.log( 'viewCount: ' + viewCount )
+  // console.log( 'viewCount: ' + viewCount )
 
   const list = _jp.query( json, '$..contents..tabs[0]..contents[0]..contents[0]..contents' )[ 0 ]
   const videos = []
@@ -995,8 +994,8 @@ function parsePlaylistInitialData ( responseText, callback )
     videos.push( video )
   } )
 
-  console.log( videos )
-  console.log( 'videos.length: ' + videos.length )
+  // console.log( videos )
+  // console.log( 'videos.length: ' + videos.length )
 
   const playlist = {
     title: _jp.value( json, '$..microformat..title' ),
