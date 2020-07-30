@@ -294,7 +294,7 @@ test( 'search results: playlist', function ( t ) {
 } )
 
 test( 'search results: channel', function ( t ) {
-  t.plan( 6 )
+  t.plan( 7 )
 
   yts( 'PewDiePie', function ( err, r ) {
     t.error( err, 'no errors OK!' )
@@ -302,6 +302,7 @@ test( 'search results: channel', function ( t ) {
     const channels = r.channels
     const topChannel = channels[ 0 ]
 
+    t.ok( topChannel, 'topChannel OK' )
     t.equal( topChannel.name, 'PewDiePie', 'channel name' )
     t.equal( topChannel.url, 'https://youtube.com/user/PewDiePie', 'channel url' )
 
