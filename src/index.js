@@ -1100,9 +1100,9 @@ function _toInternalDateString ( date ) {
   debug( 'fn: _toInternalDateString' )
 
   return (
-    date.getUTCFullYear() + '-' +
-    date.getUTCMonth() + '-' +
-    date.getUTCDate()
+    date.getFullYear() + '-' +
+    date.getMonth() + '-' +
+    date.getDate()
   )
 }
 
