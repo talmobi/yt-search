@@ -204,7 +204,7 @@ function getSearchResults ( _options, callback )
       }
 
       try {
-        _parseSearchResults( body, function ( err, results ) {
+        parseInitialData( body, function ( err, results ) {
           if ( err ) return callback( err )
 
           const list = results
@@ -506,6 +506,306 @@ function _parseVideoResult ( $, tile ) {
   }
 
   return result
+}
+
+/* For "modern" user-agents the html document returned from
+ * YouTube contains initial json data that is used to populate
+ * the page with JavaScript. This function will aim to find and
+ * parse such data.
+ */
+function parseInitialData ( responseText, callback )
+{
+  const re = /{.*}/
+  const $ = _cheerio.load( responseText )
+
+  let initialData = $( 'div#initial-data' ).html() || ''
+  initialData = re.exec( initialData ) || ''
+
+  if ( !initialData ) {
+    const scripts = $( 'script' )
+
+    for ( let i = 0; i < scripts.length; i++ ) {
+      const script = $( scripts[ i ] ).html()
+
+      const lines = script.split( '\n' )
+      lines.forEach( function ( line ) {
+        let i
+        while ( ( i = line.indexOf( 'ytInitialData' ) ) >= 0 ) {
+          line = line.slice( i + 'ytInitialData'.length )
+          const match = re.exec( line )
+          if ( match && match.length > initialData.length ) {
+            initialData = match
+          }
+        }
+      } )
+    }
+  }
+
+  if ( !initialData ) {
+    return callback( 'could not find inital data in the html document' )
+  }
+
+  const errors = []
+  const results = []
+
+  const json = JSON.parse( initialData[ 0 ] )
+
+  const items = _jp.query( json, '$..itemSectionRenderer..contents.*' )
+
+  debug( 'items.length: ' + items.length )
+
+  for ( let i = 0; i < items.length; i++ ) {
+    const item = items[ i ]
+
+    let result = undefined
+    let type = 'unknown'
+
+    const hasList = ( item.compactPlaylistRenderer || item.playlistRenderer )
+    const hasChannel = ( item.compactChannelRenderer || item.channelRenderer )
+    const hasVideo = ( item.compactVideoRenderer || item.videoRenderer )
+
+    const listId = hasList && ( _jp.value( item, '$..playlistId' ) )
+    const channelId = hasChannel && ( _jp.value( item, '$..channelId' ) )
+    const videoId = hasVideo && ( _jp.value( item, '$..videoId' ) )
+
+    if ( videoId ) {
+      type = 'video'
+    }
+
+    if ( channelId ) {
+      type = 'channel'
+    }
+
+    if ( listId ) {
+      type = 'list'
+    }
+
+    try {
+      switch ( type ) {
+        case 'video':
+          {
+            const thumbnail = (
+              _normalizeThumbnail( _jp.value( item, '$..thumbnail..url' ) ) ||
+              _normalizeThumbnail( _jp.value( item, '$..thumbnails..url' ) ) ||
+              _normalizeThumbnail( _jp.value( item, '$..thumbnails' ) )
+            )
+
+            const title = (
+              _jp.value( item, '$..title..text' ) ||
+              _jp.value( item, '$..title..simpleText' )
+            )
+
+            const author_name = (
+              _jp.value( item, '$..shortBylineText..text' ) ||
+              _jp.value( item, '$..longBylineText..text' )
+            )
+
+            const author_url = (
+              _jp.value( item, '$..shortBylineText..url' ) ||
+              _jp.value( item, '$..longBylineText..url' )
+            )
+
+            // publish/upload date
+            const agoText = (
+              _jp.value( item, '$..publishedTimeText..text' ) ||
+              _jp.value( item, '$..publishedTimeText..simpleText' )
+            )
+
+            const viewCountText = (
+              _jp.value( item, '$..viewCountText..text' ) ||
+              _jp.value( item, '$..viewCountText..simpleText' )
+            )
+
+            const viewsCount = Number( viewCountText.split( /\s+/ )[ 0 ].split( /[,.]/ ).join( '' ).trim() )
+
+            const lengthText = (
+              _jp.value( item, '$..lengthText..text' ) ||
+              _jp.value( item, '$..lengthText..simpleText' )
+            )
+            const duration = parseDuration( lengthText || '0:00' )
+
+            const description = (
+              _jp.value( item, '$..description..text' ) ||
+              _jp.value( item, '$..descriptionSnippet..text' )
+            )
+
+            // url ( playlist )
+            // const url = _jp.value( item, '$..navigationEndpoint..url' )
+            const url = TEMPLATES.YT + '/watch?v=' + videoId
+
+            result = {
+              type: 'video',
+
+              videoId: videoId,
+              url: url,
+
+              title: title.trim(),
+              description: description,
+
+              image: thumbnail,
+              thumbnail: thumbnail,
+
+              seconds: Number( duration.seconds ),
+              timestamp: duration.timestamp,
+              duration: duration,
+
+              ago: agoText,
+              views: Number( viewsCount ),
+
+              author: {
+                name: author_name,
+                url: TEMPLATES.YT + author_url,
+              }
+            }
+          }
+          break
+
+        case 'list':
+          {
+            const thumbnail = (
+              _normalizeThumbnail( _jp.value( item, '$..thumbnail..url' ) ) ||
+              _normalizeThumbnail( _jp.value( item, '$..thumbnails..url' ) ) ||
+              _normalizeThumbnail( _jp.value( item, '$..thumbnails' ) )
+            )
+
+            const title = (
+              _jp.value( item, '$..title..text' ) ||
+              _jp.value( item, '$..title..simpleText' )
+            )
+
+            const author_name = (
+              _jp.value( item, '$..shortBylineText..text' ) ||
+              _jp.value( item, '$..longBylineText..text' ) ||
+              _jp.value( item, '$..shortBylineText..simpleText' ) ||
+              _jp.value( item, '$..longBylineText..simpleTextn' )
+            ) || 'YouTube'
+
+            const author_url = (
+              _jp.value( item, '$..shortBylineText..url' ) ||
+              _jp.value( item, '$..longBylineText..url' )
+            ) || ''
+
+            const video_count = (
+              _jp.value( item, '$..videoCountShortText..text' ) ||
+              _jp.value( item, '$..videoCountText..text' ) ||
+              _jp.value( item, '$..videoCountShortText..simpleText' ) ||
+              _jp.value( item, '$..videoCountText..simpleText' ) ||
+              _jp.value( item, '$..thumbnailText..text' ) ||
+              _jp.value( item, '$..thumbnailText..simpleText' )
+            )
+
+            // url ( playlist )
+            // const url = _jp.value( item, '$..navigationEndpoint..url' )
+            const url = TEMPLATES.YT + '/playlist?list=' + listId
+
+            result = {
+              type: 'list',
+
+              listId: listId,
+              url: url,
+
+              title: title.trim(),
+
+              image: thumbnail,
+              thumbnail: thumbnail,
+
+              videoCount: video_count,
+
+              author: {
+                name: author_name,
+                url: TEMPLATES.YT + author_url,
+              }
+            }
+          }
+          break
+
+        case 'channel':
+          {
+            const thumbnail = (
+              _normalizeThumbnail( _jp.value( item, '$..thumbnail..url' ) ) ||
+              _normalizeThumbnail( _jp.value( item, '$..thumbnails..url' ) ) ||
+              _normalizeThumbnail( _jp.value( item, '$..thumbnails' ) )
+            )
+
+            const title = (
+              _jp.value( item, '$..title..text' ) ||
+              _jp.value( item, '$..title..simpleText' ) ||
+              _jp.value( item, '$..displayName..text' )
+            )
+
+            const author_name = (
+              _jp.value( item, '$..shortBylineText..text' ) ||
+              _jp.value( item, '$..longBylineText..text' ) ||
+              _jp.value( item, '$..displayName..text' ) ||
+              _jp.value( item, '$..displayName..simpleText' )
+            )
+
+            const video_count_label = (
+              _jp.value( item, '$..videoCountText..text' ) ||
+              _jp.value( item, '$..videoCountText..simpleText' )
+            )
+
+            let sub_count_label = (
+              _jp.value( item, '$..subscriberCountText..text' ) ||
+              _jp.value( item, '$..subscriberCountText..simpleText' )
+            )
+
+            // first space separated word that has digits
+            if ( typeof sub_count_label === 'string' ) {
+              sub_count_label = (
+                sub_count_label.split( /\s+/ )
+                .filter( function ( w ) { return w.match( /\d/ ) } )
+              )[ 0 ]
+            }
+
+            // url ( playlist )
+            // const url = _jp.value( item, '$..navigationEndpoint..url' )
+            const url = (
+              _jp.value( item, '$..navigationEndpoint..url' ) ||
+              '/user/' + title
+            )
+
+            result = {
+              type: 'channel',
+
+              name: author_name,
+              url: TEMPLATES.YT + url,
+
+              title: title.trim(),
+
+              image: thumbnail,
+              thumbnail: thumbnail,
+
+              videoCount: Number( video_count_label.replace( /\D+/g, '' ) ),
+              videoCountLabel: video_count_label,
+
+              subCount: _parseSubCountLabel( sub_count_label ),
+              subCountLabel: sub_count_label
+            }
+          }
+          break
+
+        default:
+          // ignore other stuff
+      }
+
+      if ( result ) {
+        results.push( result )
+      }
+    } catch ( err ) {
+      debug( err )
+      errors.push( err )
+    }
+  }
+
+  const ctoken = _jp.value( json, '$..continuation' )
+  results._ctoken = ctoken
+
+  if ( errors.length ) {
+    return callback( errors.pop(), results )
+  }
+
+  return callback( null, results )
 }
 
 /**
