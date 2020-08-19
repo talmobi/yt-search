@@ -1,6 +1,9 @@
 [![npm](https://img.shields.io/npm/v/yt-search.svg?maxAge=3600)](https://www.npmjs.com/package/yt-search)
 [![npm](https://img.shields.io/npm/dm/yt-search.svg?maxAge=3600)](https://www.npmjs.com/package/yt-search)
 [![npm](https://img.shields.io/npm/l/yt-search.svg?maxAge=3600)](https://www.npmjs.com/package/yt-search)
+![mac](https://github.com/talmobi/yt-search/workflows/mac/badge.svg)
+![ubuntu](https://github.com/talmobi/yt-search/workflows/ubuntu/badge.svg)
+![windows](https://github.com/talmobi/yt-search/workflows/windows/badge.svg)
 
 #  yt-search
 simple youtube search API and CLI
