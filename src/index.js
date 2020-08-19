@@ -319,7 +319,13 @@ function _normalizeThumbnail ( thumbnails )
     t = thumbnails
   } else {
     // handle as array
-    t = thumbnails[ 0 ]
+    if ( thumbnails.length ) {
+      t = thumbnails[ 0 ]
+      return _normalizeThumbnail( t )
+    }
+
+    // failed to parse thumbnail
+    return undefined
   }
 
   t = t.split( '?' )[ 0 ]
