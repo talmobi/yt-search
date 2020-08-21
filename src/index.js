@@ -619,7 +619,7 @@ function parseInitialData ( responseText, callback )
 
             const viewCountText = (
               _jp.value( item, '$..viewCountText..text' ) ||
-              _jp.value( item, '$..viewCountText..simpleText' )
+              _jp.value( item, '$..viewCountText..simpleText' ) || "0"
             )
 
             const viewsCount = Number( viewCountText.split( /\s+/ )[ 0 ].split( /[,.]/ ).join( '' ).trim() )
