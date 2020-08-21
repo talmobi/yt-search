@@ -114,6 +114,31 @@ test( 'videos, playlists and users/channels', function ( t ) {
   } )
 } )
 
+test( 'find live streams', function ( t ) {
+  t.plan( 11 )
+
+  yts( 'minecraft LIVE', function ( err, r ) {
+    t.error( err, 'no errors OK!' )
+
+    const videos = r.videos
+    const live = r.live
+
+    t.ok( live.length > 0, 'live streams found' )
+
+    const topLiveStream = r.live.sort( function ( a, b ) { return b.watching - a.watching } )[ 0 ]
+
+    t.equal( topLiveStream.type, 'live', 'type "live" OK!' )
+    t.ok( topLiveStream.videoId.length > 4, 'videoId probably OK!' )
+    t.ok( topLiveStream.url.indexOf( 'http' ) >= 0, 'url probably OK!' )
+    t.ok( topLiveStream.description.length > 3, 'description probably OK!' )
+    t.ok( topLiveStream.image.indexOf( 'http' ) >= 0, 'image probably OK!' )
+    t.ok( topLiveStream.watching >= 1, 'watching probably OK!' )
+    t.ok( topLiveStream.author, 'author probably OK!' )
+    t.ok( topLiveStream.author.name, 'author name probably OK!' )
+    t.ok( topLiveStream.author.url.indexOf( 'http' ) >= 0, 'author url probably OK!' )
+  } )
+} )
+
 test( 'test order and relevance', function ( t ) {
   t.plan( 2 )
 
