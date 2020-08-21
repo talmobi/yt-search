@@ -748,7 +748,7 @@ function parseInitialData ( responseText, callback )
 
             const video_count_label = (
               _jp.value( item, '$..videoCountText..text' ) ||
-              _jp.value( item, '$..videoCountText..simpleText' )
+              _jp.value( item, '$..videoCountText..simpleText' ) || '0'
             )
 
             let sub_count_label = (
