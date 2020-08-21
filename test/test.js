@@ -75,6 +75,23 @@ test( 'basic search', function ( t ) {
   } )
 } )
 
+test( 'make sure no live streams show up in video results', function ( t ) {
+  t.plan( 2 )
+
+  yts( 'minecraft LIVE', function ( err, r ) {
+    t.error( err, 'no errors OK!' )
+
+    const list = r.videos
+    t.plan( list.length * 2 + 1 + 1 ) // update plan count based on results
+    list.forEach( function ( video ) {
+      t.ok( video.views > 0, 'views OK!' )
+      t.ok( video.ago, 'ago OK!' )
+    } )
+
+    t.ok( list.length > 0, 'found some videos among live OK!' )
+  } )
+} )
+
 test( 'videos, playlists and users/channels', function ( t ) {
   t.plan( 5 )
 
