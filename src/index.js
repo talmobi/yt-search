@@ -212,6 +212,7 @@ function getSearchResults ( _options, callback )
           const videos = list.filter( videoFilter )
           const playlists = list.filter( playlistFilter )
           const channels = list.filter( channelFilter )
+          const live = list.filter( liveFilter )
 
           // keep saving results into temporary memory while
           // we get more results
@@ -221,6 +222,7 @@ function getSearchResults ( _options, callback )
           _options._data.videos = _options._data.videos || []
           _options._data.playlists = _options._data.playlists || []
           _options._data.channels = _options._data.channels || []
+          _options._data.live = _options._data.live || []
 
           // push received results into memory
           videos.forEach( function ( item ) {
@@ -231,6 +233,9 @@ function getSearchResults ( _options, callback )
           } )
           channels.forEach( function ( item ) {
             _options._data.channels.push( item )
+          } )
+          live.forEach( function ( item ) {
+            _options._data.live.push( item )
           } )
 
           _options.currentPage++
@@ -248,10 +253,13 @@ function getSearchResults ( _options, callback )
             const videos = _options._data.videos.filter( videoFilter )
             const playlists = _options._data.playlists.filter( playlistFilter )
             const channels = _options._data.channels.filter( channelFilter )
+            const live = _options._data.live.filter( liveFilter )
 
             // return all found videos
             callback( null, {
               videos: videos,
+
+              live: live,
 
               playlists: playlists,
               lists: playlists,
@@ -305,6 +313,20 @@ function channelFilter ( result, index, results )
 
   const firstIndex = results.findIndex( function ( el ) {
     return ( url === el.url )
+  } )
+
+  return ( firstIndex === index )
+}
+
+function liveFilter ( result, index, results )
+{
+  if ( result.type !== 'live' ) return false
+
+  // filter duplicates
+  const videoId = result.videoId
+
+  const firstIndex = results.findIndex( function ( el ) {
+    return ( videoId === el.videoId )
   } )
 
   return ( firstIndex === index )
@@ -574,6 +596,9 @@ function parseInitialData ( responseText, callback )
     const channelId = hasChannel && ( _jp.value( item, '$..channelId' ) )
     const videoId = hasVideo && ( _jp.value( item, '$..videoId' ) )
 
+    const watchingLabel = ( _jp.query( item, '$..viewCountText..text' ) ).join( '' )
+    const isLive = watchingLabel.indexOf( 'watching' ) >= 0
+
     if ( videoId ) {
       type = 'video'
     }
@@ -584,6 +609,10 @@ function parseInitialData ( responseText, callback )
 
     if ( listId ) {
       type = 'list'
+    }
+
+    if ( isLive ) {
+      type = 'live'
     }
 
     try {
@@ -787,6 +816,67 @@ function parseInitialData ( responseText, callback )
 
               subCount: _parseSubCountLabel( sub_count_label ),
               subCountLabel: sub_count_label
+            }
+          }
+          break
+
+        case 'live':
+          {
+            const thumbnail = (
+              _normalizeThumbnail( _jp.value( item, '$..thumbnail..url' ) ) ||
+              _normalizeThumbnail( _jp.value( item, '$..thumbnails..url' ) ) ||
+              _normalizeThumbnail( _jp.value( item, '$..thumbnails' ) )
+            )
+
+            const title = (
+              _jp.value( item, '$..title..text' ) ||
+              _jp.value( item, '$..title..simpleText' )
+            )
+
+            const author_name = (
+              _jp.value( item, '$..shortBylineText..text' ) ||
+              _jp.value( item, '$..longBylineText..text' )
+            )
+
+            const author_url = (
+              _jp.value( item, '$..shortBylineText..url' ) ||
+              _jp.value( item, '$..longBylineText..url' )
+            )
+
+            const watchingLabel = (
+              ( _jp.query( item, '$..viewCountText..text' ) ).join( '' ) ||
+              ( _jp.query( item, '$..viewCountText..simpleText' ) ).join( '' ) || '0'
+            )
+
+            const watchCount = Number( watchingLabel.split( /\s+/ )[ 0 ].split( /[,.]/ ).join( '' ).trim() )
+
+            const description = (
+              ( _jp.query( item, '$..description..text' ) ).join( '' ) ||
+              ( _jp.query( item, '$..descriptionSnippet..text' ) ).join( '' )
+            )
+
+            // url ( playlist )
+            // const url = _jp.value( item, '$..navigationEndpoint..url' )
+            const url = TEMPLATES.YT + '/watch?v=' + videoId
+
+            result = {
+              type: 'live',
+
+              videoId: videoId,
+              url: url,
+
+              title: title.trim(),
+              description: description,
+
+              image: thumbnail,
+              thumbnail: thumbnail,
+
+              watching: Number( watchCount ),
+
+              author: {
+                name: author_name,
+                url: TEMPLATES.YT + author_url,
+              }
             }
           }
           break
