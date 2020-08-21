@@ -660,8 +660,8 @@ function parseInitialData ( responseText, callback )
             const duration = parseDuration( lengthText || '0:00' )
 
             const description = (
-              _jp.value( item, '$..description..text' ) ||
-              _jp.value( item, '$..descriptionSnippet..text' )
+              ( _jp.query( item, '$..description..text' ) ).join( '' ) ||
+              ( _jp.query( item, '$..descriptionSnippet..text' ) ).join( '' )
             )
 
             // url ( playlist )
@@ -1859,10 +1859,10 @@ function _parseVideoInitialData ( responseText, callback )
   )
 
   const description = (
-    _jp.value( ipdata, '$..description..text' ) ||
-    _jp.value( ipdata, '$..description..simpleText' ) ||
-    _jp.value( idata, '$..description..text' ) ||
-    _jp.value( idata, '$..description..simpleText' )
+    ( _jp.query( ipdata, '$..description..text' ) ).join( '' ) ||
+    ( _jp.query( ipdata, '$..description..simpleText' ) ).join( '' ) ||
+    ( _jp.query( idata, '$..description..text' ) ).join( '' ) ||
+    ( _jp.query( idata, '$..description..simpleText' ) ).join( '' )
   )
 
   const author_name = (
