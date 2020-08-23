@@ -1840,9 +1840,6 @@ function _parseVideoInitialData ( responseText, callback )
   // debug( '\n------------------\n' )
   // debug( initialPlayerData[ 0 ] )
 
-  const fs = require( 'fs' )
-  fs.writeFileSync( 'initialPlayerData.json', initialPlayerData )
-
   const idata = JSON.parse( initialData )
   const ipdata = JSON.parse( initialPlayerData )
 
