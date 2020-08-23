@@ -1862,10 +1862,10 @@ function _parseVideoInitialData ( responseText, callback )
   )
 
   const description = (
-    ( _jp.query( ipdata, '$..description..text' ) ).join( '' ) ||
-    ( _jp.query( ipdata, '$..description..simpleText' ) ).join( '' ) ||
     ( _jp.query( idata, '$..description..text' ) ).join( '' ) ||
-    ( _jp.query( idata, '$..description..simpleText' ) ).join( '' )
+    ( _jp.query( ipdata, '$..description..simpleText' ) ).join( '' ) ||
+    ( _jp.query( ipdata, '$..microformat..description..simpleText' ) ).join( '' ) ||
+    ( _jp.query( ipdata, '$..videoDetails..shortDescription' ) ).join( '' )
   )
 
   const author_name = (
