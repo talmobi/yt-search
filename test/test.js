@@ -1,8 +1,6 @@
 let yts = require( '../dist/yt-search.min.js' )
 // let yts = require( '../dist/yt-search.js' )
 
-const looksSamePlus = require( 'looks-same-plus' )
-
 if ( !!process.env.debug ) {
   yts = require( '../src/index.js' )
 }
@@ -339,7 +337,7 @@ test( 'search results: playlist', function ( t ) {
 } )
 
 test( 'search results: channel', function ( t ) {
-  t.plan( 7 )
+  t.plan( 6 )
 
   yts( 'PewDiePie', function ( err, r ) {
     t.error( err, 'no errors OK!' )
@@ -353,17 +351,11 @@ test( 'search results: channel', function ( t ) {
 
     t.ok( topChannel.videoCount > 4000, 'video count' )
 
-    console.log( topChannel.image )
-    looksSamePlus(
-      topChannel.image,
-      require( 'path' ).join( __dirname, 'stage', 'pewdiepie-thumbnail.png' ),
-      { tolerance: 5 },
-      function ( err, r ) {
-        t.error( err, 'no errors' )
-        console.log( r )
-        t.equal( r.equal, true, 'images looks the same' )
-      }
+    const channelImageUrl = (
+      'https://yt3.ggpht.com/a/AATXAJwTuzNgKRSLVIOcVTVGGr_xFKgo8LFSQF163hCKSQ=s88-c-k-c0x00ffffff-no-rj-mo'
     )
+    console.log( topChannel.image )
+    t.equal( topChannel.image, channelImageUrl, 'pewdiepie channel image OK!' )
   } )
 } )
 
