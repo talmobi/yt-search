@@ -390,6 +390,9 @@ function _parseSubCountLabel ( subCountLabel )
  * Parse result section of html ( Mozilla/5.0 compatible ) containing video results.
  *
  * @param {string} body - html response text
+ *
+ * NOT IN USE due to changes in served html (no longer
+ * pre-rendred by youtube)
  */
 function _parseSearchResults ( body, callback ) {
   const $ = _cheerio.load( body )
