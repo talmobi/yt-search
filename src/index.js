@@ -1820,15 +1820,19 @@ function _parseVideoInitialData ( responseText, callback )
   // const fs = require( 'fs' )
   // fs.writeFileSync( 'tmp.file', responseText )
 
-  const initialData = responseText.match( /ytInitialData.*=\s*({.*});/ )
+  const initialData = between(
+    findLine( /ytInitialData.*=\s*{/, responseText ), '{', '}'
+  )
 
-  if ( !initialData[ 1 ] ) {
+  if ( !initialData ) {
     return callback( 'could not find inital data in the html document' )
   }
 
-  const initialPlayerData = responseText.match( /ytInitialPlayerResponse.*=\s*({.*});/ )
+  const initialPlayerData = between(
+    findLine( /ytInitialPlayerResponse.*=\s*{/, responseText ), '{', '}'
+  )
 
-  if ( !initialPlayerData[ 1 ] ) {
+  if ( !initialPlayerData ) {
     return callback( 'could not find inital player data in the html document' )
   }
 
@@ -1836,8 +1840,11 @@ function _parseVideoInitialData ( responseText, callback )
   // debug( '\n------------------\n' )
   // debug( initialPlayerData[ 0 ] )
 
-  const idata = JSON.parse( initialData[ 1 ] )
-  const ipdata = JSON.parse( initialPlayerData[ 1 ] )
+  const fs = require( 'fs' )
+  fs.writeFileSync( 'initialPlayerData.json', initialPlayerData )
+
+  const idata = JSON.parse( initialData )
+  const ipdata = JSON.parse( initialPlayerData )
 
   const videoId = _jp.value( idata, '$..currentVideoEndpoint..videoId' )
 
@@ -2015,4 +2022,34 @@ function test ( query )
       console.log( `channel: ${ c.title } | ${ c.description }` )
     } )
   } )
+}
+
+function findLine ( regex, text ) {
+  const cache = findLine.cache || {}
+  findLine.cache = cache
+
+  cache[ text ] = cache[ text ] || {}
+
+  const lines = cache[ text ].lines || text.split( '\n' )
+  cache[ text ].lines = lines
+
+  clearTimeout( cache[ text ].timeout )
+  cache[ text ].timeout = setTimeout( function () {
+    delete cache[ text ]
+  }, 100 )
+
+  for ( let i = 0; i < lines.length; i++ ) {
+    const line = lines[ i ]
+    if ( regex.test( line ) ) return line
+  }
+
+  return ''
+}
+
+function between ( text, start, end ) {
+  let i = text.indexOf( start )
+  let j = text.lastIndexOf( end )
+  if ( i < 0 ) return ''
+  if ( j < 0 ) return ''
+  return text.slice( i, j + 1 )
 }
