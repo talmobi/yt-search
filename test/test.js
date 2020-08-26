@@ -359,6 +359,28 @@ test( 'search results: channel', function ( t ) {
   } )
 } )
 
+test( 'search "王菲 Faye Wong"', function ( t ) {
+  t.plan( 6 )
+
+  yts( '王菲 Faye Wong', function ( err, r ) {
+    t.error( err, 'no errors OK!' )
+
+    const channels = r.channels
+    const topChannel = channels[ 0 ]
+
+    t.ok( topChannel, 'topChannel OK' )
+    t.equal( topChannel.name, 'Faye Wong Official Channel', 'channel name' )
+    t.equal( topChannel.url, 'https://youtube.com/channel/UCos8gkwQivJ_hHeoCcs6yXg', 'channel url' )
+
+    t.ok( topChannel.videoCount >= 20, 'video count' )
+
+    const channelImageUrl = (
+      'https://yt3.ggpht.com/a/AATXAJxg1ZCD6conNklSAF7wwtwlx5q4FlO7EpNRi_nSpw=s88-c-k-c0x00ffffff-no-rj-mo'
+    )
+    t.equal( topChannel.image, channelImageUrl, 'pewdiepie channel image OK!' )
+  } )
+} )
+
 test( 'test promise support ( search by video id )', async function ( t ) {
   t.plan( 2 )
 
