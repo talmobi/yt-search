@@ -371,6 +371,8 @@ function _normalizeThumbnail ( thumbnails )
  */
 function _parseSubCountLabel ( subCountLabel )
 {
+  if ( !subCountLabel ) return undefined
+
   const label = (
     subCountLabel.split( /\s+/ )
     .filter( function ( w ) { return w.match( /\d/ ) } )
@@ -796,6 +798,7 @@ function parseInitialData ( responseText, callback )
               )[ 0 ]
             }
 
+
             // url ( playlist )
             // const url = _jp.value( item, '$..navigationEndpoint..url' )
             const url = (
@@ -1000,7 +1003,7 @@ function _parsePlaylistInitialData ( responseText, callback )
     views = _parseSubCountLabel( views )
   }
 
-  console.log( lastUpdateLabel )
+  // console.log( lastUpdateLabel )
 
   let lastUpdate
   if ( lastUpdateLabel ) {
