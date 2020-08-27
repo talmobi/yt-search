@@ -116,6 +116,62 @@ function search ( query, callback )
   }
 }
 
+function _videoFilter ( video, index, videos )
+{
+  if ( video.type !== 'video' ) return false
+
+  // filter duplicates
+  const videoId = video.videoId
+
+  const firstIndex = videos.findIndex( function ( el ) {
+    return ( videoId === el.videoId )
+  } )
+
+  return ( firstIndex === index )
+}
+
+function _playlistFilter ( result, index, results )
+{
+  if ( result.type !== 'list' ) return false
+
+  // filter duplicates
+  const id = result.listId
+
+  const firstIndex = results.findIndex( function ( el ) {
+    return ( id === el.listId )
+  } )
+
+  return ( firstIndex === index )
+}
+
+function _channelFilter ( result, index, results )
+{
+  if ( result.type !== 'channel' ) return false
+
+  // filter duplicates
+  const url = result.url
+
+  const firstIndex = results.findIndex( function ( el ) {
+    return ( url === el.url )
+  } )
+
+  return ( firstIndex === index )
+}
+
+function _liveFilter ( result, index, results )
+{
+  if ( result.type !== 'live' ) return false
+
+  // filter duplicates
+  const videoId = result.videoId
+
+  const firstIndex = results.findIndex( function ( el ) {
+    return ( videoId === el.videoId )
+  } )
+
+  return ( firstIndex === index )
+}
+
 /* Request search page results with provided
  * search_query term
  */
@@ -204,15 +260,15 @@ function getSearchResults ( _options, callback )
       }
 
       try {
-        parseInitialData( body, function ( err, results ) {
+        _parseSearchResultInitialData( body, function ( err, results ) {
           if ( err ) return callback( err )
 
           const list = results
 
-          const videos = list.filter( videoFilter )
-          const playlists = list.filter( playlistFilter )
-          const channels = list.filter( channelFilter )
-          const live = list.filter( liveFilter )
+          const videos = list.filter( _videoFilter )
+          const playlists = list.filter( _playlistFilter )
+          const channels = list.filter( _channelFilter )
+          const live = list.filter( _liveFilter )
 
           // keep saving results into temporary memory while
           // we get more results
@@ -250,10 +306,10 @@ function getSearchResults ( _options, callback )
               getSearchResults( _options, callback )
             }, 2500 ) // delay a bit to try and prevent throttling
           } else {
-            const videos = _options._data.videos.filter( videoFilter )
-            const playlists = _options._data.playlists.filter( playlistFilter )
-            const channels = _options._data.channels.filter( channelFilter )
-            const live = _options._data.live.filter( liveFilter )
+            const videos = _options._data.videos.filter( _videoFilter )
+            const playlists = _options._data.playlists.filter( _playlistFilter )
+            const channels = _options._data.channels.filter( _channelFilter )
+            const live = _options._data.live.filter( _liveFilter )
 
             // return all found videos
             callback( null, {
@@ -276,124 +332,12 @@ function getSearchResults ( _options, callback )
   } )
 }
 
-function videoFilter ( video, index, videos )
-{
-  if ( video.type !== 'video' ) return false
-
-  // filter duplicates
-  const videoId = video.videoId
-
-  const firstIndex = videos.findIndex( function ( el ) {
-    return ( videoId === el.videoId )
-  } )
-
-  return ( firstIndex === index )
-}
-
-function playlistFilter ( result, index, results )
-{
-  if ( result.type !== 'list' ) return false
-
-  // filter duplicates
-  const id = result.listId
-
-  const firstIndex = results.findIndex( function ( el ) {
-    return ( id === el.listId )
-  } )
-
-  return ( firstIndex === index )
-}
-
-function channelFilter ( result, index, results )
-{
-  if ( result.type !== 'channel' ) return false
-
-  // filter duplicates
-  const url = result.url
-
-  const firstIndex = results.findIndex( function ( el ) {
-    return ( url === el.url )
-  } )
-
-  return ( firstIndex === index )
-}
-
-function liveFilter ( result, index, results )
-{
-  if ( result.type !== 'live' ) return false
-
-  // filter duplicates
-  const videoId = result.videoId
-
-  const firstIndex = results.findIndex( function ( el ) {
-    return ( videoId === el.videoId )
-  } )
-
-  return ( firstIndex === index )
-}
-
-/* Helper fn to choose a good thumbnail.
- */
-function _normalizeThumbnail ( thumbnails )
-{
-  let t
-  if ( typeof thumbnails === 'string' ) {
-    t = thumbnails
-  } else {
-    // handle as array
-    if ( thumbnails.length ) {
-      t = thumbnails[ 0 ]
-      return _normalizeThumbnail( t )
-    }
-
-    // failed to parse thumbnail
-    return undefined
-  }
-
-  t = t.split( '?' )[ 0 ]
-
-  t = t.split( '/default.jpg' ).join( '/hqdefault.jpg' )
-  t = t.split( '/default.jpeg' ).join( '/hqdefault.jpeg' )
-
-  if ( t.indexOf( '//' ) === 0 ) {
-    return 'https://' + t.slice( 2 )
-  }
-
-  return t.split( 'http://' ).join( 'https://' )
-}
-
-/* Helper fn to parse sub count labels
- * and turn them into Numbers.
- *
- * It's an estimate but can be useful for sorting etc.
- *
- * ex. "102M subscribers" -> 102000000
- */
-function _parseSubCountLabel ( subCountLabel )
-{
-  if ( !subCountLabel ) return undefined
-
-  const label = (
-    subCountLabel.split( /\s+/ )
-    .filter( function ( w ) { return w.match( /\d/ ) } )
-  )[ 0 ].toLowerCase()
-
-  const num = Number( label.replace( /\D/g, '' ) )
-
-  const THOUSAND = 1000
-  const MILLION = THOUSAND * THOUSAND
-
-  if ( label.indexOf( 'm' ) >= 0 ) return MILLION * num
-  if ( label.indexOf( 'k' ) >= 0 ) return THOUSAND * num
-  return num
-}
-
 /* For "modern" user-agents the html document returned from
  * YouTube contains initial json data that is used to populate
  * the page with JavaScript. This function will aim to find and
  * parse such data.
  */
-function parseInitialData ( responseText, callback )
+function _parseSearchResultInitialData ( responseText, callback )
 {
   const re = /{.*}/
   const $ = _cheerio.load( responseText )
@@ -509,7 +453,7 @@ function parseInitialData ( responseText, callback )
               _jp.value( item, '$..lengthText..text' ) ||
               _jp.value( item, '$..lengthText..simpleText' )
             )
-            const duration = parseDuration( lengthText || '0:00' )
+            const duration = _parseDuration( lengthText || '0:00' )
 
             const description = (
               ( _jp.query( item, '$..description..text' ) ).join( '' ) ||
@@ -757,261 +701,6 @@ function parseInitialData ( responseText, callback )
   return callback( null, results )
 }
 
-function _parsePlaylistInitialData ( responseText, callback )
-{
-  debug( '_parsePlaylistInitialData' )
-
-  const re = /{.*}/
-  const $ = _cheerio.load( responseText )
-
-  let initialData = ''
-
-  if ( !initialData ) {
-    const scripts = $( 'script' )
-
-    for ( let i = 0; i < scripts.length; i++ ) {
-      const script = $( scripts[ i ] ).html()
-
-      const lines = script.split( '\n' )
-      lines.forEach( function ( line ) {
-        let i
-        while ( ( i = line.indexOf( 'ytInitialData' ) ) >= 0 ) {
-          line = line.slice( i + 'ytInitialData'.length )
-          const match = re.exec( line )
-          if ( match && match.length > initialData.length ) {
-            initialData = match
-          }
-        }
-      } )
-    }
-  }
-
-  if ( !initialData ) {
-    return callback( 'could not find inital data in the html document' )
-  }
-
-  const idata = JSON.parse( initialData[ 0 ] )
-
-  const listId = _jp.value( idata, '$..playlistId' )
-
-  if ( !listId ) {
-    return callback( 'playlist unavailable' )
-  }
-
-  const title = (
-    _jp.value( idata, '$..microformat..title' ) ||
-    _jp.value( idata, '$..sidebar..title..text' ) ||
-    _jp.value( idata, '$..sidebar..title..simpleText' )
-  )
-
-  const url = TEMPLATES.YT + '/playlist?list=' + listId
-
-  const thumbnailUrl = (
-    _jp.value( idata, '$..thumbnail..url' )
-  )
-  const thumbnail = _normalizeThumbnail( thumbnailUrl )
-
-  const description = (
-    _jp.value( idata, '$..microformat..description' ) || ''
-  )
-
-  const author_name = (
-    _jp.value( idata, '$..videoOwner..title..text' ) ||
-    _jp.value( idata, '$..videoOwner..title..simpleText' ) ||
-    _jp.value( idata, '$..owner..title..text' ) ||
-    _jp.value( idata, '$..owner..title..simpleText' )
-  )
-
-  const author_url = (
-    _jp.value( idata, '$..videoOwner..title..url' ) ||
-    _jp.value( idata, '$..owner..title..url' )
-  )
-
-  let videos = (
-    _jp.value( idata, '$..sidebar..stats[0]..text' ) ||
-    _jp.value( idata, '$..sidebar..stats[0]..simpleText' )
-  )
-
-  let views = (
-    _jp.value( idata, '$..sidebar..stats[1]..text' ) ||
-    _jp.value( idata, '$..sidebar..stats[1]..simpleText' )
-  )
-
-  let lastUpdateLabel = (
-    _jp.value( idata, '$..sidebar..stats[2]..text' ) ||
-    _jp.value( idata, '$..sidebar..stats[2]..simpleText' )
-  )
-
-  if ( videos ) {
-    videos = Number( videos.replace( /\D+/g, '' ) )
-  }
-
-  if ( views ) {
-    views = _parseSubCountLabel( views )
-  }
-
-  // console.log( lastUpdateLabel )
-
-  let lastUpdate
-  if ( lastUpdateLabel ) {
-    lastUpdate = _parsePlaylistLastUpdateTime( lastUpdateLabel )
-  }
-
-  const items = _jp.query( idata, '$..playlistRenderer' )
-
-  const list = []
-
-  for ( let i = 0; i < items.length; i++ ) {
-    try {
-      const item = items[ i ]
-
-      const videoId = (
-        _jp.value( item, '$..videoId' )
-      )
-
-      const thumbnail = (
-        _normalizeThumbnail( _jp.value( item, '$..thumbnail..url' ) ) ||
-        _normalizeThumbnail( _jp.value( item, '$..thumbnails..url' ) ) ||
-        _normalizeThumbnail( _jp.value( item, '$..thumbnails' ) )
-      )
-
-      const title = (
-        _jp.value( item, '$..title..text' ) ||
-        _jp.value( item, '$..title..simpleText' )
-      )
-
-      const timestamp = (
-        _jp.value( item, '$..lengthText..text' ) ||
-        _jp.value( item, '$..lengthText..simpleText' )
-      )
-
-      const duration = parseDuration( timestamp || '0:00' )
-
-      const author_name = (
-        _jp.value( item, '$..shortBylineText..text' ) ||
-        _jp.value( item, '$..longBylineText..text' )
-      )
-
-      const author_url = (
-        _jp.value( item, '$..shortBylineText..url' ) ||
-        _jp.value( item, '$..longBylineText..url' )
-      )
-
-      list.push( {
-        title: title,
-
-        videoId: videoId,
-        listId: listId,
-
-        duration: duration,
-        timestamp: duration.timestamp,
-        seconds: duration.seconds,
-
-        image: thumbnail,
-        thumbnail: thumbnail,
-        url: TEMPLATES.YT + '/watch?v=' + videoId,
-
-        author: {
-          name: author_name,
-          url: TEMPLATES.YT + author_url
-        }
-      } )
-    } catch ( err ) {
-      // possibly deleted videos, ignore
-    }
-  }
-
-  const playlist = {
-    title: title,
-
-    listId: listId,
-
-    url: TEMPLATES.YT + '/playlist?list=' + listId,
-    thumbnail: thumbnail,
-
-    videos: list,
-    views: views,
-    date: lastUpdate,
-
-    author: {
-      name: author_name,
-      url: TEMPLATES.YT + author_url
-    }
-  }
-
-  callback( null, playlist )
-}
-
-/* Helper fn to parse duration labels
- * ex: Duration: 2:27, Kesto: 1.07.54
- */
-function parseDuration ( timestampText )
-{
-  var a = timestampText.split( /\s+/ )
-  var lastword = a[ a.length - 1 ]
-
-  // ex: Duration: 2:27, Kesto: 1.07.54
-  // replace all non :, non digits and non .
-  var timestamp = lastword.replace( /[^:.\d]/g, '' )
-
-  if ( !timestamp ) return {
-    toString: function () { return a[ 0 ] },
-    seconds: 0,
-    timestamp: 0
-  }
-
-  // remove trailing junk that are not digits
-  while ( timestamp[ timestamp.length - 1 ].match( /\D/ ) ) {
-    timestamp = timestamp.slice( 0, -1 )
-  }
-
-  // replaces all dots with nice ':'
-  timestamp = timestamp.replace( /\./g, ':' )
-
-  var t = timestamp.split( /[:.]/ )
-
-  var seconds = 0
-  var exp = 0
-  for ( var i = t.length - 1; i >= 0; i-- ) {
-    if ( t[ i ].length <= 0 ) continue
-    var number = t[ i ].replace( /\D/g, '' )
-    // var exp = (t.length - 1) - i;
-    seconds += parseInt( number ) * ( exp > 0 ? Math.pow( 60, exp ) : 1 )
-    exp++
-    if ( exp > 2 ) break
-  };
-
-  return {
-    toString: function () { return seconds + ' seconds (' + timestamp + ')' },
-    seconds: seconds,
-    timestamp: timestamp
-  }
-}
-
-/* Helper fn to transform ms to timestamp
- * ex: 253000 -> "4:13"
- */
-function msToTimestamp ( ms )
-{
-  let t = ''
-
-  const MS_HOUR = 1000 * 60 * 60
-  const MS_MINUTE = 1000 * 60
-  const MS_SECOND = 1000
-
-  const h = Math.floor( ms / MS_HOUR )
-  const m = Math.floor( ms / MS_MINUTE ) % 60
-  const s = Math.floor( ms / MS_SECOND ) % 60
-
-  if ( h ) t += h + ':'
-  if ( m ) t += m + ':'
-
-  if ( String( s ).length < 2 ) t += '0'
-  t += s
-
-  return t
-}
-
 /* Get metadata of a single video
  */
 function getVideoMetaData ( opts, callback )
@@ -1064,6 +753,129 @@ function getVideoMetaData ( opts, callback )
   } )
 }
 
+function _parseVideoInitialData ( responseText, callback )
+{
+  debug( '_parseVideoInitialData' )
+
+  // const fs = require( 'fs' )
+  // fs.writeFileSync( 'tmp.file', responseText )
+
+  const initialData = _between(
+    _fineLine( /ytInitialData.*=\s*{/, responseText ), '{', '}'
+  )
+
+  if ( !initialData ) {
+    return callback( 'could not find inital data in the html document' )
+  }
+
+  const initialPlayerData = _between(
+    _fineLine( /ytInitialPlayerResponse.*=\s*{/, responseText ), '{', '}'
+  )
+
+  if ( !initialPlayerData ) {
+    return callback( 'could not find inital player data in the html document' )
+  }
+
+  // debug( initialData[ 0 ] )
+  // debug( '\n------------------\n' )
+  // debug( initialPlayerData[ 0 ] )
+
+  const idata = JSON.parse( initialData )
+  const ipdata = JSON.parse( initialPlayerData )
+
+  const videoId = _jp.value( idata, '$..currentVideoEndpoint..videoId' )
+
+  if ( !videoId ) {
+    return callback( 'video unavailable' )
+  }
+
+  if (
+    _jp.value( ipdata, '$..status' ) === 'ERROR' ||
+    _jp.value( ipdata, '$..reason' ) === 'Video unavailable'
+  ) {
+    return callback( 'video unavailable' )
+  }
+
+  const title = (
+    _jp.value( idata, '$..videoPrimaryInfoRenderer..title..text' ) ||
+    _jp.value( idata, '$..videoPrimaryInfoRenderer..title..simpleText' ) ||
+    _jp.value( idata, '$..videoPrimaryRenderer..title..text' ) ||
+    _jp.value( idata, '$..videoPrimaryRenderer..title..simpleText' ) ||
+    _jp.value( idata, '$..title..text' ) ||
+    _jp.value( idata, '$..title..simpleText' )
+  )
+
+  const description = (
+    ( _jp.query( idata, '$..description..text' ) ).join( '' ) ||
+    ( _jp.query( ipdata, '$..description..simpleText' ) ).join( '' ) ||
+    ( _jp.query( ipdata, '$..microformat..description..simpleText' ) ).join( '' ) ||
+    ( _jp.query( ipdata, '$..videoDetails..shortDescription' ) ).join( '' )
+  )
+
+  const author_name = (
+    _jp.value( idata, '$..owner..title..text' ) ||
+    _jp.value( idata, '$..owner..title..simpleText' )
+  )
+
+  const author_url = (
+    _jp.value( idata, '$..owner..navigationEndpoint..url' ) ||
+    _jp.value( idata, '$..owner..title..url' )
+  )
+
+  const thumbnailUrl = 'https://i.ytimg.com/vi/' + videoId + '/hqdefault.jpg'
+
+  const seconds = Number(
+    _jp.value( ipdata, '$..videoDetails..lengthSeconds' )
+  )
+
+  const timestamp = _msToTimestamp( seconds * 1000 )
+
+  const duration = _parseDuration( timestamp )
+
+  const sentimentBar = (
+    // ex. "tooltip": "116,701 / 8,930"
+    _jp.value( idata, '$..sentimentBar..tooltip' )
+    .split( /[,.]/ ).join( '' )
+    .split( /\D+/ )
+  )
+
+  const likes = Number( sentimentBar[ 0 ] )
+  const dislikes = Number( sentimentBar[ 1 ] )
+
+  const uploadDate = _jp.value( idata, '$..dateText' )
+
+  const video = {
+    title: title,
+    description: description,
+
+    url: TEMPLATES.YT + '/watch?v=' + videoId,
+    videoId: videoId,
+
+    seconds: Number( duration.seconds ),
+    timestamp: duration.timestamp,
+    duration: duration,
+
+    views: Number(
+      _jp.value( ipdata, '$..videoDetails..viewCount' )
+    ),
+
+    genre: ( _jp.value( ipdata, '$..category' ) || '' ).toLowerCase(),
+
+    uploadDate: _jp.value( ipdata, '$..uploadDate' ),
+    ago: _humanTime( new Date( uploadDate ) ), // ex: 10 years ago
+
+    image: thumbnailUrl,
+    thumbnail: thumbnailUrl,
+
+    author: {
+      name: author_name,
+      url: TEMPLATES.YT + author_url
+    }
+  }
+
+  callback( null, video )
+}
+
 /* Get metadata from a playlist page
  */
 function getPlaylistMetaData ( opts, callback )
@@ -1108,7 +920,7 @@ function getPlaylistMetaData ( opts, callback )
       }
 
       try {
-        parsePlaylistInitialData( body, callback )
+        _parsePlaylistInitialData( body, callback )
       } catch ( err ) {
         callback( err )
       }
@@ -1116,7 +928,7 @@ function getPlaylistMetaData ( opts, callback )
   } )
 }
 
-function parsePlaylistInitialData ( responseText, callback )
+function _parsePlaylistInitialData ( responseText, callback )
 {
   debug( 'fn: parsePlaylistBody' )
 
@@ -1191,54 +1003,6 @@ function parsePlaylistInitialData ( responseText, callback )
   callback && callback( null, playlist )
 }
 
-/**
- * @params {object} - cheerio <a>...</a> tag
- * TODO
- */
-function _parseAuthorAnchorTag ( a ) {
-  debug( 'fn: _parseAuthorAnchorTag' )
-
-  let channelId = ''
-  let channelUrl = ''
-  let channelUrlText = ''
-
-  let userId = ''
-  let userUrl = ''
-  let userUrlText = ''
-
-  const href = a.attr( 'href' )
-
-  if ( !href ) {
-    return {}
-  }
-
-  if ( href.indexOf( 'channel/' ) >= 0 ) {
-    channelId = href.split( '/' ).pop()
-    channelUrl = 'https://youtube.com/channel/' + channelId
-    channelUrlText = a.text().trim()
-  }
-
-  if ( href.indexOf( 'user/' ) >= 0 ) {
-    userId = href.split( '/' ).pop()
-    userUrl = 'https://youtube.com/user/' + userId
-    userUrlText = a.text().trim()
-  }
-
-  return {
-    name: userUrlText || channelUrlText,
-    id: userId || channelId,
-    url: userUrl || channelUrl,
-
-    channelId,
-    channelUrl,
-    channelUrlText,
-
-    userId,
-    userUrl,
-    userUrlText,
-  }
-}
-
 function _parsePlaylistLastUpdateTime ( lastUpdateLabel ) {
   debug( 'fn: _parsePlaylistLastUpdateTime' )
 
@@ -1272,135 +1036,58 @@ function _toInternalDateString ( date ) {
   )
 }
 
-function _parseVideoInitialData ( responseText, callback )
+/* Helper fn to parse duration labels
+ * ex: Duration: 2:27, Kesto: 1.07.54
+ */
+function _parseDuration ( timestampText )
 {
-  debug( '_parseVideoInitialData' )
+  var a = timestampText.split( /\s+/ )
+  var lastword = a[ a.length - 1 ]
 
-  // const fs = require( 'fs' )
-  // fs.writeFileSync( 'tmp.file', responseText )
+  // ex: Duration: 2:27, Kesto: 1.07.54
+  // replace all non :, non digits and non .
+  var timestamp = lastword.replace( /[^:.\d]/g, '' )
 
-  const initialData = between(
-    findLine( /ytInitialData.*=\s*{/, responseText ), '{', '}'
-  )
-
-  if ( !initialData ) {
-    return callback( 'could not find inital data in the html document' )
+  if ( !timestamp ) return {
+    toString: function () { return a[ 0 ] },
+    seconds: 0,
+    timestamp: 0
   }
 
-  const initialPlayerData = between(
-    findLine( /ytInitialPlayerResponse.*=\s*{/, responseText ), '{', '}'
-  )
-
-  if ( !initialPlayerData ) {
-    return callback( 'could not find inital player data in the html document' )
+  // remove trailing junk that are not digits
+  while ( timestamp[ timestamp.length - 1 ].match( /\D/ ) ) {
+    timestamp = timestamp.slice( 0, -1 )
   }
 
-  // debug( initialData[ 0 ] )
-  // debug( '\n------------------\n' )
-  // debug( initialPlayerData[ 0 ] )
+  // replaces all dots with nice ':'
+  timestamp = timestamp.replace( /\./g, ':' )
 
-  const idata = JSON.parse( initialData )
-  const ipdata = JSON.parse( initialPlayerData )
+  var t = timestamp.split( /[:.]/ )
 
-  const videoId = _jp.value( idata, '$..currentVideoEndpoint..videoId' )
+  var seconds = 0
+  var exp = 0
+  for ( var i = t.length - 1; i >= 0; i-- ) {
+    if ( t[ i ].length <= 0 ) continue
+    var number = t[ i ].replace( /\D/g, '' )
+    // var exp = (t.length - 1) - i;
+    seconds += parseInt( number ) * ( exp > 0 ? Math.pow( 60, exp ) : 1 )
+    exp++
+    if ( exp > 2 ) break
+  };
 
-  if ( !videoId ) {
-    return callback( 'video unavailable' )
+  return {
+    toString: function () { return seconds + ' seconds (' + timestamp + ')' },
+    seconds: seconds,
+    timestamp: timestamp
   }
-
-  if (
-    _jp.value( ipdata, '$..status' ) === 'ERROR' ||
-    _jp.value( ipdata, '$..reason' ) === 'Video unavailable'
-  ) {
-    return callback( 'video unavailable' )
-  }
-
-  const title = (
-    _jp.value( idata, '$..videoPrimaryInfoRenderer..title..text' ) ||
-    _jp.value( idata, '$..videoPrimaryInfoRenderer..title..simpleText' ) ||
-    _jp.value( idata, '$..videoPrimaryRenderer..title..text' ) ||
-    _jp.value( idata, '$..videoPrimaryRenderer..title..simpleText' ) ||
-    _jp.value( idata, '$..title..text' ) ||
-    _jp.value( idata, '$..title..simpleText' )
-  )
-
-  const description = (
-    ( _jp.query( idata, '$..description..text' ) ).join( '' ) ||
-    ( _jp.query( ipdata, '$..description..simpleText' ) ).join( '' ) ||
-    ( _jp.query( ipdata, '$..microformat..description..simpleText' ) ).join( '' ) ||
-    ( _jp.query( ipdata, '$..videoDetails..shortDescription' ) ).join( '' )
-  )
-
-  const author_name = (
-    _jp.value( idata, '$..owner..title..text' ) ||
-    _jp.value( idata, '$..owner..title..simpleText' )
-  )
-
-  const author_url = (
-    _jp.value( idata, '$..owner..navigationEndpoint..url' ) ||
-    _jp.value( idata, '$..owner..title..url' )
-  )
-
-  const thumbnailUrl = 'https://i.ytimg.com/vi/' + videoId + '/hqdefault.jpg'
-
-  const seconds = Number(
-    _jp.value( ipdata, '$..videoDetails..lengthSeconds' )
-  )
-
-  const timestamp = msToTimestamp( seconds * 1000 )
-
-  const duration = parseDuration( timestamp )
-
-  const sentimentBar = (
-    // ex. "tooltip": "116,701 / 8,930"
-    _jp.value( idata, '$..sentimentBar..tooltip' )
-    .split( /[,.]/ ).join( '' )
-    .split( /\D+/ )
-  )
-
-  const likes = Number( sentimentBar[ 0 ] )
-  const dislikes = Number( sentimentBar[ 1 ] )
-
-  const uploadDate = _jp.value( idata, '$..dateText' )
-
-  const video = {
-    title: title,
-    description: description,
-
-    url: TEMPLATES.YT + '/watch?v=' + videoId,
-    videoId: videoId,
-
-    seconds: Number( duration.seconds ),
-    timestamp: duration.timestamp,
-    duration: duration,
-
-    views: Number(
-      _jp.value( ipdata, '$..videoDetails..viewCount' )
-    ),
-
-    genre: ( _jp.value( ipdata, '$..category' ) || '' ).toLowerCase(),
-
-    uploadDate: _jp.value( ipdata, '$..uploadDate' ),
-    ago: _humanTime( new Date( uploadDate ) ), // ex: 10 years ago
-
-    image: thumbnailUrl,
-    thumbnail: thumbnailUrl,
-
-    author: {
-      name: author_name,
-      url: TEMPLATES.YT + author_url
-    }
-  }
-
-  callback( null, video )
 }
 
 /* Parses a type of human-like timestamps found on YouTube.
  * ex: "PT4M13S" -> "4:13"
  */
-function parseHumanDuration ( timestampText )
+function _parseHumanDuration ( timestampText )
 {
-  debug( 'parseHumanDuration' )
+  debug( '_parseHumanDuration' )
 
   // ex: PT4M13S
   const pt = timestampText.slice( 0, 2 )
@@ -1436,6 +1123,86 @@ function parseHumanDuration ( timestampText )
     seconds: seconds,
     timestamp: timestamp
   }
+}
+
+/* Helper fn to parse sub count labels
+ * and turn them into Numbers.
+ *
+ * It's an estimate but can be useful for sorting etc.
+ *
+ * ex. "102M subscribers" -> 102000000
+ */
+function _parseSubCountLabel ( subCountLabel )
+{
+  if ( !subCountLabel ) return undefined
+
+  const label = (
+    subCountLabel.split( /\s+/ )
+    .filter( function ( w ) { return w.match( /\d/ ) } )
+  )[ 0 ].toLowerCase()
+
+  const num = Number( label.replace( /\D/g, '' ) )
+
+  const THOUSAND = 1000
+  const MILLION = THOUSAND * THOUSAND
+
+  if ( label.indexOf( 'm' ) >= 0 ) return MILLION * num
+  if ( label.indexOf( 'k' ) >= 0 ) return THOUSAND * num
+  return num
+}
+
+/* Helper fn to choose a good thumbnail.
+ */
+function _normalizeThumbnail ( thumbnails )
+{
+  let t
+  if ( typeof thumbnails === 'string' ) {
+    t = thumbnails
+  } else {
+    // handle as array
+    if ( thumbnails.length ) {
+      t = thumbnails[ 0 ]
+      return _normalizeThumbnail( t )
+    }
+
+    // failed to parse thumbnail
+    return undefined
+  }
+
+  t = t.split( '?' )[ 0 ]
+
+  t = t.split( '/default.jpg' ).join( '/hqdefault.jpg' )
+  t = t.split( '/default.jpeg' ).join( '/hqdefault.jpeg' )
+
+  if ( t.indexOf( '//' ) === 0 ) {
+    return 'https://' + t.slice( 2 )
+  }
+
+  return t.split( 'http://' ).join( 'https://' )
+}
+
+/* Helper fn to transform ms to timestamp
+ * ex: 253000 -> "4:13"
+ */
+function _msToTimestamp ( ms )
+{
+  let t = ''
+
+  const MS_HOUR = 1000 * 60 * 60
+  const MS_MINUTE = 1000 * 60
+  const MS_SECOND = 1000
+
+  const h = Math.floor( ms / MS_HOUR )
+  const m = Math.floor( ms / MS_MINUTE ) % 60
+  const s = Math.floor( ms / MS_SECOND ) % 60
+
+  if ( h ) t += h + ':'
+  if ( m ) t += m + ':'
+
+  if ( String( s ).length < 2 ) t += '0'
+  t += s
+
+  return t
 }
 
 // run tests is script is run directly
@@ -1480,9 +1247,9 @@ function test ( query )
   } )
 }
 
-function findLine ( regex, text ) {
-  const cache = findLine.cache || {}
-  findLine.cache = cache
+function _fineLine ( regex, text ) {
+  const cache = _fineLine.cache || {}
+  _fineLine.cache = cache
 
   cache[ text ] = cache[ text ] || {}
 
@@ -1502,7 +1269,7 @@ function findLine ( regex, text ) {
   return ''
 }
 
-function between ( text, start, end ) {
+function _between ( text, start, end ) {
   let i = text.indexOf( start )
   let j = text.lastIndexOf( end )
   if ( i < 0 ) return ''
