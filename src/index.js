@@ -842,7 +842,12 @@ function _parseVideoInitialData ( responseText, callback )
   const likes = Number( sentimentBar[ 0 ] )
   const dislikes = Number( sentimentBar[ 1 ] )
 
-  const uploadDate = _jp.value( idata, '$..dateText' )
+  const uploadDate = (
+    _jp.value( idata, '$..uploadDate' ) ||
+    _jp.value( idata, '$..dateText..simpleText' )
+  )
+
+  const agoText = uploadDate && _humanTime( new Date( uploadDate ) ) || ''
 
   const video = {
     title: title,
@@ -861,8 +866,8 @@ function _parseVideoInitialData ( responseText, callback )
 
     genre: ( _jp.value( ipdata, '$..category' ) || '' ).toLowerCase(),
 
-    uploadDate: _jp.value( ipdata, '$..uploadDate' ),
-    ago: _humanTime( new Date( uploadDate ) ), // ex: 10 years ago
+    uploadDate: _toInternalDateString( uploadDate ),
+    ago: agoText, // ex: 10 years ago
 
     image: thumbnailUrl,
     thumbnail: thumbnailUrl,
