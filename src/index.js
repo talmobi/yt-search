@@ -1032,11 +1032,12 @@ function _parsePlaylistLastUpdateTime ( lastUpdateLabel ) {
 }
 
 function _toInternalDateString ( date ) {
+  date = new Date( date )
   debug( 'fn: _toInternalDateString' )
 
   return (
     date.getFullYear() + '-' +
-    date.getMonth() + '-' +
+    ( date.getMonth() + 1 ) + '-' + // january gives 0
     date.getDate()
   )
 }
