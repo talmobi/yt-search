@@ -289,7 +289,7 @@ test( 'playlist metadata by id', function ( t ) {
     t.ok( playlist.videos.length >= 10 , 'videos equal or over 10 (as of 2020-01-08)' )
     t.ok( playlist.views > 300, 'views over 300 (as of 2020-01-08)' )
 
-    t.equal( playlist.date, '2018-5-25' , 'date' )
+    t.equal( playlist.date, '2018-6-25' , 'date' )
 
     t.equal( playlist.author.name, 'Cave Spider10', 'author name' )
     // t.equal( playlist.author.channelId, 'UCdwR7fIE2xyXlNRc7fb9tJg', 'author channelId' )
