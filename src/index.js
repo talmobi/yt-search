@@ -961,7 +961,11 @@ function _parsePlaylistInitialData ( responseText, callback )
   list.forEach( function ( playlistVideoRenderer ) {
     const json = playlistVideoRenderer
     const video = {
-      title: _jp.value( json, '$..title..simpleText' ),
+      title: (
+        _jp.value( json, '$..title..simpleText' ) ||
+        _jp.value( json, '$..title..text' ) ||
+        ( _jp.query( item, '$..title..text' ) ).join( '' )
+      ),
 
       videoId: _jp.value( json, '$..videoId' ),
       listId: listId,
