@@ -17,55 +17,30 @@ npm install yt-search # local module usage
 
 ## Easy to use
 ```javascript
-const yts = require( 'yt-search' )
-const r = await yts( 'superman theme' )
-
-const videos = r.videos.slice( 0, 3 )
-videos.forEach( function ( v ) {
-	const views = String( v.views ).padStart( 10, ' ' )
-	console.log( `${ views } | ${ v.title } (${ v.timestamp }) | ${ v.author.name }` )
-} )
+%f_search%
 ```
 
 ###### output
 ```javascript
-  38295386 | Superman Theme (4:13) | Super Man
-   8267273 | Superman • Main Theme • John Williams (4:26) | HD Film Tributes
-    470527 | Superman Theme John Williams Extended Version (7:29) | radqo112
+%f_search_output%
 ```
 
 #### single video
 ```javascript
-const video = await yts( { videoId: '_4Vt0UGwmgQ' } )
-console.log( video.title + ` (${ video.duration.timestamp })` )
+%f_video%
 ```
 ###### output
 ```javascript
-Philip Glass. -  Koyaanisqatsi (original version) (3:29)
+%f_video_output%
 ```
 
 #### single playlist
 ```javascript
-const list = await yts( { listId: 'PL7k0JFoxwvTbKL8kjGI_CaV31QxCGf1vJ' } )
-
-console.log( 'playlist title: ' + list.title )
-list.videos.forEach( function ( video ) {
-	console.log( video.title )
-} )
+%f_playlist%
 ```
 ###### output
 ```javascript
-playlist title: Superman Themes
-The Max Fleischer Cartoon (From "Superman")
-[Deleted video]
-Superman Theme
-[Private video]
-Superman The Animated Series Full Theme
-Smallville theme song
-Reprise / Fly Away
-Superman Doomsday Soundtrack- Main Title
-Hans Zimmer - Man of Steel Theme
-Supergirl CW Soundtrack - Superman Theme Extended
+%f_playlist_output%
 ```
 
 ## About
