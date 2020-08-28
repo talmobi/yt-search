@@ -276,7 +276,7 @@ test( 'video metadata by id _JzeIf1zT14', function ( t ) {
 } )
 
 test( 'playlist metadata by id', function ( t ) {
-  t.plan( 11 )
+  t.plan( 14 )
 
   yts( { listId: 'PL7k0JFoxwvTbKL8kjGI_CaV31QxCGf1vJ' }, function ( err, playlist ) {
     t.error( err, 'no errors OK!' )
@@ -288,6 +288,20 @@ test( 'playlist metadata by id', function ( t ) {
 
     t.ok( playlist.videos.length >= 10 , 'videos equal or over 10 (as of 2020-01-08)' )
     t.ok( playlist.views > 300, 'views over 300 (as of 2020-01-08)' )
+
+    t.equal(
+      playlist.videos.filter( v => v.title ).length,
+      playlist.videos.length,
+      'no video titles are empty'
+    )
+
+    t.ok( playlist.videos.find(
+      v => v.title === '[Deleted video]'
+    ), 'Deleted video found' )
+
+    t.ok( playlist.videos.find(
+      v => v.title === '[Private video]'
+    ), 'Private video found' )
 
     t.equal( playlist.date, '2018-6-25' , 'date' )
 
