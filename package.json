@@ -13,7 +13,7 @@
   "scripts": {
     "debug": "debug=1 node src/index.js --silent",
     "build": "npm run build:src && npm run uglify",
-    "build:src": "browserify --node --no-bundle-external --standalone ytSearch -t [ babelify --presets [ env ] ] src/index.js -o dist/yt-search.js 2>&1 | wooster",
+    "build:src": "browserify --node --no-bundle-external --standalone ytSearch -t [ babelify --presets [ @babel/preset-env ] ] src/index.js -o dist/yt-search.js 2>&1 | wooster",
     "uglify": "uglifyjs dist/yt-search.js -cmo dist/yt-search.min.js",
     "prepublishOnly": "npm test",
     "test:production": "node test/test.js | faucet",
@@ -42,15 +42,15 @@
     "node-fzf": "~0.5.1"
   },
   "devDependencies": {
+    "@babel/core": "~7.11.4",
+    "@babel/preset-env": "~7.11.0",
     "@talmobi/faucet": "0.0.3",
-    "babel-core": "~6.26.0",
-    "babel-preset-env": "~1.6.1",
-    "babelify": "~8.0.0",
-    "browserify": "~16.2.3",
-    "cross-env": "~6.0.3",
-    "spacestandard": "~0.2.0",
-    "tape": "~4.9.0",
-    "uglify-js": "~3.4.9",
-    "wooster": "~0.3.9"
+    "babelify": "~10.0.0",
+    "browserify": "~16.5.2",
+    "cross-env": "~7.0.2",
+    "spacestandard": "~0.3.0",
+    "tape": "~5.0.1",
+    "uglify-js": "~3.10.2",
+    "wooster": "~0.5.0"
   }
 }
