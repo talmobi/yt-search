@@ -352,7 +352,7 @@ test( 'search results: playlist', function ( t ) {
 } )
 
 test( 'search results: channel', function ( t ) {
-  t.plan( 6 )
+  t.plan( 7 )
 
   yts( 'PewDiePie', function ( err, r ) {
     t.error( err, 'no errors OK!' )
@@ -364,13 +364,30 @@ test( 'search results: channel', function ( t ) {
     t.equal( topChannel.name, 'PewDiePie', 'channel name' )
     t.equal( topChannel.url, 'https://youtube.com/user/PewDiePie', 'channel url' )
 
-    t.ok( topChannel.videoCount > 4000, 'video count' )
+    t.ok( topChannel.videoCount > 4000, 'video count more than' )
+    t.ok( topChannel.videoCount < 10000, 'video count less than' )
 
     const channelImageUrl = (
       'https://yt3.ggpht.com/a/AATXAJwTuzNgKRSLVIOcVTVGGr_xFKgo8LFSQF163hCKSQ=s88-c-k-c0x00ffffff-no-rj-mo'
     )
     console.log( topChannel.image )
     t.equal( topChannel.image, channelImageUrl, 'pewdiepie channel image OK!' )
+  } )
+} )
+
+test( 'search results: channel sub count', function ( t ) {
+  t.plan( 5 )
+
+  yts( 'minecraft mojang channel', function ( err, r ) {
+    t.error( err, 'no errors OK!' )
+
+    const channels = r.channels
+    const topChannel = channels[ 0 ]
+
+    t.ok( topChannel, 'topChannel OK' )
+    t.equal( topChannel.name, 'Minecraft', 'channel name' )
+    t.ok( topChannel.subCount > 5000000, 'sub count more than' )
+    t.ok( topChannel.subCount < 100000000, 'sub count less than' )
   } )
 } )
 
