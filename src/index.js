@@ -1141,6 +1141,7 @@ function _parseHumanDuration ( timestampText )
  * It's an estimate but can be useful for sorting etc.
  *
  * ex. "102M subscribers" -> 102000000
+ * ex. "5.33m subscribers" -> 5330000
  */
 function _parseSubCountLabel ( subCountLabel )
 {
@@ -1151,7 +1152,9 @@ function _parseSubCountLabel ( subCountLabel )
     .filter( function ( w ) { return w.match( /\d/ ) } )
   )[ 0 ].toLowerCase()
 
-  const num = Number( label.replace( /\D/g, '' ) )
+  const m = label.match( /\d+(\.\d+)?/ )
+  if ( m && m[ 0 ] ) {} else { return }
+  const num = Number( m[ 0 ] )
 
   const THOUSAND = 1000
   const MILLION = THOUSAND * THOUSAND
