@@ -391,6 +391,20 @@ test( 'search results: channel sub count', function ( t ) {
   } )
 } )
 
+test( 'search results: all', function ( t ) {
+  t.plan( 2 )
+
+  yts( 'minecraft', function ( err, r ) {
+    t.error( err, 'no errors OK!' )
+
+    t.equal(
+      r.videos.length + r.lists.length + r.channels.length + r.live.length,
+      r.all.length,
+      'all length OK'
+    )
+  } )
+} )
+
 test( 'search "王菲 Faye Wong"', function ( t ) {
   t.plan( 6 )
 
