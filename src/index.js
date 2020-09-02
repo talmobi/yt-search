@@ -172,6 +172,30 @@ function _liveFilter ( result, index, results )
   return ( firstIndex === index )
 }
 
+function _allFilter ( result, index, results )
+{
+  switch ( result.type ) {
+    case 'video':
+    case 'list':
+    case 'channel':
+    case 'live':
+      break
+
+    default:
+      // unsupported type
+      return false
+  }
+
+  // filter duplicates
+  const url = result.url
+
+  const firstIndex = results.findIndex( function ( el ) {
+    return ( url === el.url )
+  } )
+
+  return ( firstIndex === index )
+}
+
 /* Request search page results with provided
  * search_query term
  */
@@ -269,6 +293,7 @@ function getSearchResults ( _options, callback )
           const playlists = list.filter( _playlistFilter )
           const channels = list.filter( _channelFilter )
           const live = list.filter( _liveFilter )
+          const all = list.filter( _allFilter )
 
           // keep saving results into temporary memory while
           // we get more results
@@ -279,6 +304,7 @@ function getSearchResults ( _options, callback )
           _options._data.playlists = _options._data.playlists || []
           _options._data.channels = _options._data.channels || []
           _options._data.live = _options._data.live || []
+          _options._data.all = _options._data.all || []
 
           // push received results into memory
           videos.forEach( function ( item ) {
@@ -292,6 +318,9 @@ function getSearchResults ( _options, callback )
           } )
           live.forEach( function ( item ) {
             _options._data.live.push( item )
+          } )
+          all.forEach( function ( item ) {
+            _options._data.all.push( item )
           } )
 
           _options.currentPage++
@@ -310,9 +339,12 @@ function getSearchResults ( _options, callback )
             const playlists = _options._data.playlists.filter( _playlistFilter )
             const channels = _options._data.channels.filter( _channelFilter )
             const live = _options._data.live.filter( _liveFilter )
+            const all = _options._data.all.slice( _allFilter )
 
             // return all found videos
             callback( null, {
+              all: all,
+
               videos: videos,
 
               live: live,
