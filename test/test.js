@@ -113,9 +113,9 @@ test( 'videos, playlists and users/channels', function ( t ) {
 } )
 
 test( 'find live streams', function ( t ) {
-  t.plan( 11 )
+  t.plan( 12 )
 
-  yts( 'minecraft LIVE', function ( err, r ) {
+  yts( 'live streams', function ( err, r ) {
     t.error( err, 'no errors OK!' )
 
     const videos = r.videos
@@ -125,10 +125,17 @@ test( 'find live streams', function ( t ) {
 
     const topLiveStream = r.live.sort( function ( a, b ) { return b.watching - a.watching } )[ 0 ]
 
+    const descriptions = r.live.reduce( function ( a, c ) {
+      return a + c.description
+    }, '' )
+    t.ok( descriptions.length > 3, '(all) descriptions probably OK!' )
+
     t.equal( topLiveStream.type, 'live', 'type "live" OK!' )
     t.ok( topLiveStream.videoId.length > 4, 'videoId probably OK!' )
     t.ok( topLiveStream.url.indexOf( 'http' ) >= 0, 'url probably OK!' )
-    t.ok( topLiveStream.description.length > 3, 'description probably OK!' )
+
+    t.ok( topLiveStream.description.length >= 0, 'description probably OK!' )
+
     t.ok( topLiveStream.image.indexOf( 'http' ) >= 0, 'image probably OK!' )
     t.ok( topLiveStream.watching >= 1, 'watching probably OK!' )
     t.ok( topLiveStream.author, 'author probably OK!' )
