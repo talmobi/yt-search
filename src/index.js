@@ -1026,7 +1026,9 @@ function _parsePlaylistInitialData ( responseText, callback )
 
     // lastUpdate: lastUpdate,
     date: _parsePlaylistLastUpdateTime(
-      _jp.value( json, '$..sidebar.playlistSidebarRenderer.items[0]..stats[2]..simpleText' ) || ''
+      ( _jp.value( json, '$..sidebar.playlistSidebarRenderer.items[0]..stats[2]..simpleText' ) ) ||
+      ( _jp.query( json, '$..sidebar.playlistSidebarRenderer.items[0]..stats[2]..text' ) ).join( '' ) ||
+      ''
     ),
 
     image: videos[ 0 ].thumbnail,
