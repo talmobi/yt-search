@@ -425,7 +425,20 @@ function _parseSearchResultInitialData ( responseText, callback )
     const videoId = hasVideo && ( _jp.value( item, '$..videoId' ) )
 
     const watchingLabel = ( _jp.query( item, '$..viewCountText..text' ) ).join( '' )
-    const isLive = watchingLabel.indexOf( 'watching' ) >= 0
+
+    const isUpcoming = (
+      // if scheduled livestream (has not started yet)
+      (
+        _jp.query( item, '$..thumbnailOverlayTimeStatusRenderer..style' ).join( '' ).trim() === 'UPCOMING'
+      )
+    )
+
+    const isLive = (
+      watchingLabel.indexOf( 'watching' ) >= 0 ||
+      (
+        _jp.query( item, '$..thumbnailOverlayTimeStatusRenderer..text' ).join( '' ).trim() === 'LIVE'
+      ) || isUpcoming
+    )
 
     if ( videoId ) {
       type = 'video'
@@ -684,6 +697,16 @@ function _parseSearchResultInitialData ( responseText, callback )
               ( _jp.query( item, '$..descriptionSnippet..text' ) ).join( '' )
             )
 
+            const scheduledEpochTime = (
+              _jp.value( item, '$..upcomingEventData..startTime' )
+            )
+
+            const scheduledTime = (
+              ( Date.now() > scheduledEpochTime ) ? scheduledEpochTime * 1000 : scheduledEpochTime
+            )
+
+            const scheduledDateString = _toInternalDateString( scheduledTime )
+
             // url ( playlist )
             // const url = _jp.value( item, '$..navigationEndpoint..url' )
             const url = TEMPLATES.YT + '/watch?v=' + videoId
@@ -706,6 +729,14 @@ function _parseSearchResultInitialData ( responseText, callback )
                 name: author_name,
                 url: TEMPLATES.YT + author_url,
               }
+            }
+
+            if ( scheduledTime ) {
+              result.startTime = scheduledTime
+              result.startDate = scheduledDateString
+              result.status = 'UPCOMING'
+            } else {
+              result.status = 'LIVE'
             }
           }
           break
