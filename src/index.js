@@ -843,8 +843,15 @@ function _parseVideoInitialData ( responseText, callback )
   // debug( '\n------------------\n' )
   // debug( initialPlayerData[ 0 ] )
 
-  const idata = JSON.parse( initialData )
-  const ipdata = JSON.parse( initialPlayerData )
+  let idata = JSON.parse( initialData )
+  let ipdata = JSON.parse( initialPlayerData )
+
+  try {
+    idata = JSON.parse( initialData )
+    ipdata = JSON.parse( initialPlayerData )
+  } catch ( err ) {
+    return callback( 'video unavailable' )
+  }
 
   const videoId = _jp.value( idata, '$..currentVideoEndpoint..videoId' )
 
