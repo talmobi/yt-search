@@ -823,6 +823,8 @@ function _parseVideoInitialData ( responseText, callback )
   // const fs = require( 'fs' )
   // fs.writeFileSync( 'tmp.file', responseText )
 
+  responseText = _getScripts( responseText )
+
   const initialData = _between(
     _findLine( /ytInitialData.*=\s*{/, responseText ), '{', '}'
   )
@@ -999,6 +1001,8 @@ function getPlaylistMetaData ( opts, callback )
 function _parsePlaylistInitialData ( responseText, callback )
 {
   debug( 'fn: parsePlaylistBody' )
+
+  responseText = _getScripts( responseText )
 
   const jsonString = responseText.match( /ytInitialData.*=\s*({.*});/ )[ 1 ]
 
@@ -1323,6 +1327,25 @@ function test ( query )
       console.log( `channel: ${ c.title } | ${ c.description }` )
     } )
   } )
+}
+
+function _getScripts ( text ) {
+  // match all contents within html script tags
+  const re = /<.?script.?>((.|[\n\r])+?)<.?\/.?script.?>/g
+  let m
+
+  let buffer = ''
+
+  do {
+    m = re.exec( text )
+    // console.log( m )
+    if ( m ) {
+      buffer += m[ 1 ] + '\n'
+      // console.log( m[ 1 ] )
+    }
+  } while ( m )
+
+  return buffer
 }
 
 function _findLine ( regex, text ) {
