@@ -824,7 +824,7 @@ function _parseVideoInitialData ( responseText, callback )
   // fs.writeFileSync( 'tmp.file', responseText )
 
   const initialData = _between(
-    _fineLine( /ytInitialData.*=\s*{/, responseText ), '{', '}'
+    _findLine( /ytInitialData.*=\s*{/, responseText ), '{', '}'
   )
 
   if ( !initialData ) {
@@ -832,7 +832,7 @@ function _parseVideoInitialData ( responseText, callback )
   }
 
   const initialPlayerData = _between(
-    _fineLine( /ytInitialPlayerResponse.*=\s*{/, responseText ), '{', '}'
+    _findLine( /ytInitialPlayerResponse.*=\s*{/, responseText ), '{', '}'
   )
 
   if ( !initialPlayerData ) {
@@ -1332,9 +1332,9 @@ function test ( query )
   } )
 }
 
-function _fineLine ( regex, text ) {
-  const cache = _fineLine.cache || {}
-  _fineLine.cache = cache
+function _findLine ( regex, text ) {
+  const cache = _findLine.cache || {}
+  _findLine.cache = cache
 
   cache[ text ] = cache[ text ] || {}
 
