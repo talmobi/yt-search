@@ -248,7 +248,7 @@ test( 'video metadata by faulty/non-existing id', function ( t ) {
   t.plan( 1 )
 
   yts( { videoId: 'X9vrfEoc8_g' }, function ( err, video ) {
-    t.equal( err, 'video unavailable', 'video unavailable' )
+    t.ok( err, 'video unavailable ok' )
   } )
 } )
 
@@ -325,7 +325,7 @@ test( 'playlist metadata by faulty/non-existing id', function ( t ) {
   t.plan( 1 )
 
   yts( { listId: 'XLhf_RSaUvUVvuJHpeiTvnk5n99rlRM' }, function ( err, playlist ) {
-    t.equal( err, 'http status: 303', 'http error 303' )
+    t.ok( err, 'playlist unavailable ok' )
   } )
 } )
 
