@@ -29,9 +29,9 @@ videos.forEach( function ( v ) {
 
 ###### output
 ```javascript
-  38295386 | Superman Theme (4:13) | Super Man
-   8267273 | Superman • Main Theme • John Williams (4:26) | HD Film Tributes
-    470527 | Superman Theme John Williams Extended Version (7:29) | radqo112
+  38878009 | Superman Theme (4:13) | Super Man
+   8861479 | Superman • Main Theme • John Williams (4:26) | HD Film Tributes
+   7802473 | Superman - Main Theme (BBC Proms) (4:46) | brassbone player
 ```
 
 #### single video
@@ -67,6 +67,25 @@ Superman Doomsday Soundtrack- Main Title
 Hans Zimmer - Man of Steel Theme
 Supergirl CW Soundtrack - Superman Theme Extended
 ```
+
+## CLI Usage (interactive)
+```bash
+yt-search superman theme
+```
+
+If you have `mpv` installed, yt-search can directly play yt videos (or audio only)
+```bash
+yt-search-video Dank Memes Videos
+yt-search-audio Wagner
+```
+
+If you don't have `mpv` installed, you can alternatively try installing `yt-play-cli`
+```bash
+npm install -g yt-play-cli
+```
+
+see: https://github.com/talmobi/yt-play
+
 
 ## About
 Simple function to get youtube search results.

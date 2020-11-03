@@ -21,7 +21,7 @@ if ( argv.v || argv.V || argv.version ) {
 var query = argv._.join( ' ' )
 
 if ( !query ) {
-  console.log( 'No search qeury given. Exiting.' )
+  console.log( 'No search query given. Exiting.' )
   return process.exit( 1 )
 }
 

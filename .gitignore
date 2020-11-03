@@ -16,3 +16,6 @@ readme-test.js
 xxx.html
 dasu.response
 post.response
+
+# ignore lockfile
+package-lock.json
