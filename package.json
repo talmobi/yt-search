@@ -4,7 +4,9 @@
   "description": "search youtube",
   "main": "dist/yt-search.min.js",
   "bin": {
-    "yt-search": "bin/cli.js"
+    "yt-search": "bin/cli.js",
+    "yt-search-video": "bin/mpv_video.sh",
+    "yt-search-audio": "bin/mpv_audio.sh"
   },
   "files": [
     "bin/cli.js",

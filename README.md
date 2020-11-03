@@ -15,6 +15,13 @@ simple youtube search API and CLI
 npm install yt-search # local module usage
 ```
 
+## CLI Usage
+If you have `mpv` installed, yt-search can directly play yt videos (or audio only) 
+```bash
+yt-search-video Dank Memes Videos
+yt-search-audio Wagner
+```
+
 ## Easy to use
 ```javascript
 const yts = require( 'yt-search' )
