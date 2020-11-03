@@ -43,6 +43,25 @@ npm install yt-search # local module usage
 %f_playlist_output%
 ```
 
+## CLI Usage (interactive)
+```bash
+yt-search superman theme
+```
+
+If you have `mpv` installed, yt-search can directly play yt videos (or audio only)
+```bash
+yt-search-video Dank Memes Videos
+yt-search-audio Wagner
+```
+
+If you don't have `mpv` installed, you can alternatively try installing `yt-play-cli`
+```bash
+npm install -g yt-play-cli
+```
+
+see: https://github.com/talmobi/yt-play
+
+
 ## About
 Simple function to get youtube search results.
 
