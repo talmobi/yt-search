@@ -9,7 +9,7 @@
     "yt-search-audio": "bin/mpv_audio.sh"
   },
   "files": [
-    "bin/cli.js",
+    "bin/*",
     "dist/yt-search.min.js"
   ],
   "scripts": {
