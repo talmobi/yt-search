@@ -1,4 +1,4 @@
 #!/bin/bash
 
 QUERY="$@"
-mpv --no-video "$(./cli.js $QUERY)"
+mpv --no-video "$(yt-search $QUERY)"
