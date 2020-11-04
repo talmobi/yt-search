@@ -19,8 +19,9 @@
     "uglify": "uglifyjs dist/yt-search.js -cmo dist/yt-search.min.js",
     "prepublishOnly": "npm test",
     "test:production": "node test/test.js | faucet",
+    "test:util": "node test/test-get-scripts.js",
     "test:dev": "cross-env debug=1 test_yt_search=1 node test/test.js",
-    "test": "npm run build && npm run test:production"
+    "test": "npm run test:util && npm run build && npm run test:production"
   },
   "author": "talmobi <talmo.christian@gmail.com>",
   "license": "MIT",
