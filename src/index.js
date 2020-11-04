@@ -6,6 +6,8 @@ const _parallel = require( 'async.parallellimit' )
 _dasu.follow = false
 _dasu.debug = false
 
+const { _getScripts, _findLine, _between } = require( './util.js' )
+
 const _jp = require( 'jsonpath' )
 
 // google bot user-agent
@@ -1327,53 +1329,4 @@ function test ( query )
       console.log( `channel: ${ c.title } | ${ c.description }` )
     } )
   } )
-}
-
-function _getScripts ( text ) {
-  // match all contents within html script tags
-  const re = /<.?script.?>((.|[\n\r])+?)<.?\/.?script.?>/g
-  let m
-
-  let buffer = ''
-
-  do {
-    m = re.exec( text )
-    // console.log( m )
-    if ( m ) {
-      buffer += m[ 1 ] + '\n'
-      // console.log( m[ 1 ] )
-    }
-  } while ( m )
-
-  return buffer
-}
-
-function _findLine ( regex, text ) {
-  const cache = _findLine.cache || {}
-  _findLine.cache = cache
-
-  cache[ text ] = cache[ text ] || {}
-
-  const lines = cache[ text ].lines || text.split( '\n' )
-  cache[ text ].lines = lines
-
-  clearTimeout( cache[ text ].timeout )
-  cache[ text ].timeout = setTimeout( function () {
-    delete cache[ text ]
-  }, 100 )
-
-  for ( let i = 0; i < lines.length; i++ ) {
-    const line = lines[ i ]
-    if ( regex.test( line ) ) return line
-  }
-
-  return ''
-}
-
-function _between ( text, start, end ) {
-  let i = text.indexOf( start )
-  let j = text.lastIndexOf( end )
-  if ( i < 0 ) return ''
-  if ( j < 0 ) return ''
-  return text.slice( i, j + 1 )
 }
