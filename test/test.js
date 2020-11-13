@@ -281,7 +281,7 @@ test( 'video metadata by id _JzeIf1zT14', function ( t ) {
 } )
 
 test( 'playlist metadata by id', function ( t ) {
-  t.plan( 14 )
+  t.plan( 20 )
 
   yts( { listId: 'PL7k0JFoxwvTbKL8kjGI_CaV31QxCGf1vJ' }, function ( err, playlist ) {
     t.error( err, 'no errors OK!' )
@@ -293,6 +293,15 @@ test( 'playlist metadata by id', function ( t ) {
 
     t.ok( playlist.videos.length >= 10 , 'videos equal or over 10 (as of 2020-01-08)' )
     t.ok( playlist.views > 300, 'views over 300 (as of 2020-01-08)' )
+
+    t.equal( playlist.videos[ 0 ].duration.seconds, 60 * 1 + 37, 'play list video 1 duration.seconds ok' )
+    t.equal( playlist.videos[ 0 ].duration.timestamp, '1:37', 'play list video 1 duration.timestamp ok' )
+
+    t.equal( playlist.videos[ 9 ].duration.seconds, 60 * 6 + 45, 'play list video 2 duration.seconds ok' )
+    t.equal( playlist.videos[ 9 ].duration.timestamp, '6:45', 'play list video 2 duration.timestamp ok' )
+
+    t.equal( playlist.videos[ 1 ].duration.seconds, 0, '[deleted] play list video duration.seconds 0 OK' )
+    t.equal( playlist.videos[ 3 ].duration.timestamp, 0, '[private] play list video duration.timestamp 0 OK' )
 
     t.equal(
       playlist.videos.filter( v => v.title ).length,
