@@ -1024,22 +1024,37 @@ function _parsePlaylistInitialData ( responseText, callback )
   const viewCount = _jp.value( json, '$..sidebar.playlistSidebarRenderer.items[0]..stats[1].simpleText' ).match( /\d+/ )
   // console.log( 'viewCount: ' + viewCount )
 
-  const list = _jp.query( json, '$..contents..tabs[0]..contents[0]..contents[0]..contents' )[ 0 ]
+  // playlistVideoListRenderer contents
+  const list = _jp.query( json, '$..playlistVideoListRenderer..contents' )[ 0 ]
+  // const list = _jp.query( json, '$..contents..tabs[0]..contents[0]..contents[0]..contents' )[ 0 ]
   const videos = []
 
   list.forEach( function ( playlistVideoRenderer ) {
     const json = playlistVideoRenderer
+
+    const duration = (
+      _parseDuration(
+        _jp.value( json, '$..lengthText..simpleText' ) ||
+        _jp.value( json, '$..thumbnailOverlayTimeStatusRenderer..simpleText' ) ||
+        ( _jp.query( json, '$..lengthText..text' ) ).join( '' ) ||
+        ( _jp.query( json, '$..thumbnailOverlayTimeStatusRenderer..text' ) ).join( '' )
+      )
+    )
+
     const video = {
       title: (
         _jp.value( json, '$..title..simpleText' ) ||
         _jp.value( json, '$..title..text' ) ||
-        ( _jp.query( item, '$..title..text' ) ).join( '' )
+        ( _jp.query( json, '$..title..text' ) ).join( '' )
       ),
 
       videoId: _jp.value( json, '$..videoId' ),
       listId: listId,
 
       thumbnail:  _jp.value( json, '$..thumbnail..thumbnails[0]..url' ).split( '?' )[ 0 ],
+
+      // ref: issue #35 https://github.com/talmobi/yt-search/issues/35
+      duration: duration,
 
       author: {
         name: _jp.value( json, '$..shortBylineText..runs[0]..text' ),
