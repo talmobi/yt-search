@@ -51,6 +51,7 @@
     "babelify": "~10.0.0",
     "browserify": "~16.5.2",
     "cross-env": "~7.0.2",
+    "looks-same-plus": "0.0.2",
     "spacestandard": "~0.3.0",
     "tape": "~5.0.1",
     "uglify-js": "~3.10.2",

@@ -1,6 +1,8 @@
 let yts = require( '../dist/yt-search.min.js' )
 // let yts = require( '../dist/yt-search.js' )
 
+const lsp = require( 'looks-same-plus' )
+
 if ( !!process.env.debug ) {
   yts = require( '../src/index.js' )
 }
@@ -384,8 +386,15 @@ test( 'search results: channel', function ( t ) {
     const channelImageUrl = (
       'https://yt3.ggpht.com/a/AATXAJwTuzNgKRSLVIOcVTVGGr_xFKgo8LFSQF163hCKSQ=s88-c-k-c0x00ffffff-no-rj-mo'
     )
-    console.log( topChannel.image )
-    t.equal( topChannel.image, channelImageUrl, 'pewdiepie channel image OK!' )
+
+    lsp(
+      topChannel.image,
+      channelImageUrl,
+      { tolerance: 5 }, // ref: https://github.com/gemini-testing/looks-same
+      function ( err, r ) {
+        t.ok( r.equal, 'pewdiepie channel image OK!' )
+      }
+    )
   } )
 } )
 
@@ -437,7 +446,15 @@ test( 'search "王菲 Faye Wong"', function ( t ) {
     const channelImageUrl = (
       'https://yt3.ggpht.com/a/AATXAJxg1ZCD6conNklSAF7wwtwlx5q4FlO7EpNRi_nSpw=s88-c-k-c0x00ffffff-no-rj-mo'
     )
-    t.equal( topChannel.image, channelImageUrl, 'pewdiepie channel image OK!' )
+
+    lsp(
+      topChannel.image,
+      channelImageUrl,
+      { tolerance: 5 }, // ref: https://github.com/gemini-testing/looks-same
+      function ( err, r ) {
+        t.ok( r.equal, 'channel image OK!' )
+      }
+    )
   } )
 } )
 
