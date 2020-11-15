@@ -19,15 +19,17 @@ yts = async function ( o, c ) {
     } )
   }
 
+  await new Promise( function ( res ) {
+    setTimeout( res, 2000 )
+  } )
+
   try {
     const r = await _yts( o )
-    setTimeout( function () {
-      if ( c ) {
-        c( undefined, r )
-      } else {
-        _res( r )
-      }
-    }, 1000 )
+    if ( c ) {
+      c( undefined, r )
+    } else {
+      _res( r )
+    }
   } catch ( err ) {
     if ( c ) {
       c( err )
