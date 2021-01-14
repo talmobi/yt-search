@@ -6,7 +6,7 @@ var path = require( 'path' )
 var nfzf = require( 'node-fzf' )
 
 var ytSearch = require(
-  path.join( __dirname, '../dist/yt-search.min.js' )
+  path.join( __dirname, '../dist/yt-search.js' )
 )
 
 var argv = require( 'minimist' )( process.argv.slice( 2 ) )
