@@ -3,8 +3,6 @@
 var fs = require( 'fs' )
 var path = require( 'path' )
 
-var nfzf = require( 'node-fzf' )
-
 var ytSearch = require(
   path.join( __dirname, '../dist/yt-search.js' )
 )
@@ -48,6 +46,7 @@ ytSearch(
       list.push( text )
     }
 
+    var nfzf = require( 'node-fzf' )
     nfzf( list, function ( r ) {
       if ( !r.selected ) {
         process.exit( 1 )
