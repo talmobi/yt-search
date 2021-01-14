@@ -76,6 +76,18 @@ test( 'basic search', function ( t ) {
   } )
 } )
 
+test( 'make sure CLI runs', function ( t ) {
+  t.plan( 1 )
+
+  const pkg = require( '../package.json' )
+  const cp = require( 'child_process' )
+  const path = require( 'path' )
+  const bin = path.join( __dirname, '../bin/cli.js' )
+  const args = '-v'
+  const output = cp.execSync( bin + ' ' + args ).toString().trim()
+  t.equal( output, 'yt-search: ' + pkg.version, 'cli -v OK' )
+} )
+
 test( 'make sure no live streams show up in video results', function ( t ) {
   t.plan( 2 )
 
