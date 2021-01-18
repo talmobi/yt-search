@@ -82,10 +82,26 @@ test( 'make sure CLI runs', function ( t ) {
   const pkg = require( '../package.json' )
   const cp = require( 'child_process' )
   const path = require( 'path' )
+
+  const prg = `${ process.execPath }`
   const bin = path.join( __dirname, '../bin/cli.js' )
-  const args = '-v'
-  const output = cp.execSync( bin + ' ' + args ).toString().trim()
-  t.equal( output, 'yt-search: ' + pkg.version, 'cli -v OK' )
+  const args = [ bin, '-v' ]
+
+  const buffer = []
+  const spawn = cp.spawn( prg, args );
+
+  spawn.stdout.on('data', function ( data ) {
+    buffer.push(data)
+  } )
+
+  spawn.stderr.on('data', function ( data ) {
+    buffer.push(data)
+  } )
+
+  spawn.on('close', function () {
+    const output = buffer.toString().trim()
+    t.equal( output, 'yt-search: ' + pkg.version, 'cli -v OK' )
+  } )
 } )
 
 test( 'make sure no live streams show up in video results', function ( t ) {
