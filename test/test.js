@@ -19,7 +19,7 @@ yts = async function ( o, c ) {
   }
 
   await new Promise( function ( res ) {
-    setTimeout( res, 2000 )
+    setTimeout( res, 3000 )
   } )
 
   try {
