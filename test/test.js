@@ -266,7 +266,15 @@ test( 'video metadata by id', function ( t ) {
     t.equal( video.ago, '11 years ago', 'agoText' )
 
     // t.equal( video.author.id, 'Redmario2569', 'author id' )
-    t.equal( video.author.url, 'https://youtube.com/user/Redmario2569', 'author url' )
+    // t.equal( video.author.url, 'https://youtube.com/user/Redmario2569', 'author url' )
+    // Sun Jan 31 13:33:55 EET 2021 it's inconsistent which url youtube servers
+    // give, could be either at the moment, they're maybe slowly deprecating
+    // user/xxx urls
+    const urlOK = (
+      video.author.url === 'https://youtube.com/user/Redmario2569' ||
+      video.author.url === 'https://youtube.com/channel/UCARqIOgzDc-UUAREIitbBwA'
+    )
+    t.equal( urlOK, true, 'author url' )
 
     t.equal( video.image, 'https://i.ytimg.com/vi/e9vrfEoc8_g/hqdefault.jpg', 'image' )
     t.equal( video.image, video.thumbnail, 'common alternative' )
