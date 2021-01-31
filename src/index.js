@@ -1104,7 +1104,14 @@ function _parsePlaylistLastUpdateTime ( lastUpdateLabel ) {
   // ex "Last Updated on Jun 25, 2018"
   // ex: "Viimeksi päivitetty 25.6.2018"
 
-  const words = lastUpdateLabel.trim().split( /[\s.-]+/ )
+  const words = lastUpdateLabel.toLowerCase().trim().split( /[\s.-]+/ )
+
+  // TODO handle strings like "7 days ago"
+  if ( words[0] === 'updated' && words[2].slice( 0, 3 ) === 'day' ) {
+    const ms = Date.now() - ( 1000 * 60 * 60 * 24 ) * words[1]
+    const d = new Date( ms )
+    if ( d.toString() !== 'Invalid Date' )  return _toInternalDateString( d )
+  }
 
   for ( let i = 0; i < words.length; i++ ) {
     const slice = words.slice( i )
