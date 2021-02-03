@@ -377,6 +377,14 @@ test( 'playlist metadata by faulty/non-existing id', function ( t ) {
   } )
 } )
 
+test( 'playlist metadata by unviewable id', function ( t ) {
+  t.plan( 1 )
+
+  yts( { listId: 'RDGMEM_v2KDBP3d4f8uT-ilrs8fQ&' }, function ( err, playlist ) {
+    t.equal( err.message, 'playlist error: This playlist type is unviewable.' )
+  } )
+} )
+
 test( 'search results: playlist', function ( t ) {
   t.plan( 6 )
 
