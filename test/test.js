@@ -426,7 +426,7 @@ test( 'search results: channel', function ( t ) {
     t.ok( topChannel, 'topChannel OK' )
     t.equal( topChannel.name, 'PewDiePie', 'channel name' )
     t.equal( topChannel.url, 'https://youtube.com/user/PewDiePie', 'channel url' )
-    console.log( 'pewdiepie channel url: ' + topChannel.url )
+    console.log( 'pewdiepie channel image url: ' + topChannel.image )
 
     t.ok( topChannel.videoCount > 4000, 'video count more than' )
     t.ok( topChannel.videoCount < 10000, 'video count less than' )
@@ -438,7 +438,7 @@ test( 'search results: channel', function ( t ) {
     lsp(
       topChannel.image,
       channelImageUrl,
-      { tolerance: 5 }, // ref: https://github.com/gemini-testing/looks-same
+      { tolerance: 15 }, // ref: https://github.com/gemini-testing/looks-same
       function ( err, r ) {
         t.ok( r.equal, 'pewdiepie channel image OK!' )
       }
@@ -498,7 +498,7 @@ test( 'search "王菲 Faye Wong"', function ( t ) {
     lsp(
       topChannel.image,
       channelImageUrl,
-      { tolerance: 5 }, // ref: https://github.com/gemini-testing/looks-same
+      { tolerance: 15 }, // ref: https://github.com/gemini-testing/looks-same
       function ( err, r ) {
         t.ok( r.equal, 'channel image OK!' )
       }
