@@ -358,7 +358,7 @@ test( 'playlist metadata by id', function ( t ) {
 
     // t.equal( playlist.date, '2018-6-25' , 'date' )
     // Sun Jan 31 13:50:55 EET 2021 updated
-    t.equal( playlist.date, '2021-1-24' , 'date' )
+    t.equal( playlist.date, '2021-1-23' , 'date' )
 
     t.equal( playlist.author.name, 'Cave Spider10', 'author name' )
     // t.equal( playlist.author.channelId, 'UCdwR7fIE2xyXlNRc7fb9tJg', 'author channelId' )
