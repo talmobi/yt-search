@@ -1017,6 +1017,21 @@ function _parsePlaylistInitialData ( responseText, callback )
   let json = JSON.parse( jsonString )
   //console.log( json )
 
+  // check for errors (ex: noexist/unviewable playlist)
+  const plerr = _jp.value( json, '$..alerts..alertRenderer' )
+  if ( plerr && ( typeof plerr.type === 'string' ) && plerr.type.toLowerCase() === 'error' ) {
+    let plerrtext = 'playlist error, not found?'
+    if ( typeof plerr.text === 'object' ) {
+      plerrtext = _jp.query( plerr.text, '$..text').join( '' )
+    }
+    if ( typeof plerr.text === 'string' ) {
+      plerrtext = plerr.text
+    }
+
+    throw new Error( 'playlist error: ' + plerrtext )
+  }
+      // ( _jp.value( json, '$..sidebar.playlistSidebarRenderer.items[0]..stats[2]..simpleText' ) ) ||
+
   // TODO parse relevant json data with jsonpath
   const listId = ( _jp.value( json, '$..microformat..urlCanonical' ) ).split( '=' )[ 1 ]
   // console.log( 'listId: ' + listId )
