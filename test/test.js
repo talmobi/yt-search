@@ -418,6 +418,7 @@ test( 'search results: channel', function ( t ) {
     t.ok( topChannel, 'topChannel OK' )
     t.equal( topChannel.name, 'PewDiePie', 'channel name' )
     t.equal( topChannel.url, 'https://youtube.com/user/PewDiePie', 'channel url' )
+    console.log( 'pewdiepie channel url: ' + topChannel.url )
 
     t.ok( topChannel.videoCount > 4000, 'video count more than' )
     t.ok( topChannel.videoCount < 10000, 'video count less than' )
