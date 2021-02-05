@@ -1061,7 +1061,10 @@ function _parsePlaylistInitialData ( responseText, callback )
   // console.log( 'listId: ' + listId )
 
   const viewCount = _jp.value( json, '$..sidebar.playlistSidebarRenderer.items[0]..stats[1].simpleText' ).match( /\d+/g ).join( '' )
-  // console.log( 'viewCount: ' + viewCount )
+  const size = (
+    _jp.value( json, '$..sidebar.playlistSidebarRenderer.items[0]..stats[0].simpleText' ) ||
+    _jp.query( json, '$..sidebar.playlistSidebarRenderer.items[0]..stats[0]..text' ).join( '' )
+  ).match( /\d+/g ).join( '' )
 
   // playlistVideoListRenderer contents
   const list = _jp.query( json, '$..playlistVideoListRenderer..contents' )[ 0 ]
@@ -1129,6 +1132,7 @@ function _parsePlaylistInitialData ( responseText, callback )
 
     url: 'https://youtube.com/playlist?list=' + listId,
 
+    size: Number( size ),
     views: Number( viewCount ),
 
     // lastUpdate: lastUpdate,

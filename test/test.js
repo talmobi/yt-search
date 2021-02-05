@@ -370,7 +370,7 @@ test( 'playlist metadata by id', function ( t ) {
 } )
 
 test( 'playlist metadata by id with 100+ items', function ( t ) {
-  t.plan( 13 )
+  t.plan( 14 )
 
   yts( { listId: 'PL67B0C9D86F829544' }, function ( err, playlist ) {
     t.error( err, 'no errors OK!' )
@@ -380,7 +380,8 @@ test( 'playlist metadata by id with 100+ items', function ( t ) {
 
     t.equal( playlist.url, 'https://youtube.com/playlist?list=PL67B0C9D86F829544', 'playlist url' )
 
-    t.ok( playlist.videos.length >= 100 , '100+ videos' )
+    t.equal( playlist.videos.length, 100, 'maxed out at 100' )
+    t.ok( playlist.size > 120, 'over 120 videos' )
     t.ok( playlist.views > 1e6, 'over a million views' )
 
     console.log( playlist.views )
