@@ -1096,7 +1096,11 @@ function _parsePlaylistInitialData ( responseText, callback )
       videoId: _jp.value( json, '$..videoId' ),
       listId: listId,
 
-      thumbnail:  _jp.value( json, '$..thumbnail..thumbnails[0]..url' ).split( '?' )[ 0 ],
+      thumbnail: (
+        _normalizeThumbnail( _jp.value( json, '$..thumbnail..url' ) ) ||
+        _normalizeThumbnail( _jp.value( json, '$..thumbnails..url' ) ) ||
+        _normalizeThumbnail( _jp.value( json, '$..thumbnails' ) )
+      ),
 
       // ref: issue #35 https://github.com/talmobi/yt-search/issues/35
       duration: duration,
