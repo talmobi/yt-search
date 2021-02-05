@@ -369,6 +369,40 @@ test( 'playlist metadata by id', function ( t ) {
   } )
 } )
 
+test( 'playlist metadata by id with 100+ items', function ( t ) {
+  t.plan( 13 )
+
+  yts( { listId: 'PL67B0C9D86F829544' }, function ( err, playlist ) {
+    t.error( err, 'no errors OK!' )
+
+    t.equal( playlist.title, 'Epic Music', 'title' )
+    t.equal( playlist.listId, 'PL67B0C9D86F829544', 'listId' )
+
+    t.equal( playlist.url, 'https://youtube.com/playlist?list=PL67B0C9D86F829544', 'playlist url' )
+
+    t.ok( playlist.videos.length >= 100 , '100+ videos' )
+    t.ok( playlist.views > 1e6, 'over a million views' )
+
+    console.log( playlist.views )
+
+    t.equal( playlist.videos[ 0 ].duration.seconds, 60 * 2 + 51, 'play list video 1 duration.seconds ok' )
+    t.equal( playlist.videos[ 0 ].duration.timestamp, '2:51', 'play list video 1 duration.timestamp ok' )
+
+    t.equal(
+      playlist.videos.filter( v => v.title ).length,
+      playlist.videos.length,
+      'no video titles are empty'
+    )
+
+    t.equal( playlist.author.name, 'ThePhipppy', 'author name' )
+    // t.equal( playlist.author.channelId, 'UCdwR7fIE2xyXlNRc7fb9tJg', 'author channelId' )
+    t.equal( playlist.author.url, 'https://youtube.com/user/ThePhipppy', 'author url' )
+
+    t.equal( playlist.image, 'https://i.ytimg.com/vi/dJ-QLl5qjLg/hqdefault.jpg', 'playlist image' )
+    t.equal( playlist.image, playlist.thumbnail, 'common alternative' )
+  } )
+} )
+
 test( 'playlist metadata by faulty/non-existing id', function ( t ) {
   t.plan( 1 )
 
