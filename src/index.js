@@ -1036,7 +1036,7 @@ function _parsePlaylistInitialData ( responseText, callback )
   const listId = ( _jp.value( json, '$..microformat..urlCanonical' ) ).split( '=' )[ 1 ]
   // console.log( 'listId: ' + listId )
 
-  const viewCount = _jp.value( json, '$..sidebar.playlistSidebarRenderer.items[0]..stats[1].simpleText' ).match( /\d+/ )
+  const viewCount = _jp.value( json, '$..sidebar.playlistSidebarRenderer.items[0]..stats[1].simpleText' ).match( /\d+/g ).join( '' )
   // console.log( 'viewCount: ' + viewCount )
 
   // playlistVideoListRenderer contents
