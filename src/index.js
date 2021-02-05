@@ -1065,11 +1065,17 @@ function _parsePlaylistInitialData ( responseText, callback )
 
   // playlistVideoListRenderer contents
   const list = _jp.query( json, '$..playlistVideoListRenderer..contents' )[ 0 ]
+
+  // TODO unused atm
+  const listHasContinuation = ( typeof list[ list.length - 1 ].continuationItemRenderer === 'object' )
+
   // const list = _jp.query( json, '$..contents..tabs[0]..contents[0]..contents[0]..contents' )[ 0 ]
   const videos = []
 
-  list.forEach( function ( playlistVideoRenderer ) {
-    const json = playlistVideoRenderer
+  list.forEach( function ( item ) {
+    if ( !item.playlistVideoRenderer ) return // skip
+
+    const json = item
 
     const duration = (
       _parseDuration(
