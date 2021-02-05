@@ -1117,6 +1117,12 @@ function _parsePlaylistInitialData ( responseText, callback )
   // console.log( videos )
   // console.log( 'videos.length: ' + videos.length )
 
+  const plthumbnail = (
+    _normalizeThumbnail( _jp.value( json, '$..microformat..thumbnail..url' ) ) ||
+    _normalizeThumbnail( _jp.value( json, '$..microformat..thumbnails..url' ) ) ||
+    _normalizeThumbnail( _jp.value( json, '$..microformat..thumbnails' ) )
+  )
+
   const playlist = {
     title: _jp.value( json, '$..microformat..title' ),
     listId: listId,
@@ -1132,8 +1138,8 @@ function _parsePlaylistInitialData ( responseText, callback )
       ''
     ),
 
-    image: videos[ 0 ].thumbnail,
-    thumbnail: videos[ 0 ].thumbnail,
+    image: plthumbnail || videos[ 0 ].thumbnail,
+    thumbnail: plthumbnail || videos[ 0 ].thumbnail,
 
     // playlist items/videos
     videos: videos,
