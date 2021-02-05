@@ -8,7 +8,31 @@ _dasu.debug = false
 
 const { _getScripts, _findLine, _between } = require( './util.js' )
 
-const _jp = require( 'jsonpath' )
+const jpp = require( 'jsonpath-plus' ).JSONPath
+const _jp = {}
+
+// const items = _jp.query( json, '$..itemSectionRenderer..contents.*' )
+_jp.query = function ( json, path ) {
+  const opts = {
+    path: path,
+    json: json,
+    resultType: 'value'
+  }
+
+  return jpp( opts )
+}
+
+// const listId = hasList && ( _jp.value( item, '$..playlistId' ) )
+_jp.value = function ( json, path ) {
+  const opts = {
+    path: path,
+    json: json,
+    resultType: 'value'
+  }
+
+  const r = jpp( opts )[ 0 ]
+  return r
+}
 
 // google bot user-agent
 // Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)
