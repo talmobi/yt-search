@@ -486,14 +486,17 @@ function _parseSearchResultInitialData ( responseText, callback )
     const isUpcoming = (
       // if scheduled livestream (has not started yet)
       (
-        _jp.query( item, '$..thumbnailOverlayTimeStatusRenderer..style' ).join( '' ).trim() === 'UPCOMING'
+        _jp.query( item, '$..thumbnailOverlayTimeStatusRenderer..style' ).join( '' ).toUpperCase().trim() === 'UPCOMING'
       )
     )
 
     const isLive = (
       watchingLabel.indexOf( 'watching' ) >= 0 ||
       (
-        _jp.query( item, '$..thumbnailOverlayTimeStatusRenderer..text' ).join( '' ).trim() === 'LIVE'
+        _jp.query( item, '$..badges..label' ).join( '' ).toUpperCase().trim() === 'LIVE NOW'
+      ) ||
+      (
+        _jp.query( item, '$..thumbnailOverlayTimeStatusRenderer..text' ).join( '' ).toUpperCase().trim() === 'LIVE'
       ) || isUpcoming
     )
 
