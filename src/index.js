@@ -91,6 +91,13 @@ module.exports = function ( query, callback ) {
 }
 module.exports.search = search
 
+module.exports._parseSearchResultInitialData = _parseSearchResultInitialData
+module.exports._videoFilter = _videoFilter
+module.exports._playlistFilter = _playlistFilter
+module.exports._channelFilter = _channelFilter
+module.exports._liveFilter = _liveFilter
+module.exports._allFilter = _allFilter
+
 /**
  * Main
  */
@@ -463,7 +470,12 @@ function _parseSearchResultInitialData ( responseText, callback )
 
   const json = JSON.parse( initialData[ 0 ] )
 
-  const items = _jp.query( json, '$..itemSectionRenderer..contents.*' )
+  let items = _jp.query( json, '$..itemSectionRenderer..contents.*' )
+
+  // support newer richGridRenderer html structure
+  if ( !items.length ) {
+    items = _jp.query( json, '$..primaryContents..contents.*' )
+  }
 
   debug( 'items.length: ' + items.length )
 
@@ -473,9 +485,20 @@ function _parseSearchResultInitialData ( responseText, callback )
     let result = undefined
     let type = 'unknown'
 
-    const hasList = ( item.compactPlaylistRenderer || item.playlistRenderer )
-    const hasChannel = ( item.compactChannelRenderer || item.channelRenderer )
-    const hasVideo = ( item.compactVideoRenderer || item.videoRenderer )
+    const hasList = (
+      _jp.value( item, '$..compactPlaylistRenderer' ) ||
+      _jp.value( item, '$..playlistRenderer' )
+    )
+
+    const hasChannel = (
+      _jp.value( item, '$..compactChannelRenderer' ) ||
+      _jp.value( item, '$..channelRenderer' )
+    )
+
+    const hasVideo = (
+      _jp.value( item, '$..compactVideoRenderer' ) ||
+      _jp.value( item, '$..videoRenderer' )
+    )
 
     const listId = hasList && ( _jp.value( item, '$..playlistId' ) )
     const channelId = hasChannel && ( _jp.value( item, '$..channelId' ) )

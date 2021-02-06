@@ -2,6 +2,9 @@ let yts = require( '../dist/yt-search.js' )
 
 const lsp = require( 'looks-same-plus' )
 
+const fs = require( 'fs' )
+const path = require( 'path' )
+
 if ( !!process.env.debug ) {
   yts = require( '../src/index.js' )
 }
@@ -447,6 +450,63 @@ test( 'search results: playlist', function ( t ) {
     t.equal( sts.image, sts.thumbnail, 'common alternative' )
     t.equal( sts.type, 'list', 'playlist type' )
   } )
+} )
+
+test( 'search results richGridRenderer: playlist', function ( t ) {
+  t.plan( 6 )
+
+  const body = fs.readFileSync( path.join( __dirname, 'stage/richGridRenderer-response.html' ), 'utf8' )
+
+  // pre-fetched results for basic search 'superman theme list' in richGridRenderer format
+  _yts._parseSearchResultInitialData( body, function ( err, results ) {
+    const list = results
+
+    const videos = list.filter( _yts._videoFilter )
+    const playlists = list.filter( _yts._playlistFilter )
+    const channels = list.filter( _yts._channelFilter )
+    const live = list.filter( _yts._liveFilter )
+    const all = list.filter( _yts._allFilter )
+
+    // return all found videos
+    callback( null, {
+      all: all,
+
+      videos: videos,
+
+      live: live,
+
+      playlists: playlists,
+      lists: playlists,
+
+      accounts: channels,
+      channels: channels
+    } )
+  } )
+
+  function callback ( err, r ) {
+    t.error( err, 'no errors OK!' )
+
+    const lists = r.playlists
+
+    // Superman Theme Songs Playlist
+    const sts = lists.filter( function ( playlist ) {
+      const keep = (
+        playlist.title.toLowerCase() === 'superman theme songs' &&
+        playlist.author.name === 'AJ Lelievre' &&
+
+        // is exactly 21 as of now but test with some leeway
+        playlist.videoCount >= 12
+      )
+
+      return keep
+    } )[ 0 ]
+
+    t.equal( sts.url, 'https://youtube.com/playlist?list=PLYhKAl2FoGzC0IQkgfVtM991w3E8ro1yG', 'playlist url' )
+    t.equal( sts.listId, 'PLYhKAl2FoGzC0IQkgfVtM991w3E8ro1yG', 'playlist id' )
+    t.equal( sts.image, 'https://i.ytimg.com/vi/yCCq_6ankAI/hqdefault.jpg', 'playlist image' )
+    t.equal( sts.image, sts.thumbnail, 'common alternative' )
+    t.equal( sts.type, 'list', 'playlist type' )
+  }
 } )
 
 test( 'search results: channel', function ( t ) {
