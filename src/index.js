@@ -473,9 +473,9 @@ function _parseSearchResultInitialData ( responseText, callback )
   let items = _jp.query( json, '$..itemSectionRenderer..contents.*' )
 
   // support newer richGridRenderer html structure
-  if ( !items.length ) {
-    items = _jp.query( json, '$..primaryContents..contents.*' )
-  }
+  _jp.query( json, '$..primaryContents..contents.*' ).forEach( function ( item ) {
+    items.push( item )
+  } )
 
   debug( 'items.length: ' + items.length )
 
