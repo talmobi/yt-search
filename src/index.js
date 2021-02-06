@@ -8,6 +8,9 @@ _dasu.debug = false
 
 const { _getScripts, _findLine, _between } = require( './util.js' )
 
+const MAX_RETRY_ATTEMPTS = 3
+const RETRY_INTERVAL = 333 // ms
+
 const jpp = require( 'jsonpath-plus' ).JSONPath
 const _jp = {}
 
@@ -112,6 +115,34 @@ function search ( query, callback )
     _options = query
   }
 
+  // init and increment attempts
+  _options._attempts = ( _options._attempts || 0 ) + 1
+
+  // save unmutated bare necessary options for retry
+  const retryOptions = Object.assign( {}, _options )
+
+  function callback_with_retry ( err, data ) {
+    if ( err ) {
+      if ( _options._attempts > MAX_RETRY_ATTEMPTS ) {
+        return callback( err, data )
+      } else {
+        // retry
+        console.log( ' === ' )
+        console.log( ' RETRYING: ' + _options._attempts )
+        console.log( ' === ' )
+
+        const n = _options._attempts
+        const wait_ms = Math.pow( 2, n - 1 ) * RETRY_INTERVAL
+
+        setTimeout( function () {
+          search( retryOptions, callback )
+        }, wait_ms )
+      }
+    } else {
+      return callback( err, data )
+    }
+  }
+
   // override userAgent if set ( not recommended )
   if ( _options.userAgent ) _userAgent = _options.userAgent
 
@@ -123,12 +154,12 @@ function search ( query, callback )
 
   // ignore query, only get metadata from specific video id
   if ( _options.videoId ) {
-    return getVideoMetaData( _options.videoId, callback )
+    return getVideoMetaData( _options.videoId, callback_with_retry )
   }
 
   // ignore query, only get metadata from specific playlist id
   if ( _options.listId ) {
-    return getPlaylistMetaData( _options.listId, callback )
+    return getPlaylistMetaData( _options.listId, callback_with_retry )
   }
 
   if ( !_options.search ) {
@@ -138,7 +169,7 @@ function search ( query, callback )
   work()
 
   function work () {
-    getSearchResults( _options, callback )
+    getSearchResults( _options, callback_with_retry )
   }
 }
 
