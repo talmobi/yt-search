@@ -134,9 +134,9 @@ function search ( query, callback )
         return callback( err, data )
       } else {
         // retry
-        console.log( ' === ' )
-        console.log( ' RETRYING: ' + _options._attempts )
-        console.log( ' === ' )
+        debug( ' === ' )
+        debug( ' RETRYING: ' + _options._attempts )
+        debug( ' === ' )
 
         const n = _options._attempts
         const wait_ms = Math.pow( 2, n - 1 ) * RETRY_INTERVAL
