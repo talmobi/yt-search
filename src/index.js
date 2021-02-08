@@ -1123,14 +1123,14 @@ function _parsePlaylistInitialData ( responseText, callback )
   // console.log( 'listId: ' + listId )
 
   let viewCount = 0
-  const viewCountLabel = _jp.value( json, '$..sidebar.playlistSidebarRenderer.items[0]..stats[1].simpleText' )
-  if ( viewCountLabel.toLowerCase() === 'no views' ) {
-    viewCount = 0
-  } else {
-    try {
-      viewCount = _jp.value( json, '$..sidebar.playlistSidebarRenderer.items[0]..stats[1].simpleText' ).match( /\d+/g ).join( '' )
-    } catch ( err ) { /* ignore */ }
-  }
+  try {
+    const viewCountLabel = _jp.value( json, '$..sidebar.playlistSidebarRenderer.items[0]..stats[1].simpleText' )
+    if ( viewCountLabel.toLowerCase() === 'no views' ) {
+      viewCount = 0
+    } else {
+      viewCount = viewCountLabel.match( /\d+/g ).join( '' )
+    }
+  } catch ( err ) { /* ignore */ }
 
   const size = (
     _jp.value( json, '$..sidebar.playlistSidebarRenderer.items[0]..stats[0].simpleText' ) ||
