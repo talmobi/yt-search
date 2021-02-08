@@ -372,6 +372,60 @@ test( 'playlist metadata by id', function ( t ) {
   } )
 } )
 
+test( 'parsePlaylistLastUpdateTime', function ( t ) {
+  t.plan( 1 )
+
+  const DAY_MS = 1000 * 60 * 60 * 24
+  const d1 = new Date( Date.now() - 2 * DAY_MS )
+
+  t.equal(
+    _yts._parsePlaylistLastUpdateTime( 'Updated 2 days ago' ),
+    `${ d1.getFullYear() }-${ d1.getMonth() + 1 }-${ d1.getDate() }`,
+    'updated 2 days ago OK'
+  )
+} )
+
+test( 'playlist metadata by id with no views', function ( t ) {
+  t.plan( 15 )
+
+  const body = fs.readFileSync( path.join( __dirname, 'stage/playlist-no-views-response.html' ), 'utf8' )
+
+  // pre-fetched results for playlist id with no views
+  // ref: https://www.youtube.com/playlist?list=PLSwcuYF4r6MJHkUVYbDAekT7j0FvZ_B4X
+  _yts._parsePlaylistInitialData( body, callback )
+
+  function callback ( err, playlist ) {
+    t.error( err, 'no errors OK!' )
+
+    t.equal( playlist.title, 'gitt', 'title' )
+    t.equal( playlist.listId, 'PLSwcuYF4r6MJHkUVYbDAekT7j0FvZ_B4X', 'listId' )
+
+    t.equal( playlist.url, 'https://youtube.com/playlist?list=PLSwcuYF4r6MJHkUVYbDAekT7j0FvZ_B4X', 'playlist url' )
+
+    t.equal( playlist.videos.length, 7, '7 videos ok' )
+    t.equal( playlist.views, 0, '0 views ( no views ) ok' )
+
+    t.equal( playlist.videos[ 0 ].duration.seconds, 60 * 25 + 17, 'play list video 1 duration.seconds ok' )
+    t.equal( playlist.videos[ 0 ].duration.timestamp, '25:17', 'play list video 1 duration.timestamp ok' )
+
+    t.equal( playlist.videos[ 3 ].duration.seconds, 60 * 41 + 11, 'play list video 2 duration.seconds ok' )
+    t.equal( playlist.videos[ 3 ].duration.timestamp, '41:11', 'play list video 2 duration.timestamp ok' )
+
+    t.equal(
+      playlist.videos.filter( v => v.title ).length,
+      playlist.videos.length,
+      'no video titles are empty'
+    )
+
+    t.equal( playlist.author.name, 'Jangan Dikick, pls', 'author name' )
+    // t.equal( playlist.author.channelId, 'UCdwR7fIE2xyXlNRc7fb9tJg', 'author channelId' )
+    t.equal( playlist.author.url, 'https://youtube.com/channel/UCLsfC1kDr0VOvwPEsACWKvA', 'author url' )
+
+    t.equal( playlist.image, 'https://i.ytimg.com/vi/moDdhDxzg2k/hqdefault.jpg', 'playlist image' )
+    t.equal( playlist.image, playlist.thumbnail, 'common alternative' )
+  }
+} )
+
 test( 'playlist metadata by id with 100+ items', function ( t ) {
   t.plan( 14 )
 
