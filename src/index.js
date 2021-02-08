@@ -1227,33 +1227,46 @@ function _parsePlaylistInitialData ( responseText, callback )
 
 function _parsePlaylistLastUpdateTime ( lastUpdateLabel ) {
   debug( 'fn: _parsePlaylistLastUpdateTime' )
-
-  // ex "Last Updated on Jun 25, 2018"
-  // ex: "Viimeksi päivitetty 25.6.2018"
-
-  const words = lastUpdateLabel.toLowerCase().trim().split( /[\s.-]+/ )
-
-  // handle strings like "7 days ago"
   const DAY_IN_MS = ( 1000 * 60 * 60 * 24 )
-  if ( words[0] === 'updated' && words[2].slice( 0, 3 ) === 'day' ) {
-    const ms = Date.now() - ( DAY_IN_MS * words[1] )
-    const d = new Date( ms ) // a day earlier than today
-    if ( d.toString() !== 'Invalid Date' )  return _toInternalDateString( d )
-  }
 
-  for ( let i = 0; i < words.length; i++ ) {
-    const slice = words.slice( i )
-    const t = slice.join( ' ' )
-    const r = slice.reverse().join( ' ' )
+  try {
+    // ex "Last Updated on Jun 25, 2018"
+    // ex: "Viimeksi päivitetty 25.6.2018"
 
-    const a = new Date( t )
-    const b = new Date( r )
+    const words = lastUpdateLabel.toLowerCase().trim().split( /[\s.-]+/ )
 
-    if ( a.toString() !== 'Invalid Date' )  return _toInternalDateString( a )
-    if ( b.toString() !== 'Invalid Date' )  return _toInternalDateString( b )
-  }
+    if ( words.length > 0 ) {
+      const lastWord = ( words[ words.length - 1 ] ).toLowerCase()
+      if ( lastWord === 'yesterday' ) {
+        const ms = Date.now() - DAY_IN_MS
+        const d = new Date( ms ) // a day earlier than today
+        if ( d.toString() !== 'Invalid Date' )  return _toInternalDateString( d )
+      }
+    }
 
-  return ''
+    if ( words.length >= 2 ) {
+      // handle strings like "7 days ago"
+      if ( words[0] === 'updated' && words[2].slice( 0, 3 ) === 'day' ) {
+        const ms = Date.now() - ( DAY_IN_MS * words[1] )
+        const d = new Date( ms ) // a day earlier than today
+        if ( d.toString() !== 'Invalid Date' )  return _toInternalDateString( d )
+      }
+    }
+
+    for ( let i = 0; i < words.length; i++ ) {
+      const slice = words.slice( i )
+      const t = slice.join( ' ' )
+      const r = slice.reverse().join( ' ' )
+
+      const a = new Date( t )
+      const b = new Date( r )
+
+      if ( a.toString() !== 'Invalid Date' )  return _toInternalDateString( a )
+      if ( b.toString() !== 'Invalid Date' )  return _toInternalDateString( b )
+    }
+
+    return ''
+  } catch ( err ) { return '' }
 }
 
 function _toInternalDateString ( date ) {
