@@ -1239,8 +1239,8 @@ function _parsePlaylistLastUpdateTime ( lastUpdateLabel ) {
   // TODO handle strings like "7 days ago"
   const DAY_IN_MS = ( 1000 * 60 * 60 * 24 )
   if ( words[0] === 'updated' && words[2].slice( 0, 3 ) === 'day' ) {
-    const ms = ( Date.now() - DAY_IN_MS ) * words[1]
-    const d = new Date( ms - 1 * DAY_IN_MS ) // a day earlier than today
+    const ms = Date.now() - ( DAY_IN_MS * words[1] )
+    const d = new Date( ms ) // a day earlier than today
     if ( d.toString() !== 'Invalid Date' )  return _toInternalDateString( d )
   }
 
