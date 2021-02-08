@@ -1093,7 +1093,6 @@ function _parsePlaylistInitialData ( responseText, callback )
   responseText = _getScripts( responseText )
 
   const jsonString = responseText.match( /ytInitialData.*=\s*({.*});/ )[ 1 ]
-
   // console.log( jsonString )
 
   if ( !jsonString ) {
@@ -1116,9 +1115,7 @@ function _parsePlaylistInitialData ( responseText, callback )
 
     throw new Error( 'playlist error: ' + plerrtext )
   }
-      // ( _jp.value( json, '$..sidebar.playlistSidebarRenderer.items[0]..stats[2]..simpleText' ) ) ||
 
-  // TODO parse relevant json data with jsonpath
   const listId = ( _jp.value( json, '$..microformat..urlCanonical' ) ).split( '=' )[ 1 ]
   // console.log( 'listId: ' + listId )
 
@@ -1236,7 +1233,7 @@ function _parsePlaylistLastUpdateTime ( lastUpdateLabel ) {
 
   const words = lastUpdateLabel.toLowerCase().trim().split( /[\s.-]+/ )
 
-  // TODO handle strings like "7 days ago"
+  // handle strings like "7 days ago"
   const DAY_IN_MS = ( 1000 * 60 * 60 * 24 )
   if ( words[0] === 'updated' && words[2].slice( 0, 3 ) === 'day' ) {
     const ms = Date.now() - ( DAY_IN_MS * words[1] )
