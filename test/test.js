@@ -664,8 +664,6 @@ test( 'test promise support ( search by video id )', async function ( t ) {
 
   const r = await yts( opts )
 
-  const topVideo = r.videos[ 0 ]
-
   for ( video of r.videos ) {
     if ( video.videoId == opts.search ) {
       t.ok( video.title.match( /josh.*jake.*hill.*rest.*piece.*lyric/i ), 'top result title matched!' )
