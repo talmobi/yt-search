@@ -373,14 +373,21 @@ test( 'playlist metadata by id', function ( t ) {
 } )
 
 test( 'parsePlaylistLastUpdateTime', function ( t ) {
-  t.plan( 1 )
+  t.plan( 2 )
 
   const DAY_MS = 1000 * 60 * 60 * 24
-  const d1 = new Date( Date.now() - 2 * DAY_MS )
+  const d1 = new Date( Date.now() - 2 * DAY_MS ) // 2 days ago
+  const d2 = new Date( Date.now() - 1 * DAY_MS ) // yesterday
 
   t.equal(
     _yts._parsePlaylistLastUpdateTime( 'Updated 2 days ago' ),
     `${ d1.getFullYear() }-${ d1.getMonth() + 1 }-${ d1.getDate() }`,
+    'updated 2 days ago OK'
+  )
+
+  t.equal(
+    _yts._parsePlaylistLastUpdateTime( 'Updated yesterday' ),
+    `${ d2.getFullYear() }-${ d2.getMonth() + 1 }-${ d2.getDate() }`,
     'updated 2 days ago OK'
   )
 } )
