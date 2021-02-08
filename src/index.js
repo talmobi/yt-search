@@ -92,11 +92,16 @@ module.exports = function ( query, callback ) {
 module.exports.search = search
 
 module.exports._parseSearchResultInitialData = _parseSearchResultInitialData
+module.exports._parseVideoInitialData = _parseVideoInitialData
+module.exports._parsePlaylistInitialData = _parsePlaylistInitialData
+
 module.exports._videoFilter = _videoFilter
 module.exports._playlistFilter = _playlistFilter
 module.exports._channelFilter = _channelFilter
 module.exports._liveFilter = _liveFilter
 module.exports._allFilter = _allFilter
+
+module.exports._parsePlaylistLastUpdateTime = _parsePlaylistLastUpdateTime
 
 /**
  * Main
@@ -1117,7 +1122,16 @@ function _parsePlaylistInitialData ( responseText, callback )
   const listId = ( _jp.value( json, '$..microformat..urlCanonical' ) ).split( '=' )[ 1 ]
   // console.log( 'listId: ' + listId )
 
-  const viewCount = _jp.value( json, '$..sidebar.playlistSidebarRenderer.items[0]..stats[1].simpleText' ).match( /\d+/g ).join( '' )
+  let viewCount = 0
+  const viewCountLabel = _jp.value( json, '$..sidebar.playlistSidebarRenderer.items[0]..stats[1].simpleText' )
+  if ( viewCountLabel.toLowerCase() === 'no views' ) {
+    viewCount = 0
+  } else {
+    try {
+      viewCount = _jp.value( json, '$..sidebar.playlistSidebarRenderer.items[0]..stats[1].simpleText' ).match( /\d+/g ).join( '' )
+    } catch ( err ) { /* ignore */ }
+  }
+
   const size = (
     _jp.value( json, '$..sidebar.playlistSidebarRenderer.items[0]..stats[0].simpleText' ) ||
     _jp.query( json, '$..sidebar.playlistSidebarRenderer.items[0]..stats[0]..text' ).join( '' )
