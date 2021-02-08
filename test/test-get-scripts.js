@@ -9,7 +9,7 @@ const cheerio = require( 'cheerio' )
 const { _getScripts, _findLine, _between } = require( '../src/util.js' )
 
 test( '_getScripts', function ( t ) {
-  const responseText = fs.readFileSync( path.join( __dirname, 'stage', 'jumbled-script-tags.html' ), 'utf8' )
+  const responseText = fs.readFileSync( path.join( __dirname, 'stage', 'jumbled-script-tags.response-html' ), 'utf8' )
 
   const scriptsText = _getScripts( responseText )
 

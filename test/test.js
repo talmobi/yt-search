@@ -388,14 +388,14 @@ test( 'parsePlaylistLastUpdateTime', function ( t ) {
   t.equal(
     _yts._parsePlaylistLastUpdateTime( 'Updated yesterday' ),
     `${ d2.getFullYear() }-${ d2.getMonth() + 1 }-${ d2.getDate() }`,
-    'updated 2 days ago OK'
+    'updated yesterday ok'
   )
 } )
 
 test( 'playlist metadata by id with no views', function ( t ) {
   t.plan( 15 )
 
-  const body = fs.readFileSync( path.join( __dirname, 'stage/playlist-no-views-response.html' ), 'utf8' )
+  const body = fs.readFileSync( path.join( __dirname, 'stage/playlist-no-views.response-html' ), 'utf8' )
 
   // pre-fetched results for playlist id with no views
   // ref: https://www.youtube.com/playlist?list=PLSwcuYF4r6MJHkUVYbDAekT7j0FvZ_B4X
@@ -516,7 +516,7 @@ test( 'search results: playlist', function ( t ) {
 test( 'search results richGridRenderer: playlist', function ( t ) {
   t.plan( 6 )
 
-  const body = fs.readFileSync( path.join( __dirname, 'stage/richGridRenderer-response.html' ), 'utf8' )
+  const body = fs.readFileSync( path.join( __dirname, 'stage/richGridRenderer.response-html' ), 'utf8' )
 
   // pre-fetched results for basic search 'superman theme list' in richGridRenderer format
   _yts._parseSearchResultInitialData( body, function ( err, results ) {
