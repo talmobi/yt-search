@@ -34,6 +34,9 @@ videos.forEach( function ( v ) {
    7802473 | Superman - Main Theme (BBC Proms) (4:46) | brassbone player
 ```
 
+###### try it
+https://runkit.com/talmobi/runkit-npm-yt-search-basic
+
 #### single video
 ```javascript
 const video = await yts( { videoId: '_4Vt0UGwmgQ' } )
@@ -43,6 +46,9 @@ console.log( video.title + ` (${ video.duration.timestamp })` )
 ```javascript
 Philip Glass. -  Koyaanisqatsi (original version) (3:29)
 ```
+
+###### try it
+https://runkit.com/talmobi/runkit-npm-yt-search-video
 
 #### single playlist
 ```javascript
@@ -67,6 +73,9 @@ Superman Doomsday Soundtrack- Main Title
 Hans Zimmer - Man of Steel Theme
 Supergirl CW Soundtrack - Superman Theme Extended
 ```
+
+###### try it
+https://runkit.com/talmobi/runkit-npm-yt-search-playlist
 
 ## CLI Usage (interactive)
 ```bash
