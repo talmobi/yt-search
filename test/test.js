@@ -662,6 +662,18 @@ test( 'search "王菲 Faye Wong"', function ( t ) {
   } )
 } )
 
+test( 'long video correct seconds & timestamp | #issue49', function ( t ) {
+  // ref: https://github.com/talmobi/yt-search/issues/49
+  t.plan( 3 )
+
+  yts( { videoId: 'K3dXnyQjnx8' }, function ( err, video ) {
+    t.error( err, 'no errors OK!' )
+
+    t.equal( video.timestamp, '12:00:00', 'timestamp' )
+    t.equal( video.seconds, 12 * 60 * 60, 'seconds (duration)' )
+  } )
+} )
+
 test( 'test promise support ( search by video id )', async function ( t ) {
   t.plan( 2 )
 
