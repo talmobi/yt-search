@@ -1444,8 +1444,12 @@ function _msToTimestamp ( ms )
   const s = Math.floor( ms / MS_SECOND ) % 60
 
   if ( h ) t += h + ':'
-  if ( m ) t += m + ':'
 
+  // pad with extra zero only if hours are set
+  if ( h && String( m ).length < 2 ) t += '0'
+  t += m + ':'
+
+  // pad with extra zero
   if ( String( s ).length < 2 ) t += '0'
   t += s
 
