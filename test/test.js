@@ -691,3 +691,15 @@ test( 'test promise support ( search by video id )', async function ( t ) {
     }
   }
 } )
+
+test( 'search title and video metadata title are the same', async function ( t ) {
+  // ref: https://github.com/talmobi/yt-search/issues/50
+  t.plan( 2 )
+
+  const id = 'z95fi3uazYA'
+  const res = await yts(id);
+  const videoIdSearch = await yts({ videoId: id });
+
+  t.equal( videoIdSearch.videoId, res.videos[0].videoId, 'ids equal' )
+  t.equal( videoIdSearch.title, res.videos[ 0 ].title,  'titles equal' )
+} )
