@@ -2,7 +2,17 @@ const yts = require( './src/index.js' )
 
 // console.log( yts.search )
 
-m9()
+m10()
+
+async function m10 () {
+    const id = 'z95fi3uazYA'
+    const res = await yts(id);
+    const videoIdSearch = await yts({ videoId: id });
+
+    console.log(videoIdSearch.videoId === res.videos[0].videoId);
+    console.log(videoIdSearch.title);
+    console.log(res.videos[0].title);
+}
 
 async function m9 () {
   let result = await yts({ listId: "PLQ9SiFtEqtYByscXDLGNOC8XL49BFn9tZ" });
