@@ -949,14 +949,7 @@ function _parseVideoInitialData ( responseText, callback )
     return callback( 'video unavailable' )
   }
 
-  const title = (
-    _jp.value( idata, '$..videoPrimaryInfoRenderer..title..text' ) ||
-    _jp.value( idata, '$..videoPrimaryInfoRenderer..title..simpleText' ) ||
-    _jp.value( idata, '$..videoPrimaryRenderer..title..text' ) ||
-    _jp.value( idata, '$..videoPrimaryRenderer..title..simpleText' ) ||
-    _jp.value( idata, '$..title..text' ) ||
-    _jp.value( idata, '$..title..simpleText' )
-  )
+  const title = _parseVideoMeataDataTitle( idata )
 
   const description = (
     ( _jp.query( idata, '$..description..text' ) ).join( '' ) ||
@@ -1454,6 +1447,20 @@ function _msToTimestamp ( ms )
   t += s
 
   return t
+}
+
+function _parseVideoMeataDataTitle( idata ) {
+  const t = (
+    ( _jp.query( idata, '$..videoPrimaryInfoRenderer.title..text' ) ).join( '' ) ||
+    ( _jp.query( idata, '$..videoPrimaryInfoRenderer.title..simpleText' ) ).join( '' ) ||
+    ( _jp.query( idata, '$..videoPrimaryRenderer.title..text' ) ).join( '' ) ||
+    ( _jp.query( idata, '$..videoPrimaryRenderer.title..simpleText' ) ).join( '' ) ||
+    _jp.value( idata, '$..title..text' ) ||
+    _jp.value( idata, '$..title..simpleText' )
+  )
+
+  // remove zero-width chars
+  return t.replace( /[\u0000-\u001F\u007F-\u009F\u200b]/g, '' )
 }
 
 // run tests is script is run directly
