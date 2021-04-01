@@ -3,7 +3,7 @@ const _dasu = require( 'dasu' )
 const _parallel = require( 'async.parallellimit' )
 
 // auto follow off
-_dasu.follow = false
+_dasu.follow = true
 _dasu.debug = false
 
 const { _getScripts, _findLine, _between } = require( './util.js' )
