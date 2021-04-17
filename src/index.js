@@ -589,6 +589,7 @@ function _parseSearchResultInitialData ( responseText, callback )
             const duration = _parseDuration( lengthText || '0:00' )
 
             const description = (
+              ( _jp.query( item, '$..detailedMetadataSnippets..snippetText..text' ) ).join( '' ) ||
               ( _jp.query( item, '$..description..text' ) ).join( '' ) ||
               ( _jp.query( item, '$..descriptionSnippet..text' ) ).join( '' )
             )
@@ -781,6 +782,7 @@ function _parseSearchResultInitialData ( responseText, callback )
             const watchCount = Number( watchingLabel.split( /\s+/ )[ 0 ].split( /[,.]/ ).join( '' ).trim() )
 
             const description = (
+              ( _jp.query( item, '$..detailedMetadataSnippets..snippetText..text' ) ).join( '' ) ||
               ( _jp.query( item, '$..description..text' ) ).join( '' ) ||
               ( _jp.query( item, '$..descriptionSnippet..text' ) ).join( '' )
             )
