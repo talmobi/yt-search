@@ -323,7 +323,7 @@ test( 'video metadata by id _JzeIf1zT14', function ( t ) {
 } )
 
 test( 'playlist metadata by id', function ( t ) {
-  t.plan( 18 )
+  t.plan( 19 )
 
   yts( { listId: 'PL7k0JFoxwvTbKL8kjGI_CaV31QxCGf1vJ' }, function ( err, playlist ) {
     t.error( err, 'no errors OK!' )
@@ -337,13 +337,31 @@ test( 'playlist metadata by id', function ( t ) {
     t.ok( playlist.videos.length >= 5, 'visible videos equal or over 5 (as of 2021-04-17)' )
     t.ok( playlist.views > 300, 'views over 300 (as of 2020-01-08)' )
 
-    t.equal( playlist.alertInfo, '4 unavailable videos are hidden' )
+    const alerts = playlist.alertInfo.split( ' ' )
+    t.ok( alerts.shift() >= 2, '2 or more videos are hidden' )
+    t.equal( alerts.join( ' ' ), 'unavailable videos are hidden' )
 
-    t.equal( playlist.videos[ 0 ].duration.seconds, 60 * 4 + 13, 'play list video 1 duration.seconds ok' )
-    t.equal( playlist.videos[ 0 ].duration.timestamp, '4:13', 'play list video 1 duration.timestamp ok' )
 
-    t.equal( playlist.videos[ 4 ].duration.seconds, 60 * 6 + 45, 'play list video 2 duration.seconds ok' )
-    t.equal( playlist.videos[ 4 ].duration.timestamp, '6:45', 'play list video 2 duration.timestamp ok' )
+    if ( playlist.videos[ 0 ].duration.seconds === ( 60 * 1 + 37 ) ) {
+      t.equal( playlist.videos[ 0 ].duration.seconds, 60 * 1 + 37, 'play list video 1 duration.seconds ok' )
+      t.equal( playlist.videos[ 0 ].duration.timestamp, '1:37', 'play list video 1 duration.timestamp ok' )
+
+      t.equal( playlist.videos[ 6 ].duration.seconds, 60 * 6 + 45, 'play list video 2 duration.seconds ok' )
+      t.equal( playlist.videos[ 6 ].duration.timestamp, '6:45', 'play list video 2 duration.timestamp ok' )
+
+      t.equal( playlist.image, 'https://i.ytimg.com/vi/IQtKjU_pOuw/hqdefault.jpg', 'playlist image' )
+      t.equal( playlist.image, playlist.thumbnail, 'common alternative' )
+    } else {
+      t.equal( playlist.videos[ 0 ].duration.seconds, 60 * 4 + 13, 'play list video 1 duration.seconds ok' )
+      t.equal( playlist.videos[ 0 ].duration.timestamp, '4:13', 'play list video 1 duration.timestamp ok' )
+
+      t.equal( playlist.videos[ 4 ].duration.seconds, 60 * 6 + 45, 'play list video 2 duration.seconds ok' )
+      t.equal( playlist.videos[ 4 ].duration.timestamp, '6:45', 'play list video 2 duration.timestamp ok' )
+
+      t.equal( playlist.image, 'https://i.ytimg.com/vi/e9vrfEoc8_g/hqdefault.jpg', 'playlist image' )
+      t.equal( playlist.image, playlist.thumbnail, 'common alternative' )
+    }
+
 
     // these no longer seem to show up in the playlist as of April 2021. An
     // alert if visible on page with the number of hidden videos, see playlist.alertInfo
@@ -371,9 +389,6 @@ test( 'playlist metadata by id', function ( t ) {
     t.equal( playlist.author.name, 'Cave Spider10', 'author name' )
     // t.equal( playlist.author.channelId, 'UCdwR7fIE2xyXlNRc7fb9tJg', 'author channelId' )
     t.equal( playlist.author.url, 'https://youtube.com/channel/UCdwR7fIE2xyXlNRc7fb9tJg', 'author url' )
-
-    t.equal( playlist.image, 'https://i.ytimg.com/vi/e9vrfEoc8_g/hqdefault.jpg', 'playlist image' )
-    t.equal( playlist.image, playlist.thumbnail, 'common alternative' )
   } )
 } )
 
