@@ -1111,6 +1111,11 @@ function _parsePlaylistInitialData ( responseText, callback )
     throw new Error( 'playlist error: ' + plerrtext )
   }
 
+  let alertInfo = ''
+  _jp.query( json, '$..alerts..text' ).forEach( function ( val ) {
+    if ( typeof val === 'string' ) alertInfo += val
+  } )
+
   const listId = ( _jp.value( json, '$..microformat..urlCanonical' ) ).split( '=' )[ 1 ]
   // console.log( 'listId: ' + listId )
 
@@ -1210,6 +1215,8 @@ function _parsePlaylistInitialData ( responseText, callback )
 
     // playlist items/videos
     videos: videos,
+
+    alertInfo: alertInfo,
 
     author: {
       name: _jp.value( json, '$..videoOwner..title..runs[0]..text' ),

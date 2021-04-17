@@ -323,7 +323,7 @@ test( 'video metadata by id _JzeIf1zT14', function ( t ) {
 } )
 
 test( 'playlist metadata by id', function ( t ) {
-  t.plan( 20 )
+  t.plan( 18 )
 
   yts( { listId: 'PL7k0JFoxwvTbKL8kjGI_CaV31QxCGf1vJ' }, function ( err, playlist ) {
     t.error( err, 'no errors OK!' )
@@ -333,17 +333,22 @@ test( 'playlist metadata by id', function ( t ) {
 
     t.equal( playlist.url, 'https://youtube.com/playlist?list=PL7k0JFoxwvTbKL8kjGI_CaV31QxCGf1vJ', 'playlist url' )
 
-    t.ok( playlist.videos.length >= 9 , 'videos equal or over 9 (as of 2021-01-31)' )
+    t.equal( playlist.size, 9, 'total videos equal or over 9 (as of 2021-04-17)' )
+    t.ok( playlist.videos.length >= 5, 'visible videos equal or over 5 (as of 2021-04-17)' )
     t.ok( playlist.views > 300, 'views over 300 (as of 2020-01-08)' )
 
-    t.equal( playlist.videos[ 0 ].duration.seconds, 60 * 1 + 37, 'play list video 1 duration.seconds ok' )
-    t.equal( playlist.videos[ 0 ].duration.timestamp, '1:37', 'play list video 1 duration.timestamp ok' )
+    t.equal( playlist.alertInfo, '4 unavailable videos are hidden' )
 
-    t.equal( playlist.videos[ 8 ].duration.seconds, 60 * 6 + 45, 'play list video 2 duration.seconds ok' )
-    t.equal( playlist.videos[ 8 ].duration.timestamp, '6:45', 'play list video 2 duration.timestamp ok' )
+    t.equal( playlist.videos[ 0 ].duration.seconds, 60 * 4 + 13, 'play list video 1 duration.seconds ok' )
+    t.equal( playlist.videos[ 0 ].duration.timestamp, '4:13', 'play list video 1 duration.timestamp ok' )
 
-    t.equal( playlist.videos[ 1 ].duration.seconds, 0, '[deleted] play list video duration.seconds 0 OK' )
-    t.equal( playlist.videos[ 3 ].duration.timestamp, 0, '[private] play list video duration.timestamp 0 OK' )
+    t.equal( playlist.videos[ 4 ].duration.seconds, 60 * 6 + 45, 'play list video 2 duration.seconds ok' )
+    t.equal( playlist.videos[ 4 ].duration.timestamp, '6:45', 'play list video 2 duration.timestamp ok' )
+
+    // these no longer seem to show up in the playlist as of April 2021. An
+    // alert if visible on page with the number of hidden videos, see playlist.alertInfo
+    // t.equal( playlist.videos[ 1 ].duration.seconds, 0, '[deleted] play list video duration.seconds 0 OK' )
+    // t.equal( playlist.videos[ 3 ].duration.timestamp, 0, '[private] play list video duration.timestamp 0 OK' )
 
     t.equal(
       playlist.videos.filter( v => v.title ).length,
@@ -351,13 +356,13 @@ test( 'playlist metadata by id', function ( t ) {
       'no video titles are empty'
     )
 
-    t.ok( playlist.videos.find(
-      v => v.title === '[Deleted video]'
-    ), 'Deleted video found' )
+    // t.ok( playlist.videos.find(
+    //   v => v.title === '[Deleted video]'
+    // ), 'Deleted video found' )
 
-    t.ok( playlist.videos.find(
-      v => v.title === '[Private video]'
-    ), 'Private video found' )
+    // t.ok( playlist.videos.find(
+    //   v => v.title === '[Private video]'
+    // ), 'Private video found' )
 
     // t.equal( playlist.date, '2018-6-25' , 'date' )
     // Sun Jan 31 13:50:55 EET 2021 updated
