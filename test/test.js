@@ -372,7 +372,7 @@ test( 'playlist metadata by id', function ( t ) {
     // t.equal( playlist.author.channelId, 'UCdwR7fIE2xyXlNRc7fb9tJg', 'author channelId' )
     t.equal( playlist.author.url, 'https://youtube.com/channel/UCdwR7fIE2xyXlNRc7fb9tJg', 'author url' )
 
-    t.equal( playlist.image, 'https://i.ytimg.com/vi/IQtKjU_pOuw/hqdefault.jpg', 'playlist image' )
+    t.equal( playlist.image, 'https://i.ytimg.com/vi/e9vrfEoc8_g/hqdefault.jpg', 'playlist image' )
     t.equal( playlist.image, playlist.thumbnail, 'common alternative' )
   } )
 } )
