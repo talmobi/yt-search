@@ -266,7 +266,7 @@ test( 'video metadata by id', function ( t ) {
 
     t.equal( video.genre, 'music', 'genre is music' )
     t.equal( video.uploadDate, '2009-7-27', 'uploadDate' )
-    t.equal( video.ago, '11 years ago', 'agoText' )
+    t.equal( video.ago, '12 years ago', 'agoText' )
 
     // t.equal( video.author.id, 'Redmario2569', 'author id' )
     // t.equal( video.author.url, 'https://youtube.com/user/Redmario2569', 'author url' )
