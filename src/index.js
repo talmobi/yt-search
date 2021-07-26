@@ -166,12 +166,12 @@ function search ( query, callback )
 
   // ignore query, only get metadata from specific video id
   if ( _options.videoId ) {
-    return getVideoMetaData( _options.videoId, callback_with_retry )
+    return getVideoMetaData( _options, callback_with_retry )
   }
 
   // ignore query, only get metadata from specific playlist id
   if ( _options.listId ) {
-    return getPlaylistMetaData( _options.listId, callback_with_retry )
+    return getPlaylistMetaData( _options, callback_with_retry )
   }
 
   if ( !_options.search ) {
@@ -870,7 +870,8 @@ function getVideoMetaData ( opts, callback )
     videoId = opts.videoId
   }
 
-  const uri = 'https://www.youtube.com/watch?hl=en&gl=US&v=' + videoId
+  const { hl = 'en', gl = 'US' } = opts
+  const uri = `https://www.youtube.com/watch?hl=${hl}&gl=${gl}&v=${videoId}`
 
   const params = _url.parse( uri )
 
@@ -878,7 +879,7 @@ function getVideoMetaData ( opts, callback )
     'user-agent': _userAgent,
     'accept': 'text/html',
     'accept-encoding': 'gzip',
-    'accept-language': 'en-US'
+    'accept-language': `${hl}-${gl}`
   }
 
   params.headers[ 'user-agent' ] = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.1.1 Safari/605.1.15'
@@ -1045,9 +1046,8 @@ function getPlaylistMetaData ( opts, callback )
     listId = opts.listId || opts.playlistId
   }
 
-  const uri = (
-    'https://www.youtube.com/playlist?hl=en&gl=US&list=' + listId
-  )
+  const { hl = 'en', gl = 'US' } = opts
+  const uri = `https://www.youtube.com/playlist?hl=${hl}&gl=${gl}&list=${listId}`
 
   const params = _url.parse( uri )
 
@@ -1055,7 +1055,7 @@ function getPlaylistMetaData ( opts, callback )
     'user-agent': _userAgent,
     'accept': 'text/html',
     'accept-encoding': 'gzip',
-    'accept-language': 'en-US'
+    'accept-language': `${hl}-${gl}`
   }
 
   _dasu.req( params, function ( err, res, body ) {
