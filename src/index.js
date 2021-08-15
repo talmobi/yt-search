@@ -1114,6 +1114,11 @@ function _parsePlaylistInitialData ( responseText, callback )
   let alertInfo = ''
   _jp.query( json, '$..alerts..text' ).forEach( function ( val ) {
     if ( typeof val === 'string' ) alertInfo += val
+    if ( typeof val === 'object' ) {
+      // try grab simpletex
+      const simpleText = _jp.value( val, '$..simpleText' )
+      if ( simpleText ) alertInfo += simpleText
+    }
   } )
 
   const listId = ( _jp.value( json, '$..microformat..urlCanonical' ) ).split( '=' )[ 1 ]
