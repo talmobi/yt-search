@@ -718,9 +718,9 @@ test( 'search title and video metadata title are the same', async function ( t )
   t.plan( 2 )
 
   const id = 'z95fi3uazYA'
-  const res = await yts(id);
+  const res = await yts('id: ' + id);
   const videoIdSearch = await yts({ videoId: id });
 
-  t.equal( videoIdSearch.videoId, res.videos[0].videoId, 'ids equal' )
-  t.equal( videoIdSearch.title, res.videos[ 0 ].title,  'titles equal' )
+  t.equal( res.videos[0].videoId, videoIdSearch.videoId, 'ids equal' )
+  t.equal( res.videos[ 0 ].title, videoIdSearch.title, 'titles equal' )
 } )
