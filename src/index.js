@@ -981,15 +981,18 @@ function _parseVideoInitialData ( responseText, callback )
 
   const duration = _parseDuration( timestamp )
 
-  const sentimentBar = (
-    // ex. "tooltip": "116,701 / 8,930"
-    _jp.value( idata, '$..sentimentBar..tooltip' )
-    .split( /[,.]/ ).join( '' )
-    .split( /\D+/ )
-  )
-
-  const likes = Number( sentimentBar[ 0 ] )
-  const dislikes = Number( sentimentBar[ 1 ] )
+  // TODO some video's have likes/dislike ratio hidden (ex: 62ezXENOuIA)
+  // which makes this value undefined
+  //   const sentimentBar = (
+  //     // ex. "tooltip": "116,701 / 8,930"
+  //     _jp.value( idata, '$..sentimentBar..tooltip' )
+  //     .split( /[,.]/ ).join( '' )
+  //     .split( /\D+/ )
+  //   )
+  // 
+  // TODO currently not in use
+  // const likes = Number( sentimentBar[ 0 ] )
+  // const dislikes = Number( sentimentBar[ 1 ] )
 
   const uploadDate = (
     _jp.value( idata, '$..uploadDate' ) ||
