@@ -721,6 +721,11 @@ test( 'search title and video metadata title are the same', async function ( t )
   const res = await yts('id: ' + id);
   const videoIdSearch = await yts({ videoId: id });
 
-  t.equal( res.videos[0].videoId, videoIdSearch.videoId, 'ids equal' )
-  t.equal( res.videos[ 0 ].title, videoIdSearch.title, 'titles equal' )
+  const video = res.videos.filter(function (v) {
+    const keep = v.title.toLowerCase().indexOf('dragon ball z') >= 0
+    return keep
+  })[0]
+
+  t.equal( video.videoId, videoIdSearch.videoId, 'ids equal' )
+  t.equal( video.title, videoIdSearch.title, 'titles equal' )
 } )
