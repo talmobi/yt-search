@@ -392,6 +392,17 @@ test( 'playlist metadata by id', function ( t ) {
   } )
 } )
 
+test( 'successfully parse metadata with hidden likes/dislikes sentiment bar', async function ( t ) {
+  // https://github.com/talmobi/yt-search/issues/68
+  t.plan( 3 )
+
+  const video = await yts({ videoId: '62ezXENOuIA' });
+
+  t.ok( video.title, 'FINAL FANTASY XIV: Scions & Sinners – A Long Fall Music Video (THE PRIMALS)', 'title ok' )
+  t.ok( video.url, 'https://youtube.com/watch?v=62ezXENOuIA', 'url ok' )
+  t.ok( video.thumbnail, 'https://i.ytimg.com/vi/62ezXENOuIA/hqdefault.jpg', 'thumbnail ok' )
+} )
+
 test( 'parsePlaylistLastUpdateTime', function ( t ) {
   t.plan( 2 )
 
