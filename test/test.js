@@ -620,7 +620,7 @@ test( 'search results: channel', function ( t ) {
     t.ok( topChannel.videoCount < 10000, 'video count less than' )
 
     const channelImageUrl = (
-      'https://yt3.ggpht.com/a/AATXAJwTuzNgKRSLVIOcVTVGGr_xFKgo8LFSQF163hCKSQ=s88-c-k-c0x00ffffff-no-rj-mo'
+      'https://yt3.ggpht.com/5oUY3tashyxfqsjO5SGhjT4dus8FkN9CsAHwXWISFrdPYii1FudD4ICtLfuCw6-THJsJbgoY=s88-c-k-c0x00ffffff-no-rj-mo'
     )
 
     lsp(
