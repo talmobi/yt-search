@@ -355,8 +355,8 @@ test( 'playlist metadata by id', function ( t ) {
       t.equal( playlist.videos[ 0 ].duration.seconds, 60 * 4 + 13, 'play list video 1 duration.seconds ok' )
       t.equal( playlist.videos[ 0 ].duration.timestamp, '4:13', 'play list video 1 duration.timestamp ok' )
 
-      t.equal( playlist.videos[ 4 ].duration.seconds, 60 * 6 + 45, 'play list video 2 duration.seconds ok' )
-      t.equal( playlist.videos[ 4 ].duration.timestamp, '6:45', 'play list video 2 duration.timestamp ok' )
+      t.equal( playlist.videos[ 4 ].duration.seconds, 60 * 3 + 7, 'play list video 2 duration.seconds ok' )
+      t.equal( playlist.videos[ 4 ].duration.timestamp, '3:07', 'play list video 2 duration.timestamp ok' )
 
       t.equal( playlist.image, 'https://i.ytimg.com/vi/e9vrfEoc8_g/hqdefault.jpg', 'playlist image' )
       t.equal( playlist.image, playlist.thumbnail, 'common alternative' )
