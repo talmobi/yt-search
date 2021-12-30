@@ -37,7 +37,7 @@
     "async.parallellimit": "~0.5.2",
     "boolstring": "~1.0.2",
     "cheerio": "^1.0.0-rc.10",
-    "dasu": "~0.4.2",
+    "dasu": "~0.4.3",
     "human-time": "0.0.2",
     "jsonpath-plus": "~5.0.2",
     "minimist": "~1.2.5",
