@@ -677,7 +677,10 @@ test( 'search "王菲 Faye Wong"', function ( t ) {
 
     t.ok( topChannel, 'topChannel OK' )
     t.equal( topChannel.name, 'Faye Wong Official Channel', 'channel name' )
-    t.equal( topChannel.url, 'https://youtube.com/channel/UCos8gkwQivJ_hHeoCcs6yXg', 'channel url' )
+    t.ok(
+      topChannel.url === 'https://youtube.com/channel/UCos8gkwQivJ_hHeoCcs6yXg' ||
+      topChannel.url === 'https://youtube.com/@fayewongofficialchannel560' ||
+     , 'channel url' )
 
     t.ok( topChannel.videoCount >= 20, 'video count' )
 
