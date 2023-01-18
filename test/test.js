@@ -273,11 +273,12 @@ test( 'video metadata by id', function ( t ) {
     // Sun Jan 31 13:33:55 EET 2021 it's inconsistent which url youtube servers
     // give, could be either at the moment, they're maybe slowly deprecating
     // user/xxx urls
-    const urlOK = (
-      video.author.url === 'https://youtube.com/user/Redmario2569' ||
-      video.author.url === 'https://youtube.com/channel/UCARqIOgzDc-UUAREIitbBwA'
-    )
-    t.equal( urlOK, true, 'author url' )
+    // const urlOK = (
+    //   video.author.url === 'https://youtube.com/user/Redmario2569' ||
+    //   video.author.url === 'https://youtube.com/channel/UCARqIOgzDc-UUAREIitbBwA' ||
+    //   video.author.url === 'https://www.youtube.com/@Redmario2569'
+    // )
+    t.equal( video.author.url, 'https://youtube.com/@Redmario2569', 'author url' )
 
     t.equal( video.image, 'https://i.ytimg.com/vi/e9vrfEoc8_g/hqdefault.jpg', 'image' )
     t.equal( video.image, video.thumbnail, 'common alternative' )
@@ -315,7 +316,7 @@ test( 'video metadata by id _JzeIf1zT14', function ( t ) {
     t.equal( video.uploadDate, '2018-10-12', 'uploadDate' )
 
     // t.equal( video.author.id, 'UCF7YjO3SzVUGJYcXipRY0zQ', 'author id' )
-    t.equal( video.author.url, 'https://youtube.com/channel/UCF7YjO3SzVUGJYcXipRY0zQ', 'author url' )
+    t.equal( video.author.url, 'https://youtube.com/@DesazMusicYt', 'author url' )
 
     t.equal( video.image, 'https://i.ytimg.com/vi/_JzeIf1zT14/hqdefault.jpg', 'image' )
     t.equal( video.image, video.thumbnail, 'common alternative' )
@@ -333,8 +334,8 @@ test( 'playlist metadata by id', function ( t ) {
 
     t.equal( playlist.url, 'https://youtube.com/playlist?list=PL7k0JFoxwvTbKL8kjGI_CaV31QxCGf1vJ', 'playlist url' )
 
-    t.equal( playlist.size, 9, 'total videos equal or over 9 (as of 2021-04-17)' )
-    t.ok( playlist.videos.length >= 5, 'visible videos equal or over 5 (as of 2021-04-17)' )
+    t.equal( playlist.size, 8, 'total videos equal to (as of 2023-01-13)' )
+    t.ok( playlist.videos.length >= 5, 'visible videos equal or over 5 (as of 2023-01-13)' )
     t.ok( playlist.views > 300, 'views over 300 (as of 2020-01-08)' )
 
     const alerts = playlist.alertInfo.split( ' ' )
@@ -386,11 +387,12 @@ test( 'playlist metadata by id', function ( t ) {
 
     // t.equal( playlist.date, '2018-6-25' , 'date' )
     // Sun Jan 31 13:50:55 EET 2021 updated
-    t.equal( playlist.date, '2021-1-23' , 'date' )
+    t.equal( playlist.date, '2022-12-15' , 'date' )
 
     t.equal( playlist.author.name, 'Cave Spider10', 'author name' )
     // t.equal( playlist.author.channelId, 'UCdwR7fIE2xyXlNRc7fb9tJg', 'author channelId' )
-    t.equal( playlist.author.url, 'https://youtube.com/channel/UCdwR7fIE2xyXlNRc7fb9tJg', 'author url' )
+    // t.equal( playlist.author.url, 'https://youtube.com/channel/UCdwR7fIE2xyXlNRc7fb9tJg', 'author url' )
+    t.equal( playlist.author.url, 'https://youtube.com/@cavespider1074', 'author url' )
   } )
 } )
 
@@ -495,7 +497,7 @@ test( 'playlist metadata by id with 100+ items', function ( t ) {
 
     t.equal( playlist.author.name, 'ThePhipppy', 'author name' )
     // t.equal( playlist.author.channelId, 'UCdwR7fIE2xyXlNRc7fb9tJg', 'author channelId' )
-    t.equal( playlist.author.url, 'https://youtube.com/user/ThePhipppy', 'author url' )
+    t.equal( playlist.author.url, 'https://youtube.com/@ThePhipppy', 'author url' )
 
     t.equal( playlist.image, 'https://i.ytimg.com/vi/dJ-QLl5qjLg/hqdefault.jpg', 'playlist image' )
     t.equal( playlist.image, playlist.thumbnail, 'common alternative' )
@@ -615,7 +617,7 @@ test( 'search results: channel', function ( t ) {
 
     t.ok( topChannel, 'topChannel OK' )
     t.equal( topChannel.name, 'PewDiePie', 'channel name' )
-    t.equal( topChannel.url, 'https://youtube.com/user/PewDiePie', 'channel url' )
+    t.equal( topChannel.url, 'https://youtube.com/@PewDiePie', 'channel url' )
     console.log( 'pewdiepie channel image url: ' + topChannel.image )
 
     t.ok( topChannel.videoCount > 4000, 'video count more than' )
@@ -677,10 +679,7 @@ test( 'search "王菲 Faye Wong"', function ( t ) {
 
     t.ok( topChannel, 'topChannel OK' )
     t.equal( topChannel.name, 'Faye Wong Official Channel', 'channel name' )
-    t.ok(
-      topChannel.url === 'https://youtube.com/channel/UCos8gkwQivJ_hHeoCcs6yXg' ||
-      topChannel.url === 'https://youtube.com/@fayewongofficialchannel560' ||
-     , 'channel url' )
+    t.equal( topChannel.url, 'https://youtube.com/@fayewongofficialchannel560', 'channel url' )
 
     t.ok( topChannel.videoCount >= 20, 'video count' )
 
