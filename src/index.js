@@ -705,18 +705,29 @@ function _parseSearchResultInitialData ( responseText, callback )
               _jp.value( item, '$..displayName..simpleText' )
             )
 
-            const video_count_label = (
-              _jp.value( item, '$..videoCountText..text' ) ||
-              _jp.value( item, '$..videoCountText..simpleText' ) || '0'
+            let video_count_label = (
+              _jp.value( item, '$..videoCountText..simpleText' ) ||
+              _jp.value( item, '$..videoCountText..label' ) ||
+              _jp.value( item, '$..videoCountText..text' ) || '0'
             )
 
             let sub_count_label = (
-              _jp.value( item, '$..subscriberCountText..text' ) ||
-              _jp.value( item, '$..subscriberCountText..simpleText' )
+              _jp.value( item, '$..subscriberCountText..simpleText' ) ||
+              _jp.value( item, '$..subscriberCountText..text' ) || '0'
             )
 
             // first space separated word that has digits
             if ( typeof sub_count_label === 'string' ) {
+              // handle case where subscriberCountText actually has new
+              // @handle name and videoCountText has sub count
+              // ref: https://github.com/talmobi/yt-search/issues/71
+              if (sub_count_label.indexOf('subscribe') < 1) {
+                if (video_count_label.indexOf('subscribe') > 0) {
+                  sub_count_label = video_count_label
+                  video_count_label = '-1'
+                }
+              }
+
               sub_count_label = (
                 sub_count_label.split( /\s+/ )
                 .filter( function ( w ) { return w.match( /\d/ ) } )
@@ -742,7 +753,7 @@ function _parseSearchResultInitialData ( responseText, callback )
               image: thumbnail,
               thumbnail: thumbnail,
 
-              videoCount: Number( video_count_label.replace( /\D+/g, '' ) ),
+              videoCount: Number( _parseNumbers( video_count_label )[0] ),
               videoCountLabel: video_count_label,
 
               subCount: _parseSubCountLabel( sub_count_label ),
@@ -1408,6 +1419,40 @@ function _parseSubCountLabel ( subCountLabel )
   return num
 }
 
+/* Helper fn to parse first number from a label.
+ *
+ * ex. "312 videos" -> [312]
+ * ex. "312 videos -10k dollars" -> [312, -10000]
+ */
+function _parseNumbers ( label )
+{
+  if ( !label ) return []
+
+  const nums = (
+    label.split( /\s+/ )
+    .filter( function ( w ) { return w.match( /\d/ ) } )
+    .map( function ( l ) { return l.toLowerCase() } )
+  )
+
+  const results = []
+
+  nums.forEach( function ( n ) {
+    const m = n.match( /[-]?\d+(\.\d+)?/ )
+    if ( m && m[ 0 ] ) {} else { return }
+    let num = Number( m[ 0 ] )
+
+    const THOUSAND = 1000
+    const MILLION = THOUSAND * THOUSAND
+
+    if ( n.indexOf( 'm' ) >= 0 ) num = MILLION * num
+    if ( n.indexOf( 'k' ) >= 0 ) num = THOUSAND * num
+
+    results.push(num)
+  } )
+
+  return results
+}
+
 /* Helper fn to choose a good thumbnail.
  */
 function _normalizeThumbnail ( thumbnails )
@@ -1483,7 +1528,8 @@ function _parseVideoMeataDataTitle( idata ) {
 // run tests is script is run directly
 if ( require.main === module ) {
   // https://www.youtube.com/watch?v=e9vrfEoc8_g
-  test( 'superman theme list pewdiepie channel' )
+  // test( 'superman theme list pewdiepie channel' )
+  test( '王菲 Faye Wong' )
 }
 
 function test ( query )
@@ -1502,10 +1548,18 @@ function test ( query )
     const playlists = r.playlists
     const channels = r.channels
 
+    const topChannel = channels[ 0 ]
+
     console.log( 'videos: ' + videos.length )
     console.log( 'playlists: ' + playlists.length )
     console.log( 'channels: ' + channels.length )
 
+    console.log( 'topChannel name: ' + topChannel.name )
+    console.log( 'topChannel.videoCount: ' + topChannel.videoCount )
+    console.log( 'topChannel.subCount: ' + topChannel.subCount )
+    console.log( 'topChannel.subCountLabel: ' + topChannel.subCountLabel )
+
+    /*
     for ( let i = 0; i < videos.length; i++ ) {
       const song = videos[ i ]
       const time = ` (${ song.timestamp })`
@@ -1519,5 +1573,6 @@ function test ( query )
     channels.forEach( function ( c ) {
       console.log( `channel: ${ c.title } | ${ c.description }` )
     } )
+    */
   } )
 }
