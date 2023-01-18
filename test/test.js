@@ -607,7 +607,7 @@ test( 'search results richGridRenderer: playlist', function ( t ) {
 } )
 
 test( 'search results: channel', function ( t ) {
-  t.plan( 7 )
+  t.plan( 6 )
 
   yts( 'PewDiePie', function ( err, r ) {
     t.error( err, 'no errors OK!' )
@@ -620,8 +620,7 @@ test( 'search results: channel', function ( t ) {
     t.equal( topChannel.url, 'https://youtube.com/@PewDiePie', 'channel url' )
     console.log( 'pewdiepie channel image url: ' + topChannel.image )
 
-    t.ok( topChannel.videoCount > 4000, 'video count more than' )
-    t.ok( topChannel.videoCount < 10000, 'video count less than' )
+    t.ok( topChannel.videoCount === -1, 'video count unavailable' )
 
     const channelImageUrl = (
       'https://yt3.ggpht.com/5oUY3tashyxfqsjO5SGhjT4dus8FkN9CsAHwXWISFrdPYii1FudD4ICtLfuCw6-THJsJbgoY=s88-c-k-c0x00ffffff-no-rj-mo'
@@ -681,7 +680,7 @@ test( 'search "王菲 Faye Wong"', function ( t ) {
     t.equal( topChannel.name, 'Faye Wong Official Channel', 'channel name' )
     t.equal( topChannel.url, 'https://youtube.com/@fayewongofficialchannel560', 'channel url' )
 
-    t.ok( topChannel.videoCount >= 20, 'video count' )
+    t.ok( topChannel.videoCount === -1, 'video count unavailable' )
 
     const channelImageUrl = (
       'https://yt3.ggpht.com/a/AATXAJxg1ZCD6conNklSAF7wwtwlx5q4FlO7EpNRi_nSpw=s88-c-k-c0x00ffffff-no-rj-mo'
