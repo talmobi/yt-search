@@ -442,7 +442,7 @@ function _parseSearchResultInitialData ( responseText, callback )
 {
   const re = /{.*}/
   const $ = _cheerio.load( responseText )
-
+  
   let initialData = $( 'div#initial-data' ).html() || ''
   initialData = re.exec( initialData ) || ''
 
@@ -465,7 +465,7 @@ function _parseSearchResultInitialData ( responseText, callback )
       } )
     }
   }
-
+ 
   if ( !initialData ) {
     return callback( 'could not find inital data in the html document' )
   }
@@ -474,16 +474,14 @@ function _parseSearchResultInitialData ( responseText, callback )
   const results = []
 
   const json = JSON.parse( initialData[ 0 ] )
-
   let items = _jp.query( json, '$..itemSectionRenderer..contents.*' )
 
   // support newer richGridRenderer html structure
   _jp.query( json, '$..primaryContents..contents.*' ).forEach( function ( item ) {
     items.push( item )
-  } )
+  })
 
   debug( 'items.length: ' + items.length )
-
   for ( let i = 0; i < items.length; i++ ) {
     const item = items[ i ]
 
@@ -606,7 +604,7 @@ function _parseSearchResultInitialData ( responseText, callback )
 
               title: title.trim(),
               description: description,
-
+              
               image: thumbnail,
               thumbnail: thumbnail,
 
@@ -698,6 +696,10 @@ function _parseSearchResultInitialData ( responseText, callback )
               _jp.value( item, '$..displayName..text' )
             )
 
+            const id = (
+              _jp.value(item, '$..channelId')
+            )
+
             const author_name = (
               _jp.value( item, '$..shortBylineText..text' ) ||
               _jp.value( item, '$..longBylineText..text' ) ||
@@ -705,10 +707,18 @@ function _parseSearchResultInitialData ( responseText, callback )
               _jp.value( item, '$..displayName..simpleText' )
             )
 
+            let about_channel = (
+              _jp.value(item, '$..descriptionSnippet..text') || ''
+            )
+
             let video_count_label = (
               _jp.value( item, '$..videoCountText..simpleText' ) ||
               _jp.value( item, '$..videoCountText..label' ) ||
               _jp.value( item, '$..videoCountText..text' ) || '0'
+            )
+
+            let verified = (
+              _jp.value(item, '$..ownerBadges..style') == 'BADGE_STYLE_TYPE_VERIFIED' ? true : false
             )
 
             let sub_count_label = (
@@ -747,8 +757,11 @@ function _parseSearchResultInitialData ( responseText, callback )
 
               name: author_name,
               url: TEMPLATES.YT + url,
+              id: id,
 
               title: title.trim(),
+              handler: url.substring(1),
+              about_channel: about_channel,
 
               image: thumbnail,
               thumbnail: thumbnail,
@@ -756,6 +769,7 @@ function _parseSearchResultInitialData ( responseText, callback )
               videoCount: Number( _parseNumbers( video_count_label )[0] ),
               videoCountLabel: video_count_label,
 
+              verified: verified,
               subCount: _parseSubCountLabel( sub_count_label ),
               subCountLabel: sub_count_label
             }
