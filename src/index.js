@@ -57,7 +57,7 @@ Object.keys( process.env ).forEach(
     if ( n == '0' || n == 'false' || !n ) {
       return _envs[ key ] = false
     }
-    _envs[ key ] = n
+    _envs[ key.toLowerCase() ] = n
   }
 )
 
@@ -65,6 +65,7 @@ const _debugging = _envs.debug
 
 function debug () {
   if ( !_debugging ) return
+  console.log('DEBUGGING')
   console.log.apply( this, arguments )
 }
 
@@ -1568,11 +1569,11 @@ function test ( query )
     console.log( 'playlists: ' + playlists.length )
     console.log( 'channels: ' + channels.length )
 
-    console.log( 'topChannel name: ' + topChannel.name )
-    console.log( 'topChannel handler: ' + topChannel.handler )
-    console.log( 'topChannel id: ' + topChannel.id )
-    console.log( 'topChannel about: ' + topChannel.about_channel )
-    console.log( 'topChannel isVerified: ' + topChannel.verified )
+    console.log( 'topChannel.name: ' + topChannel.name )
+    console.log( 'topChannel.baseUrl: ' + topChannel.baseUrl )
+    console.log( 'topChannel.id: ' + topChannel.id )
+    console.log( 'topChannel.about: ' + topChannel.about )
+    console.log( 'topChannel.verified: ' + topChannel.verified )
     console.log( 'topChannel.videoCount: ' + topChannel.videoCount )
     console.log( 'topChannel.subCount: ' + topChannel.subCount )
     console.log( 'topChannel.subCountLabel: ' + topChannel.subCountLabel )
