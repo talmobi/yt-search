@@ -139,3 +139,20 @@ yts( opts, function ( err, playlist ) {
 ```
 npm test
 ```
+
+## Development / Debugging
+Modify `debug.js` by adding another mXX function and calling it at the top.
+
+Run with the debug flag ex: `DEBUG=1 node debug.js`
+
+The HTML response received by yt-search is written to `dasu.response`.
+
+Prettify `dasu.response` for easier debugging ex: `prettier --parser html`
+-- save it as a temporary file so it's not overwritten when you call the
+debug fn again if necessary ex: `pewdiepie.channel` or `superman.results`
+
+Most/all relevant data for parsing is found in the results inside the
+`ytInitialData` object.
+
+We're using `jsonpath-plus` for resilient parsing of the `ytInitialData`
+object that is subject to continuous modifications by YouTube.

@@ -57,7 +57,7 @@ Object.keys( process.env ).forEach(
     if ( n == '0' || n == 'false' || !n ) {
       return _envs[ key ] = false
     }
-    _envs[ key ] = n
+    _envs[ key.toLowerCase() ] = n
   }
 )
 
@@ -65,6 +65,7 @@ const _debugging = _envs.debug
 
 function debug () {
   if ( !_debugging ) return
+  console.log('DEBUGGING')
   console.log.apply( this, arguments )
 }
 
@@ -474,16 +475,14 @@ function _parseSearchResultInitialData ( responseText, callback )
   const results = []
 
   const json = JSON.parse( initialData[ 0 ] )
-
   let items = _jp.query( json, '$..itemSectionRenderer..contents.*' )
 
   // support newer richGridRenderer html structure
   _jp.query( json, '$..primaryContents..contents.*' ).forEach( function ( item ) {
     items.push( item )
-  } )
+  })
 
   debug( 'items.length: ' + items.length )
-
   for ( let i = 0; i < items.length; i++ ) {
     const item = items[ i ]
 
@@ -698,6 +697,10 @@ function _parseSearchResultInitialData ( responseText, callback )
               _jp.value( item, '$..displayName..text' )
             )
 
+            const channelId = (
+              _jp.value(item, '$..channelRenderer..channelId') || ''
+            )
+
             const author_name = (
               _jp.value( item, '$..shortBylineText..text' ) ||
               _jp.value( item, '$..longBylineText..text' ) ||
@@ -705,10 +708,24 @@ function _parseSearchResultInitialData ( responseText, callback )
               _jp.value( item, '$..displayName..simpleText' )
             )
 
+            let about_channel = (
+              ( _jp.query( item, '$..channelRenderer..descriptionSnippet..text' ) ).join( '' ) || ''
+            )
+
             let video_count_label = (
               _jp.value( item, '$..videoCountText..simpleText' ) ||
               _jp.value( item, '$..videoCountText..label' ) ||
               _jp.value( item, '$..videoCountText..text' ) || '0'
+            )
+
+            let channel_verified_label = (
+              _jp.value(item, '$..channelRenderer..ownerBadges..style') ||
+              _jp.value(item, '$..channelRenderer..ownerBadges..tooltip') ||
+              _jp.value(item, '$..channelRenderer..ownerBadges..label') || ''
+            )
+            const channel_verified = (
+              // has "verified" or "_verified" text in it
+              channel_verified_label.toLowerCase().trim().search(/[\s_]?verified/) >= 0
             )
 
             let sub_count_label = (
@@ -734,11 +751,11 @@ function _parseSearchResultInitialData ( responseText, callback )
               )[ 0 ]
             }
 
-
-            // url ( playlist )
-            // const url = _jp.value( item, '$..navigationEndpoint..url' )
-            const url = (
+            // base url
+            const base_url = (
               _jp.value( item, '$..navigationEndpoint..url' ) ||
+              _jp.value( item, '$..browseEndpoint..canonicalBaseUrl' ) ||
+              _jp.value( item, '$..browseEndpoint..url' ) ||
               '/user/' + title
             )
 
@@ -746,9 +763,13 @@ function _parseSearchResultInitialData ( responseText, callback )
               type: 'channel',
 
               name: author_name,
-              url: TEMPLATES.YT + url,
+              url: TEMPLATES.YT + base_url,
+
+              baseUrl: base_url,
+              id: channelId,
 
               title: title.trim(),
+              about: about_channel,
 
               image: thumbnail,
               thumbnail: thumbnail,
@@ -756,6 +777,7 @@ function _parseSearchResultInitialData ( responseText, callback )
               videoCount: Number( _parseNumbers( video_count_label )[0] ),
               videoCountLabel: video_count_label,
 
+              verified: channel_verified,
               subCount: _parseSubCountLabel( sub_count_label ),
               subCountLabel: sub_count_label
             }
@@ -1554,7 +1576,11 @@ function test ( query )
     console.log( 'playlists: ' + playlists.length )
     console.log( 'channels: ' + channels.length )
 
-    console.log( 'topChannel name: ' + topChannel.name )
+    console.log( 'topChannel.name: ' + topChannel.name )
+    console.log( 'topChannel.baseUrl: ' + topChannel.baseUrl )
+    console.log( 'topChannel.id: ' + topChannel.id )
+    console.log( 'topChannel.about: ' + topChannel.about )
+    console.log( 'topChannel.verified: ' + topChannel.verified )
     console.log( 'topChannel.videoCount: ' + topChannel.videoCount )
     console.log( 'topChannel.subCount: ' + topChannel.subCount )
     console.log( 'topChannel.subCountLabel: ' + topChannel.subCountLabel )

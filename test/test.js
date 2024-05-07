@@ -637,6 +637,40 @@ test( 'search results: channel', function ( t ) {
   } )
 } )
 
+test( 'search results: channel updates (baseUrl,id,about,verified) | PR77 @TOXIC-DEVIL', function ( t ) {
+  // https://github.com/talmobi/yt-search/pull/77
+  t.plan( 6 + 6 )
+
+  yts( '王菲 Faye Wong', function ( err, r ) {
+    t.error( err, 'no errors OK!' )
+
+    const channels = r.channels
+    const topChannel = channels[ 0 ]
+
+    t.equal( topChannel.name, 'Faye Wong Official Channel', 'channel name' )
+    t.equal( topChannel.baseUrl, '/@fayewongofficialchannel560', 'faye baseUrl OK')
+    t.equal( topChannel.id, 'UCos8gkwQivJ_hHeoCcs6yXg', 'faye channel id OK')
+    t.equal( topChannel.about, 'Faye Wong Official Channel.', 'faye about section OK')
+    t.equal( topChannel.verified, true, 'verified true OK')
+
+    // wait to avoid throttling
+    setTimeout(function () {
+      yts( 'irregular pineapples', function ( err, r ) {
+        t.error( err, 'no errors OK!' )
+
+        const channels = r.channels
+        const topChannel = channels[ 0 ]
+
+        t.equal( topChannel.name, 'Irregular Pineapples', 'channel name' )
+        t.equal( topChannel.baseUrl, '/@IrregularPineapples', 'irreg pine baseUrl OK')
+        t.equal( topChannel.id, 'UC9QpW9rzIx2nk0yBrnPQvoA', 'irreg pine channel id OK')
+        t.equal( topChannel.about, '', 'irreg pine about section OK')
+        t.equal( topChannel.verified, false, 'verified false OK')
+      } )
+    }, 5000)
+  } )
+} )
+
 test( 'search results: channel sub count', function ( t ) {
   t.plan( 5 )
 

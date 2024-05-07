@@ -1,7 +1,28 @@
 const yts = require( './src/index.js' )
 
 // console.log( yts.search )
-m12()
+m13()
+
+async function m13 () {
+  const r = await yts("王菲 Faye Wong");
+  // const r = await yts("irregular pineapples");
+  // const r = await yts("pewdiepie");
+  const channels = r.channels
+
+  const topChannel = channels[ 0 ]
+
+  console.log( 'topChannel.name: ' + topChannel.name )
+  console.log( 'topChannel url: ' + topChannel.url )
+  console.log('----')
+  console.log( 'topChannel.baseUrl: ' + topChannel.baseUrl )
+  console.log( 'topChannel.id: ' + topChannel.id )
+  console.log( 'topChannel.about: ' + topChannel.about )
+  console.log( 'topChannel.verified: ' + topChannel.verified )
+  console.log('----')
+  console.log( 'topChannel.videoCount: ' + topChannel.videoCount )
+  console.log( 'topChannel.subCount: ' + topChannel.subCount )
+  console.log( 'topChannel.subCountLabel: ' + topChannel.subCountLabel )
+}
 
 async function m12 () {
   const video = await yts({ videoId: '62ezXENOuIA' });
