@@ -443,7 +443,7 @@ function _parseSearchResultInitialData ( responseText, callback )
 {
   const re = /{.*}/
   const $ = _cheerio.load( responseText )
-  
+
   let initialData = $( 'div#initial-data' ).html() || ''
   initialData = re.exec( initialData ) || ''
 
@@ -466,7 +466,7 @@ function _parseSearchResultInitialData ( responseText, callback )
       } )
     }
   }
- 
+
   if ( !initialData ) {
     return callback( 'could not find inital data in the html document' )
   }
@@ -605,7 +605,7 @@ function _parseSearchResultInitialData ( responseText, callback )
 
               title: title.trim(),
               description: description,
-              
+
               image: thumbnail,
               thumbnail: thumbnail,
 
@@ -697,8 +697,8 @@ function _parseSearchResultInitialData ( responseText, callback )
               _jp.value( item, '$..displayName..text' )
             )
 
-            const id = (
-              _jp.value(item, '$..channelId')
+            const channelId = (
+              _jp.value(item, '$..channelRenderer..channelId') || ''
             )
 
             const author_name = (
@@ -709,7 +709,7 @@ function _parseSearchResultInitialData ( responseText, callback )
             )
 
             let about_channel = (
-              _jp.value(item, '$..descriptionSnippet..text') || ''
+              ( _jp.query( item, '$..channelRenderer..descriptionSnippet..text' ) ).join( '' ) || ''
             )
 
             let video_count_label = (
@@ -718,8 +718,14 @@ function _parseSearchResultInitialData ( responseText, callback )
               _jp.value( item, '$..videoCountText..text' ) || '0'
             )
 
-            let verified = (
-              _jp.value(item, '$..ownerBadges..style') == 'BADGE_STYLE_TYPE_VERIFIED' ? true : false
+            let channel_verified_label = (
+              _jp.value(item, '$..channelRenderer..ownerBadges..style') ||
+              _jp.value(item, '$..channelRenderer..ownerBadges..tooltip') ||
+              _jp.value(item, '$..channelRenderer..ownerBadges..label') || ''
+            )
+            const channel_verified = (
+              // has "verified" or "_verified" text in it
+              channel_verified_label.toLowerCase().trim().search(/[\s_]?verified/) >= 0
             )
 
             let sub_count_label = (
@@ -745,11 +751,11 @@ function _parseSearchResultInitialData ( responseText, callback )
               )[ 0 ]
             }
 
-
-            // url ( playlist )
-            // const url = _jp.value( item, '$..navigationEndpoint..url' )
-            const url = (
+            // base url
+            const base_url = (
               _jp.value( item, '$..navigationEndpoint..url' ) ||
+              _jp.value( item, '$..browseEndpoint..canonicalBaseUrl' ) ||
+              _jp.value( item, '$..browseEndpoint..url' ) ||
               '/user/' + title
             )
 
@@ -757,12 +763,13 @@ function _parseSearchResultInitialData ( responseText, callback )
               type: 'channel',
 
               name: author_name,
-              url: TEMPLATES.YT + url,
-              id: id,
+              url: TEMPLATES.YT + base_url,
+
+              baseUrl: base_url,
+              id: channelId,
 
               title: title.trim(),
-              handler: url.substring(1),
-              about_channel: about_channel,
+              about: about_channel,
 
               image: thumbnail,
               thumbnail: thumbnail,
@@ -770,7 +777,7 @@ function _parseSearchResultInitialData ( responseText, callback )
               videoCount: Number( _parseNumbers( video_count_label )[0] ),
               videoCountLabel: video_count_label,
 
-              verified: verified,
+              verified: channel_verified,
               subCount: _parseSubCountLabel( sub_count_label ),
               subCountLabel: sub_count_label
             }
