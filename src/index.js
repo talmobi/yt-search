@@ -1342,7 +1342,7 @@ function _parseDuration ( timestampText )
   }
 
   // remove trailing junk that are not digits
-  while ( timestamp[ timestamp.length - 1 ].match( /\D/ ) ) {
+  while ( timestamp[ timestamp.length - 1 ]?.match( /\D/ ) ) {
     timestamp = timestamp.slice( 0, -1 )
   }
 
