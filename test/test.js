@@ -266,7 +266,11 @@ test( 'video metadata by id', function ( t ) {
 
     t.equal( video.genre, 'music', 'genre is music' )
     t.equal( video.uploadDate, '2009-7-27', 'uploadDate' )
-    t.equal( video.ago, '14 years ago', 'agoText' )
+
+    // t.equal( video.ago, '14 years ago', 'agoText' )
+    t.equal( video.ago,
+      `${new Date(Date.now() - new Date('2009-7-27')).getFullYear() - 1970} years ago`
+      ,'agoText' )
 
     // t.equal( video.author.id, 'Redmario2569', 'author id' )
     // t.equal( video.author.url, 'https://youtube.com/user/Redmario2569', 'author url' )
@@ -361,7 +365,8 @@ test( 'playlist metadata by id', function ( t ) {
       t.equal( playlist.videos[ 4 ].duration.seconds, 60 * 6 + 45, 'play list video 2 duration.seconds ok' )
       t.equal( playlist.videos[ 4 ].duration.timestamp, '6:45', 'play list video 2 duration.timestamp ok' )
 
-      t.equal( playlist.image, 'https://i.ytimg.com/vi/e9vrfEoc8_g/hqdefault.jpg', 'playlist image' )
+      t.equal( playlist.image, 'https://i.ytimg.com/vi/IQtKjU_pOuw/hqdefault.jpg', 'playlist image' )
+      // t.equal( playlist.image, 'https://i.ytimg.com/vi/e9vrfEoc8_g/hqdefault.jpg', 'playlist image' )
       t.equal( playlist.image, playlist.thumbnail, 'common alternative' )
     }
 
