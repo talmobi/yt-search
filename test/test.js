@@ -245,6 +245,7 @@ test( 'search by video id', function ( t ) {
   } )
 } )
 
+// TODO test failing on gha
 test( 'video metadata by id', function ( t ) {
   t.plan( 14 )
 
@@ -257,13 +258,19 @@ test( 'video metadata by id', function ( t ) {
     t.equal( video.videoId, 'e9vrfEoc8_g', 'videoId' )
     t.equal( video.url, 'https://youtube.com/watch?v=e9vrfEoc8_g' )
 
+    // TODO timestamp failed as: ''
     t.equal( video.timestamp, '4:13', 'timestamp' )
+
+    // TODO seconds failed as: 0
     t.equal( video.seconds, 253, 'seconds (duration)' )
 
+    // TODO description failed as: ''
     t.equal( video.description, 'The theme song from Superman: The Movie', 'description' )
 
+    // TODO views failed as: false
     t.ok( video.views > ( 35 * MILLION ), 'views over 35 Million' )
 
+    // TODO genre failed as: ''
     t.equal( video.genre, 'music', 'genre is music' )
     t.equal( video.uploadDate, '2009-7-27', 'uploadDate' )
 
