@@ -988,6 +988,7 @@ function _parseVideoInitialData ( responseText, callback )
   const title = _parseVideoMeataDataTitle( idata )
 
   const description = (
+    ( _jp.query( item, '$..detailedMetadataSnippets..snippetText..text' ) ).join( '' ) ||
     ( _jp.query( idata, '$..description..text' ) ).join( '' ) ||
     ( _jp.query( ipdata, '$..description..simpleText' ) ).join( '' ) ||
     ( _jp.query( ipdata, '$..microformat..description..simpleText' ) ).join( '' ) ||
