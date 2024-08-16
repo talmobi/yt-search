@@ -22,6 +22,8 @@ jobs:
     - name: gabrielbb/xvfb-action
       uses: GabrielBB/xvfb-action@v1.0
       with:
-        run: npm test
+        run: debug=1 npm test
+    - name: Setup tmate session
+      uses: mxschmitt/action-tmate@v3
       env:
         CI: true

@@ -246,7 +246,7 @@ test( 'search by video id', function ( t ) {
 } )
 
 // TODO test failing on gha
-test( 'video metadata by id', function ( t ) {
+test.only( 'video metadata by id', function ( t ) {
   t.plan( 14 )
 
   yts( { videoId: 'e9vrfEoc8_g' }, function ( err, video ) {
@@ -304,6 +304,7 @@ test( 'video metadata by faulty/non-existing id', function ( t ) {
   } )
 } )
 
+// TODO test failing on gha
 test( 'video metadata by id _JzeIf1zT14', function ( t ) {
   t.plan( 13 )
 
