@@ -1036,6 +1036,13 @@ function _parseVideoInitialData ( responseText, callback )
 
   const agoText = uploadDate && _humanTime( new Date( uploadDate ) ) || ''
 
+  const viewCountText = (
+    _jp.value( item, '$..viewCountText..text' ) ||
+    _jp.value( item, '$..viewCountText..simpleText' ) || "0"
+  )
+
+  const viewsCount = Number( viewCountText.split( /\s+/ )[ 0 ].split( /[,.]/ ).join( '' ).trim() )
+
   const video = {
     title: title,
     description: description,
@@ -1047,9 +1054,7 @@ function _parseVideoInitialData ( responseText, callback )
     timestamp: duration.timestamp,
     duration: duration,
 
-    views: Number(
-      _jp.value( ipdata, '$..videoDetails..viewCount' )
-    ),
+    views: Number( viewsCount ),
 
     genre: ( _jp.value( ipdata, '$..category' ) || '' ).toLowerCase(),
 
