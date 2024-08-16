@@ -1006,13 +1006,14 @@ function _parseVideoInitialData ( responseText, callback )
 
   const thumbnailUrl = 'https://i.ytimg.com/vi/' + videoId + '/hqdefault.jpg'
 
-  const seconds = Number(
-    _jp.value( ipdata, '$..videoDetails..lengthSeconds' )
+  const duration = (
+    _parseDuration(
+      _jp.value( json, '$..lengthText..simpleText' ) ||
+      _jp.value( json, '$..thumbnailOverlayTimeStatusRenderer..simpleText' ) ||
+      ( _jp.query( json, '$..lengthText..text' ) ).join( '' ) ||
+      ( _jp.query( json, '$..thumbnailOverlayTimeStatusRenderer..text' ) ).join( '' )
+    )
   )
-
-  const timestamp = _msToTimestamp( seconds * 1000 )
-
-  const duration = _parseDuration( timestamp )
 
   // TODO some video's have likes/dislike ratio hidden (ex: 62ezXENOuIA)
   // which makes this value undefined
