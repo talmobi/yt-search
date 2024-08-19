@@ -136,7 +136,7 @@ function search ( query, callback )
 
   function callback_with_retry ( err, data ) {
     if ( err ) {
-      if ( _options._attempts > MAX_RETRY_ATTEMPTS ) {
+      if ( _options._attempts > ( _options.MAX_RETRY_ATTEMPTS || MAX_RETRY_ATTEMPTS ) ) {
         return callback( err, data )
       } else {
         // retry
@@ -145,7 +145,7 @@ function search ( query, callback )
         debug( ' === ' )
 
         const n = _options._attempts
-        const wait_ms = Math.pow( 2, n - 1 ) * RETRY_INTERVAL
+        const wait_ms = Math.pow( 2, n - 1 ) * (_options.RETRY_INTERVAL || RETRY_INTERVAL)
 
         setTimeout( function () {
           search( retryOptions, callback )
@@ -985,9 +985,10 @@ function _parseVideoInitialData ( responseText, callback )
     return callback( 'video unavailable' )
   }
 
-  const title = _parseVideoMeataDataTitle( idata )
+  const title = _parseVideoMetaDataTitle( idata )
 
   const description = (
+    ( _jp.query( idata, '$..detailedMetadataSnippets..snippetText..text' ) ).join( '' ) ||
     ( _jp.query( idata, '$..description..text' ) ).join( '' ) ||
     ( _jp.query( ipdata, '$..description..simpleText' ) ).join( '' ) ||
     ( _jp.query( ipdata, '$..microformat..description..simpleText' ) ).join( '' ) ||
@@ -1063,7 +1064,37 @@ function _parseVideoInitialData ( responseText, callback )
     }
   }
 
-  callback( null, video )
+  // some vital information like video duration and video views are no
+  // longer available in the ytInitialData from a direct video link -- but
+  // they are still available from youtube results -- we will try to fill
+  // in these missing information using a hack to search based on the video
+  // id of the video and finding the same id in the video results --
+  // genre/category information seems to be lost completely
+  if (!video.description || !video.timestamp || !video.seconds || !video.views) {
+    setTimeout(function () {
+      search( {
+        query: `${video.videoId}`,
+        options: {
+          RETRY_INTERVAL: 1000
+        },
+      }, function (err, r) {
+        if (err) return callback(err)
+        if (!r.videos) return callback( null, video )
+        for (let i = 0; i < r.videos.length; i++) {
+          const v = r.videos[i]
+          if (video.videoId != null && video.videoId === v.videoId) {
+            Object.keys(video).forEach(function (key) {
+              video[key] = v[key] || video[key]
+            })
+            break
+          }
+        }
+        callback( err, video )
+      } )
+    }, 1500) // delay a bit try and circumvent throttling
+  } else {
+    callback( null, video )
+  }
 }
 
 /* Get metadata from a playlist page
@@ -1533,7 +1564,7 @@ function _msToTimestamp ( ms )
   return t
 }
 
-function _parseVideoMeataDataTitle( idata ) {
+function _parseVideoMetaDataTitle( idata ) {
   const t = (
     ( _jp.query( idata, '$..videoPrimaryInfoRenderer.title..text' ) ).join( '' ) ||
     ( _jp.query( idata, '$..videoPrimaryInfoRenderer.title..simpleText' ) ).join( '' ) ||

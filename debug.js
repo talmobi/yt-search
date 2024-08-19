@@ -1,7 +1,21 @@
 const yts = require( './src/index.js' )
 
 // console.log( yts.search )
-m13()
+m14()
+
+async function m14 () {
+  const video = await yts({ videoId: 'e9vrfEoc8_g' });
+  console.log(video.title);
+  console.log(video.url);
+  console.log(video.thumbnail);
+
+  console.log(video.timestamp)
+
+  console.log('----')
+  console.log(video.description)
+  console.log(video.duration)
+  console.log(video.views)
+}
 
 async function m13 () {
   const r = await yts("王菲 Faye Wong");
