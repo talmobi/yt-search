@@ -1079,7 +1079,7 @@ function _parseVideoInitialData ( responseText, callback )
           const v = r.videos[i]
           if (video.videoId != null && video.videoId === v.videoId) {
             Object.keys(video).forEach(function (key) {
-              video[key] = video[key] || v[key]
+              video[key] = v[key] || video[key]
             })
             break
           }
