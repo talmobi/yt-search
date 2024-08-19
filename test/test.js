@@ -759,11 +759,11 @@ test( 'long video correct seconds & timestamp | #issue49', function ( t ) {
 
     t.ok(
       (video.timestamp === '12:00:00') ||
-      (video.timestamp === '12:00:01') ||
+      (video.timestamp === '12:00:01')
     , 'timestamp' )
     t.ok(
       (video.seconds === 12 * 60 * 60) ||
-      (video.seconds === 12 * 60 * 60 + 1) ||
+      (video.seconds === 12 * 60 * 60 + 1)
     , 'seconds (duration)' )
   } )
 } )
