@@ -1071,18 +1071,22 @@ function _parseVideoInitialData ( responseText, callback )
   // id of the video and finding the same id in the video results --
   // genre/category information seems to be lost completely
   if (!video.description || !video.timestamp || !video.seconds || !video.views) {
-    search( `${video.id}`, function (err, r) {
-      r?.videos?.forEach(function (v) {
-        if (video.id === v.id) {
-          video.description = v.description || video.description
-          video.views = v.views || video.views
-          video.seconds = v.seconds || video.seconds
-          video.timestamp = v.timestamp || video.timestamp
-          video.duration = v.duration || video.duration
+    setTimeout(function () {
+      search( `${video.videoId}`, function (err, r) {
+        if (err) return callback(err)
+        if (!r.videos) return callback( null, video )
+        for (let i = 0; i < r.videos.length; i++) {
+          const v = r.videos[i]
+          if (video.videoId != null && video.videoId === v.videoId) {
+            Object.keys(video).forEach(function (key) {
+              video[key] = video[key] || v[key]
+            })
+            break
+          }
         }
-      })
-      callback( err, video )
-    } )
+        callback( err, video )
+      } )
+    }, 1500) // delay a bit try and circumvent throttling
   } else {
     callback( null, video )
   }
