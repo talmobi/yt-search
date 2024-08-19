@@ -985,10 +985,10 @@ function _parseVideoInitialData ( responseText, callback )
     return callback( 'video unavailable' )
   }
 
-  const title = _parseVideoMeataDataTitle( idata )
+  const title = _parseVideoMetaDataTitle( idata )
 
   const description = (
-    ( _jp.query( item, '$..detailedMetadataSnippets..snippetText..text' ) ).join( '' ) ||
+    ( _jp.query( idata, '$..detailedMetadataSnippets..snippetText..text' ) ).join( '' ) ||
     ( _jp.query( idata, '$..description..text' ) ).join( '' ) ||
     ( _jp.query( ipdata, '$..description..simpleText' ) ).join( '' ) ||
     ( _jp.query( ipdata, '$..microformat..description..simpleText' ) ).join( '' ) ||
@@ -1007,14 +1007,13 @@ function _parseVideoInitialData ( responseText, callback )
 
   const thumbnailUrl = 'https://i.ytimg.com/vi/' + videoId + '/hqdefault.jpg'
 
-  const duration = (
-    _parseDuration(
-      _jp.value( json, '$..lengthText..simpleText' ) ||
-      _jp.value( json, '$..thumbnailOverlayTimeStatusRenderer..simpleText' ) ||
-      ( _jp.query( json, '$..lengthText..text' ) ).join( '' ) ||
-      ( _jp.query( json, '$..thumbnailOverlayTimeStatusRenderer..text' ) ).join( '' )
-    )
+  const seconds = Number(
+    _jp.value( ipdata, '$..videoDetails..lengthSeconds' )
   )
+
+  const timestamp = _msToTimestamp( seconds * 1000 )
+
+  const duration = _parseDuration( timestamp )
 
   // TODO some video's have likes/dislike ratio hidden (ex: 62ezXENOuIA)
   // which makes this value undefined
@@ -1036,13 +1035,6 @@ function _parseVideoInitialData ( responseText, callback )
 
   const agoText = uploadDate && _humanTime( new Date( uploadDate ) ) || ''
 
-  const viewCountText = (
-    _jp.value( item, '$..viewCountText..text' ) ||
-    _jp.value( item, '$..viewCountText..simpleText' ) || "0"
-  )
-
-  const viewsCount = Number( viewCountText.split( /\s+/ )[ 0 ].split( /[,.]/ ).join( '' ).trim() )
-
   const video = {
     title: title,
     description: description,
@@ -1054,7 +1046,9 @@ function _parseVideoInitialData ( responseText, callback )
     timestamp: duration.timestamp,
     duration: duration,
 
-    views: Number( viewsCount ),
+    views: Number(
+      _jp.value( ipdata, '$..videoDetails..viewCount' )
+    ),
 
     genre: ( _jp.value( ipdata, '$..category' ) || '' ).toLowerCase(),
 
@@ -1070,7 +1064,28 @@ function _parseVideoInitialData ( responseText, callback )
     }
   }
 
-  callback( null, video )
+  // some vital information like video duration and video views are no
+  // longer available in the ytInitialData from a direct video link -- but
+  // they are still available from youtube results -- we will try to fill
+  // in these missing information using a hack to search based on the video
+  // id of the video and finding the same id in the video results --
+  // genre/category information seems to be lost completely
+  if (!video.description || !video.timestamp || !video.seconds || !video.views) {
+    search( `${video.id}`, function (err, r) {
+      r?.videos?.forEach(function (v) {
+        if (video.id === v.id) {
+          video.description = v.description || video.description
+          video.views = v.views || video.views
+          video.seconds = v.seconds || video.seconds
+          video.timestamp = v.timestamp || video.timestamp
+          video.duration = v.duration || video.duration
+        }
+      })
+      callback( err, video )
+    } )
+  } else {
+    callback( null, video )
+  }
 }
 
 /* Get metadata from a playlist page
@@ -1540,7 +1555,7 @@ function _msToTimestamp ( ms )
   return t
 }
 
-function _parseVideoMeataDataTitle( idata ) {
+function _parseVideoMetaDataTitle( idata ) {
   const t = (
     ( _jp.query( idata, '$..videoPrimaryInfoRenderer.title..text' ) ).join( '' ) ||
     ( _jp.query( idata, '$..videoPrimaryInfoRenderer.title..simpleText' ) ).join( '' ) ||
