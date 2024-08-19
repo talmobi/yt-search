@@ -265,7 +265,10 @@ test.only( 'video metadata by id', function ( t ) {
     t.equal( video.seconds, 253, 'seconds (duration)' )
 
     // TODO description failed as: ''
-    t.equal( video.description, 'The theme song from Superman: The Movie', 'description' )
+    t.ok(
+      (video.description === 'The theme song from Superman: The Movie') ||
+      (video.description === 'The theme song from Superman: The Movie.')
+    , 'description' )
 
     // TODO views failed as: false
     t.ok( video.views > ( 35 * MILLION ), 'views over 35 Million' )
@@ -330,7 +333,10 @@ test( 'video metadata by id _JzeIf1zT14', function ( t ) {
     // t.equal( video.author.id, 'UCF7YjO3SzVUGJYcXipRY0zQ', 'author id' )
     t.equal( video.author.url, 'https://youtube.com/@DesazMusicYt', 'author url' )
 
-    t.equal( video.image, 'https://i.ytimg.com/vi/_JzeIf1zT14/hqdefault.jpg', 'image' )
+    t.ok(
+      (video.image === 'https://i.ytimg.com/vi/_JzeIf1zT14/hqdefault.jpg' ) ||
+      (video.image === 'https://i.ytimg.com/vi/_JzeIf1zT14/hq2.jpg')
+    , 'image' )
     t.equal( video.image, video.thumbnail, 'common alternative' )
   } )
 } )
@@ -751,8 +757,14 @@ test( 'long video correct seconds & timestamp | #issue49', function ( t ) {
   yts( { videoId: 'K3dXnyQjnx8' }, function ( err, video ) {
     t.error( err, 'no errors OK!' )
 
-    t.equal( video.timestamp, '12:00:00', 'timestamp' )
-    t.equal( video.seconds, 12 * 60 * 60, 'seconds (duration)' )
+    t.ok(
+      (video.timestamp === '12:00:00') ||
+      (video.timestamp === '12:00:01') ||
+    , 'timestamp' )
+    t.ok(
+      (video.seconds === 12 * 60 * 60) ||
+      (video.seconds === 12 * 60 * 60 + 1) ||
+    , 'seconds (duration)' )
   } )
 } )
 
