@@ -136,7 +136,7 @@ function search ( query, callback )
 
   function callback_with_retry ( err, data ) {
     if ( err ) {
-      if ( _options._attempts > MAX_RETRY_ATTEMPTS ) {
+      if ( _options._attempts > ( _options.MAX_RETRY_ATTEMPTS || MAX_RETRY_ATTEMPTS ) ) {
         return callback( err, data )
       } else {
         // retry
@@ -145,7 +145,7 @@ function search ( query, callback )
         debug( ' === ' )
 
         const n = _options._attempts
-        const wait_ms = Math.pow( 2, n - 1 ) * RETRY_INTERVAL
+        const wait_ms = Math.pow( 2, n - 1 ) * (_options.RETRY_INTERVAL || RETRY_INTERVAL)
 
         setTimeout( function () {
           search( retryOptions, callback )
@@ -1072,7 +1072,12 @@ function _parseVideoInitialData ( responseText, callback )
   // genre/category information seems to be lost completely
   if (!video.description || !video.timestamp || !video.seconds || !video.views) {
     setTimeout(function () {
-      search( `${video.videoId}`, function (err, r) {
+      search( {
+        query: `${video.videoId}`,
+        options: {
+          RETRY_INTERVAL: 1000
+        },
+      }, function (err, r) {
         if (err) return callback(err)
         if (!r.videos) return callback( null, video )
         for (let i = 0; i < r.videos.length; i++) {
