@@ -1073,7 +1073,7 @@ function _parseVideoInitialData ( responseText, callback )
   if (!video.description || !video.timestamp || !video.seconds || !video.views) {
     setTimeout(function () {
       search( {
-        query: `${video.videoId}`,
+        query: `"${video.videoId}"`,
         options: {
           RETRY_INTERVAL: 1000
         },
