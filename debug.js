@@ -1,7 +1,21 @@
 const yts = require( './src/index.js' )
 
 // console.log( yts.search )
-m14()
+m15()
+
+async function m15 () {
+  const video = await yts({ videoId: '-ObdvMkCKws' });
+  console.log(video.title);
+  console.log(video.url);
+  console.log(video.thumbnail);
+
+  console.log(video.timestamp)
+
+  console.log('----')
+  console.log(video.description)
+  console.log(video.duration)
+  console.log(video.views)
+}
 
 async function m14 () {
   const video = await yts({ videoId: 'e9vrfEoc8_g' });
