@@ -375,6 +375,7 @@ test( 'video metadata by id _JzeIf1zT14', function ( t ) {
     // t.equal( video.author.id, 'UCF7YjO3SzVUGJYcXipRY0zQ', 'author id' )
     t.equal( video.author.url, 'https://youtube.com/@DesazMusicYt', 'author url' )
 
+    // TODO test fails sometimes?
     t.ok(
       (video.image === 'https://i.ytimg.com/vi/_JzeIf1zT14/hqdefault.jpg' ) ||
       (video.image === 'https://i.ytimg.com/vi/_JzeIf1zT14/hq2.jpg')
