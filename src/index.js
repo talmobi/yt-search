@@ -1071,9 +1071,17 @@ function _parseVideoInitialData ( responseText, callback )
   // id of the video and finding the same id in the video results --
   // genre/category information seems to be lost completely
   if (!video.description || !video.timestamp || !video.seconds || !video.views) {
+    debug('in video metadata backup to fill in missing data')
+    let q = `${video.videoId}`
+
+    debug( 'q (before): ' + q )
+    // remove characters that mess up normal behaviour from id for searching
+    while (q && q[0].match(/[-]/)) q = q.slice(1)
+    debug( 'q (after) : ' + q )
+
     setTimeout(function () {
       search( {
-        query: `"${video.videoId}"`,
+        query: q,
         options: {
           RETRY_INTERVAL: 1000
         },
