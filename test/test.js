@@ -309,6 +309,26 @@ test( 'video metadata by faulty/non-existing id', function ( t ) {
   } )
 } )
 
+test( 'video metadata by id -ObdvMkCKws (special character "-" at beginning of id)', function ( t ) {
+  t.plan( 7 )
+
+  yts( { videoId: '-ObdvMkCKws' }, function ( err, video ) {
+    t.error( err, 'no errors OK!' )
+
+    const MILLION = 1000 * 1000
+
+    t.ok( video.title.indexOf("Top 20 Most Popular Songs by NCS") >= 0, 'title ok' )
+    t.equal( video.videoId, '-ObdvMkCKws', 'videoId' )
+
+    t.equal( video.timestamp, '1:12:47', 'timestamp' )
+    t.equal( video.seconds, 4367, 'seconds (duration)' )
+
+    t.ok( video.description.indexOf( 'Top NCS full' ) >= 0, 'description ok' )
+
+    t.ok( video.views > ( 30 * MILLION ), 'views over 30 Million' )
+  } )
+} )
+
 test( 'video metadata by id _JzeIf1zT14', function ( t ) {
   t.plan( 13 )
 
