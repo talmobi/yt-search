@@ -19,8 +19,8 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - run: npm install
     - run: npm run build --if-present
-    - run: npm test
-      # - name: Setup tmate session
-      # uses: mxschmitt/action-tmate@v3
+      #- run: npm test
+    - name: Setup tmate session
+      uses: mxschmitt/action-tmate@v3
       env:
         CI: true
