@@ -147,7 +147,11 @@ function getDesktopVideos ( _options, callback )
     'user-agent': _userAgent,
     'accept': 'text/html',
     'accept-encoding': 'gzip',
-    'accept-language': 'en-US,en-GB'
+    'accept-language': (
+      _options.acceptLanguage ||
+      _options.accept_language ||
+      `${hl}-${gl}`
+    )
   }
 
   debug( 'getting results: ' + _options.currentPage )

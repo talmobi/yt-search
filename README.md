@@ -118,6 +118,17 @@ yts( opts, function ( err, r ) {
 	console.log( r.live ) // live stream results
 } )
 
+var optsWithLanguage = {
+	query: 'superman theme',
+	hl: 'pt',
+	gl: 'BR',
+	acceptLanguage: 'pt-BR,pt;q=0.9,en-US;q=0.8,en;q=0.7'
+}
+yts( optsWithLanguage, function ( err, r ) {
+	if ( err ) throw err
+	console.log( r.videos ) // localized request headers
+} )
+
 var opts = { videoId: 'e9vrfEoc8_g' }
 yts( opts, function ( err, video ) {
 	if ( err ) throw err
@@ -131,6 +142,9 @@ yts( opts, function ( err, playlist ) {
 	console.log( playlist.videos ) // playlist videos
 } )
 ```
+
+`acceptLanguage` is optional and overrides the HTTP `Accept-Language` header.
+If omitted, yt-search builds a fallback value from `hl/gl`.
 
 ## Alternatives
 [ytsr](https://www.npmjs.com/package/ytsr)
